@@ -10,10 +10,12 @@ const AI_MODEL_SUGGESTIONS={
   {id:'openai/gpt-oss-20b',name:'GPT-OSS 20B',use:'Ưu tiên tốc độ cho từ vựng và hội thoại',vision:false},
   {id:'openai/gpt-oss-120b',name:'GPT-OSS 120B',use:'Gợi ý cho chữa viết và giải thích ngữ pháp',vision:false},
   {id:'qwen/qwen3.8-27b',name:'Qwen 3.8 27B · Preview',use:'Lựa chọn thử nghiệm; có thể thay đổi/ngừng',vision:false}]},
- openai:{source:'https://developers.openai.com/api/docs/models',note:'OpenAI API tính phí riêng với ChatGPT Plus; chỉ thêm khi tài khoản có quota/credit phù hợp. App không tự kích hoạt thanh toán.',items:[
-  {id:'gpt-6-luna',name:'GPT-6 Luna',use:'Tác vụ thường ngày, ưu tiên chi phí thấp',vision:true},
-  {id:'gpt-6.1-sol',name:'GPT-6.1 Sol',use:'Cân bằng chất lượng và chi phí',vision:true},
-  {id:'gpt-6-astra',name:'GPT-6 Astra',use:'Bài khó, phân tích sâu; chi phí cao hơn',vision:true}]}
+ openrouter:{source:'https://openrouter.ai/docs/guides/routing/routers/free-router',note:'Chỉ sử dụng model miễn phí. Vẫn có quota, có thể chờ lâu hoặc hết lượt; không tự nạp tiền hay chuyển model trả phí. Cần API key OpenRouter riêng, không dùng key OpenAI. PDF gốc dùng Gemini. Bấm Đổi model sau khi lưu để lấy danh sách miễn phí mới nhất.',items:[
+  {id:'openrouter/free',name:'Free Models Router · nên thử trước',use:'Tự chọn model miễn phí có JSON/ảnh phù hợp',vision:true},
+  {id:'google/gemma-4-31b-it:free',name:'Gemma 4 31B · Free',use:'Văn bản/ảnh; có trong catalog lúc kiểm tra',vision:true},
+  {id:'nvidia/nemotron-3.5-super-vl:free',name:'Nemotron 3.5 Super VL · Free',use:'Thử phân tích ảnh và văn bản',vision:true},
+  {id:'nvidia/nemotron-3-super-120b-a12b:free',name:'Nemotron 3 Super · Free',use:'Phân tích văn bản; không nhận ảnh',vision:false}]}
+
 };
 function renderModelSuggestions(){
  const form=$('#admin-ai-form'),fields=form.elements,provider=fields.provider.value,catalog=AI_MODEL_SUGGESTIONS[provider];if(!catalog)return;

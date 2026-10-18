@@ -25,3 +25,10 @@ Super Admin can add Gemini/Groq/OpenAI configurations, encrypted with AES-GCM us
 ## Verification and limits
 
 Automated checks cover account roles, private/shared data, version conflicts, password expiry and session revocation, key encryption and temporary AI fallback; client bootstrap for every page, pending writes, conflicts, offline retention, grammar draft/result resume and quiz response history. See AUDIT.md for the requirement-by-requirement status and current limitations. No browser UI QA or real AI provider acceptance test yet. Do not claim full cross-device/production verification until the deployed database connection has been tested. Free-provider quotas and durability/backup policies are external constraints.
+
+## OpenRouter Free (2026-10-18)
+
+OpenAI trực tiếp đã được thay bằng OpenRouter trong Admin. Chỉ `openrouter/free` hoặc mã `:free` được chấp nhận; model cụ thể được đối chiếu catalog giá 0 và hỗ trợ JSON, request đặt trần giá 0, không bật plugin tính phí. Cấu hình OpenAI cũ không được gọi; giữ bản mã để chủ tài khoản tự quản lý.
+API key OpenAI không dùng được với OpenRouter. Thêm API key OpenRouter mới trong Admin, không lưu vào repo hoặc biến build.
+Model ảnh được kiểm tra khả năng; PDF gốc vẫn dùng Gemini. Free vẫn có quota/khả năng quá tải, không bảo đảm không giới hạn hoặc nhanh hơn.
+Nguồn: https://openrouter.ai/docs/guides/routing/routers/free-router và https://openrouter.ai/api/v1/models
