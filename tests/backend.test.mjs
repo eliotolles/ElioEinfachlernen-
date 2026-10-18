@@ -47,3 +47,12 @@ test('token limit returns partial JSON and continuation includes preserved prefi
  if(provider==='gemini'){assert.equal(seen.contents[1].parts[0].text,partial.body.text);assert.match(seen.systemInstruction.parts[0].text,/MUST be in Vietnamese/);}else{assert.equal(seen.messages[2].content,partial.body.text);assert.match(seen.messages[0].content,/MUST be in Vietnamese/);}
  }}finally{globalThis.fetch=original;}
 });
+
+test('PDF capabilities omit secrets and ordinary AI failures expose sanitized actionable quota reasons',async()=>{
+ db.prepare("UPDATE app_ai SET enabled=CASE WHEN provider='groq' THEN 1 ELSE 0 END,cooldown=0").run();const cap=await call('/api/ai/capabilities','GET',null,owner.cookie);assert.equal(cap.status,200);assert.equal(cap.body.text,true);assert.equal(cap.body.vision,false);assert(!JSON.stringify(cap.body).includes('secret'));assert.equal((await call('/api/ai/capabilities')).status,401);
+ const original=globalThis.fetch;globalThis.fetch=async()=>Response.json({error:{message:'secret-key-must-not-leak'}},{status:429});try{const failed=await call('/api/ai','POST',{prompt:'Extract'},owner.cookie);assert.equal(failed.status,503);assert.match(failed.body.error,/HTTP 429/);assert.equal(failed.body.code,'AI_UNAVAILABLE');assert(!JSON.stringify(failed.body).includes('secret-key'));const wait=await call('/api/ai/capabilities','GET',null,owner.cookie);assert.equal(wait.body.text,false);assert(wait.body.retryAfter>0);assert.match(wait.body.reason,/HTTP 429/);}finally{globalThis.fetch=original;}
+});
+
+test('unsupported image mode disables vision without cooling down an otherwise usable text API',async()=>{
+ db.prepare("UPDATE app_ai SET enabled=CASE WHEN provider='gemini' THEN 1 ELSE 0 END,cooldown=0,vision=CASE WHEN provider='gemini' THEN 1 ELSE vision END").run();const original=globalThis.fetch;globalThis.fetch=async(url,options)=>{const input=JSON.parse(options.body);return input.contents[0].parts.some(p=>p.inline_data)?Response.json({error:{message:'Model does not support image input'}},{status:400}):Response.json({candidates:[{finishReason:'STOP',content:{parts:[{text:'{"words":[]}'}]}}]});};try{const image=await call('/api/ai','POST',{prompt:'Extract',attachments:[{mimeType:'image/png',data:'YQ=='}]},owner.cookie);assert.equal(image.status,503);const cap=await call('/api/ai/capabilities','GET',null,owner.cookie);assert.equal(cap.body.text,true);assert.equal(cap.body.vision,false);assert.equal((await call('/api/ai','POST',{prompt:'Extract text'},owner.cookie)).status,200);}finally{globalThis.fetch=original;}
+});
