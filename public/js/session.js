@@ -2,6 +2,8 @@
 const Account={profile:null,records:{},shared:{},config:{},pending:{},conflicts:{},syncing:false,online:true,
  users(){try{return JSON.parse(localStorage.getItem('dt:_users')||'{}');}catch{return {};}},
  current(){return this.profile?.id||null;},
+ displayName(){const value=this.get('settings',{}).userProfile?.name;return (typeof value==='string'&&value.trim()?value.trim().slice(0,60):this.profile?.email?.split('@')[0])||'Elio';},
+ avatar(){const value=this.get('settings',{}).userProfile?.avatar;return typeof value==='string'&&value.length<=80000&&/^data:image\/(?:jpeg|png|webp);base64,[A-Za-z0-9+/=]+$/.test(value)?value:'';},
  async request(path,method='GET',data){let response;try{response=await fetch(path,{method,credentials:'same-origin',headers:data?{'Content-Type':'application/json'}:{},body:data?JSON.stringify(data):undefined});}catch{const e=new Error('Mất kết nối. Thay đổi được giữ trên thiết bị.');e.offline=true;throw e;}const result=await response.json();if(!response.ok){const e=new Error(result.error||'Request failed');e.status=response.status;e.data=result;if(e.status===428&&!this.authPage())location.replace('password.html');if(e.status===401&&!this.authPage()){this.profile=null;localStorage.removeItem('elio:profile');this.redirectToLogin();}throw e;}return result;},
  async hash(value){let h=2166136261;for(const char of value)h=Math.imul(h^char.charCodeAt(0),16777619);return(h>>>0).toString(16);},
  async authenticate(email,password,register=false){const r=await this.request('/api/auth/'+(register?'register':'login'),'POST',{email,password});this.profile=r.user;if(!r.user.passwordExpired)await this.refresh();return this.profile.id;},
