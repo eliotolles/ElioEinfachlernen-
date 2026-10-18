@@ -1,0 +1,3 @@
+
+### Detailed review update
+Mock exams now explain every objective answer using source keys and supplied text/transcripts, including distractors and listening traps. Missing source keys remain ungraded. Reviews are batched with saved partial results and retry of missing sections. Writing uses the same shared detailed evaluator as standalone writing: practice criteria, requirements, exact errors and rules, prevention, every sentence, corrected response, model and alternative expressions. Speaking includes richer turn corrections and a saved full-conversation review. Explanation language follows settings; pronunciation is not inferred from transcripts. AI feedback requires user API configuration; live API quality and browser speech support depend on provider/browser.
