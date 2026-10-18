@@ -1,3 +1,5 @@
+> **Chuyển hosting độc lập:** xem [CLOUDFLARE-DEPLOY.md](CLOUDFLARE-DEPLOY.md). Cấu hình Cloudflare Workers nằm trong `wrangler.jsonc`; mẫu secrets: `.env.cloudflare.example`.
+
 # Elio Einfach
 
 German learning application with Vietnamese, German and English UI. Green/white/black styling, Lexend/handwriting; grammar imports, vocabulary/SRS, writing, speaking and exam practice.

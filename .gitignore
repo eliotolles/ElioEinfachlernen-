@@ -3,3 +3,9 @@
 !.env.example
 node_modules/
 *.log
+
+cloudflare/
+.wrangler/
+.dev.vars
+.dev.vars.*
+!.env.cloudflare.example
