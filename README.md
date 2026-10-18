@@ -32,3 +32,9 @@ OpenAI trực tiếp đã được thay bằng OpenRouter trong Admin. Chỉ `op
 API key OpenAI không dùng được với OpenRouter. Thêm API key OpenRouter mới trong Admin, không lưu vào repo hoặc biến build.
 Model ảnh được kiểm tra khả năng; PDF gốc vẫn dùng Gemini. Free vẫn có quota/khả năng quá tải, không bảo đảm không giới hạn hoặc nhanh hơn.
 Nguồn: https://openrouter.ai/docs/guides/routing/routers/free-router và https://openrouter.ai/api/v1/models
+
+
+### Detailed examiner feedback and continuation
+Writing, speaking analysis and exam open responses share evidence-based strict practice grading (four criteria, 0–5 each), task/format checklists, priorities, sentence-level colored feedback, error explanations and prevention, writing plan, corrected response and model response. This is not an official certificate score. Background themes are unchanged.
+
+When a provider reports MAX_TOKENS/length, the browser keeps received JSON fragments under a user-prefixed local continuation checkpoint, counts down 30 seconds and requests the remaining characters using the original prompt and accumulated response. Up to 8 requests per action; repeat the same action to resume a retained checkpoint after failure. No original attachment is saved in that checkpoint (only a fingerprint). Closing the page pauses the operation; this is not a background server job or cross-device partial-response sync. Complete feedback continues to sync normally. Model compliance and provider availability can still prevent valid completion; invalid JSON is reported, never silently graded. The 30-second delay does not reset provider quotas.

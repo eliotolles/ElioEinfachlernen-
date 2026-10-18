@@ -30,3 +30,20 @@ test('OpenRouter replaces OpenAI, restricts zero-cost models, supports images an
  await call('/api/admin/ai','PATCH',{id:added.body.id,model:'paid/model:free'},owner.cookie);const blocked=await call('/api/admin/ai/test','POST',{id:added.body.id},owner.cookie);assert.equal(blocked.status,503);assert.match(blocked.body.error,/không còn miễn phí/);assert.equal(requests.length,before);
  }finally{globalThis.fetch=original;}
 });
+
+
+test('token limit returns partial JSON and continuation includes preserved prefix for Gemini and chat providers',async()=>{
+ const original=globalThis.fetch;
+ try{for(const provider of ['gemini','groq','openrouter']){
+ const id=db.prepare('SELECT id FROM app_ai WHERE provider=?').get(provider).id;
+ if(provider==='openrouter')await call('/api/admin/ai','PATCH',{id,model:'openrouter/free'},owner.cookie);await call('/api/admin/ai','PATCH',{id,enabled:true,priority:0},owner.cookie);
+ let seen;
+ globalThis.fetch=async(url,options)=>{seen=JSON.parse(options.body);return Response.json(provider==='gemini'?{candidates:[{finishReason:'MAX_TOKENS',content:{parts:[{text:'{"scores":'}]}}]}:{choices:[{finish_reason:'length',message:{content:'{"scores":'}}]});};
+ const partial=await call('/api/admin/ai/test','POST',{id},owner.cookie);assert.equal(partial.status,200);assert.equal(partial.body.truncated,true);assert.equal(partial.body.text,'{"scores":');
+ // Restrict routing to this provider to inspect its exact follow-up request.
+ db.prepare('UPDATE app_ai SET enabled=CASE WHEN id=? THEN 1 ELSE 0 END,cooldown=0').run(id);
+ globalThis.fetch=async(url,options)=>{seen=JSON.parse(options.body);return Response.json(provider==='gemini'?{candidates:[{finishReason:'STOP',content:{parts:[{text:'{}}'}]}}]}:{choices:[{finish_reason:'stop',message:{content:'{}}'}}]});};
+ const next=await call('/api/ai','POST',{prompt:'Return JSON',continuation:partial.body.text},owner.cookie);assert.equal(next.status,200);assert.equal(next.body.truncated,false);assert.deepEqual(JSON.parse(partial.body.text+next.body.text),{scores:{}});
+ if(provider==='gemini')assert.equal(seen.contents[1].parts[0].text,partial.body.text);else assert.equal(seen.messages[2].content,partial.body.text);
+ }}finally{globalThis.fetch=original;}
+});
