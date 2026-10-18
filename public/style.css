@@ -22,3 +22,11 @@
 .account-header .brand{margin:0 auto 0 0}.account-card form{margin-top:20px}.account-page button:focus-visible,.account-page a:focus-visible{outline:3px solid var(--orange);outline-offset:4px}
 
 .admin-row{padding:16px 0;border-bottom:1px solid var(--line);overflow-wrap:anywhere}.admin-row button{margin:4px}.password-card{max-width:560px;margin:50px auto;padding:30px}.password-card h1{font-size:32px}.password-notice{display:block;background:var(--soft);padding:12px;border-radius:10px;color:var(--orange)}#sync-state{max-width:170px;font-size:10px}.panel+.panel{margin-top:22px}#delete-my-material{margin-bottom:12px}@media(max-width:560px){#sync-state{max-width:95px;font-size:8px}.password-card{margin:20px;padding:24px}}
+
+/* Home: a B1 certificate as the learning goal. */
+.dashboard-hero .hero-slogan{font-size:clamp(30px,3.7vw,49px);line-height:1.18;max-width:640px;text-wrap:balance;overflow-wrap:normal}
+.certificate-visual{min-height:290px;padding:8px 12px 28px}
+.certificate-art{display:block;width:205px;max-width:100%;height:auto;transform:rotate(8deg);filter:drop-shadow(10px 13px 0 #55784e20) drop-shadow(0 10px 16px #173f2512)}
+.certificate-visual .float-note{bottom:4px;left:-12px;white-space:nowrap}
+@media(max-width:850px){.certificate-visual{padding:0 0 35px;min-height:240px}.certificate-art{width:170px}.certificate-visual .float-note{left:-18px;font-size:18px}.dashboard-hero .hero-slogan{font-size:34px}}
+@media(max-width:560px){.dashboard-hero .certificate-visual{display:grid;transform:none;min-height:260px;margin-top:14px;padding-bottom:28px}.certificate-art{width:180px}.certificate-visual .float-note{left:50%;transform:translateX(-50%) rotate(-6deg);bottom:0}.dashboard-hero .hero-slogan{font-size:32px}}
