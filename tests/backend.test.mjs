@@ -44,6 +44,6 @@ test('token limit returns partial JSON and continuation includes preserved prefi
  db.prepare('UPDATE app_ai SET enabled=CASE WHEN id=? THEN 1 ELSE 0 END,cooldown=0').run(id);
  globalThis.fetch=async(url,options)=>{seen=JSON.parse(options.body);return Response.json(provider==='gemini'?{candidates:[{finishReason:'STOP',content:{parts:[{text:'{}}'}]}}]}:{choices:[{finish_reason:'stop',message:{content:'{}}'}}]});};
  const next=await call('/api/ai','POST',{prompt:'Return JSON',continuation:partial.body.text},owner.cookie);assert.equal(next.status,200);assert.equal(next.body.truncated,false);assert.deepEqual(JSON.parse(partial.body.text+next.body.text),{scores:{}});
- if(provider==='gemini')assert.equal(seen.contents[1].parts[0].text,partial.body.text);else assert.equal(seen.messages[2].content,partial.body.text);
+ if(provider==='gemini'){assert.equal(seen.contents[1].parts[0].text,partial.body.text);assert.match(seen.systemInstruction.parts[0].text,/MUST be in Vietnamese/);}else{assert.equal(seen.messages[2].content,partial.body.text);assert.match(seen.messages[0].content,/MUST be in Vietnamese/);}
  }}finally{globalThis.fetch=original;}
 });
