@@ -132,3 +132,7 @@ body.elio-app.dark .lesson-prose .learning-table th{background:#302540;color:#f1
 #vocab-enrichment-stop[hidden]{display:none}
 
 #book-pack-zone[hidden]{display:none}.lesson-source-book{margin:24px 0;border:1px solid var(--line);border-radius:16px;padding:16px}.lesson-source-book>summary{font-weight:600;cursor:pointer}.lesson-source-book .lesson-prose{margin-top:20px}
+
+#ai-settings[hidden]{display:none!important}
+
+body:not(.super-admin-tools) .nav-actions :is(#sync-state,#ui-language,.quick-color,#text-size-link,#ai-settings){display:none!important}
