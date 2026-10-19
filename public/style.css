@@ -111,3 +111,21 @@
 .exam-selection-actions{grid-column:1/-1;padding:18px;border:1px solid var(--line);border-radius:16px;background:var(--card)}
 #exam-selection-error:empty{display:none}
 #exam-selection-error{color:var(--text);border-left:3px solid var(--orange);padding-left:12px}
+
+/* Dark reference: near-black canvas, accent-colored glow and violet frames. */
+body.elio-app.dark[class]{--bg:#101112;--card:#1d1928;--text:#f5f3fa;--muted:#c3becd;--line:#574771;--soft:#292334;--green:#292334;--module-wash:#241d35;--module-edge:#7961b0;background-color:#101112;background-image:radial-gradient(ellipse 65vw 50vh at 15% 100%,color-mix(in srgb,var(--orange) 28%,transparent),transparent 75%),radial-gradient(ellipse 50vw 45vh at 90% 100%,color-mix(in srgb,var(--orange) 16%,transparent),transparent 78%);background-attachment:fixed}
+body.elio-app.dark .sidebar,body.elio-app.dark .topbar,body.elio-app.dark .bottom-nav{background:#141316;border-color:#3b334a}
+body.elio-app.dark .page-title{background:linear-gradient(115deg,#302467,#5b4390 58%,#695286);border-color:#9179cb;color:#f8f5ff}
+body.elio-app.dark .page-title p{color:#e4ddf0}
+body.elio-app.dark .page-title em{color:#c4f2d4}
+body.elio-app.dark .page-title .big-symbol{color:#c7b1f1;opacity:.5}
+body.elio-app.dark .panel,body.elio-app.dark .workspace>aside.panel,body.elio-app.dark .exam-setup,body.elio-app.dark .exam-selection-actions,body.elio-app.dark .format-module,body.elio-app.dark .vocab-deck-details{background:#1d1928;border-color:#705a99}
+body.elio-app.dark input,body.elio-app.dark select,body.elio-app.dark textarea{background:#131216;color:var(--text);border-color:#59466f}
+body.elio-app.dark .side-note,body.elio-app.dark .dashboard-hero{background:linear-gradient(125deg,#302467,#4c386b);border-color:#8066af}
+body.elio-app.dark .dashboard-hero p,body.elio-app.dark .dashboard-hero .eyebrow{color:#e0d6ed}
+body.elio-app.dark .exam-clock,body.elio-app.dark .learning-path-panel,body.elio-app.dark .flashcard{background:linear-gradient(135deg,#35274f,#51406c);color:#f3eaff;border-color:#8b72b6}
+body.elio-app.dark .exam-clock #sim-timer,body.elio-app.dark .flashcard .game-word{color:#f3eaff}
+body.elio-app.dark .grammar-topic-link{background:#272032;color:var(--text);border-color:#5d4b78}
+body.elio-app.dark .grammar-topic-link.active,body.elio-app.dark .exam-answer-option.selected{background:color-mix(in srgb,var(--orange) 18%,#19171e);border-color:var(--orange);color:var(--text)}
+body.elio-app.dark .grammar-topic-link small,body.elio-app.dark .grammar-topic-number,body.elio-app.dark .grammar-list-label{color:#c9bed9}
+body.elio-app.dark .lesson-prose .learning-table th{background:#302540;color:#f1e8fa}
