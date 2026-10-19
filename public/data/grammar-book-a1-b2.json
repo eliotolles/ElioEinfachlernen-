@@ -623,18 +623,18 @@
     },
     {
       "id": "book-dtd-a2-04",
-      "title": "Perfekt – Ôn tập chi tiết",
-      "topic": "Perfekt – Ôn tập chi tiết",
+      "title": "Perfekt · Trật tự câu và kể chuỗi sự kiện",
+      "topic": "Perfekt · Trật tự câu và kể chuỗi sự kiện",
       "level": "A2",
-      "content": "## Mục tiêu bài học\n\nHiểu và sử dụng **Perfekt – Ôn tập chi tiết** trong câu hoàn chỉnh. Học các quy tắc, xem ví dụ rồi làm câu luyện tập phía dưới.\n\n## Quy tắc trọng tâm\n\nPerfekt được tạo bằng **haben/sein đã chia + Partizip II cuối câu**. Động từ đều thường có ge-…-t; động từ mạnh có thể đổi gốc và dùng -en.\n\nĐộng từ tận cùng -ieren và động từ có tiền tố không tách thường không có ge-. Động từ tách chèn ge- sau tiền tố. Chọn haben/sein theo cách dùng của động từ; thay đổi vị trí/trạng thái thường dùng sein, nhưng cần học cả ngoại lệ.\n\n## Xây dựng Perfekt\n\n| Thành phần | Quy tắc | Ví dụ |\n| --- | --- | --- |\n| trợ động từ | haben hoặc sein, được chia | Ich habe / bin … |\n| động từ đều | ge + gốc + t | machen → gemacht |\n| động từ mạnh | học dạng riêng | schreiben → geschrieben |\n| động từ -ieren | không ge- | studieren → studiert |\n| tiền tố không tách | không ge- | besuchen → besucht |\n| tiền tố tách | ge- nằm giữa | einkaufen → eingekauft |\n\n## Phân tích một câu hoàn chỉnh\n\n**Gestern bin ich nach Hause gefahren.** — Hôm qua tôi đã về nhà. Bin chia theo ich; gefahren nằm cuối. Di chuyển thay đổi vị trí và một số thay đổi trạng thái thường dùng sein; nhiều hoạt động khác dùng haben. Không chỉ nhìn bản dịch: **Ich habe das Auto gefahren.** có tân ngữ và cách dùng khác. Lernen dùng haben dù người học có “tiến bộ”.\n\n## Sai ở đâu và sửa thế nào?\n\nSai: *Ich habe nach Berlin gefahren.* → **Ich bin nach Berlin gefahren.** Với fahren mang nghĩa tự đi tới nơi, dùng sein. Sai: *gestudiert* → **studiert**.\n\n## Ví dụ Đức–Việt\n\n- Ich habe gestern gekocht. → Hôm qua tôi đã nấu ăn.\n\n- Wir sind nach Hause gefahren. → Chúng tôi đã về nhà.\n\n## Cách tự kiểm tra\n\n1. Xác định ý muốn diễn đạt và người thực hiện hành động.\n2. Đối chiếu cấu trúc trong bảng; kiểm tra dạng động từ, cách và đuôi nếu có.\n3. Đọc lại cả câu để chắc rằng nghĩa không đổi.\n4. Làm bài tập bên dưới rồi đọc giải thích, kể cả khi trả lời đúng.",
+      "content": "## Quy tắc trọng tâm\n\nBài thực hành sau bài Perfekt nhập môn: không học lại danh sách công thức, mà dùng Perfekt trong câu hỏi, câu phủ định và đoạn kể. Khi hai vế dùng trợ động từ khác nhau, cần chia trợ động từ phù hợp cho từng vế.\n\n## Cấu trúc và ví dụ Đức–Việt\n\n| Cấu trúc | Ví dụ | Nghĩa |\n| --- | --- | --- |\n| câu hỏi | Hast du gestern eingekauft? | Hôm qua bạn đã đi mua sắm chưa? |\n| phủ định | Ich habe den Brief noch nicht abgeschickt. | Tôi vẫn chưa gửi thư. |\n| câu phụ | Ich bin müde, weil ich schlecht geschlafen habe. | Tôi mệt vì đã ngủ không ngon. |\n| hai trợ động từ | Ich bin nach Hause gekommen und habe gekocht. | Tôi đã về nhà và nấu ăn. |\n\n## Phân tích cách dùng\n\nKể theo thứ tự: Zuerst habe ich eingekauft. Danach bin ich nach Hause gefahren. Zu Hause habe ich gekocht. Zuerst và Danach đứng đầu câu nên trợ động từ phải đứng ngay sau; chủ ngữ ich theo sau trợ động từ. Trong weil … geschlafen habe, trợ động từ chia chuyển xuống cuối. Khi nói nhiều hành động cùng haben, có thể dùng một trợ động từ cho hai Partizip: Ich habe gekocht und aufgeräumt.\n\n## Lỗi thường gặp\n\nSai: Danach ich bin nach Hause gefahren. → Danach bin ich nach Hause gefahren. Sai: Ich bin nach Hause gekommen und gekocht. → … und habe gekocht.",
       "exercises": [
         {
           "type": "fill",
-          "question": "Điền trợ động từ: Ich ___ gestern nach Hause gegangen.",
+          "question": "Điền trợ động từ: Ich bin nach Hause gekommen und ___ gekocht.",
           "answers": [
-            "bin"
+            "habe"
           ],
-          "explanation": "Gehen biểu thị thay đổi vị trí, Perfekt dùng sein: ich bin gegangen.",
+          "explanation": "Kommen dùng sein, nhưng kochen ở đây dùng haben. Vế thứ hai cần habe.",
           "origin": "authored",
           "answerSource": "authored"
         }
@@ -1115,18 +1115,18 @@
     },
     {
       "id": "book-dtd-b1-04",
-      "title": "Verben und Adjektive mit Präpositionen",
-      "topic": "Verben und Adjektive mit Präpositionen",
+      "title": "Động từ và tính từ có giới từ · Hỏi và thay thế bổ ngữ",
+      "topic": "Động từ và tính từ có giới từ · Hỏi và thay thế bổ ngữ",
       "level": "B1",
-      "content": "## Mục tiêu bài học\n\nHiểu và sử dụng **Verben und Adjektive mit Präpositionen** trong câu hoàn chỉnh. Học các quy tắc, xem ví dụ rồi làm câu luyện tập phía dưới.\n\n## Quy tắc trọng tâm\n\nHọc động từ/tính từ cùng **giới từ và cách**, chẳng hạn warten auf + Akkusativ, teilnehmen an + Dativ, zufrieden mit + Dativ. Cùng một từ có thể đổi giới từ khi đổi nghĩa.\n\nHỏi người: giới từ + wen/wem; hỏi vật/nội dung: wo(r)- + giới từ. Dùng da(r)- để thay nội dung đã nói: darauf, damit, darüber. Không dùng một quy tắc duy nhất để đoán cách của mọi kết hợp.\n\n## Học động từ/tính từ cùng giới từ và cách\n\n| Cụm | Cách | Ví dụ Đức–Việt |\n| --- | --- | --- |\n| warten auf | Akkusativ | Ich warte auf den Bus. — Tôi chờ xe buýt. |\n| teilnehmen an | Dativ | Sie nimmt an einem Kurs teil. — Cô ấy tham gia khóa học. |\n| sich freuen auf / über | Akkusativ | Ich freue mich auf den Urlaub. — Tôi mong kỳ nghỉ. |\n| zufrieden mit | Dativ | Er ist mit dem Ergebnis zufrieden. — Anh ấy hài lòng với kết quả. |\n| stolz auf | Akkusativ | Sie ist stolz auf ihren Sohn. — Cô ấy tự hào về con trai. |\n| abhängig von | Dativ | Das ist vom Wetter abhängig. — Việc đó phụ thuộc thời tiết. |\n\n## Phân tích một câu hoàn chỉnh\n\n**Worauf wartest du? — Ich warte darauf, dass der Kurs beginnt.** — Bạn đang đợi điều gì? Tôi đợi khóa học bắt đầu. Hỏi sự vật/nội dung thường dùng wo(r)+giới từ; nhắc lại dùng da(r)+giới từ. Hỏi người: Auf wen wartest du? Không thay người bằng darauf. Freuen auf thường hướng tới điều chưa xảy ra; freuen über thường vui về điều hiện có/đã xảy ra.\n\n## Sai ở đâu và sửa thế nào?\n\nSai: *Ich warte für dich.* khi muốn nói chờ bạn → **Ich warte auf dich.** Không dịch giới từ từng chữ từ tiếng Việt hoặc tiếng Anh.\n\n## Ví dụ Đức–Việt\n\n- Worauf wartest du? – Auf den Bus. → Bạn chờ gì? – Chờ xe buýt.\n\n- Ich bin mit dem Ergebnis zufrieden. → Tôi hài lòng với kết quả.\n\n## Cách tự kiểm tra\n\n1. Xác định ý muốn diễn đạt và người thực hiện hành động.\n2. Đối chiếu cấu trúc trong bảng; kiểm tra dạng động từ, cách và đuôi nếu có.\n3. Đọc lại cả câu để chắc rằng nghĩa không đổi.\n4. Làm bài tập bên dưới rồi đọc giải thích, kể cả khi trả lời đúng.",
+      "content": "## Quy tắc trọng tâm\n\nBài tổng hợp luyện wo(r)-/da(r)- và phân biệt hỏi người với hỏi sự vật. Danh sách động từ và tính từ được tách thành hai bài riêng; ở đây trọng tâm là xây dựng câu hỏi và liên kết một mệnh đề nội dung.\n\n## Cấu trúc và ví dụ Đức–Việt\n\n| Cấu trúc | Ví dụ | Nghĩa |\n| --- | --- | --- |\n| hỏi sự vật | Woran denkst du? | Bạn nghĩ đến điều gì? |\n| hỏi người | An wen denkst du? | Bạn nghĩ đến ai? |\n| nhắc lại sự vật | Ich denke oft daran. | Tôi thường nghĩ đến điều đó. |\n| dẫn mệnh đề | Ich bin froh darüber, dass du kommst. | Tôi vui vì bạn đến. |\n\n## Phân tích cách dùng\n\nGiới từ được giữ theo cụm gốc: denken an, sprechen über, zufrieden mit. Trước nguyên âm, da-/wo- thường thêm r: daran, woran, darüber, worüber. Với người, dùng giới từ + đại từ hỏi/đại từ nhân xưng: mit wem, mit ihm; không thay một người bằng damit. Trong darauf warten, dass …, darauf báo trước nội dung mệnh đề dass. Câu phụ vẫn đưa động từ chia cuối câu.\n\n## Lỗi thường gặp\n\nSai: Womit wartest du? nếu muốn hỏi bạn chờ điều gì → Worauf wartest du? Womit thuộc mit, còn warten đi với auf.",
       "exercises": [
         {
           "type": "fill",
-          "question": "Điền giới từ: Ich warte ___ den Bus.",
+          "question": "Điền từ hỏi sự vật của denken an: ___ denkst du?",
           "answers": [
-            "auf"
+            "Woran"
           ],
-          "explanation": "Cụm cố định warten auf + Akkusativ.",
+          "explanation": "Denken an + sự vật → woran; an mở đầu bằng nguyên âm nên có r.",
           "origin": "authored",
           "answerSource": "authored"
         }
@@ -1169,18 +1169,18 @@
     },
     {
       "id": "book-dtd-b1-05",
-      "title": "Konjunktiv II",
-      "topic": "Konjunktiv II",
+      "title": "Konjunktiv II · Giả định hiện tại và lời đề nghị",
+      "topic": "Konjunktiv II · Giả định hiện tại và lời đề nghị",
       "level": "B1",
-      "content": "## Mục tiêu bài học\n\nHiểu và sử dụng **Konjunktiv II** trong câu hoàn chỉnh. Học các quy tắc, xem ví dụ rồi làm câu luyện tập phía dưới.\n\n## Quy tắc trọng tâm\n\nKonjunktiv II diễn tả giả định, mong ước hoặc yêu cầu lịch sự. Dạng phổ biến: **würde + Infinitiv**; các dạng wäre, hätte và Modalverben như könnte, müsste cũng rất quan trọng.\n\nGiả định quá khứ: hätte/wäre + Partizip II. Không dùng cùng một công thức cho hiện tại và quá khứ. Với Modalverb trong quá khứ cần chú ý cấu trúc hai động từ nguyên mẫu, phân biệt hai động từ nguyên mẫu.\n\n## Konjunktiv II hiện tại và quá khứ\n\n| Tình huống | Cấu trúc | Ví dụ |\n| --- | --- | --- |\n| giả định hiện tại | wäre / hätte / könnte … | Wenn ich Zeit hätte, käme ich. |\n| cách phổ biến | würde + Infinitiv | Ich würde mehr lesen. |\n| quá khứ không thực | hätte + Partizip II | Ich hätte mehr gelernt. |\n| quá khứ với sein | wäre + Partizip II | Ich wäre früher gekommen. |\n| quá khứ với Modalverb | hätte + Infinitiv + Modalinfinitiv | Ich hätte früher gehen müssen. |\n\n## Phân tích một câu hoàn chỉnh\n\n**Wenn ich früher losgegangen wäre, hätte ich den Zug erreicht.** — Nếu tôi đi sớm hơn, tôi đã kịp tàu. Thực tế tôi đã không đi sớm và không kịp. Losgehen dùng sein nên wäre losgegangen; erreichen dùng haben nên hätte erreicht. So sánh hiện tại: Wenn ich Zeit hätte, würde ich kommen. Yêu cầu lịch sự: Könnten Sie mir helfen? Không cần würde khi đã dùng könnte.\n\n## Sai ở đâu và sửa thế nào?\n\nSai: *Wenn ich Zeit habe, würde ich kommen.* nếu muốn giả định nhất quán → **Wenn ich Zeit hätte, würde ich kommen.** Đừng trộn điều kiện thực và không thực một cách vô ý.\n\n## Ví dụ Đức–Việt\n\n- Wenn ich Zeit hätte, würde ich mehr lesen. → Nếu có thời gian, tôi sẽ đọc nhiều hơn.\n\n- Wenn ich früher losgegangen wäre, hätte ich den Zug erreicht. → Nếu đi sớm hơn, tôi đã kịp tàu.\n\n## Cách tự kiểm tra\n\n1. Xác định ý muốn diễn đạt và người thực hiện hành động.\n2. Đối chiếu cấu trúc trong bảng; kiểm tra dạng động từ, cách và đuôi nếu có.\n3. Đọc lại cả câu để chắc rằng nghĩa không đổi.\n4. Làm bài tập bên dưới rồi đọc giải thích, kể cả khi trả lời đúng.",
+      "content": "## Quy tắc trọng tâm\n\nBài này tập trung vào tình huống chưa thực ở hiện tại, mong muốn và giao tiếp lịch sự. Học wäre, hätte, könnte và würde + nguyên mẫu. Giả định trái thực tế trong quá khứ được luyện riêng ở bài nâng cao B2.\n\n## Cấu trúc và ví dụ Đức–Việt\n\n| Cấu trúc | Ví dụ | Nghĩa |\n| --- | --- | --- |\n| wenn + hätte | Wenn ich mehr Zeit hätte, würde ich jeden Tag kochen. | Nếu có nhiều thời gian hơn, tôi sẽ nấu mỗi ngày. |\n| wenn + wäre | Wenn der Kurs günstiger wäre, würde ich mich anmelden. | Nếu khóa học rẻ hơn, tôi sẽ đăng ký. |\n| könnte | Könnten Sie das bitte wiederholen? | Anh/chị có thể nhắc lại không? |\n| lời khuyên | An deiner Stelle würde ich früher schlafen gehen. | Nếu là bạn, tôi sẽ đi ngủ sớm hơn. |\n\n## Phân tích cách dùng\n\nTrong Wenn ich mehr Zeit hätte, hätte là Konjunktiv II hiện tại dù hình thức gần quá khứ. Câu không kể một việc đã xảy ra; nó giả định tôi có nhiều thời gian hơn bây giờ. Würde được chia theo chủ ngữ, còn động từ chính để nguyên mẫu cuối câu: wir würden kochen. Nếu điều kiện có khả năng thực tế, dùng Indikativ: Wenn ich morgen Zeit habe, komme ich. Chọn cấu trúc theo ý muốn diễn đạt, không chỉ theo từ wenn.\n\n## Lỗi thường gặp\n\nSai: Ich würde könnte kommen. → Ich könnte kommen hoặc Ich würde kommen. Không ghép würde với một Modalverb đã ở Konjunktiv II. Sai: Wenn ich Zeit hätte, ich würde kommen. → …, würde ich kommen.",
       "exercises": [
         {
           "type": "fill",
-          "question": "Điền sein ở Konjunktiv II quá khứ: Wenn ich früher gekommen ___, hätte ich dich gesehen.",
+          "question": "Điền haben theo giả định hiện tại: Wenn ich mehr Zeit ___, würde ich öfter kochen.",
           "answers": [
-            "wäre"
+            "hätte"
           ],
-          "explanation": "Kommen dùng sein; giả định quá khứ là gekommen wäre.",
+          "explanation": "Hätte diễn tả điều giả định ở hiện tại; không có Partizip II nên đây không phải giả định quá khứ.",
           "origin": "authored",
           "answerSource": "authored"
         }
@@ -1291,18 +1291,18 @@
     },
     {
       "id": "book-dtd-b1-08",
-      "title": "Verwechselbare Wörter – Phần 1",
-      "topic": "Verwechselbare Wörter – Phần 1",
+      "title": "Verwechselbare Wörter · wissen / kennen và lernen / studieren",
+      "topic": "Verwechselbare Wörter · wissen / kennen và lernen / studieren",
       "level": "B1",
-      "content": "## Mục tiêu bài học\n\nHiểu và sử dụng **Verwechselbare Wörter – Phần 1** trong câu hoàn chỉnh. Học các quy tắc, xem ví dụ rồi làm câu luyện tập phía dưới.\n\n## Quy tắc trọng tâm\n\nCác cặp từ gần nghĩa cần phân biệt bằng **chức năng, cấu trúc và hoàn cảnh dùng**, không chỉ bằng một từ dịch Việt. Giữ cả câu mẫu để nhận ra điểm khác nhau.\n\nKhi ôn, tự đặt hai câu có cùng chủ đề nhưng dùng hai từ khác nhau. Với liên từ, kiểm tra vị trí động từ; với từ chỉ thời gian, kiểm tra quan hệ trước/sau và tần suất. Bốn phần trong app chia theo dải trang của chương nguồn, không khẳng định giống hệt cách chia bài của website.\n\n## Những cặp dễ nhầm trong ngữ cảnh\n\n| Cặp | Phân biệt | Ví dụ |\n| --- | --- | --- |\n| wissen / kennen | biết thông tin / quen thuộc người-vật | Ich weiß, wo er wohnt. Ich kenne ihn. |\n| lernen / studieren | học nói chung / học đại học | Ich lerne Deutsch. Sie studiert Medizin. |\n| bringen / holen | mang đến / đi lấy về | Bring bitte Wasser. Ich hole dich ab. |\n| als / wenn | một lần quá khứ / lặp lại-điều kiện | Als ich ankam … Wenn ich Zeit habe … |\n| seit / vor | kéo dài đến nay / cách đây | seit zwei Jahren / vor zwei Jahren |\n| liegen / legen | vị trí / đặt nằm | Das Buch liegt dort. Ich lege es dorthin. |\n\n## Phân tích một câu hoàn chỉnh\n\n**Ich wohne seit zwei Jahren hier.** — Tôi sống ở đây được hai năm và vẫn đang sống ở đây. **Ich bin vor zwei Jahren hierhergezogen.** — Tôi chuyển đến đây cách đây hai năm. Seit nối một trạng thái kéo dài; vor xác định thời điểm trong quá khứ. Không chọn chỉ theo từ “hai năm”; hãy hỏi việc đó còn tiếp tục hay là một sự kiện đã xảy ra.\n\n## Sai ở đâu và sửa thế nào?\n\nSai: *Ich studiere jeden Abend neue Wörter.* trong nghĩa học từ vựng thường ngày → **Ich lerne jeden Abend neue Wörter.** Studieren thường nói việc học ở bậc đại học, hoặc nghiên cứu kỹ trong cách dùng khác.\n\n## Ví dụ Đức–Việt\n\n- Ich bin allein, aber nicht einsam. → Tôi ở một mình nhưng không cô đơn.\n\n- Ich lerne jeden Tag Deutsch. → Tôi học tiếng Đức mỗi ngày.\n\n## Cách tự kiểm tra\n\n1. Xác định ý muốn diễn đạt và người thực hiện hành động.\n2. Đối chiếu cấu trúc trong bảng; kiểm tra dạng động từ, cách và đuôi nếu có.\n3. Đọc lại cả câu để chắc rằng nghĩa không đổi.\n4. Làm bài tập bên dưới rồi đọc giải thích, kể cả khi trả lời đúng.",
+      "content": "## Quy tắc trọng tâm\n\nPhân biệt nhóm từ trong tiêu đề qua ngữ cảnh cụ thể; đây là một bài riêng trong chuỗi bốn bài từ dễ nhầm.\n\n## Cấu trúc và ví dụ Đức–Việt\n\n| Cấu trúc | Ví dụ | Nghĩa |\n| --- | --- | --- |\n| wissen | Ich weiß, wann der Kurs beginnt. | Tôi biết khóa học bắt đầu lúc nào. |\n| kennen | Ich kenne die neue Lehrerin. | Tôi biết cô giáo mới. |\n| lernen | Ich lerne neue Wörter. | Tôi học từ mới. |\n| studieren | Sie studiert Architektur. | Cô ấy học đại học ngành kiến trúc. |\n\n## Phân tích cách dùng\n\nWissen đi với thông tin, một mệnh đề hoặc từ như das; kennen thường nói người, nơi, vật mà mình quen biết. Lernen chỉ quá trình học; studieren thường chỉ việc học đại học, hoặc đọc/nghiên cứu kỹ trong cách dùng riêng.\n\n## Lỗi thường gặp\n\nSai: Ich weiß ihn. → Ich kenne ihn.",
       "exercises": [
         {
           "type": "fill",
-          "question": "Điền wissen hoặc kennen ở dạng ich: Ich ___ diesen Mann.",
+          "question": "Điền kennen ở ngôi ich: Ich ___ die neue Lehrerin.",
           "answers": [
             "kenne"
           ],
-          "explanation": "Kennen dùng khi quen/biết một người; ich kenne.",
+          "explanation": "Kennen dùng khi biết/quen một người; ich kenne.",
           "origin": "authored",
           "answerSource": "authored"
         }
@@ -1326,18 +1326,18 @@
     },
     {
       "id": "book-dtd-b1-09",
-      "title": "Verwechselbare Wörter – Phần 2",
-      "topic": "Verwechselbare Wörter – Phần 2",
+      "title": "Verwechselbare Wörter · bringen / holen và leihen / ausleihen",
+      "topic": "Verwechselbare Wörter · bringen / holen và leihen / ausleihen",
       "level": "B1",
-      "content": "## Mục tiêu bài học\n\nHiểu và sử dụng **Verwechselbare Wörter – Phần 2** trong câu hoàn chỉnh. Học các quy tắc, xem ví dụ rồi làm câu luyện tập phía dưới.\n\n## Quy tắc trọng tâm\n\nCác cặp từ gần nghĩa cần phân biệt bằng **chức năng, cấu trúc và hoàn cảnh dùng**, không chỉ bằng một từ dịch Việt. Giữ cả câu mẫu để nhận ra điểm khác nhau.\n\nKhi ôn, tự đặt hai câu có cùng chủ đề nhưng dùng hai từ khác nhau. Với liên từ, kiểm tra vị trí động từ; với từ chỉ thời gian, kiểm tra quan hệ trước/sau và tần suất. Bốn phần trong app chia theo dải trang của chương nguồn, không khẳng định giống hệt cách chia bài của website.\n\n## Những cặp dễ nhầm trong ngữ cảnh\n\n| Cặp | Phân biệt | Ví dụ |\n| --- | --- | --- |\n| wissen / kennen | biết thông tin / quen thuộc người-vật | Ich weiß, wo er wohnt. Ich kenne ihn. |\n| lernen / studieren | học nói chung / học đại học | Ich lerne Deutsch. Sie studiert Medizin. |\n| bringen / holen | mang đến / đi lấy về | Bring bitte Wasser. Ich hole dich ab. |\n| als / wenn | một lần quá khứ / lặp lại-điều kiện | Als ich ankam … Wenn ich Zeit habe … |\n| seit / vor | kéo dài đến nay / cách đây | seit zwei Jahren / vor zwei Jahren |\n| liegen / legen | vị trí / đặt nằm | Das Buch liegt dort. Ich lege es dorthin. |\n\n## Phân tích một câu hoàn chỉnh\n\n**Ich wohne seit zwei Jahren hier.** — Tôi sống ở đây được hai năm và vẫn đang sống ở đây. **Ich bin vor zwei Jahren hierhergezogen.** — Tôi chuyển đến đây cách đây hai năm. Seit nối một trạng thái kéo dài; vor xác định thời điểm trong quá khứ. Không chọn chỉ theo từ “hai năm”; hãy hỏi việc đó còn tiếp tục hay là một sự kiện đã xảy ra.\n\n## Sai ở đâu và sửa thế nào?\n\nSai: *Ich studiere jeden Abend neue Wörter.* trong nghĩa học từ vựng thường ngày → **Ich lerne jeden Abend neue Wörter.** Studieren thường nói việc học ở bậc đại học, hoặc nghiên cứu kỹ trong cách dùng khác.\n\n## Ví dụ Đức–Việt\n\n- Ich bin allein, aber nicht einsam. → Tôi ở một mình nhưng không cô đơn.\n\n- Ich lerne jeden Tag Deutsch. → Tôi học tiếng Đức mỗi ngày.\n\n## Cách tự kiểm tra\n\n1. Xác định ý muốn diễn đạt và người thực hiện hành động.\n2. Đối chiếu cấu trúc trong bảng; kiểm tra dạng động từ, cách và đuôi nếu có.\n3. Đọc lại cả câu để chắc rằng nghĩa không đổi.\n4. Làm bài tập bên dưới rồi đọc giải thích, kể cả khi trả lời đúng.",
+      "content": "## Quy tắc trọng tâm\n\nPhân biệt nhóm từ trong tiêu đề qua ngữ cảnh cụ thể; đây là một bài riêng trong chuỗi bốn bài từ dễ nhầm.\n\n## Cấu trúc và ví dụ Đức–Việt\n\n| Cấu trúc | Ví dụ | Nghĩa |\n| --- | --- | --- |\n| bringen | Ich bringe dir das Buch. | Tôi mang sách đến cho bạn. |\n| holen | Ich hole das Buch aus dem Büro. | Tôi đi lấy sách từ văn phòng. |\n| jemandem etwas leihen | Ich leihe dir mein Fahrrad. | Tôi cho bạn mượn xe. |\n| sich etwas ausleihen | Ich leihe mir ein Buch aus. | Tôi mượn một cuốn sách. |\n\n## Phân tích cách dùng\n\nBringen nhấn việc mang tới một đích. Holen thường bao gồm đi tới chỗ có vật/người và đưa về. Với leihen, hãy nhìn người nhận ở Dativ để phân biệt hướng cho mượn; với sich ausleihen, đại từ phản thân đánh dấu người mượn. Abholen thường dùng đón người hoặc lấy đồ đã hẹn.\n\n## Lỗi thường gặp\n\nSai: Ich leihe mich ein Buch aus. → Ich leihe mir ein Buch aus; Buch là Akkusativ, người mượn dùng Dativ.",
       "exercises": [
         {
           "type": "fill",
-          "question": "Điền wissen hoặc kennen ở dạng ich: Ich ___ diesen Mann.",
+          "question": "Điền đại từ: Ich leihe ___ ein Buch aus.",
           "answers": [
-            "kenne"
+            "mir"
           ],
-          "explanation": "Kennen dùng khi quen/biết một người; ich kenne.",
+          "explanation": "Sich etwas ausleihen: vật ở Akkusativ, đại từ phản thân Dativ mir.",
           "origin": "authored",
           "answerSource": "authored"
         }
@@ -1362,18 +1362,18 @@
     },
     {
       "id": "book-dtd-b1-10",
-      "title": "Verwechselbare Wörter – Phần 3",
-      "topic": "Verwechselbare Wörter – Phần 3",
+      "title": "Verwechselbare Wörter · als / wenn và seit / vor",
+      "topic": "Verwechselbare Wörter · als / wenn và seit / vor",
       "level": "B1",
-      "content": "## Mục tiêu bài học\n\nHiểu và sử dụng **Verwechselbare Wörter – Phần 3** trong câu hoàn chỉnh. Học các quy tắc, xem ví dụ rồi làm câu luyện tập phía dưới.\n\n## Quy tắc trọng tâm\n\nCác cặp từ gần nghĩa cần phân biệt bằng **chức năng, cấu trúc và hoàn cảnh dùng**, không chỉ bằng một từ dịch Việt. Giữ cả câu mẫu để nhận ra điểm khác nhau.\n\nKhi ôn, tự đặt hai câu có cùng chủ đề nhưng dùng hai từ khác nhau. Với liên từ, kiểm tra vị trí động từ; với từ chỉ thời gian, kiểm tra quan hệ trước/sau và tần suất. Bốn phần trong app chia theo dải trang của chương nguồn, không khẳng định giống hệt cách chia bài của website.\n\n## Những cặp dễ nhầm trong ngữ cảnh\n\n| Cặp | Phân biệt | Ví dụ |\n| --- | --- | --- |\n| wissen / kennen | biết thông tin / quen thuộc người-vật | Ich weiß, wo er wohnt. Ich kenne ihn. |\n| lernen / studieren | học nói chung / học đại học | Ich lerne Deutsch. Sie studiert Medizin. |\n| bringen / holen | mang đến / đi lấy về | Bring bitte Wasser. Ich hole dich ab. |\n| als / wenn | một lần quá khứ / lặp lại-điều kiện | Als ich ankam … Wenn ich Zeit habe … |\n| seit / vor | kéo dài đến nay / cách đây | seit zwei Jahren / vor zwei Jahren |\n| liegen / legen | vị trí / đặt nằm | Das Buch liegt dort. Ich lege es dorthin. |\n\n## Phân tích một câu hoàn chỉnh\n\n**Ich wohne seit zwei Jahren hier.** — Tôi sống ở đây được hai năm và vẫn đang sống ở đây. **Ich bin vor zwei Jahren hierhergezogen.** — Tôi chuyển đến đây cách đây hai năm. Seit nối một trạng thái kéo dài; vor xác định thời điểm trong quá khứ. Không chọn chỉ theo từ “hai năm”; hãy hỏi việc đó còn tiếp tục hay là một sự kiện đã xảy ra.\n\n## Sai ở đâu và sửa thế nào?\n\nSai: *Ich studiere jeden Abend neue Wörter.* trong nghĩa học từ vựng thường ngày → **Ich lerne jeden Abend neue Wörter.** Studieren thường nói việc học ở bậc đại học, hoặc nghiên cứu kỹ trong cách dùng khác.\n\n## Ví dụ Đức–Việt\n\n- Ich bin allein, aber nicht einsam. → Tôi ở một mình nhưng không cô đơn.\n\n- Ich lerne jeden Tag Deutsch. → Tôi học tiếng Đức mỗi ngày.\n\n## Cách tự kiểm tra\n\n1. Xác định ý muốn diễn đạt và người thực hiện hành động.\n2. Đối chiếu cấu trúc trong bảng; kiểm tra dạng động từ, cách và đuôi nếu có.\n3. Đọc lại cả câu để chắc rằng nghĩa không đổi.\n4. Làm bài tập bên dưới rồi đọc giải thích, kể cả khi trả lời đúng.",
+      "content": "## Quy tắc trọng tâm\n\nPhân biệt nhóm từ trong tiêu đề qua ngữ cảnh cụ thể; đây là một bài riêng trong chuỗi bốn bài từ dễ nhầm.\n\n## Cấu trúc và ví dụ Đức–Việt\n\n| Cấu trúc | Ví dụ | Nghĩa |\n| --- | --- | --- |\n| als | Als ich ankam, war es dunkel. | Khi tôi đến thì trời tối. |\n| wenn | Wenn ich Zeit habe, lese ich. | Khi/nếu có thời gian, tôi đọc. |\n| seit | Ich wohne seit Mai hier. | Tôi sống ở đây từ tháng Năm đến nay. |\n| vor | Ich bin vor zwei Jahren umgezogen. | Tôi chuyển nhà cách đây hai năm. |\n\n## Phân tích cách dùng\n\nAls thường chỉ một sự kiện/giai đoạn xác định trong quá khứ. Wenn dùng cho điều kiện hoặc sự việc lặp lại; cả quá khứ lặp lại có thể dùng wenn: Immer wenn ich dort war … Seit diễn tả trạng thái từ một mốc tới nay; vor xác định một sự kiện đã xảy ra cách hiện tại bao lâu.\n\n## Lỗi thường gặp\n\nSai: Ich wohne vor zwei Jahren hier nếu vẫn đang sống ở đây → Ich wohne seit zwei Jahren hier.",
       "exercises": [
         {
           "type": "fill",
-          "question": "Điền wissen hoặc kennen ở dạng ich: Ich ___ diesen Mann.",
+          "question": "Điền seit hoặc vor: Ich wohne ___ zwei Jahren hier und wohne noch immer hier.",
           "answers": [
-            "kenne"
+            "seit"
           ],
-          "explanation": "Kennen dùng khi quen/biết một người; ich kenne.",
+          "explanation": "Trạng thái sống ở đây kéo dài tới hiện tại nên dùng seit.",
           "origin": "authored",
           "answerSource": "authored"
         }
@@ -1398,18 +1398,18 @@
     },
     {
       "id": "book-dtd-b1-11",
-      "title": "Verwechselbare Wörter – Phần 4",
-      "topic": "Verwechselbare Wörter – Phần 4",
+      "title": "Verwechselbare Wörter · liegen / legen, stehen / stellen và sitzen / setzen",
+      "topic": "Verwechselbare Wörter · liegen / legen, stehen / stellen và sitzen / setzen",
       "level": "B1",
-      "content": "## Mục tiêu bài học\n\nHiểu và sử dụng **Verwechselbare Wörter – Phần 4** trong câu hoàn chỉnh. Học các quy tắc, xem ví dụ rồi làm câu luyện tập phía dưới.\n\n## Quy tắc trọng tâm\n\nCác cặp từ gần nghĩa cần phân biệt bằng **chức năng, cấu trúc và hoàn cảnh dùng**, không chỉ bằng một từ dịch Việt. Giữ cả câu mẫu để nhận ra điểm khác nhau.\n\nKhi ôn, tự đặt hai câu có cùng chủ đề nhưng dùng hai từ khác nhau. Với liên từ, kiểm tra vị trí động từ; với từ chỉ thời gian, kiểm tra quan hệ trước/sau và tần suất. Bốn phần trong app chia theo dải trang của chương nguồn, không khẳng định giống hệt cách chia bài của website.\n\n## Những cặp dễ nhầm trong ngữ cảnh\n\n| Cặp | Phân biệt | Ví dụ |\n| --- | --- | --- |\n| wissen / kennen | biết thông tin / quen thuộc người-vật | Ich weiß, wo er wohnt. Ich kenne ihn. |\n| lernen / studieren | học nói chung / học đại học | Ich lerne Deutsch. Sie studiert Medizin. |\n| bringen / holen | mang đến / đi lấy về | Bring bitte Wasser. Ich hole dich ab. |\n| als / wenn | một lần quá khứ / lặp lại-điều kiện | Als ich ankam … Wenn ich Zeit habe … |\n| seit / vor | kéo dài đến nay / cách đây | seit zwei Jahren / vor zwei Jahren |\n| liegen / legen | vị trí / đặt nằm | Das Buch liegt dort. Ich lege es dorthin. |\n\n## Phân tích một câu hoàn chỉnh\n\n**Ich wohne seit zwei Jahren hier.** — Tôi sống ở đây được hai năm và vẫn đang sống ở đây. **Ich bin vor zwei Jahren hierhergezogen.** — Tôi chuyển đến đây cách đây hai năm. Seit nối một trạng thái kéo dài; vor xác định thời điểm trong quá khứ. Không chọn chỉ theo từ “hai năm”; hãy hỏi việc đó còn tiếp tục hay là một sự kiện đã xảy ra.\n\n## Sai ở đâu và sửa thế nào?\n\nSai: *Ich studiere jeden Abend neue Wörter.* trong nghĩa học từ vựng thường ngày → **Ich lerne jeden Abend neue Wörter.** Studieren thường nói việc học ở bậc đại học, hoặc nghiên cứu kỹ trong cách dùng khác.\n\n## Ví dụ Đức–Việt\n\n- Ich bin allein, aber nicht einsam. → Tôi ở một mình nhưng không cô đơn.\n\n- Ich lerne jeden Tag Deutsch. → Tôi học tiếng Đức mỗi ngày.\n\n## Cách tự kiểm tra\n\n1. Xác định ý muốn diễn đạt và người thực hiện hành động.\n2. Đối chiếu cấu trúc trong bảng; kiểm tra dạng động từ, cách và đuôi nếu có.\n3. Đọc lại cả câu để chắc rằng nghĩa không đổi.\n4. Làm bài tập bên dưới rồi đọc giải thích, kể cả khi trả lời đúng.",
+      "content": "## Quy tắc trọng tâm\n\nPhân biệt nhóm từ trong tiêu đề qua ngữ cảnh cụ thể; đây là một bài riêng trong chuỗi bốn bài từ dễ nhầm.\n\n## Cấu trúc và ví dụ Đức–Việt\n\n| Cấu trúc | Ví dụ | Nghĩa |\n| --- | --- | --- |\n| liegen / legen | Das Buch liegt dort. Ich lege es ins Regal. | Sách nằm đó; tôi đặt nó vào kệ. |\n| stehen / stellen | Die Flasche steht dort. Ich stelle sie auf den Tisch. | Chai đứng đó; tôi đặt nó lên bàn. |\n| sitzen / sich setzen | Ich sitze hier. Ich setze mich auf den Stuhl. | Tôi ngồi ở đây; tôi ngồi xuống ghế. |\n\n## Phân tích cách dùng\n\nĐộng từ trạng thái mô tả vị trí; động từ đặt/di chuyển có đối tượng được đưa tới vị trí mới. Với giới từ hai cách, phân biệt địa điểm và đích đến: liegt im Regal nhưng lege ins Regal. Nhớ động từ: liegen – lag – hat gelegen; legen – legte – hat gelegt trong cách dùng phổ biến với haben.\n\n## Lỗi thường gặp\n\nSai: Ich liege das Buch auf den Tisch. → Ich lege das Buch auf den Tisch. Liegen không nhận tân ngữ das Buch theo nghĩa đặt vật.",
       "exercises": [
         {
           "type": "fill",
-          "question": "Điền wissen hoặc kennen ở dạng ich: Ich ___ diesen Mann.",
+          "question": "Điền legen ở ngôi ich: Ich ___ das Buch auf den Tisch.",
           "answers": [
-            "kenne"
+            "lege"
           ],
-          "explanation": "Kennen dùng khi quen/biết một người; ich kenne.",
+          "explanation": "Chủ thể đặt cuốn sách tới vị trí mới: legen; ich lege.",
           "origin": "authored",
           "answerSource": "authored"
         }
@@ -1559,18 +1559,18 @@
     },
     {
       "id": "book-dtd-b1-15",
-      "title": "Verben mit festen Präpositionen",
-      "topic": "Verben mit festen Präpositionen",
+      "title": "Verben mit festen Präpositionen · Động từ có giới từ",
+      "topic": "Verben mit festen Präpositionen · Động từ có giới từ",
       "level": "B1",
-      "content": "## Mục tiêu bài học\n\nHiểu và sử dụng **Verben mit festen Präpositionen** trong câu hoàn chỉnh. Học các quy tắc, xem ví dụ rồi làm câu luyện tập phía dưới.\n\n## Quy tắc trọng tâm\n\nHọc động từ/tính từ cùng **giới từ và cách**, chẳng hạn warten auf + Akkusativ, teilnehmen an + Dativ, zufrieden mit + Dativ. Cùng một từ có thể đổi giới từ khi đổi nghĩa.\n\nHỏi người: giới từ + wen/wem; hỏi vật/nội dung: wo(r)- + giới từ. Dùng da(r)- để thay nội dung đã nói: darauf, damit, darüber. Không dùng một quy tắc duy nhất để đoán cách của mọi kết hợp.\n\n## Học động từ/tính từ cùng giới từ và cách\n\n| Cụm | Cách | Ví dụ Đức–Việt |\n| --- | --- | --- |\n| warten auf | Akkusativ | Ich warte auf den Bus. — Tôi chờ xe buýt. |\n| teilnehmen an | Dativ | Sie nimmt an einem Kurs teil. — Cô ấy tham gia khóa học. |\n| sich freuen auf / über | Akkusativ | Ich freue mich auf den Urlaub. — Tôi mong kỳ nghỉ. |\n| zufrieden mit | Dativ | Er ist mit dem Ergebnis zufrieden. — Anh ấy hài lòng với kết quả. |\n| stolz auf | Akkusativ | Sie ist stolz auf ihren Sohn. — Cô ấy tự hào về con trai. |\n| abhängig von | Dativ | Das ist vom Wetter abhängig. — Việc đó phụ thuộc thời tiết. |\n\n## Phân tích một câu hoàn chỉnh\n\n**Worauf wartest du? — Ich warte darauf, dass der Kurs beginnt.** — Bạn đang đợi điều gì? Tôi đợi khóa học bắt đầu. Hỏi sự vật/nội dung thường dùng wo(r)+giới từ; nhắc lại dùng da(r)+giới từ. Hỏi người: Auf wen wartest du? Không thay người bằng darauf. Freuen auf thường hướng tới điều chưa xảy ra; freuen über thường vui về điều hiện có/đã xảy ra.\n\n## Sai ở đâu và sửa thế nào?\n\nSai: *Ich warte für dich.* khi muốn nói chờ bạn → **Ich warte auf dich.** Không dịch giới từ từng chữ từ tiếng Việt hoặc tiếng Anh.\n\n## Ví dụ Đức–Việt\n\n- Worauf wartest du? – Auf den Bus. → Bạn chờ gì? – Chờ xe buýt.\n\n- Ich bin mit dem Ergebnis zufrieden. → Tôi hài lòng với kết quả.\n\n## Cách tự kiểm tra\n\n1. Xác định ý muốn diễn đạt và người thực hiện hành động.\n2. Đối chiếu cấu trúc trong bảng; kiểm tra dạng động từ, cách và đuôi nếu có.\n3. Đọc lại cả câu để chắc rằng nghĩa không đổi.\n4. Làm bài tập bên dưới rồi đọc giải thích, kể cả khi trả lời đúng.",
+      "content": "## Quy tắc trọng tâm\n\nChỉ luyện động từ cùng bổ ngữ cố định. Học cả giới từ và cách; không suy từ nghĩa tiếng Việt. Phân biệt nghĩa và thời điểm của sich freuen auf/über.\n\n## Cấu trúc và ví dụ Đức–Việt\n\n| Cấu trúc | Ví dụ | Nghĩa |\n| --- | --- | --- |\n| warten auf + Akk | Wir warten auf den Zug. | Chúng tôi đợi tàu. |\n| teilnehmen an + Dat | Er nimmt an einem Seminar teil. | Anh ấy tham gia hội thảo. |\n| sich bewerben um + Akk | Sie bewirbt sich um eine Stelle. | Cô ấy ứng tuyển một vị trí. |\n| sich bedanken bei + Dat, für + Akk | Ich bedanke mich bei dir für deine Hilfe. | Tôi cảm ơn bạn vì sự giúp đỡ. |\n\n## Phân tích cách dùng\n\nTeilnehmen vừa có giới từ an vừa là động từ tách: Ich nehme an dem Kurs teil; trong Perfekt: Ich habe an dem Kurs teilgenommen. Bei jemanden bedanken chỉ người được cảm ơn ở Dativ; für etwas chỉ lý do cảm ơn ở Akkusativ. Với freuen auf, người nói hướng tới điều mong chờ; freuen über thường nói điều khiến mình vui ở hiện tại hoặc đã xảy ra. Khi ghi từ mới, lưu một câu đủ bổ ngữ, không chỉ lưu động từ rời.\n\n## Lỗi thường gặp\n\nSai: Ich nehme auf dem Kurs teil. → Ich nehme an dem Kurs teil. Sai: Ich bewerbe mich für eine Stelle. Trong mẫu luyện ở đây dùng sich um eine Stelle bewerben.",
       "exercises": [
         {
           "type": "fill",
-          "question": "Điền giới từ: Ich warte ___ den Bus.",
+          "question": "Điền giới từ: Sie nimmt ___ einem Seminar teil.",
           "answers": [
-            "auf"
+            "an"
           ],
-          "explanation": "Cụm cố định warten auf + Akkusativ.",
+          "explanation": "Cụm teilnehmen an yêu cầu Dativ: an einem Seminar.",
           "origin": "authored",
           "answerSource": "authored"
         }
@@ -1613,18 +1613,18 @@
     },
     {
       "id": "book-dtd-b1-16",
-      "title": "Adjektive mit Präpositionen",
-      "topic": "Adjektive mit Präpositionen",
+      "title": "Adjektive mit Präpositionen · Tính từ có giới từ",
+      "topic": "Adjektive mit Präpositionen · Tính từ có giới từ",
       "level": "B1",
-      "content": "## Mục tiêu bài học\n\nHiểu và sử dụng **Adjektive mit Präpositionen** trong câu hoàn chỉnh. Học các quy tắc, xem ví dụ rồi làm câu luyện tập phía dưới.\n\n## Adjektive mit Präpositionen\n\n### Trọng tâm kết hợp tính từ–giới từ\n\nHọc cả cụm và cách: **zufrieden mit + Dativ**, **interessiert an + Dativ**, **stolz auf + Akkusativ**, **wichtig für + Akkusativ**. Câu hỏi dùng womit/woran/worauf… cho vật/nội dung; hỏi người dùng giới từ + đại từ hỏi.\n\n- Ich bin stolz auf meine Fortschritte. → Tôi tự hào về tiến bộ của mình.\n- Woran bist du interessiert? → Bạn quan tâm đến điều gì?\n\n## Quy tắc trọng tâm\n\nHọc động từ/tính từ cùng **giới từ và cách**, chẳng hạn warten auf + Akkusativ, teilnehmen an + Dativ, zufrieden mit + Dativ. Cùng một từ có thể đổi giới từ khi đổi nghĩa.\n\nHỏi người: giới từ + wen/wem; hỏi vật/nội dung: wo(r)- + giới từ. Dùng da(r)- để thay nội dung đã nói: darauf, damit, darüber. Không dùng một quy tắc duy nhất để đoán cách của mọi kết hợp.\n\n## Học động từ/tính từ cùng giới từ và cách\n\n| Cụm | Cách | Ví dụ Đức–Việt |\n| --- | --- | --- |\n| warten auf | Akkusativ | Ich warte auf den Bus. — Tôi chờ xe buýt. |\n| teilnehmen an | Dativ | Sie nimmt an einem Kurs teil. — Cô ấy tham gia khóa học. |\n| sich freuen auf / über | Akkusativ | Ich freue mich auf den Urlaub. — Tôi mong kỳ nghỉ. |\n| zufrieden mit | Dativ | Er ist mit dem Ergebnis zufrieden. — Anh ấy hài lòng với kết quả. |\n| stolz auf | Akkusativ | Sie ist stolz auf ihren Sohn. — Cô ấy tự hào về con trai. |\n| abhängig von | Dativ | Das ist vom Wetter abhängig. — Việc đó phụ thuộc thời tiết. |\n\n## Phân tích một câu hoàn chỉnh\n\n**Worauf wartest du? — Ich warte darauf, dass der Kurs beginnt.** — Bạn đang đợi điều gì? Tôi đợi khóa học bắt đầu. Hỏi sự vật/nội dung thường dùng wo(r)+giới từ; nhắc lại dùng da(r)+giới từ. Hỏi người: Auf wen wartest du? Không thay người bằng darauf. Freuen auf thường hướng tới điều chưa xảy ra; freuen über thường vui về điều hiện có/đã xảy ra.\n\n## Sai ở đâu và sửa thế nào?\n\nSai: *Ich warte für dich.* khi muốn nói chờ bạn → **Ich warte auf dich.** Không dịch giới từ từng chữ từ tiếng Việt hoặc tiếng Anh.\n\n## Ví dụ Đức–Việt\n\n- Worauf wartest du? – Auf den Bus. → Bạn chờ gì? – Chờ xe buýt.\n\n- Ich bin mit dem Ergebnis zufrieden. → Tôi hài lòng với kết quả.\n\n## Cách tự kiểm tra\n\n1. Xác định ý muốn diễn đạt và người thực hiện hành động.\n2. Đối chiếu cấu trúc trong bảng; kiểm tra dạng động từ, cách và đuôi nếu có.\n3. Đọc lại cả câu để chắc rằng nghĩa không đổi.\n4. Làm bài tập bên dưới rồi đọc giải thích, kể cả khi trả lời đúng.",
+      "content": "## Quy tắc trọng tâm\n\nChỉ luyện tính từ có bổ ngữ giới từ, không chép lại danh sách động từ. Tính từ vị ngữ sau sein không chia đuôi nhưng danh từ sau giới từ vẫn phải đúng cách.\n\n## Cấu trúc và ví dụ Đức–Việt\n\n| Cấu trúc | Ví dụ | Nghĩa |\n| --- | --- | --- |\n| zufrieden mit + Dat | Ich bin mit dem Ergebnis zufrieden. | Tôi hài lòng với kết quả. |\n| stolz auf + Akk | Er ist stolz auf seinen Sohn. | Anh ấy tự hào về con trai. |\n| interessiert an + Dat | Sie ist an dem Kurs interessiert. | Cô ấy quan tâm khóa học. |\n| verantwortlich für + Akk | Wir sind für den Ablauf verantwortlich. | Chúng tôi chịu trách nhiệm về quá trình. |\n\n## Phân tích cách dùng\n\nSo sánh: Ich interessiere mich für den Kurs dùng động từ phản thân + für; Ich bin an dem Kurs interessiert dùng tính từ + an. Hai câu gần nghĩa nhưng giới từ không giống nhau. Không mang für từ động từ sang tính từ một cách máy móc. Tương tự, abhängig von + Dativ và sich verlassen auf + Akkusativ là hai cấu trúc khác. Khi trả lời, có thể rút gọn bổ ngữ sự vật: Ich bin damit zufrieden.\n\n## Lỗi thường gặp\n\nSai: Ich bin zufrieden für das Ergebnis. → Ich bin mit dem Ergebnis zufrieden. Sai: Ich bin an den Kurs interessiert. → … an dem Kurs interessiert.",
       "exercises": [
         {
           "type": "fill",
-          "question": "Điền giới từ: Ich warte ___ den Bus.",
+          "question": "Điền giới từ: Ich bin ___ dem Ergebnis zufrieden.",
           "answers": [
-            "auf"
+            "mit"
           ],
-          "explanation": "Cụm cố định warten auf + Akkusativ.",
+          "explanation": "Zufrieden đi với mit + Dativ; dem Ergebnis ở Dativ.",
           "origin": "authored",
           "answerSource": "authored"
         }
@@ -1667,18 +1667,18 @@
     },
     {
       "id": "book-dtd-b1-17",
-      "title": "Verben mit zwei Objekten",
-      "topic": "Verben mit zwei Objekten",
+      "title": "Verben mit zwei Objekten · Thứ tự hai tân ngữ",
+      "topic": "Verben mit zwei Objekten · Thứ tự hai tân ngữ",
       "level": "B1",
-      "content": "## Mục tiêu bài học\n\nHiểu và sử dụng **Verben mit zwei Objekten** trong câu hoàn chỉnh. Học các quy tắc, xem ví dụ rồi làm câu luyện tập phía dưới.\n\n## Verben mit zwei Objekten\n\n### Trọng tâm Dativ và Akkusativ\n\nVới hai cụm danh từ, Dativ thường đứng trước Akkusativ; với hai đại từ không nhấn mạnh, Akkusativ thường đứng trước Dativ. Nếu một tân ngữ là đại từ, nó thường đứng trước cụm danh từ. Đây là thứ tự cơ bản, còn nhấn mạnh có thể làm thay đổi.\n\n- Ich gebe dem Kind das Buch. → Tôi đưa cuốn sách cho đứa trẻ.\n- Ich gebe es ihm. → Tôi đưa nó cho cậu ấy.\n\n## Quy tắc trọng tâm\n\nĐộng từ quy định loại bổ ngữ: có động từ cần Akkusativ, có động từ cần Dativ, có động từ cần cả hai. Chủ ngữ ở Nominativ; với sein/werden/bleiben, thành phần gọi tên chủ ngữ có thể vẫn ở Nominativ.\n\nNhóm Dativ thường gặp: helfen, danken, gefallen, gehören. Với geben/schenken/zeigen: người nhận thường Dativ, vật được trao thường Akkusativ. Không suy ra cách chỉ từ bản dịch Việt.\n\n## Động từ quyết định cách của bổ ngữ\n\n| Mẫu | Động từ thường gặp | Ví dụ |\n| --- | --- | --- |\n| Nominativ | sein, werden, bleiben | Er ist ein guter Freund. |\n| Akkusativ | sehen, brauchen, kaufen | Ich brauche einen Stift. |\n| Dativ | helfen, danken, gehören | Ich danke meiner Lehrerin. |\n| Dativ + Akkusativ | geben, zeigen, schenken | Sie zeigt dem Gast das Zimmer. |\n\n## Phân tích một câu hoàn chỉnh\n\n**Ich gebe meinem Bruder das Buch.** — Tôi đưa cuốn sách cho anh/em trai. Ich là người cho; meinem Bruder là người nhận (Dativ); das Buch là vật được đưa (Akkusativ). Khi hai tân ngữ đều là danh từ, thứ tự Dativ trước Akkusativ thường tự nhiên. Nếu cả hai là đại từ: **Ich gebe es ihm.** Akkusativ es đứng trước Dativ ihm. Trọng tâm thông tin có thể làm thay đổi vị trí danh từ; đây không phải luật cấm tuyệt đối.\n\n## Sai ở đâu và sửa thế nào?\n\nSai: *Ich helfe meinen Bruder.* → **Ich helfe meinem Bruder.** Dịch Việt “giúp ai” không quyết định Akkusativ; cần học helfen + Dativ.\n\n## Ví dụ Đức–Việt\n\n- Ich helfe meinem Bruder. → Tôi giúp anh/em trai.\n\n- Sie gibt dem Kind einen Apfel. → Cô ấy cho đứa trẻ một quả táo.\n\n## Cách tự kiểm tra\n\n1. Xác định ý muốn diễn đạt và người thực hiện hành động.\n2. Đối chiếu cấu trúc trong bảng; kiểm tra dạng động từ, cách và đuôi nếu có.\n3. Đọc lại cả câu để chắc rằng nghĩa không đổi.\n4. Làm bài tập bên dưới rồi đọc giải thích, kể cả khi trả lời đúng.",
+      "content": "## Quy tắc trọng tâm\n\nBài này không học lại toàn bộ Nominativ/Akkusativ/Dativ. Tập trung vào cách đặt người nhận và vật được trao, nhất là khi thay danh từ bằng đại từ.\n\n## Cấu trúc và ví dụ Đức–Việt\n\n| Cấu trúc | Ví dụ | Nghĩa |\n| --- | --- | --- |\n| hai danh từ | Ich gebe dem Gast den Schlüssel. | Tôi đưa khách chìa khóa. |\n| đại từ Akk + danh từ Dat | Ich gebe ihn dem Gast. | Tôi đưa nó cho khách. |\n| đại từ Dat + danh từ Akk | Ich gebe ihm den Schlüssel. | Tôi đưa anh ấy chìa khóa. |\n| hai đại từ | Ich gebe ihn ihm. | Tôi đưa nó cho anh ấy. |\n\n## Phân tích cách dùng\n\nVới geben, người nhận thường Dativ, vật được đưa Akkusativ. Khi đều là đại từ không nhấn mạnh, Akkusativ thường trước Dativ: es ihm, ihn ihr. Khi hai bổ ngữ là danh từ, Dativ trước Akkusativ là thứ tự trung hòa; ngữ cảnh và thông tin mới/cũ có thể đổi thứ tự. Đừng coi việc đứng trước là dấu hiệu duy nhất của Dativ. Các động từ thường gặp: schenken, zeigen, schicken, erklären.\n\n## Lỗi thường gặp\n\nSai: Ich gebe ihm ihn. → Ich gebe ihn ihm trong trật tự đại từ trung hòa. Không áp dụng máy móc quy tắc danh từ cho hai đại từ.",
       "exercises": [
         {
           "type": "fill",
-          "question": "Điền mein: Ich helfe ___ Bruder.",
+          "question": "Điền đại từ thay cho der Schlüssel: Ich gebe ___ ihm.",
           "answers": [
-            "meinem"
+            "ihn"
           ],
-          "explanation": "Helfen đòi Dativ; der Bruder → meinem Bruder.",
+          "explanation": "Schlüssel là vật Akkusativ giống đực → ihn; đại từ Akkusativ đứng trước ihm.",
           "origin": "authored",
           "answerSource": "authored"
         }
@@ -1711,18 +1711,18 @@
     },
     {
       "id": "book-dtd-b2-01",
-      "title": "Konjunktiv II – Hiện tại và quá khứ",
-      "topic": "Konjunktiv II – Hiện tại và quá khứ",
+      "title": "Konjunktiv II · Giả định quá khứ và tiếc nuối",
+      "topic": "Konjunktiv II · Giả định quá khứ và tiếc nuối",
       "level": "B2",
-      "content": "## Mục tiêu bài học\n\nHiểu và sử dụng **Konjunktiv II – Hiện tại và quá khứ** trong câu hoàn chỉnh. Học các quy tắc, xem ví dụ rồi làm câu luyện tập phía dưới.\n\n## Quy tắc trọng tâm\n\nKonjunktiv II diễn tả giả định, mong ước hoặc yêu cầu lịch sự. Dạng phổ biến: **würde + Infinitiv**; các dạng wäre, hätte và Modalverben như könnte, müsste cũng rất quan trọng.\n\nGiả định quá khứ: hätte/wäre + Partizip II. Không dùng cùng một công thức cho hiện tại và quá khứ. Với Modalverb trong quá khứ cần chú ý cấu trúc hai động từ nguyên mẫu, phân biệt hai động từ nguyên mẫu.\n\n## Konjunktiv II hiện tại và quá khứ\n\n| Tình huống | Cấu trúc | Ví dụ |\n| --- | --- | --- |\n| giả định hiện tại | wäre / hätte / könnte … | Wenn ich Zeit hätte, käme ich. |\n| cách phổ biến | würde + Infinitiv | Ich würde mehr lesen. |\n| quá khứ không thực | hätte + Partizip II | Ich hätte mehr gelernt. |\n| quá khứ với sein | wäre + Partizip II | Ich wäre früher gekommen. |\n| quá khứ với Modalverb | hätte + Infinitiv + Modalinfinitiv | Ich hätte früher gehen müssen. |\n\n## Phân tích một câu hoàn chỉnh\n\n**Wenn ich früher losgegangen wäre, hätte ich den Zug erreicht.** — Nếu tôi đi sớm hơn, tôi đã kịp tàu. Thực tế tôi đã không đi sớm và không kịp. Losgehen dùng sein nên wäre losgegangen; erreichen dùng haben nên hätte erreicht. So sánh hiện tại: Wenn ich Zeit hätte, würde ich kommen. Yêu cầu lịch sự: Könnten Sie mir helfen? Không cần würde khi đã dùng könnte.\n\n## Sai ở đâu và sửa thế nào?\n\nSai: *Wenn ich Zeit habe, würde ich kommen.* nếu muốn giả định nhất quán → **Wenn ich Zeit hätte, würde ich kommen.** Đừng trộn điều kiện thực và không thực một cách vô ý.\n\n## Ví dụ Đức–Việt\n\n- Wenn ich Zeit hätte, würde ich mehr lesen. → Nếu có thời gian, tôi sẽ đọc nhiều hơn.\n\n- Wenn ich früher losgegangen wäre, hätte ich den Zug erreicht. → Nếu đi sớm hơn, tôi đã kịp tàu.\n\n## Cách tự kiểm tra\n\n1. Xác định ý muốn diễn đạt và người thực hiện hành động.\n2. Đối chiếu cấu trúc trong bảng; kiểm tra dạng động từ, cách và đuôi nếu có.\n3. Đọc lại cả câu để chắc rằng nghĩa không đổi.\n4. Làm bài tập bên dưới rồi đọc giải thích, kể cả khi trả lời đúng.",
+      "content": "## Quy tắc trọng tâm\n\nBài nâng cao dùng hätte/wäre + Partizip II để nhìn lại điều đã không xảy ra. Sau phần này, luyện thêm Modalverb trong quá khứ và điều kiện có kết quả kéo dài đến hiện tại. Kiến thức wäre/hätte hiện tại chỉ là điều kiện đầu vào, không lặp lại bài B1.\n\n## Cấu trúc và ví dụ Đức–Việt\n\n| Cấu trúc | Ví dụ | Nghĩa |\n| --- | --- | --- |\n| quá khứ với haben | Wenn ich die Nachricht gelesen hätte, hätte ich geantwortet. | Nếu tôi đã đọc tin nhắn, tôi đã trả lời. |\n| quá khứ với sein | Wäre ich früher losgefahren, hätte ich den Bus erreicht. | Nếu đã khởi hành sớm hơn, tôi đã kịp xe. |\n| Modalverb quá khứ | Ich hätte den Vertrag genauer lesen sollen. | Lẽ ra tôi nên đọc hợp đồng kỹ hơn. |\n| điều kiện quá khứ, kết quả hiện tại | Wenn ich gestern früher ins Bett gegangen wäre, wäre ich jetzt nicht so müde. | Nếu tối qua ngủ sớm hơn, giờ tôi đã không mệt thế. |\n\n## Phân tích cách dùng\n\nHätte gelesen và wäre losgefahren theo lựa chọn trợ động từ của Perfekt. Khi có Modalverb đi kèm động từ chính, dùng hai nguyên mẫu: hätte lesen sollen, không phải hätte gelesen gesollt. Trong câu phụ với cấu trúc này: …, weil ich den Vertrag genauer hätte lesen sollen. Nếu bỏ wenn để đảo điều kiện, động từ chia mở đầu: Hätte ich das gewusst, … Bài nói về cách đánh giá lại quá khứ, không khẳng định sự kiện giả định đã xảy ra.\n\n## Lỗi thường gặp\n\nSai: Wenn ich früher losgefahren hätte … → Wenn ich früher losgefahren wäre … Losfahren trong nghĩa khởi hành dùng sein. Sai: Ich wäre mehr gelernt. → Ich hätte mehr gelernt.",
       "exercises": [
         {
           "type": "fill",
-          "question": "Điền sein ở Konjunktiv II quá khứ: Wenn ich früher gekommen ___, hätte ich dich gesehen.",
+          "question": "Điền trợ động từ Konjunktiv II: Ich ___ den Vertrag genauer lesen sollen.",
           "answers": [
-            "wäre"
+            "hätte"
           ],
-          "explanation": "Kommen dùng sein; giả định quá khứ là gekommen wäre.",
+          "explanation": "Với Modalverb quá khứ đi cùng động từ khác: hätte + lesen + sollen. Câu diễn tả tiếc nuối về điều nên làm.",
           "origin": "authored",
           "answerSource": "authored"
         }
@@ -1756,18 +1756,18 @@
     },
     {
       "id": "book-dtd-b2-02",
-      "title": "Doppelkonnektoren",
-      "topic": "Doppelkonnektoren",
+      "title": "Doppelkonnektoren · Liên kết lập luận và tương quan",
+      "topic": "Doppelkonnektoren · Liên kết lập luận và tương quan",
       "level": "B2",
-      "content": "## Mục tiêu bài học\n\nHiểu và sử dụng **Doppelkonnektoren** trong câu hoàn chỉnh. Học các quy tắc, xem ví dụ rồi làm câu luyện tập phía dưới.\n\n## Quy tắc trọng tâm\n\nLiên từ đôi tạo quan hệ lựa chọn, bổ sung, phủ định hoặc đối lập: entweder … oder, sowohl … als auch, weder … noch, nicht nur … sondern auch, zwar … aber.\n\nHai vế nên song song về chức năng ngữ pháp. je … desto/umso có quy tắc trật tự riêng: phần je có động từ cuối, phần desto/umso theo cấu trúc câu chính.\n\n## Liên từ đôi và tính song song\n\n| Cặp | Ý nghĩa | Ví dụ |\n| --- | --- | --- |\n| sowohl … als auch | cả hai | Sie spricht sowohl Deutsch als auch Englisch. |\n| weder … noch | không cái nào | Er trinkt weder Kaffee noch Tee. |\n| entweder … oder | một trong hai | Wir fahren entweder heute oder morgen. |\n| nicht nur … sondern auch | không chỉ … mà còn | Das spart nicht nur Zeit, sondern auch Geld. |\n| zwar … aber | thừa nhận … nhưng | Es ist zwar teuer, aber nützlich. |\n| je … desto | càng … càng | Je mehr ich übe, desto sicherer werde ich. |\n\n## Phân tích một câu hoàn chỉnh\n\n**Je länger ich lerne, desto besser verstehe ich den Text.** — Càng học lâu, tôi càng hiểu văn bản. Phần je là câu phụ nên lerne cuối; cụm desto besser đứng đầu câu chính và verstehe đứng ngay sau. Với entweder/oder, hai vế nên song song: hai danh từ, hai cụm thời gian hoặc hai mệnh đề tương ứng.\n\n## Sai ở đâu và sửa thế nào?\n\nSai: *Je mehr ich übe, desto ich werde sicherer.* → **Je mehr ich übe, desto sicherer werde ich.** Desto + so sánh hơn chiếm vị trí đầu của câu chính.\n\n## Ví dụ Đức–Việt\n\n- Ich trinke weder Kaffee noch Tee. → Tôi không uống cả cà phê lẫn trà.\n\n- Je mehr ich übe, desto sicherer werde ich. → Càng luyện, tôi càng tự tin.\n\n## Cách tự kiểm tra\n\n1. Xác định ý muốn diễn đạt và người thực hiện hành động.\n2. Đối chiếu cấu trúc trong bảng; kiểm tra dạng động từ, cách và đuôi nếu có.\n3. Đọc lại cả câu để chắc rằng nghĩa không đổi.\n4. Làm bài tập bên dưới rồi đọc giải thích, kể cả khi trả lời đúng.",
+      "content": "## Quy tắc trọng tâm\n\nLuyện liên kết hai mệnh đề hoàn chỉnh và cấu trúc tương quan je/desto. Bài B1 giới thiệu nghĩa các cặp; bài này tập trung vị trí động từ và tính song song trong lập luận.\n\n## Cấu trúc và ví dụ Đức–Việt\n\n| Cấu trúc | Ví dụ | Nghĩa |\n| --- | --- | --- |\n| zwar … aber | Zwar ist der Kurs teuer, aber er bietet Einzelunterricht. | Khóa học tuy đắt nhưng có học riêng. |\n| einerseits … andererseits | Einerseits spare ich Zeit, andererseits fehlt mir der Kontakt. | Một mặt tôi tiết kiệm thời gian, mặt khác thiếu giao tiếp. |\n| je … desto | Je sorgfältiger wir planen, desto weniger Fehler machen wir. | Càng lên kế hoạch kỹ, chúng ta càng ít mắc lỗi. |\n\n## Phân tích cách dùng\n\nZwar và einerseits có thể chiếm vị trí đầu nên động từ chia theo ngay sau. Aber nối câu chính và không tự chiếm vị trí đầu: aber er bietet … Trong je … desto, câu je có động từ cuối; cụm desto + so sánh hơn đứng đầu câu chính. Kiểm tra hai phía có cùng phạm vi: hai danh từ hoặc hai mệnh đề, không ghép một nửa câu với một danh từ rời.\n\n## Lỗi thường gặp\n\nSai: Einerseits ich spare Zeit … → Einerseits spare ich Zeit …",
       "exercises": [
         {
           "type": "fill",
-          "question": "Điền cặp thích hợp: Je mehr ich übe, ___ sicherer werde ich.",
+          "question": "Điền wenig ở so sánh hơn: Je sorgfältiger wir planen, desto ___ Fehler machen wir.",
           "answers": [
-            "desto"
+            "weniger"
           ],
-          "explanation": "Cặp tương quan je … desto diễn tả mức độ tăng theo nhau.",
+          "explanation": "Tương quan je/desto dùng dạng so sánh hơn; wenig → weniger.",
           "origin": "authored",
           "answerSource": "authored"
         }
@@ -1792,18 +1792,18 @@
     },
     {
       "id": "book-dtd-b2-03",
-      "title": "Infinitivkonstruktionen mit zu",
-      "topic": "Infinitivkonstruktionen mit zu",
+      "title": "Infinitivkonstruktionen · um, ohne, statt và dạng quá khứ",
+      "topic": "Infinitivkonstruktionen · um, ohne, statt và dạng quá khứ",
       "level": "B2",
-      "content": "## Mục tiêu bài học\n\nHiểu và sử dụng **Infinitivkonstruktionen mit zu** trong câu hoàn chỉnh. Học các quy tắc, xem ví dụ rồi làm câu luyện tập phía dưới.\n\n## Quy tắc trọng tâm\n\nInfinitiv mit zu có thể bổ sung cho động từ, tính từ hoặc danh từ. **um … zu** thường diễn đạt mục đích khi chủ thể được hiểu giống nhau; nếu khác chủ thể, thường dùng damit.\n\nĐộng từ tách đặt zu giữa tiền tố và gốc: aufzustehen. Sau Modalverben thường không có zu. Không chuyển mọi mệnh đề dass thành zu mà chưa kiểm tra chủ thể và cấu trúc.\n\n## Infinitiv mit zu\n\n| Tình huống | Cấu trúc | Ví dụ |\n| --- | --- | --- |\n| cùng chủ thể, sau dự định | planen + zu | Ich plane, früher zu kommen. |\n| động từ tách | zu nằm giữa | Ich versuche, früh aufzustehen. |\n| mục đích cùng chủ thể | um … zu | Ich lerne, um die Prüfung zu bestehen. |\n| sau Modalverb | không zu | Ich muss lernen. |\n| sau lassen | không zu | Ich lasse das Auto reparieren. |\n\n## Phân tích một câu hoàn chỉnh\n\n**Ich freue mich darauf, dich wiederzusehen.** — Tôi vui vì sắp được gặp lại bạn. Chủ thể của freuen và wiedersehen là ich; wiedersehen tách nên zu nằm giữa: wiederzusehen. Nếu chủ thể khác, thường dùng dass/damit: Ich spreche langsam, damit du mich verstehst. Không dùng um … zu khi người thực hiện mục đích khác mà không có ngữ cảnh phù hợp.\n\n## Sai ở đâu và sửa thế nào?\n\nSai: *Ich muss zu lernen.* → **Ich muss lernen.** Modalverb nhận nguyên mẫu không zu. Sai: *zu aufstehen* → **aufzustehen**.\n\n## Ví dụ Đức–Việt\n\n- Ich lerne Deutsch, um in Deutschland zu arbeiten. → Tôi học tiếng Đức để làm việc ở Đức.\n\n- Ich versuche, früher aufzustehen. → Tôi cố gắng dậy sớm hơn.\n\n## Cách tự kiểm tra\n\n1. Xác định ý muốn diễn đạt và người thực hiện hành động.\n2. Đối chiếu cấu trúc trong bảng; kiểm tra dạng động từ, cách và đuôi nếu có.\n3. Đọc lại cả câu để chắc rằng nghĩa không đổi.\n4. Làm bài tập bên dưới rồi đọc giải thích, kể cả khi trả lời đúng.",
+      "content": "## Quy tắc trọng tâm\n\nMở rộng từ zu cơ bản sang quan hệ mục đích, cách thức phủ định, thay thế và thời điểm. Chủ thể ngầm của cụm nguyên mẫu cần khớp nghĩa với chủ thể liên quan trong câu chính.\n\n## Cấu trúc và ví dụ Đức–Việt\n\n| Cấu trúc | Ví dụ | Nghĩa |\n| --- | --- | --- |\n| ohne … zu | Er ging, ohne sich zu verabschieden. | Anh ấy đi mà không chào tạm biệt. |\n| statt … zu | Sie telefonierte, statt den Bericht zu schreiben. | Cô ấy gọi điện thay vì viết báo cáo. |\n| nguyên mẫu hoàn thành | Er behauptet, den Brief abgeschickt zu haben. | Anh ấy khẳng định đã gửi thư. |\n| bị động | Sie hofft, eingeladen zu werden. | Cô ấy hy vọng được mời. |\n\n## Phân tích cách dùng\n\nAbgeschickt zu haben diễn tả việc gửi thư xảy ra trước lời khẳng định. Eingeladen zu werden là nguyên mẫu bị động, người hy vọng là người nhận lời mời. Nếu người thực hiện hai hành động khác nhau, dùng mệnh đề phù hợp: Ich öffne die Tür, damit du hereinkommen kannst. Không tự hiểu câu đó thành người mở cửa cũng đi vào.\n\n## Lỗi thường gặp\n\nSai: Er behauptet, den Brief zu abgeschickt haben. → … abgeschickt zu haben.",
       "exercises": [
         {
           "type": "fill",
-          "question": "Điền dạng nguyên mẫu có zu của aufstehen: Ich versuche, früher ___.",
+          "question": "Điền trợ động từ nguyên mẫu: Er behauptet, den Brief abgeschickt zu ___.",
           "answers": [
-            "aufzustehen"
+            "haben"
           ],
-          "explanation": "Với động từ tách aufstehen, zu đặt giữa tiền tố và gốc.",
+          "explanation": "Nguyên mẫu hoàn thành với abschicken: abgeschickt zu haben.",
           "origin": "authored",
           "answerSource": "authored"
         }
@@ -1834,18 +1834,18 @@
     },
     {
       "id": "book-dtd-b2-04",
-      "title": "Relativsätze mit Präpositionen",
-      "topic": "Relativsätze mit Präpositionen",
+      "title": "Relativsätze · Giới từ, dessen và deren",
+      "topic": "Relativsätze · Giới từ, dessen và deren",
       "level": "B2",
-      "content": "## Mục tiêu bài học\n\nHiểu và sử dụng **Relativsätze mit Präpositionen** trong câu hoàn chỉnh. Học các quy tắc, xem ví dụ rồi làm câu luyện tập phía dưới.\n\n## Relativsätze mit Präpositionen\n\n### Trọng tâm giới từ trong câu quan hệ\n\nGiới từ được quyết định bởi quan hệ nghĩa hoặc kết hợp động từ/tính từ trong mệnh đề quan hệ. Giống/số theo danh từ được thay thế; cách do giới từ/cấu trúc yêu cầu.\n\n- Das ist die Kollegin, mit der ich arbeite. → Đó là đồng nghiệp nữ tôi làm cùng.\n- Der Kurs, für den ich mich interessiere, beginnt morgen. → Khóa học tôi quan tâm bắt đầu ngày mai.\n\n## Quy tắc trọng tâm\n\nGiống và số của đại từ quan hệ lấy từ danh từ được thay thế; **cách lấy từ chức năng bên trong mệnh đề quan hệ**. Động từ đã chia thường ở cuối mệnh đề quan hệ.\n\nVới giới từ, đặt giới từ trước đại từ: mit dem, für die… Genitiv dùng dessen/deren theo danh từ được quy chiếu. Đừng lấy cách của danh từ trong câu chính để tự động chia đại từ quan hệ.\n\n## Đại từ quan hệ: giống theo danh từ, cách theo vai trò\n\n| Cách | Đực | Cái | Trung | Số nhiều |\n| --- | --- | --- | --- | --- |\n| Nominativ | der | die | das | die |\n| Akkusativ | den | die | das | die |\n| Dativ | dem | der | dem | denen |\n| Genitiv | dessen | deren | dessen | deren |\n\n## Phân tích một câu hoàn chỉnh\n\n**Das ist der Mann, dem ich helfe.** — Đó là người đàn ông tôi giúp. Mann quyết định giống đực, số ít; helfen bên trong câu quan hệ đòi Dativ → dem. **Die Frau, mit der ich arbeite, ist nett.** Mit đòi Dativ, Frau giống cái → der; cả cụm mit der đặt đầu câu quan hệ. Động từ chia nằm cuối; dấu phẩy mở và đóng câu quan hệ khi câu chính còn tiếp.\n\n## Sai ở đâu và sửa thế nào?\n\nSai: *der Mann, den ich helfe* → **der Mann, dem ich helfe**. Đừng lấy cách của danh từ ở câu chính để áp cho đại từ quan hệ.\n\n## Ví dụ Đức–Việt\n\n- Das ist der Mann, dem ich geholfen habe. → Đó là người đàn ông tôi đã giúp.\n\n- Die Frau, mit der ich arbeite, ist nett. → Người phụ nữ làm cùng tôi tốt bụng.\n\n## Cách tự kiểm tra\n\n1. Xác định ý muốn diễn đạt và người thực hiện hành động.\n2. Đối chiếu cấu trúc trong bảng; kiểm tra dạng động từ, cách và đuôi nếu có.\n3. Đọc lại cả câu để chắc rằng nghĩa không đổi.\n4. Làm bài tập bên dưới rồi đọc giải thích, kể cả khi trả lời đúng.",
+      "content": "## Quy tắc trọng tâm\n\nĐi sâu vào đại từ quan hệ có giới từ và quan hệ sở hữu. Bài quan hệ cơ bản B1 đã học cách chọn Nominativ/Akkusativ/Dativ; ở đây phải phối hợp thêm giới từ và danh từ thuộc sở hữu.\n\n## Cấu trúc và ví dụ Đức–Việt\n\n| Cấu trúc | Ví dụ | Nghĩa |\n| --- | --- | --- |\n| giới từ + đại từ | Die Kollegin, auf deren Hilfe ich zähle, ist heute da. | Đồng nghiệp mà tôi trông cậy sự giúp đỡ có mặt hôm nay. |\n| mit + Dativ | Der Kunde, mit dem ich gesprochen habe, wartet draußen. | Khách tôi đã nói chuyện cùng đang đợi ngoài. |\n| dessen + danh từ | Der Mann, dessen Auto kaputt ist, ruft die Werkstatt an. | Người đàn ông có xe bị hỏng gọi xưởng sửa. |\n\n## Phân tích cách dùng\n\nDessen đi với danh từ đứng trước giống đực/trung; deren với giống cái/số nhiều. Trong auf deren Hilfe, auf thuộc zählen auf + Akkusativ; deren nói Hilfe là của Kollegin. Đừng đổi deren thành der chỉ vì Hilfe là giống cái: đây là sở hữu, không phải đại từ quan hệ Dativ đơn giản. Khi phân tích, tách giới từ, người sở hữu và vật được sở hữu.\n\n## Lỗi thường gặp\n\nSai: die Kollegin, auf der Hilfe ich zähle → … auf deren Hilfe ich zähle.",
       "exercises": [
         {
           "type": "fill",
-          "question": "Điền đại từ quan hệ: Das ist der Mann, ___ ich helfe.",
+          "question": "Điền dessen hoặc deren: Die Kollegin, auf ___ Hilfe ich zähle, ist da.",
           "answers": [
-            "dem"
+            "deren"
           ],
-          "explanation": "Danh từ Mann giống đực; helfen trong câu quan hệ cần Dativ → dem.",
+          "explanation": "Người sở hữu là die Kollegin, giống cái; dùng deren.",
           "origin": "authored",
           "answerSource": "authored"
         }
@@ -1869,18 +1869,18 @@
     },
     {
       "id": "book-dtd-b2-05",
-      "title": "Indirekte Rede",
-      "topic": "Indirekte Rede",
+      "title": "Indirekte Rede · Đổi ngôi, thời gian và dạng thay thế",
+      "topic": "Indirekte Rede · Đổi ngôi, thời gian và dạng thay thế",
       "level": "B2",
-      "content": "## Mục tiêu bài học\n\nHiểu và sử dụng **Indirekte Rede** trong câu hoàn chỉnh. Học các quy tắc, xem ví dụ rồi làm câu luyện tập phía dưới.\n\n## Quy tắc trọng tâm\n\nKonjunktiv I thường dùng trong tường thuật gián tiếp, nhất là văn báo chí. Các dạng điển hình: er sei, er habe, er komme. Mục đích là thể hiện lời được thuật lại, không tự khẳng định nó đúng hay sai.\n\nKhi dạng Konjunktiv I trùng Indikativ và dễ gây mơ hồ, có thể dùng Konjunktiv II hoặc cấu trúc thay thế theo văn phong. Phân biệt lời nói gián tiếp trong báo chí với yêu cầu lịch sự hay điều kiện giả định.\n\n## Konjunktiv I để tường thuật\n\n| Ngôi | sein | haben | kommen |\n| --- | --- | --- | --- |\n| ich | sei | habe | komme |\n| du | seiest | habest | kommest |\n| er/sie/es | sei | habe | komme |\n| wir | seien | haben | kommen |\n| ihr | seiet | habet | kommet |\n| sie/Sie | seien | haben | kommen |\n\n## Phân tích một câu hoàn chỉnh\n\n**Er sagt: „Ich bin krank.“ → Er sagt, er sei krank.** — Anh ấy nói rằng anh ấy bị ốm. Người viết tường thuật lời nói, không tự xác nhận nội dung đúng hay sai. Đại từ và mốc thời gian phải phù hợp góc nhìn. Với quá khứ: Er sagt, er habe gestern gearbeitet. Khi Konjunktiv I trùng Indikativ, có thể dùng Konjunktiv II để phân biệt; điều này không tự động khẳng định người nói đang nói dối. Câu tường thuật với dass cũng dùng được, động từ cuối.\n\n## Sai ở đâu và sửa thế nào?\n\nSai: *Er sagt, ich sei krank* nếu muốn tường thuật chính anh ấy bị ốm → **Er sagt, er sei krank.** Phải đổi ngôi theo người được nhắc đến, không sao chép ich máy móc.\n\n## Ví dụ Đức–Việt\n\n- Er sagt, er sei krank. → Anh ấy nói rằng anh ấy bị ốm.\n\n- Sie erklärt, sie habe keine Zeit. → Cô ấy giải thích rằng cô ấy không có thời gian.\n\n## Cách tự kiểm tra\n\n1. Xác định ý muốn diễn đạt và người thực hiện hành động.\n2. Đối chiếu cấu trúc trong bảng; kiểm tra dạng động từ, cách và đuôi nếu có.\n3. Đọc lại cả câu để chắc rằng nghĩa không đổi.\n4. Làm bài tập bên dưới rồi đọc giải thích, kể cả khi trả lời đúng.",
+      "content": "## Quy tắc trọng tâm\n\nBài này luyện chuyển một thông báo nhiều câu sang lời gián tiếp. Không lặp bảng chia Konjunktiv I nhập môn. Giữ nội dung nguồn, đổi ngôi theo người nói và chọn dạng rõ ràng khi Konjunktiv I trùng Indikativ.\n\n## Cấu trúc và ví dụ Đức–Việt\n\n| Cấu trúc | Ví dụ | Nghĩa |\n| --- | --- | --- |\n| hiện tại | Sie erklärte, sie habe keine Zeit. | Cô ấy giải thích mình không có thời gian. |\n| quá khứ | Sie sagte, sie sei am Vortag angekommen. | Cô ấy nói đã đến hôm trước. |\n| tương lai | Er kündigte an, er werde später anrufen. | Anh ấy báo sẽ gọi sau. |\n| dạng thay thế | Sie sagten, sie hätten keine Unterlagen. | Họ nói họ không có tài liệu. |\n\n## Phân tích cách dùng\n\nLời gốc “Ich bin gestern angekommen” chuyển sang Sie sagte, sie sei am Vortag angekommen nếu điểm thời gian của lời kể đã đổi. Không bắt buộc đổi gestern nếu người tường thuật vẫn nói trong cùng ngày và ngữ cảnh rõ. Haben/sein + Partizip II ở Konjunktiv I tường thuật quá khứ. Hätten có thể chỉ là dạng thay thế vì sie haben trùng Indikativ; không tự kết luận người kể nghi ngờ hoặc phủ nhận sự thật.\n\n## Lỗi thường gặp\n\nSai: Sie sagte, ich sei angekommen nếu người đã đến là chính cô ấy → Sie sagte, sie sei angekommen.",
       "exercises": [
         {
           "type": "fill",
-          "question": "Điền sein ở Konjunktiv I: Er sagt, er ___ krank.",
+          "question": "Điền sein ở Konjunktiv I: Sie sagte, sie ___ am Vortag angekommen.",
           "answers": [
             "sei"
           ],
-          "explanation": "Tường thuật ngôi er: Konjunktiv I của sein là sei.",
+          "explanation": "Ankommen dùng sein trong Perfekt; lời gián tiếp: sie sei angekommen.",
           "origin": "authored",
           "answerSource": "authored"
         }
@@ -1909,28 +1909,18 @@
     },
     {
       "id": "book-dtd-b2-06",
-      "title": "Passiv – Cơ bản và nâng cao",
-      "topic": "Passiv – Cơ bản và nâng cao",
+      "title": "Passiv · Thì ghép, Modalverb và câu không chủ ngữ",
+      "topic": "Passiv · Thì ghép, Modalverb và câu không chủ ngữ",
       "level": "B2",
-      "content": "## Mục tiêu bài học\n\nHiểu và sử dụng **Passiv – Cơ bản và nâng cao** trong câu hoàn chỉnh. Học các quy tắc, xem ví dụ rồi làm câu luyện tập phía dưới.\n\n## Quy tắc trọng tâm\n\nVorgangspassiv nhấn mạnh quá trình: **werden + Partizip II**. Zustandspassiv nhấn mạnh trạng thái kết quả: **sein + Partizip II**. Tân ngữ Akkusativ của câu chủ động có thể thành chủ ngữ bị động.\n\nTân ngữ Dativ vẫn ở Dativ. Tác nhân có thể diễn đạt bằng von + Dativ; phương tiện/nguyên nhân tùy trường hợp dùng durch + Akkusativ. Dạng Perfekt của Vorgangspassiv dùng worden, khác geworden.\n\n## Vorgangspassiv và Zustandspassiv\n\n| Thời / dạng | Công thức | Ví dụ |\n| --- | --- | --- |\n| Vorgang, Präsens | werden + Partizip II | Die Tür wird geöffnet. |\n| Vorgang, Präteritum | wurden + Partizip II | Die Türen wurden geöffnet. |\n| Vorgang, Perfekt | sein + Partizip II + worden | Die Tür ist geöffnet worden. |\n| Zustand, Präsens | sein + Partizip II | Die Tür ist geöffnet. |\n| với Modalverb | Modalverb + Partizip II + werden | Die Tür muss geöffnet werden. |\n\n## Phân tích một câu hoàn chỉnh\n\n**Der Mechaniker repariert das Auto. → Das Auto wird vom Mechaniker repariert.** — Người thợ sửa xe → Xe được người thợ sửa. Das Auto chuyển từ tân ngữ sang chủ ngữ; chủ thể có thể nêu bằng von + Dativ. Đối tượng Dativ vẫn giữ Dativ: **Dem Kind wird geholfen.** Không biến thành Das Kind wird geholfen. Passiv chú trọng hành động/đối tượng hơn người làm; không phải câu chủ động nào cũng tự nhiên khi đổi sang bị động.\n\n## Sai ở đâu và sửa thế nào?\n\nSai: *Die Tür ist geöffnet geworden.* khi muốn nói Perfekt bị động → **Die Tür ist geöffnet worden.** Trong Perfekt Vorgangspassiv dùng worden, không geworden.\n\n## Ví dụ Đức–Việt\n\n- Die Tür wird geöffnet. → Cửa đang được mở.\n\n- Die Tür ist geöffnet. → Cửa đang ở trạng thái mở.\n\n## Quy tắc trọng tâm\n\nMột số cấu trúc diễn đạt ý bị động mà không dùng werden-Passiv, chẳng hạn **sich lassen + Infinitiv**, **sein + zu + Infinitiv**, tính từ tận cùng -bar và chủ ngữ man.\n\nCác cấu trúc thay thế không đồng nghĩa hoàn toàn: có cấu trúc nhấn mạnh khả năng, có cấu trúc nhấn mạnh sự cần thiết. Chọn theo nghĩa trong văn cảnh.\n\n## Diễn đạt ý bị động bằng cách khác\n\n| Mẫu | Sắc thái | Ví dụ |\n| --- | --- | --- |\n| sich lassen + Infinitiv | có thể thực hiện | Das Fenster lässt sich öffnen. |\n| sein + zu + Infinitiv | có thể/phải tùy ngữ cảnh | Die Aufgabe ist bis morgen zu erledigen. |\n| tính từ -bar | khả năng, khi có từ phù hợp | Die Datei ist lesbar. |\n| man + câu chủ động | chủ thể chung | Man kann die Datei lesen. |\n\n## Phân tích một câu hoàn chỉnh\n\n**Das Problem lässt sich lösen.** — Vấn đề có thể giải quyết được. Tương đương về khả năng: **Das Problem kann gelöst werden.** Cấu trúc lassen không mặc định nói điều bắt buộc. Với **Die Rechnung ist sofort zu bezahlen**, ngữ cảnh thường diễn đạt yêu cầu phải thanh toán ngay. Không tự tạo mọi tính từ -bar từ bất kỳ động từ nào; kiểm tra từ thực có.\n\n## Sai ở đâu và sửa thế nào?\n\nSai: *Das Problem lässt lösen.* → **Das Problem lässt sich lösen.** Trong mẫu thay bị động này cần đại từ phản thân sich.\n\n## Ví dụ Đức–Việt\n\n- Das Problem lässt sich lösen. → Vấn đề có thể giải quyết được.\n\n- Die Aufgabe ist zu erledigen. → Nhiệm vụ cần được hoàn thành.\n\n## Cách tự kiểm tra\n\n1. Xác định ý muốn diễn đạt và người thực hiện hành động.\n2. Đối chiếu cấu trúc trong bảng; kiểm tra dạng động từ, cách và đuôi nếu có.\n3. Đọc lại cả câu để chắc rằng nghĩa không đổi.\n4. Làm bài tập bên dưới rồi đọc giải thích, kể cả khi trả lời đúng.",
+      "content": "## Quy tắc trọng tâm\n\nTập trung cấu trúc bị động phức hợp. Bài A2 đã giới thiệu werden + Partizip II; ở đây luyện khung câu nhiều động từ và giữ Dativ khi không có tân ngữ Akkusativ.\n\n## Cấu trúc và ví dụ Đức–Việt\n\n| Cấu trúc | Ví dụ | Nghĩa |\n| --- | --- | --- |\n| Modalverb | Der Antrag muss geprüft werden. | Đơn phải được kiểm tra. |\n| Perfekt | Der Antrag ist geprüft worden. | Đơn đã được kiểm tra. |\n| Dativ giữ nguyên | Den Gästen wird geholfen. | Khách được giúp đỡ. |\n| không chủ ngữ từ vựng | Heute wird hier gearbeitet. | Hôm nay có người làm việc ở đây. |\n\n## Phân tích cách dùng\n\nChủ động Man hilft den Gästen không có tân ngữ Akkusativ để biến thành chủ ngữ; den Gästen vẫn ở Dativ. Werden dùng số ít trong mẫu vô nhân xưng: Den Gästen wird geholfen. Es có thể làm từ giữ vị trí đầu: Es wird hier gearbeitet; khi Heute đứng đầu thì bỏ es. Với Modalverb, động từ nguyên mẫu werden đứng sau Partizip: geprüft werden.\n\n## Lỗi thường gặp\n\nSai: Die Gäste werden geholfen. → Den Gästen wird geholfen. Helfen yêu cầu Dativ.",
       "exercises": [
         {
           "type": "fill",
-          "question": "Điền worden hoặc geworden: Das Auto ist repariert ___.",
+          "question": "Điền werden ở Präsens: Den Gästen ___ geholfen.",
           "answers": [
-            "worden"
+            "wird"
           ],
-          "explanation": "Perfekt bị động: ist + repariert + worden.",
-          "origin": "authored",
-          "answerSource": "authored"
-        },
-        {
-          "type": "fill",
-          "question": "Điền đại từ: Das Fenster lässt ___ leicht öffnen.",
-          "answers": [
-            "sich"
-          ],
-          "explanation": "Mẫu diễn đạt khả năng bị động: sich lassen + Infinitiv.",
+          "explanation": "Bị động với helfen không có chủ ngữ Nominativ; Dativ giữ nguyên, werden chia số ít wird.",
           "origin": "authored",
           "answerSource": "authored"
         }
@@ -1969,18 +1959,18 @@
     },
     {
       "id": "book-dtd-b2-07",
-      "title": "Partizipien als Adjektive",
-      "topic": "Partizipien als Adjektive",
+      "title": "Partizipialattribute · Cụm phân từ mở rộng",
+      "topic": "Partizipialattribute · Cụm phân từ mở rộng",
       "level": "B2",
-      "content": "## Mục tiêu bài học\n\nHiểu và sử dụng **Partizipien als Adjektive** trong câu hoàn chỉnh. Học các quy tắc, xem ví dụ rồi làm câu luyện tập phía dưới.\n\n## Partizipien als Adjektive\n\n### Trọng tâm phân từ làm tính từ\n\nCụm phân từ đứng trước danh từ nhận đuôi biến cách. Có thể mở rộng bằng các bổ ngữ liên quan; khi cụm quá dài, mệnh đề quan hệ thường dễ đọc hơn. Partizip I thường gợi quá trình chủ động; Partizip II có thể gợi trạng thái/hoàn thành hoặc bị động tùy động từ.\n\n- die im Park spielenden Kinder → những đứa trẻ đang chơi trong công viên\n- der gestern unterschriebene Vertrag → hợp đồng được ký hôm qua\n\n## Quy tắc trọng tâm\n\nPartizip I thường tạo bằng **Infinitiv + d**, diễn tả tính chất liên quan hành động đang diễn ra/chủ động. Partizip II liên quan dạng hoàn thành hoặc bị động tùy động từ và ngữ cảnh.\n\nKhi đứng trước danh từ như tính từ, phân từ nhận đuôi tính từ. Không coi mọi Partizip II đều mang nghĩa bị động: ein angekommenes Paket diễn tả một bưu kiện đã đến.\n\n## Partizip làm tính từ\n\n| Loại | Tạo dạng | Ví dụ Đức–Việt |\n| --- | --- | --- |\n| Partizip I | Infinitiv + d | das schlafende Kind — đứa trẻ đang ngủ |\n| Partizip II | dạng Partizip II + đuôi | die geschlossene Tür — cánh cửa đã đóng |\n| cụm mở rộng I | bổ ngữ + Partizip I | der im Garten spielende Junge — cậu bé đang chơi trong vườn |\n| cụm mở rộng II | bổ ngữ + Partizip II | der gestern geschriebene Brief — lá thư được viết hôm qua |\n\n## Phân tích một câu hoàn chỉnh\n\n**Die auf dem Tisch liegenden Bücher gehören mir.** — Những cuốn sách nằm trên bàn là của tôi. Liegen → liegend; trước Bücher số nhiều sau die nhận -en. Cụm auf dem Tisch bổ nghĩa cho liegend. Có thể chuyển thành câu quan hệ dễ đọc hơn: Die Bücher, die auf dem Tisch liegen, gehören mir. Partizip II của động từ nội động có thể chỉ trạng thái đã hoàn thành, không mặc định luôn bị động: die angekommenen Gäste.\n\n## Sai ở đâu và sửa thế nào?\n\nSai: *die schlafend Kinder* → **die schlafenden Kinder**. Partizip dùng trước danh từ cũng phải chia đuôi tính từ.\n\n## Ví dụ Đức–Việt\n\n- das schlafende Kind → đứa trẻ đang ngủ\n\n- die geschlossene Tür → cánh cửa đã đóng\n\n## Cách tự kiểm tra\n\n1. Xác định ý muốn diễn đạt và người thực hiện hành động.\n2. Đối chiếu cấu trúc trong bảng; kiểm tra dạng động từ, cách và đuôi nếu có.\n3. Đọc lại cả câu để chắc rằng nghĩa không đổi.\n4. Làm bài tập bên dưới rồi đọc giải thích, kể cả khi trả lời đúng.",
+      "content": "## Quy tắc trọng tâm\n\nChuyển câu quan hệ thành cụm phân từ và ngược lại; kiểm tra quan hệ chủ động/bị động và đuôi tính từ. Bài B1 đã giới thiệu schlafend/geschrieben; bài này luyện cụm có nhiều bổ ngữ.\n\n## Cấu trúc và ví dụ Đức–Việt\n\n| Cấu trúc | Ví dụ | Nghĩa |\n| --- | --- | --- |\n| chủ động | die auf ihren Bus wartenden Fahrgäste | những hành khách đang chờ xe buýt |\n| bị động | die gestern vom Chef unterschriebenen Verträge | những hợp đồng được sếp ký hôm qua |\n| zu + Partizip I | die noch zu prüfenden Unterlagen | những tài liệu còn phải/cần kiểm tra |\n\n## Phân tích cách dùng\n\nDie Fahrgäste, die auf ihren Bus warten → die auf ihren Bus wartenden Fahrgäste. Chủ thể của warten là Fahrgäste nên dùng Partizip I. Die Verträge, die unterschrieben wurden → die unterschriebenen Verträge: đối tượng nhận hành động nên Partizip II. Zu prüfend bổ sung ý có thể/cần/phải kiểm tra tùy ngữ cảnh, không đơn thuần “đang kiểm tra”. Nếu cụm quá dài, dùng câu quan hệ sẽ dễ đọc hơn.\n\n## Lỗi thường gặp\n\nSai: die vom Chef unterschreibenden Verträge nếu hợp đồng là đối tượng được ký → die vom Chef unterschriebenen Verträge.",
       "exercises": [
         {
           "type": "fill",
-          "question": "Điền schlafend: Die ___ Kinder liegen im Bett.",
+          "question": "Điền wartend với đuôi đúng: Die auf den Bus ___ Fahrgäste sind ungeduldig.",
           "answers": [
-            "schlafenden"
+            "wartenden"
           ],
-          "explanation": "Sau die số nhiều ở Nominativ, tính từ/Partizip nhận -en.",
+          "explanation": "Partizip I chỉ hành động chủ động; sau die số nhiều dùng đuôi -en.",
           "origin": "authored",
           "answerSource": "authored"
         }
@@ -2163,18 +2153,18 @@
     },
     {
       "id": "book-dtd-b2-11",
-      "title": "Temporale und kausale Konnektoren",
-      "topic": "Temporale und kausale Konnektoren",
+      "title": "Temporale und kausale Konnektoren · Trước sau và nguyên nhân",
+      "topic": "Temporale und kausale Konnektoren · Trước sau và nguyên nhân",
       "level": "B2",
-      "content": "## Mục tiêu bài học\n\nHiểu và sử dụng **Temporale und kausale Konnektoren** trong câu hoàn chỉnh. Học các quy tắc, xem ví dụ rồi làm câu luyện tập phía dưới.\n\n## Temporale und kausale Konnektoren\n\n### Trọng tâm quan hệ thời gian và nguyên nhân\n\nPhân biệt **als** (một dịp/mốc quá khứ) với **wenn** (điều kiện hoặc thời gian lặp lại theo ngữ cảnh), **während** (đồng thời), **bevor/nachdem** (trước/sau). Với nguyên nhân: weil/da là liên từ phụ; denn nối câu chính; deshalb/deswegen là trạng từ liên kết.\n\n- Nachdem ich gegessen hatte, ging ich los. → Sau khi ăn xong, tôi lên đường.\n- Ich bin krank, deshalb bleibe ich zu Hause. → Tôi ốm, vì vậy tôi ở nhà.\n\n## Quy tắc trọng tâm\n\nTrong mệnh đề phụ được dẫn bằng weil, dass, wenn, obwohl…, động từ đã chia thường đứng cuối. Nếu mệnh đề phụ đứng trước, toàn mệnh đề đó chiếm vị trí thứ nhất của câu chính.\n\nPhân biệt câu phụ chỉ nguyên nhân, thời gian, điều kiện, nhượng bộ, mục đích, kết quả và cách thức. Dùng liên từ theo quan hệ nghĩa; không thay các liên từ chỉ vì chúng cùng đẩy động từ xuống cuối.\n\n## Chọn liên từ theo quan hệ nghĩa\n\n| Quan hệ | Liên từ | Ví dụ |\n| --- | --- | --- |\n| nguyên nhân | weil, da | Ich bleibe, weil es regnet. |\n| nội dung | dass | Ich hoffe, dass du kommst. |\n| điều kiện | wenn, falls | Falls du Zeit hast, ruf mich an. |\n| nhượng bộ | obwohl | Obwohl es regnet, gehen wir raus. |\n| mục đích | damit | Ich spreche langsam, damit du mich verstehst. |\n| kết quả | sodass | Es ist laut, sodass ich nichts höre. |\n\n## Phân tích một câu hoàn chỉnh\n\n**Obwohl ich müde bin, lerne ich weiter.** — Mặc dù mệt, tôi vẫn học tiếp. Bin kết thúc mệnh đề phụ; toàn mệnh đề Obwohl … bin đứng vị trí đầu, nên câu chính bắt đầu bằng lerne, rồi mới ich. Nếu đổi thứ tự: **Ich lerne weiter, obwohl ich müde bin.** Trong cụm Modalverb thông thường, nguyên mẫu đứng trước động từ chia ở cuối: weil ich arbeiten muss.\n\n## Sai ở đâu và sửa thế nào?\n\nSai: *Weil ich krank bin, ich bleibe zu Hause.* → **Weil ich krank bin, bleibe ich zu Hause.** Không đặt thêm chủ ngữ trước động từ câu chính sau mệnh đề phụ đầu câu.\n\n## Ví dụ Đức–Việt\n\n- Weil ich krank bin, bleibe ich zu Hause. → Vì bị ốm nên tôi ở nhà.\n\n- Ich weiß nicht, ob er kommt. → Tôi không biết anh ấy có đến không.\n\n## Cách tự kiểm tra\n\n1. Xác định ý muốn diễn đạt và người thực hiện hành động.\n2. Đối chiếu cấu trúc trong bảng; kiểm tra dạng động từ, cách và đuôi nếu có.\n3. Đọc lại cả câu để chắc rằng nghĩa không đổi.\n4. Làm bài tập bên dưới rồi đọc giải thích, kể cả khi trả lời đúng.",
+      "content": "## Quy tắc trọng tâm\n\nPhân biệt quan hệ thời gian với nguyên nhân, phối hợp thứ tự hai sự kiện và thì của động từ. Không học lại toàn bộ danh sách Nebensätze.\n\n## Cấu trúc và ví dụ Đức–Việt\n\n| Cấu trúc | Ví dụ | Nghĩa |\n| --- | --- | --- |\n| nachdem | Nachdem sie angekommen war, rief sie an. | Sau khi đến, cô ấy gọi điện. |\n| bevor | Bevor du gehst, schließ bitte das Fenster. | Trước khi đi, hãy đóng cửa sổ. |\n| seitdem | Seitdem er hier wohnt, fährt er mit dem Rad. | Từ khi sống ở đây, anh ấy đi xe đạp. |\n| da | Da der Zug ausfällt, nehmen wir den Bus. | Vì tàu bị hủy, chúng tôi đi xe buýt. |\n\n## Phân tích cách dùng\n\nTrong câu kể quá khứ, việc đến xảy ra trước cuộc gọi nên dùng Plusquamperfekt ở mệnh đề nachdem, rồi Präteritum ở câu chính. Bevor đánh dấu việc chưa xảy ra ở thời điểm hành động kia diễn ra; không máy móc ép mọi câu có bevor dùng Plusquamperfekt. Weil/da giải thích lý do, còn nachdem chỉ trình tự: sự kiện trước không tự động là nguyên nhân.\n\n## Lỗi thường gặp\n\nSai: Nachdem sie angekommen hatte … → Nachdem sie angekommen war … Ankommen dùng sein.",
       "exercises": [
         {
           "type": "fill",
-          "question": "Điền sein: Ich bleibe zu Hause, weil ich krank ___.",
+          "question": "Điền trợ động từ: Nachdem sie angekommen ___, rief sie an.",
           "answers": [
-            "bin"
+            "war"
           ],
-          "explanation": "Trong câu phụ weil, động từ đã chia bin đứng cuối.",
+          "explanation": "Sự kiện đến trước cuộc gọi trong quá khứ: sie war angekommen.",
           "origin": "authored",
           "answerSource": "authored"
         }
@@ -2203,18 +2193,18 @@
     },
     {
       "id": "book-dtd-b2-12",
-      "title": "Zustandspassiv und erweitertes Passiv",
-      "topic": "Zustandspassiv und erweitertes Passiv",
+      "title": "Zustandspassiv · Trạng thái và quá trình",
+      "topic": "Zustandspassiv · Trạng thái và quá trình",
       "level": "B2",
-      "content": "## Mục tiêu bài học\n\nHiểu và sử dụng **Zustandspassiv und erweitertes Passiv** trong câu hoàn chỉnh. Học các quy tắc, xem ví dụ rồi làm câu luyện tập phía dưới.\n\n## Zustandspassiv und erweitertes Passiv\n\n### Trọng tâm trạng thái và quá trình\n\n**Die Tür wird geschlossen** mô tả quá trình đóng; **Die Tür ist geschlossen** mô tả trạng thái đóng. Phân biệt **ist geschlossen worden** (quá trình đã xảy ra) với **ist geschlossen gewesen** (đã ở trạng thái đóng). Không đổi werden thành sein mà giữ nguyên nghĩa trong mọi văn cảnh.\n\n- Die Küche wird gereinigt. → Bếp đang được vệ sinh.\n- Die Küche ist gereinigt. → Bếp đã ở trạng thái sạch sau khi được vệ sinh.\n\n## Quy tắc trọng tâm\n\nVorgangspassiv nhấn mạnh quá trình: **werden + Partizip II**. Zustandspassiv nhấn mạnh trạng thái kết quả: **sein + Partizip II**. Tân ngữ Akkusativ của câu chủ động có thể thành chủ ngữ bị động.\n\nTân ngữ Dativ vẫn ở Dativ. Tác nhân có thể diễn đạt bằng von + Dativ; phương tiện/nguyên nhân tùy trường hợp dùng durch + Akkusativ. Dạng Perfekt của Vorgangspassiv dùng worden, khác geworden.\n\n## Vorgangspassiv và Zustandspassiv\n\n| Thời / dạng | Công thức | Ví dụ |\n| --- | --- | --- |\n| Vorgang, Präsens | werden + Partizip II | Die Tür wird geöffnet. |\n| Vorgang, Präteritum | wurden + Partizip II | Die Türen wurden geöffnet. |\n| Vorgang, Perfekt | sein + Partizip II + worden | Die Tür ist geöffnet worden. |\n| Zustand, Präsens | sein + Partizip II | Die Tür ist geöffnet. |\n| với Modalverb | Modalverb + Partizip II + werden | Die Tür muss geöffnet werden. |\n\n## Phân tích một câu hoàn chỉnh\n\n**Der Mechaniker repariert das Auto. → Das Auto wird vom Mechaniker repariert.** — Người thợ sửa xe → Xe được người thợ sửa. Das Auto chuyển từ tân ngữ sang chủ ngữ; chủ thể có thể nêu bằng von + Dativ. Đối tượng Dativ vẫn giữ Dativ: **Dem Kind wird geholfen.** Không biến thành Das Kind wird geholfen. Passiv chú trọng hành động/đối tượng hơn người làm; không phải câu chủ động nào cũng tự nhiên khi đổi sang bị động.\n\n## Sai ở đâu và sửa thế nào?\n\nSai: *Die Tür ist geöffnet geworden.* khi muốn nói Perfekt bị động → **Die Tür ist geöffnet worden.** Trong Perfekt Vorgangspassiv dùng worden, không geworden.\n\n## Ví dụ Đức–Việt\n\n- Die Tür wird geöffnet. → Cửa đang được mở.\n\n- Die Tür ist geöffnet. → Cửa đang ở trạng thái mở.\n\n## Cách tự kiểm tra\n\n1. Xác định ý muốn diễn đạt và người thực hiện hành động.\n2. Đối chiếu cấu trúc trong bảng; kiểm tra dạng động từ, cách và đuôi nếu có.\n3. Đọc lại cả câu để chắc rằng nghĩa không đổi.\n4. Làm bài tập bên dưới rồi đọc giải thích, kể cả khi trả lời đúng.",
+      "content": "## Quy tắc trọng tâm\n\nSo sánh trạng thái kết quả với hành động xảy ra, kể cả ở quá khứ. Bài này không lặp toàn bộ các thì Vorgangspassiv.\n\n## Cấu trúc và ví dụ Đức–Việt\n\n| Cấu trúc | Ví dụ | Nghĩa |\n| --- | --- | --- |\n| quá trình hiện tại | Die Fenster werden geschlossen. | Các cửa sổ đang được đóng. |\n| trạng thái hiện tại | Die Fenster sind geschlossen. | Các cửa sổ đang ở trạng thái đóng. |\n| quá trình đã hoàn tất | Die Fenster sind geschlossen worden. | Các cửa sổ đã được đóng lại. |\n| trạng thái quá khứ | Die Fenster waren bereits geschlossen. | Lúc đó các cửa sổ đã ở trạng thái đóng. |\n\n## Phân tích cách dùng\n\nSein + Partizip II chú trọng kết quả/trạng thái, werden + Partizip II chú trọng quá trình. Bereits ở câu trạng thái nói kết quả có sẵn tại mốc quan sát. Không phải mọi sein + Partizip II đều bị động: Sie ist angekommen là Perfekt của ankommen. Phân tích động từ gốc và khả năng có đối tượng nhận hành động trước khi đặt tên cấu trúc.\n\n## Lỗi thường gặp\n\nSai: Sie ist angekommen là Zustandspassiv → Không: đó là Perfekt chủ động với sein.",
       "exercises": [
         {
           "type": "fill",
-          "question": "Điền worden hoặc geworden: Das Auto ist repariert ___.",
+          "question": "Điền sein ở Präteritum: Die Fenster ___ bereits geschlossen.",
           "answers": [
-            "worden"
+            "waren"
           ],
-          "explanation": "Perfekt bị động: ist + repariert + worden.",
+          "explanation": "Trạng thái của Fenster số nhiều trong quá khứ: waren geschlossen.",
           "origin": "authored",
           "answerSource": "authored"
         }
@@ -2300,18 +2290,18 @@
     },
     {
       "id": "book-dtd-b2-14",
-      "title": "Konzessive Nebensätze",
-      "topic": "Konzessive Nebensätze",
+      "title": "Konzessive Nebensätze · obwohl, auch wenn và selbst wenn",
+      "topic": "Konzessive Nebensätze · obwohl, auch wenn và selbst wenn",
       "level": "B2",
-      "content": "## Mục tiêu bài học\n\nHiểu và sử dụng **Konzessive Nebensätze** trong câu hoàn chỉnh. Học các quy tắc, xem ví dụ rồi làm câu luyện tập phía dưới.\n\n## Konzessive Nebensätze\n\n### Trọng tâm nhượng bộ\n\n**obwohl + mệnh đề có động từ cuối**; **trotzdem + câu chính, động từ ở vị trí thứ hai**; **trotz + cụm danh từ**. Ba cấu trúc khác loại từ nên không thể đổi chỗ trực tiếp.\n\n- Obwohl es regnet, gehen wir spazieren. → Dù trời mưa, chúng tôi đi dạo.\n- Es regnet. Trotzdem gehen wir spazieren. → Trời mưa. Tuy vậy, chúng tôi vẫn đi dạo.\n\n## Quy tắc trọng tâm\n\nTrong mệnh đề phụ được dẫn bằng weil, dass, wenn, obwohl…, động từ đã chia thường đứng cuối. Nếu mệnh đề phụ đứng trước, toàn mệnh đề đó chiếm vị trí thứ nhất của câu chính.\n\nPhân biệt câu phụ chỉ nguyên nhân, thời gian, điều kiện, nhượng bộ, mục đích, kết quả và cách thức. Dùng liên từ theo quan hệ nghĩa; không thay các liên từ chỉ vì chúng cùng đẩy động từ xuống cuối.\n\n## Chọn liên từ theo quan hệ nghĩa\n\n| Quan hệ | Liên từ | Ví dụ |\n| --- | --- | --- |\n| nguyên nhân | weil, da | Ich bleibe, weil es regnet. |\n| nội dung | dass | Ich hoffe, dass du kommst. |\n| điều kiện | wenn, falls | Falls du Zeit hast, ruf mich an. |\n| nhượng bộ | obwohl | Obwohl es regnet, gehen wir raus. |\n| mục đích | damit | Ich spreche langsam, damit du mich verstehst. |\n| kết quả | sodass | Es ist laut, sodass ich nichts höre. |\n\n## Phân tích một câu hoàn chỉnh\n\n**Obwohl ich müde bin, lerne ich weiter.** — Mặc dù mệt, tôi vẫn học tiếp. Bin kết thúc mệnh đề phụ; toàn mệnh đề Obwohl … bin đứng vị trí đầu, nên câu chính bắt đầu bằng lerne, rồi mới ich. Nếu đổi thứ tự: **Ich lerne weiter, obwohl ich müde bin.** Trong cụm Modalverb thông thường, nguyên mẫu đứng trước động từ chia ở cuối: weil ich arbeiten muss.\n\n## Sai ở đâu và sửa thế nào?\n\nSai: *Weil ich krank bin, ich bleibe zu Hause.* → **Weil ich krank bin, bleibe ich zu Hause.** Không đặt thêm chủ ngữ trước động từ câu chính sau mệnh đề phụ đầu câu.\n\n## Ví dụ Đức–Việt\n\n- Weil ich krank bin, bleibe ich zu Hause. → Vì bị ốm nên tôi ở nhà.\n\n- Ich weiß nicht, ob er kommt. → Tôi không biết anh ấy có đến không.\n\n## Cách tự kiểm tra\n\n1. Xác định ý muốn diễn đạt và người thực hiện hành động.\n2. Đối chiếu cấu trúc trong bảng; kiểm tra dạng động từ, cách và đuôi nếu có.\n3. Đọc lại cả câu để chắc rằng nghĩa không đổi.\n4. Làm bài tập bên dưới rồi đọc giải thích, kể cả khi trả lời đúng.",
+      "content": "## Quy tắc trọng tâm\n\nDiễn tả điều trái kỳ vọng, phân biệt sự thật được thừa nhận với điều kiện có thể/giả định. So sánh câu phụ với trạng từ nối trotzdem.\n\n## Cấu trúc và ví dụ Đức–Việt\n\n| Cấu trúc | Ví dụ | Nghĩa |\n| --- | --- | --- |\n| sự thật trái kỳ vọng | Obwohl es regnet, findet das Fest statt. | Dù đang mưa, lễ hội vẫn diễn ra. |\n| thừa nhận/điều kiện | Auch wenn es regnet, findet das Fest statt. | Dù có mưa thì lễ hội vẫn diễn ra. |\n| điều kiện cực đoan | Selbst wenn es regnen sollte, würden wir kommen. | Ngay cả nếu trời mưa, chúng tôi vẫn sẽ đến. |\n| hai câu chính | Es regnet. Trotzdem findet das Fest statt. | Trời mưa. Dẫu vậy lễ hội vẫn diễn ra. |\n\n## Phân tích cách dùng\n\nObwohl thường đưa điều người nói thừa nhận là đúng. Selbst wenn có thể đưa giả định mạnh; không nhất thiết trời đang mưa. Trotzdem là trạng từ trong câu chính nên chiếm vị trí đầu và động từ theo ngay sau. Nhìn nội dung để chọn “mặc dù thực tế” hay “ngay cả nếu”, không chỉ dịch chung là dù.\n\n## Lỗi thường gặp\n\nSai: Trotzdem es regnet, gehen wir raus trong mẫu chuẩn đang luyện → Obwohl es regnet, gehen wir raus; hoặc Es regnet. Trotzdem gehen wir raus.",
       "exercises": [
         {
           "type": "fill",
-          "question": "Điền sein: Ich bleibe zu Hause, weil ich krank ___.",
+          "question": "Điền obwohl hoặc weil theo nghĩa trái kỳ vọng: ___ es regnet, findet das Fest statt.",
           "answers": [
-            "bin"
+            "Obwohl"
           ],
-          "explanation": "Trong câu phụ weil, động từ đã chia bin đứng cuối.",
+          "explanation": "Mưa thường cản lễ hội nhưng lễ hội vẫn diễn ra: quan hệ nhượng bộ, không phải nguyên nhân.",
           "origin": "authored",
           "answerSource": "authored"
         }
@@ -2340,18 +2330,18 @@
     },
     {
       "id": "book-dtd-b2-15",
-      "title": "Konditionale Nebensätze",
-      "topic": "Konditionale Nebensätze",
+      "title": "Konditionale Nebensätze · falls, sofern và điều kiện đảo",
+      "topic": "Konditionale Nebensätze · falls, sofern và điều kiện đảo",
       "level": "B2",
-      "content": "## Mục tiêu bài học\n\nHiểu và sử dụng **Konditionale Nebensätze** trong câu hoàn chỉnh. Học các quy tắc, xem ví dụ rồi làm câu luyện tập phía dưới.\n\n## Konditionale Nebensätze\n\n### Trọng tâm điều kiện\n\n**wenn/falls/sofern** mở mệnh đề điều kiện; động từ chia đứng cuối. Chọn Indikativ cho điều kiện được xem là có thể xảy ra; dùng Konjunktiv II khi diễn tả tình huống giả định hoặc trái thực tế theo ngữ cảnh.\n\n- Falls du Zeit hast, ruf mich an. → Nếu có thời gian, hãy gọi tôi.\n- Wenn ich mehr Zeit hätte, würde ich öfter üben. → Nếu có thêm thời gian, tôi sẽ luyện thường xuyên hơn.\n\n## Quy tắc trọng tâm\n\nTrong mệnh đề phụ được dẫn bằng weil, dass, wenn, obwohl…, động từ đã chia thường đứng cuối. Nếu mệnh đề phụ đứng trước, toàn mệnh đề đó chiếm vị trí thứ nhất của câu chính.\n\nPhân biệt câu phụ chỉ nguyên nhân, thời gian, điều kiện, nhượng bộ, mục đích, kết quả và cách thức. Dùng liên từ theo quan hệ nghĩa; không thay các liên từ chỉ vì chúng cùng đẩy động từ xuống cuối.\n\n## Chọn liên từ theo quan hệ nghĩa\n\n| Quan hệ | Liên từ | Ví dụ |\n| --- | --- | --- |\n| nguyên nhân | weil, da | Ich bleibe, weil es regnet. |\n| nội dung | dass | Ich hoffe, dass du kommst. |\n| điều kiện | wenn, falls | Falls du Zeit hast, ruf mich an. |\n| nhượng bộ | obwohl | Obwohl es regnet, gehen wir raus. |\n| mục đích | damit | Ich spreche langsam, damit du mich verstehst. |\n| kết quả | sodass | Es ist laut, sodass ich nichts höre. |\n\n## Phân tích một câu hoàn chỉnh\n\n**Obwohl ich müde bin, lerne ich weiter.** — Mặc dù mệt, tôi vẫn học tiếp. Bin kết thúc mệnh đề phụ; toàn mệnh đề Obwohl … bin đứng vị trí đầu, nên câu chính bắt đầu bằng lerne, rồi mới ich. Nếu đổi thứ tự: **Ich lerne weiter, obwohl ich müde bin.** Trong cụm Modalverb thông thường, nguyên mẫu đứng trước động từ chia ở cuối: weil ich arbeiten muss.\n\n## Sai ở đâu và sửa thế nào?\n\nSai: *Weil ich krank bin, ich bleibe zu Hause.* → **Weil ich krank bin, bleibe ich zu Hause.** Không đặt thêm chủ ngữ trước động từ câu chính sau mệnh đề phụ đầu câu.\n\n## Ví dụ Đức–Việt\n\n- Weil ich krank bin, bleibe ich zu Hause. → Vì bị ốm nên tôi ở nhà.\n\n- Ich weiß nicht, ob er kommt. → Tôi không biết anh ấy có đến không.\n\n## Cách tự kiểm tra\n\n1. Xác định ý muốn diễn đạt và người thực hiện hành động.\n2. Đối chiếu cấu trúc trong bảng; kiểm tra dạng động từ, cách và đuôi nếu có.\n3. Đọc lại cả câu để chắc rằng nghĩa không đổi.\n4. Làm bài tập bên dưới rồi đọc giải thích, kể cả khi trả lời đúng.",
+      "content": "## Quy tắc trọng tâm\n\nLuyện điều kiện có giới hạn, điều kiện giả định và câu điều kiện không có wenn. Chọn dạng động từ theo khả năng thực tế và ý định người nói.\n\n## Cấu trúc và ví dụ Đức–Việt\n\n| Cấu trúc | Ví dụ | Nghĩa |\n| --- | --- | --- |\n| khả năng chưa chắc | Falls du Unterstützung brauchst, melde dich. | Nếu cần hỗ trợ thì liên hệ nhé. |\n| điều kiện giới hạn | Du kannst teilnehmen, sofern du dich anmeldest. | Bạn có thể tham gia với điều kiện đăng ký. |\n| đảo bỏ wenn | Hätte ich mehr Zeit, würde ich helfen. | Nếu có nhiều thời gian, tôi sẽ giúp. |\n| ngoại lệ điều kiện | Wir gehen, es sei denn, du brauchst uns noch. | Chúng tôi đi, trừ khi bạn vẫn cần chúng tôi. |\n\n## Phân tích cách dùng\n\nSofern thường đặt một điều kiện để lời nói còn hiệu lực. Falls nêu tình huống có thể xảy ra. Trong Hätte ich mehr Zeit, hätte đặt đầu thay cho wenn ich … hätte; không thêm wenn cùng lúc. Es sei denn mở ngoại lệ, câu theo sau trong mẫu này giữ trật tự câu chính: du brauchst uns.\n\n## Lỗi thường gặp\n\nSai: Hätte wenn ich mehr Zeit … → Hätte ich mehr Zeit … hoặc Wenn ich mehr Zeit hätte …",
       "exercises": [
         {
           "type": "fill",
-          "question": "Điền sein: Ich bleibe zu Hause, weil ich krank ___.",
+          "question": "Điền liên từ mang nghĩa với điều kiện: Du kannst teilnehmen, ___ du dich anmeldest. (sofern)",
           "answers": [
-            "bin"
+            "sofern"
           ],
-          "explanation": "Trong câu phụ weil, động từ đã chia bin đứng cuối.",
+          "explanation": "Sofern giới hạn quyền tham gia bằng điều kiện đăng ký; anmeldest cuối câu phụ.",
           "origin": "authored",
           "answerSource": "authored"
         }
@@ -2380,18 +2370,18 @@
     },
     {
       "id": "book-dtd-b2-16",
-      "title": "Präpositionen mit Genitiv",
-      "topic": "Präpositionen mit Genitiv",
+      "title": "Präpositionen mit Genitiv · Cụm danh từ trong văn viết",
+      "topic": "Präpositionen mit Genitiv · Cụm danh từ trong văn viết",
       "level": "B2",
-      "content": "## Mục tiêu bài học\n\nHiểu và sử dụng **Präpositionen mit Genitiv** trong câu hoàn chỉnh. Học các quy tắc, xem ví dụ rồi làm câu luyện tập phía dưới.\n\n## Präpositionen mit Genitiv\n\n### Trọng tâm Genitiv sau giới từ\n\nTrong văn phong chuẩn, **wegen, trotz, während, statt/anstatt** thường đi với Genitiv. Giống đực/trung dùng des với danh từ thường thêm -(e)s; giống cái/số nhiều dùng der. Những cách dùng Dativ trong khẩu ngữ không phải mẫu mặc định cho bài viết trang trọng.\n\n- Trotz des schlechten Wetters fahren wir ab. → Dù thời tiết xấu, chúng tôi vẫn khởi hành.\n- Während der Pause trinke ich Wasser. → Trong giờ nghỉ, tôi uống nước.\n\n## Quy tắc trọng tâm\n\nGiới từ đi cùng một cách cố định hoặc đổi cách theo quan hệ được diễn tả. Nhóm hai cách gồm an, auf, hinter, in, neben, über, unter, vor, zwischen.\n\nVới giới từ hai cách: vị trí thường Dativ, hướng đến đích thường Akkusativ. Không nhầm “có chuyển động” với Akkusativ: chuyển động trong một nơi vẫn có thể dùng Dativ. \n\n## Chọn giới từ và cách\n\n| Nhóm | Giới từ | Ví dụ |\n| --- | --- | --- |\n| Akkusativ | durch, für, gegen, ohne, um | ohne einen Regenschirm |\n| Dativ | aus, bei, mit, nach, seit, von, zu | mit einem Regenschirm |\n| Genitiv thường gặp | wegen, trotz, während, innerhalb | wegen des Regens |\n| hai cách | an, auf, hinter, in, neben, über, unter, vor, zwischen | auf dem Tisch / auf den Tisch |\n\n## Phân tích một câu hoàn chỉnh\n\n**Das Kind läuft im Garten.** — Đứa trẻ chạy trong vườn. Có chuyển động nhưng hoạt động nằm trong Garten, dùng Dativ. **Das Kind läuft in den Garten.** — Đứa trẻ chạy vào vườn. Đích đến là vào trong khu vườn, dùng Akkusativ. Mit/zu/nach không chuyển sang Akkusativ chỉ vì có di chuyển: mit dem Bus, zum Bahnhof. Về thời gian: seit + Dativ nối mốc hoặc khoảng kéo dài đến hiện tại; vor + Dativ nói cách đây bao lâu.\n\n## Sai ở đâu và sửa thế nào?\n\nSai: *Ich gehe mit den Bus.* → **Ich fahre mit dem Bus.** Mit luôn yêu cầu Dativ; lựa chọn động từ fahren phù hợp đi bằng xe.\n\n## Ví dụ Đức–Việt\n\n- Ich gehe in die Küche. → Tôi đi vào bếp.\n\n- Ich arbeite in der Küche. → Tôi làm việc trong bếp.\n\n## Cách tự kiểm tra\n\n1. Xác định ý muốn diễn đạt và người thực hiện hành động.\n2. Đối chiếu cấu trúc trong bảng; kiểm tra dạng động từ, cách và đuôi nếu có.\n3. Đọc lại cả câu để chắc rằng nghĩa không đổi.\n4. Làm bài tập bên dưới rồi đọc giải thích, kể cả khi trả lời đúng.",
+      "content": "## Quy tắc trọng tâm\n\nChỉ luyện wegen, trotz, während, innerhalb và außerhalb cùng đuôi quán từ, tính từ, danh từ. Bài giới từ A1 tập trung quan hệ cơ bản; bài này tổ chức thông tin theo cụm danh từ.\n\n## Cấu trúc và ví dụ Đức–Việt\n\n| Cấu trúc | Ví dụ | Nghĩa |\n| --- | --- | --- |\n| wegen | wegen des starken Schneefalls | vì tuyết rơi nhiều |\n| trotz | trotz einer langen Wartezeit | mặc dù thời gian đợi dài |\n| während | während der gesamten Besprechung | trong suốt cuộc họp |\n| innerhalb | innerhalb eines Monats | trong vòng một tháng |\n\n## Phân tích cách dùng\n\nVới des starken Schneefalls: des biểu thị Genitiv đực; tính từ sau quán từ có -en; danh từ nhận -s. Với einer langen Wartezeit: giống cái dùng einer và tính từ -en, danh từ không thêm -s. Wegen và trotz có thể gặp Dativ trong khẩu ngữ/vùng miền; bài này luyện Genitiv phổ biến trong văn viết chuẩn. Không áp dụng mẫu -(e)s cho mọi danh từ: danh từ yếu có kiểu riêng.\n\n## Lỗi thường gặp\n\nSai: wegen des starke Regen → wegen des starken Regens. Cần sửa cả đuôi tính từ và danh từ.",
       "exercises": [
         {
           "type": "fill",
-          "question": "Điền mạo từ: Ich fahre mit ___ Bus.",
+          "question": "Điền Regen: Wegen des starken ___ bleiben wir zu Hause.",
           "answers": [
-            "dem"
+            "Regens"
           ],
-          "explanation": "Mit + Dativ; der Bus → dem Bus.",
+          "explanation": "Genitiv của der Regen là des Regens; tính từ starken đã có đuôi -en.",
           "origin": "authored",
           "answerSource": "authored"
         }
@@ -2435,18 +2425,18 @@
     },
     {
       "id": "book-dtd-b2-17",
-      "title": "N-Deklination – Ôn tập nâng cao",
-      "topic": "N-Deklination – Ôn tập nâng cao",
+      "title": "N-Deklination · Danh từ yếu và nhóm hỗn hợp",
+      "topic": "N-Deklination · Danh từ yếu và nhóm hỗn hợp",
       "level": "B2",
-      "content": "## Mục tiêu bài học\n\nHiểu và sử dụng **N-Deklination – Ôn tập nâng cao** trong câu hoàn chỉnh. Học các quy tắc, xem ví dụ rồi làm câu luyện tập phía dưới.\n\n## Quy tắc trọng tâm\n\nDanh từ yếu, phần lớn là giống đực, thường thêm **-(e)n** ở các cách ngoài Nominativ số ít. Học cả giống và mẫu biến cách, không chỉ học số nhiều.\n\nVí dụ: der Student → den/dem/des Studenten; der Kollege → den/dem/des Kollegen. Có trường hợp hỗn hợp như der Name → des Namens. das Herz có biến cách đặc biệt.\n\n## N-Deklination của danh từ giống đực\n\n| Cách | der Student | der Mensch | der Herr |\n| --- | --- | --- | --- |\n| Nominativ | der Student | der Mensch | der Herr |\n| Akkusativ | den Studenten | den Menschen | den Herrn |\n| Dativ | dem Studenten | dem Menschen | dem Herrn |\n| Genitiv | des Studenten | des Menschen | des Herrn |\n\n## Phân tích một câu hoàn chỉnh\n\n**Ich spreche mit einem Studenten.** — Tôi nói chuyện với một sinh viên. Mit yêu cầu Dativ; ein → einem; Student là danh từ yếu nên thêm -en. Các danh từ thường gặp: Kollege, Kunde, Junge, Patient, Polizist. Không phải mọi danh từ giống đực đều thuộc nhóm này: der Tisch → dem Tisch. Một số nhóm hỗn hợp như Name có des Namens; cần học dạng riêng.\n\n## Sai ở đâu và sửa thế nào?\n\nSai: *Ich sehe den Student.* → **Ich sehe den Studenten.** Cả quán từ và danh từ đều thay đổi; không dừng ở việc đổi der thành den.\n\n## Ví dụ Đức–Việt\n\n- Ich spreche mit einem Kollegen. → Tôi nói chuyện với một đồng nghiệp.\n\n- Ich sehe den Studenten. → Tôi nhìn thấy người sinh viên.\n\n## Cách tự kiểm tra\n\n1. Xác định ý muốn diễn đạt và người thực hiện hành động.\n2. Đối chiếu cấu trúc trong bảng; kiểm tra dạng động từ, cách và đuôi nếu có.\n3. Đọc lại cả câu để chắc rằng nghĩa không đổi.\n4. Làm bài tập bên dưới rồi đọc giải thích, kể cả khi trả lời đúng.",
+      "content": "## Quy tắc trọng tâm\n\nĐi sâu vào Name, Gedanke, Herz và phân biệt danh từ yếu với danh từ thông thường. Không lặp lại bảng Student/Mensch của B1.\n\n## Cấu trúc và ví dụ Đức–Việt\n\n| Cấu trúc | Ví dụ | Nghĩa |\n| --- | --- | --- |\n| der Name | den Namen / dem Namen / des Namens | tên |\n| der Gedanke | den Gedanken / dem Gedanken / des Gedankens | ý nghĩ |\n| das Herz | das Herz / dem Herzen / des Herzens | trái tim |\n| der Experte | den Experten / dem Experten / des Experten | chuyên gia |\n\n## Phân tích cách dùng\n\nName và Gedanke thêm -n ở Akkusativ/Dativ nhưng Genitiv có thêm -s: Namens, Gedankens. Herz là danh từ trung với mô hình riêng: Akkusativ das Herz, Dativ dem Herzen, Genitiv des Herzens. Đây là điểm cần học theo bảng, không suy “mọi danh từ yếu đều giống đực”. Khi có tính từ, vẫn phải chia độc lập: mit einem erfahrenen Experten.\n\n## Lỗi thường gặp\n\nSai: wegen des Namen → wegen des Namens. Sai: Ich sehe das Herzen. → Ich sehe das Herz.",
       "exercises": [
         {
           "type": "fill",
-          "question": "Điền Student: Ich spreche mit einem ___.",
+          "question": "Điền Name: Die Schreibweise des ___ ist falsch.",
           "answers": [
-            "Studenten"
+            "Namens"
           ],
-          "explanation": "Student thuộc N-Deklination; ngoài Nominativ số ít dùng Studenten.",
+          "explanation": "Name thuộc nhóm hỗn hợp: Genitiv số ít des Namens.",
           "origin": "authored",
           "answerSource": "authored"
         }
@@ -2474,18 +2464,18 @@
     },
     {
       "id": "book-dtd-b2-18",
-      "title": "Konsekutive Nebensätze",
-      "topic": "Konsekutive Nebensätze",
+      "title": "Konsekutive Nebensätze · sodass, so … dass và zu … als dass",
+      "topic": "Konsekutive Nebensätze · sodass, so … dass và zu … als dass",
       "level": "B2",
-      "content": "## Mục tiêu bài học\n\nHiểu và sử dụng **Konsekutive Nebensätze** trong câu hoàn chỉnh. Học các quy tắc, xem ví dụ rồi làm câu luyện tập phía dưới.\n\n## Konsekutive Nebensätze\n\n### Trọng tâm kết quả\n\n**sodass** nối một hệ quả với toàn bộ sự việc trước. **so + tính từ/trạng từ, dass …** nhấn mạnh mức độ dẫn đến kết quả. Động từ trong mệnh đề dass/sodass ở cuối.\n\n- Der Zug hatte Verspätung, sodass wir den Anschluss verpassten. → Tàu trễ nên chúng tôi lỡ chuyến nối.\n- Es war so laut, dass ich nichts hören konnte. → Ồn đến mức tôi không nghe được gì.\n\n## Quy tắc trọng tâm\n\nTrong mệnh đề phụ được dẫn bằng weil, dass, wenn, obwohl…, động từ đã chia thường đứng cuối. Nếu mệnh đề phụ đứng trước, toàn mệnh đề đó chiếm vị trí thứ nhất của câu chính.\n\nPhân biệt câu phụ chỉ nguyên nhân, thời gian, điều kiện, nhượng bộ, mục đích, kết quả và cách thức. Dùng liên từ theo quan hệ nghĩa; không thay các liên từ chỉ vì chúng cùng đẩy động từ xuống cuối.\n\n## Chọn liên từ theo quan hệ nghĩa\n\n| Quan hệ | Liên từ | Ví dụ |\n| --- | --- | --- |\n| nguyên nhân | weil, da | Ich bleibe, weil es regnet. |\n| nội dung | dass | Ich hoffe, dass du kommst. |\n| điều kiện | wenn, falls | Falls du Zeit hast, ruf mich an. |\n| nhượng bộ | obwohl | Obwohl es regnet, gehen wir raus. |\n| mục đích | damit | Ich spreche langsam, damit du mich verstehst. |\n| kết quả | sodass | Es ist laut, sodass ich nichts höre. |\n\n## Phân tích một câu hoàn chỉnh\n\n**Obwohl ich müde bin, lerne ich weiter.** — Mặc dù mệt, tôi vẫn học tiếp. Bin kết thúc mệnh đề phụ; toàn mệnh đề Obwohl … bin đứng vị trí đầu, nên câu chính bắt đầu bằng lerne, rồi mới ich. Nếu đổi thứ tự: **Ich lerne weiter, obwohl ich müde bin.** Trong cụm Modalverb thông thường, nguyên mẫu đứng trước động từ chia ở cuối: weil ich arbeiten muss.\n\n## Sai ở đâu và sửa thế nào?\n\nSai: *Weil ich krank bin, ich bleibe zu Hause.* → **Weil ich krank bin, bleibe ich zu Hause.** Không đặt thêm chủ ngữ trước động từ câu chính sau mệnh đề phụ đầu câu.\n\n## Ví dụ Đức–Việt\n\n- Weil ich krank bin, bleibe ich zu Hause. → Vì bị ốm nên tôi ở nhà.\n\n- Ich weiß nicht, ob er kommt. → Tôi không biết anh ấy có đến không.\n\n## Cách tự kiểm tra\n\n1. Xác định ý muốn diễn đạt và người thực hiện hành động.\n2. Đối chiếu cấu trúc trong bảng; kiểm tra dạng động từ, cách và đuôi nếu có.\n3. Đọc lại cả câu để chắc rằng nghĩa không đổi.\n4. Làm bài tập bên dưới rồi đọc giải thích, kể cả khi trả lời đúng.",
+      "content": "## Quy tắc trọng tâm\n\nDiễn tả kết quả và mức độ quá ngưỡng. Tách rõ kết quả thực tế với điều không thể xảy ra do mức độ quá cao.\n\n## Cấu trúc và ví dụ Đức–Việt\n\n| Cấu trúc | Ví dụ | Nghĩa |\n| --- | --- | --- |\n| kết quả | Es wurde dunkel, sodass wir umkehrten. | Trời tối nên chúng tôi quay lại. |\n| mức độ dẫn kết quả | Es war so laut, dass wir nichts verstanden. | Ồn đến mức chúng tôi không hiểu gì. |\n| quá … để | Der Text ist zu kompliziert, als dass ich ihn sofort verstehen könnte. | Văn bản quá phức tạp để tôi hiểu ngay. |\n| cùng chủ thể | Ich bin zu müde, um weiterzuarbeiten. | Tôi quá mệt để làm tiếp. |\n\n## Phân tích cách dùng\n\nSo đứng trước tính từ/trạng từ để biểu thị mức độ; dass mở mệnh đề kết quả. Sodass nối cả một sự kiện với kết quả của nó. Zu … als dass thường dùng Konjunktiv II để nói kết quả không thể đạt ở điều kiện hiện tại. Với um … zu, kiểm tra chủ thể ngầm: Ich bin zu müde, um weiterzuarbeiten là cùng tôi.\n\n## Lỗi thường gặp\n\nSai: Es war so laut, dass wir verstanden nichts. → … dass wir nichts verstanden.",
       "exercises": [
         {
           "type": "fill",
-          "question": "Điền sein: Ich bleibe zu Hause, weil ich krank ___.",
+          "question": "Điền dass hoặc weil: Es war so laut, ___ wir nichts verstanden.",
           "answers": [
-            "bin"
+            "dass"
           ],
-          "explanation": "Trong câu phụ weil, động từ đã chia bin đứng cuối.",
+          "explanation": "Mẫu so + tính từ + dass nêu mức độ dẫn tới kết quả.",
           "origin": "authored",
           "answerSource": "authored"
         }
@@ -2514,18 +2504,18 @@
     },
     {
       "id": "book-dtd-b2-19",
-      "title": "Modale Nebensätze",
-      "topic": "Modale Nebensätze",
+      "title": "Modale Nebensätze · indem, dadurch dass và ohne dass",
+      "topic": "Modale Nebensätze · indem, dadurch dass và ohne dass",
       "level": "B2",
-      "content": "## Mục tiêu bài học\n\nHiểu và sử dụng **Modale Nebensätze** trong câu hoàn chỉnh. Học các quy tắc, xem ví dụ rồi làm câu luyện tập phía dưới.\n\n## Modale Nebensätze\n\n### Trọng tâm cách thức\n\n**indem** diễn đạt cách/phương thức; **dadurch, dass** nhấn mạnh phương tiện hoặc cơ chế dẫn đến kết quả. **ohne dass** nói việc không xảy ra kèm theo; **ohne … zu** dùng khi chủ thể được hiểu giống nhau.\n\n- Ich lerne Wörter, indem ich eigene Sätze schreibe. → Tôi học từ bằng cách viết câu của mình.\n- Er ging weg, ohne sich zu verabschieden. → Anh ấy bỏ đi mà không chào.\n\n## Quy tắc trọng tâm\n\nTrong mệnh đề phụ được dẫn bằng weil, dass, wenn, obwohl…, động từ đã chia thường đứng cuối. Nếu mệnh đề phụ đứng trước, toàn mệnh đề đó chiếm vị trí thứ nhất của câu chính.\n\nPhân biệt câu phụ chỉ nguyên nhân, thời gian, điều kiện, nhượng bộ, mục đích, kết quả và cách thức. Dùng liên từ theo quan hệ nghĩa; không thay các liên từ chỉ vì chúng cùng đẩy động từ xuống cuối.\n\n## Chọn liên từ theo quan hệ nghĩa\n\n| Quan hệ | Liên từ | Ví dụ |\n| --- | --- | --- |\n| nguyên nhân | weil, da | Ich bleibe, weil es regnet. |\n| nội dung | dass | Ich hoffe, dass du kommst. |\n| điều kiện | wenn, falls | Falls du Zeit hast, ruf mich an. |\n| nhượng bộ | obwohl | Obwohl es regnet, gehen wir raus. |\n| mục đích | damit | Ich spreche langsam, damit du mich verstehst. |\n| kết quả | sodass | Es ist laut, sodass ich nichts höre. |\n\n## Phân tích một câu hoàn chỉnh\n\n**Obwohl ich müde bin, lerne ich weiter.** — Mặc dù mệt, tôi vẫn học tiếp. Bin kết thúc mệnh đề phụ; toàn mệnh đề Obwohl … bin đứng vị trí đầu, nên câu chính bắt đầu bằng lerne, rồi mới ich. Nếu đổi thứ tự: **Ich lerne weiter, obwohl ich müde bin.** Trong cụm Modalverb thông thường, nguyên mẫu đứng trước động từ chia ở cuối: weil ich arbeiten muss.\n\n## Sai ở đâu và sửa thế nào?\n\nSai: *Weil ich krank bin, ich bleibe zu Hause.* → **Weil ich krank bin, bleibe ich zu Hause.** Không đặt thêm chủ ngữ trước động từ câu chính sau mệnh đề phụ đầu câu.\n\n## Ví dụ Đức–Việt\n\n- Weil ich krank bin, bleibe ich zu Hause. → Vì bị ốm nên tôi ở nhà.\n\n- Ich weiß nicht, ob er kommt. → Tôi không biết anh ấy có đến không.\n\n## Cách tự kiểm tra\n\n1. Xác định ý muốn diễn đạt và người thực hiện hành động.\n2. Đối chiếu cấu trúc trong bảng; kiểm tra dạng động từ, cách và đuôi nếu có.\n3. Đọc lại cả câu để chắc rằng nghĩa không đổi.\n4. Làm bài tập bên dưới rồi đọc giải thích, kể cả khi trả lời đúng.",
+      "content": "## Quy tắc trọng tâm\n\nChỉ phương pháp, phương tiện hoặc tình huống đi kèm không xảy ra. Khác bài điều kiện: ở đây trả lời hành động được thực hiện bằng cách nào.\n\n## Cấu trúc và ví dụ Đức–Việt\n\n| Cấu trúc | Ví dụ | Nghĩa |\n| --- | --- | --- |\n| phương pháp | Sie spart Geld, indem sie selbst kocht. | Cô ấy tiết kiệm bằng cách tự nấu. |\n| phương tiện nhấn mạnh | Dadurch, dass wir früher beginnen, vermeiden wir Stress. | Nhờ bắt đầu sớm hơn, chúng tôi tránh căng thẳng. |\n| không có việc đi kèm | Er ging, ohne dass jemand es bemerkte. | Anh ấy đi mà không ai nhận ra. |\n| so sánh giả định | Er tut so, als ob er alles wüsste. | Anh ấy làm như thể biết mọi thứ. |\n\n## Phân tích cách dùng\n\nIndem gắn phương pháp với hành động chính: tự nấu là cách tiết kiệm, không chỉ hai sự kiện cùng xảy ra. Ohne dass cho phép chủ thể khác: er đi, jemand không nhận ra. Nếu cùng chủ thể, có thể dùng ohne … zu: Er ging, ohne sich zu verabschieden. Als ob thường đi với Konjunktiv II để diễn tả bề ngoài không được khẳng định là thật.\n\n## Lỗi thường gặp\n\nSai: Er ging, ohne jemand es bemerkte. → Er ging, ohne dass jemand es bemerkte.",
       "exercises": [
         {
           "type": "fill",
-          "question": "Điền sein: Ich bleibe zu Hause, weil ich krank ___.",
+          "question": "Điền liên từ chỉ phương pháp: Sie spart Geld, ___ sie selbst kocht.",
           "answers": [
-            "bin"
+            "indem"
           ],
-          "explanation": "Trong câu phụ weil, động từ đã chia bin đứng cuối.",
+          "explanation": "Tự nấu là phương pháp tiết kiệm, nên dùng indem.",
           "origin": "authored",
           "answerSource": "authored"
         }
@@ -2554,18 +2544,18 @@
     },
     {
       "id": "book-dtd-b2-20",
-      "title": "Futur I und II – Tương lai và phỏng đoán",
-      "topic": "Futur I und II – Tương lai và phỏng đoán",
+      "title": "Futur II · Hoàn tất trước mốc và phỏng đoán quá khứ",
+      "topic": "Futur II · Hoàn tất trước mốc và phỏng đoán quá khứ",
       "level": "B2",
-      "content": "## Mục tiêu bài học\n\nHiểu và sử dụng **Futur I und II – Tương lai và phỏng đoán** trong câu hoàn chỉnh. Học các quy tắc, xem ví dụ rồi làm câu luyện tập phía dưới.\n\n## Quy tắc trọng tâm\n\nFutur I: **werden đã chia + động từ nguyên mẫu cuối câu**. Dùng cho dự định, dự đoán hoặc phỏng đoán theo ngữ cảnh. Tiếng Đức cũng thường dùng Präsens kèm mốc thời gian để nói tương lai.\n\nPhân biệt werden làm trợ động từ tương lai, trợ động từ bị động và động từ mang nghĩa “trở thành”. Chương nguồn ghi Futur I; không coi phần này là nội dung đầy đủ về Futur II.\n\n## Futur I và Futur II\n\n| Chức năng | Cấu trúc | Ví dụ Đức–Việt |\n| --- | --- | --- |\n| Futur I | werden + Infinitiv | Ich werde morgen anrufen. — Mai tôi sẽ gọi. |\n| phỏng đoán hiện tại | werden + Infinitiv | Er wird jetzt zu Hause sein. — Có lẽ giờ anh ấy ở nhà. |\n| Futur II | werden + Partizip II + haben/sein | Bis Freitag werde ich den Bericht geschrieben haben. — Đến thứ Sáu tôi sẽ viết xong báo cáo. |\n| Futur II với sein | werden + Partizip II + sein | Bis dahin wird sie angekommen sein. — Đến lúc đó chắc cô ấy đã đến. |\n\n## Phân tích một câu hoàn chỉnh\n\n**Morgen arbeite ich zu Hause.** cũng diễn đạt tương lai nhờ Morgen, không bắt buộc Futur I. **Er wird den Zug verpasst haben.** có thể là phỏng đoán về quá khứ: Có lẽ anh ấy đã lỡ tàu. Để hiểu, nhìn cả thời gian và ngữ cảnh, không chỉ dịch werden là “sẽ”. Werden chia ở vị trí thứ hai; phần nguyên mẫu ghép ở cuối. Phần Futur II ở đây là giải thích biên soạn bổ sung cho chủ điểm.\n\n## Sai ở đâu và sửa thế nào?\n\nSai: *Ich werde morgen angerufen.* nếu muốn nói “tôi sẽ gọi” → **Ich werde morgen anrufen.** Angerufen tạo ý bị động trong một ngữ cảnh khác: tôi được gọi.\n\n## Ví dụ Đức–Việt\n\n- Ich werde morgen lernen. → Ngày mai tôi sẽ học.\n\n- Morgen arbeite ich zu Hause. → Mai tôi làm việc ở nhà.\n\n## Cách tự kiểm tra\n\n1. Xác định ý muốn diễn đạt và người thực hiện hành động.\n2. Đối chiếu cấu trúc trong bảng; kiểm tra dạng động từ, cách và đuôi nếu có.\n3. Đọc lại cả câu để chắc rằng nghĩa không đổi.\n4. Làm bài tập bên dưới rồi đọc giải thích, kể cả khi trả lời đúng.",
+      "content": "## Quy tắc trọng tâm\n\nBài này không lặp công thức Futur I cơ bản. Trọng tâm là Futur II, lựa chọn haben/sein và phân biệt dự báo hoàn tất với phỏng đoán điều đã xảy ra.\n\n## Cấu trúc và ví dụ Đức–Việt\n\n| Cấu trúc | Ví dụ | Nghĩa |\n| --- | --- | --- |\n| hoàn tất trước mốc | Bis morgen werde ich den Bericht geschrieben haben. | Đến ngày mai tôi sẽ viết xong báo cáo. |\n| với sein | Bis dahin wird sie angekommen sein. | Đến lúc ấy cô ấy sẽ đã đến. |\n| phỏng đoán quá khứ | Er wird die Nachricht übersehen haben. | Có lẽ anh ấy đã bỏ sót tin nhắn. |\n| phỏng đoán hiện tại để đối chiếu | Er wird noch im Büro sein. | Có lẽ anh ấy vẫn ở văn phòng. |\n\n## Phân tích cách dùng\n\nWerden được chia; Partizip II và trợ động từ nguyên mẫu tạo cụm cuối: geschrieben haben, angekommen sein. Dấu thời gian Bis morgen gợi ý mốc hoàn tất tương lai. Không có mốc đó, Er wird die Nachricht übersehen haben có thể là suy đoán lý do anh ấy chưa trả lời. Để tránh khẳng định quá mức, diễn giải bằng wahrscheinlich/vermutlich khi dịch.\n\n## Lỗi thường gặp\n\nSai: … angekommen haben → … angekommen sein. Ankommen dùng sein. Đừng hiểu mọi wird … haben là tương lai chắc chắn.",
       "exercises": [
         {
           "type": "fill",
-          "question": "Điền nguyên mẫu: Ich werde morgen nach Hause ___. (fahren)",
+          "question": "Điền trợ động từ nguyên mẫu: Bis dahin wird sie angekommen ___.",
           "answers": [
-            "fahren"
+            "sein"
           ],
-          "explanation": "Futur I dùng werden đã chia + động từ nguyên mẫu.",
+          "explanation": "Futur II giữ trợ động từ của Perfekt: ist angekommen → wird angekommen sein.",
           "origin": "authored",
           "answerSource": "authored"
         }
@@ -2588,18 +2578,18 @@
     },
     {
       "id": "book-dtd-b2-21",
-      "title": "Subjekt- und Objektsätze",
-      "topic": "Subjekt- und Objektsätze",
+      "title": "Subjekt- und Objektsätze · Mệnh đề làm chủ ngữ và bổ ngữ",
+      "topic": "Subjekt- und Objektsätze · Mệnh đề làm chủ ngữ và bổ ngữ",
       "level": "B2",
-      "content": "## Mục tiêu bài học\n\nHiểu và sử dụng **Subjekt- und Objektsätze** trong câu hoàn chỉnh. Học các quy tắc, xem ví dụ rồi làm câu luyện tập phía dưới.\n\n## Subjekt- und Objektsätze\n\n### Trọng tâm mệnh đề danh từ\n\nMệnh đề **dass/ob** có thể đảm nhiệm vai trò tương đương chủ ngữ hoặc tân ngữ. **dass** thuật nội dung khẳng định; **ob** diễn đạt câu hỏi có/không gián tiếp. Không dùng ob như từ thay thế tự do cho dass.\n\n- Dass du regelmäßig übst, freut mich. → Việc bạn luyện đều khiến tôi vui.\n- Ich weiß nicht, ob der Kurs heute stattfindet. → Tôi không biết hôm nay khóa học có diễn ra không.\n\n## Quy tắc trọng tâm\n\nTrong mệnh đề phụ được dẫn bằng weil, dass, wenn, obwohl…, động từ đã chia thường đứng cuối. Nếu mệnh đề phụ đứng trước, toàn mệnh đề đó chiếm vị trí thứ nhất của câu chính.\n\nPhân biệt câu phụ chỉ nguyên nhân, thời gian, điều kiện, nhượng bộ, mục đích, kết quả và cách thức. Dùng liên từ theo quan hệ nghĩa; không thay các liên từ chỉ vì chúng cùng đẩy động từ xuống cuối.\n\n## Chọn liên từ theo quan hệ nghĩa\n\n| Quan hệ | Liên từ | Ví dụ |\n| --- | --- | --- |\n| nguyên nhân | weil, da | Ich bleibe, weil es regnet. |\n| nội dung | dass | Ich hoffe, dass du kommst. |\n| điều kiện | wenn, falls | Falls du Zeit hast, ruf mich an. |\n| nhượng bộ | obwohl | Obwohl es regnet, gehen wir raus. |\n| mục đích | damit | Ich spreche langsam, damit du mich verstehst. |\n| kết quả | sodass | Es ist laut, sodass ich nichts höre. |\n\n## Phân tích một câu hoàn chỉnh\n\n**Obwohl ich müde bin, lerne ich weiter.** — Mặc dù mệt, tôi vẫn học tiếp. Bin kết thúc mệnh đề phụ; toàn mệnh đề Obwohl … bin đứng vị trí đầu, nên câu chính bắt đầu bằng lerne, rồi mới ich. Nếu đổi thứ tự: **Ich lerne weiter, obwohl ich müde bin.** Trong cụm Modalverb thông thường, nguyên mẫu đứng trước động từ chia ở cuối: weil ich arbeiten muss.\n\n## Sai ở đâu và sửa thế nào?\n\nSai: *Weil ich krank bin, ich bleibe zu Hause.* → **Weil ich krank bin, bleibe ich zu Hause.** Không đặt thêm chủ ngữ trước động từ câu chính sau mệnh đề phụ đầu câu.\n\n## Ví dụ Đức–Việt\n\n- Weil ich krank bin, bleibe ich zu Hause. → Vì bị ốm nên tôi ở nhà.\n\n- Ich weiß nicht, ob er kommt. → Tôi không biết anh ấy có đến không.\n\n## Cách tự kiểm tra\n\n1. Xác định ý muốn diễn đạt và người thực hiện hành động.\n2. Đối chiếu cấu trúc trong bảng; kiểm tra dạng động từ, cách và đuôi nếu có.\n3. Đọc lại cả câu để chắc rằng nghĩa không đổi.\n4. Làm bài tập bên dưới rồi đọc giải thích, kể cả khi trả lời đúng.",
+      "content": "## Quy tắc trọng tâm\n\nPhân biệt vai trò của cả mệnh đề trong câu chính. Luyện es giữ chỗ, dass/ob và động từ đi với đại từ giới từ báo trước nội dung.\n\n## Cấu trúc và ví dụ Đức–Việt\n\n| Cấu trúc | Ví dụ | Nghĩa |\n| --- | --- | --- |\n| mệnh đề chủ ngữ | Dass du kommst, freut mich. | Việc bạn đến khiến tôi vui. |\n| es báo trước | Es freut mich, dass du kommst. | Tôi vui vì bạn đến. |\n| bổ ngữ nội dung | Ich weiß, dass der Kurs beginnt. | Tôi biết khóa học bắt đầu. |\n| câu hỏi gián tiếp có/không | Ich weiß nicht, ob der Kurs beginnt. | Tôi không biết khóa học có bắt đầu không. |\n| đại từ giới từ | Ich warte darauf, dass du antwortest. | Tôi đợi bạn trả lời. |\n\n## Phân tích cách dùng\n\nTrong Dass du kommst, freut mich, cả mệnh đề dass là điều gây vui; du chỉ là chủ ngữ bên trong câu phụ. Khi đưa mệnh đề đó lên trước, không giữ thêm es như một chủ ngữ lặp. Dass nêu nội dung; ob nêu một khả năng đang được hỏi hoặc chưa biết. Với warten auf, darauf giữ vai trò bổ ngữ giới từ trước mệnh đề dass.\n\n## Lỗi thường gặp\n\nSai: Dass du kommst, es freut mich. → Dass du kommst, freut mich. Sai: Ich weiß nicht, dass er kommt nếu muốn hỏi liệu anh ấy có đến không → … ob er kommt.",
       "exercises": [
         {
           "type": "fill",
-          "question": "Điền sein: Ich bleibe zu Hause, weil ich krank ___.",
+          "question": "Điền dass hoặc ob: Ich weiß nicht, ___ der Kurs heute stattfindet.",
           "answers": [
-            "bin"
+            "ob"
           ],
-          "explanation": "Trong câu phụ weil, động từ đã chia bin đứng cuối.",
+          "explanation": "Người nói chưa biết có hay không; dùng ob trong câu hỏi gián tiếp.",
           "origin": "authored",
           "answerSource": "authored"
         }
@@ -2628,18 +2618,18 @@
     },
     {
       "id": "book-dtd-b2-22",
-      "title": "Satzstellung – Vorfeld, Mittelfeld, Nachfeld",
-      "topic": "Satzstellung – Vorfeld, Mittelfeld, Nachfeld",
+      "title": "Satzstellung · Vorfeld và Nachfeld trong câu phức",
+      "topic": "Satzstellung · Vorfeld và Nachfeld trong câu phức",
       "level": "B2",
-      "content": "## Mục tiêu bài học\n\nHiểu và sử dụng **Satzstellung – Vorfeld, Mittelfeld, Nachfeld** trong câu hoàn chỉnh. Học các quy tắc, xem ví dụ rồi làm câu luyện tập phía dưới.\n\n## Quy tắc trọng tâm\n\nCâu chính có động từ chia ở vị trí thứ hai; câu hỏi có/không có động từ ở đầu; câu phụ thường có động từ cuối. Các phần còn lại của cụm động từ tạo khung câu.\n\nMột thành phần có thể gồm nhiều từ. Khi đưa trạng ngữ lên đầu câu, chủ ngữ thường đứng sau động từ. Trong Mittelfeld, thứ tự còn phụ thuộc đại từ, thông tin đã biết/mới và nhấn mạnh; TeKaMoLo là mẹo định hướng, không phải quy tắc tuyệt đối.\n\n## Các vị trí trong câu Đức\n\n| Vùng | Chứa gì | Ví dụ |\n| --- | --- | --- |\n| Vorfeld | một thành phần hoặc một mệnh đề | Heute |\n| động từ chia | vị trí thứ hai câu trần thuật | habe |\n| Mittelfeld | chủ ngữ, bổ ngữ, trạng ngữ | ich meinem Bruder das Buch |\n| cuối khung câu | Partizip, nguyên mẫu, tiền tố | gegeben |\n| Nachfeld | thành phần đưa ra sau khung, thường câu phụ | …, weil er es brauchte. |\n\n## Phân tích một câu hoàn chỉnh\n\n**Heute habe ich meinem Bruder das Buch gegeben.** — Hôm nay tôi đưa sách cho anh/em trai. “Vị trí thứ hai” là thành phần thứ hai, không phải từ thứ hai: **Am frühen Morgen habe ich …** vẫn đúng. Với hai đại từ, Akkusativ thường trước Dativ: Ich habe es ihm gegeben. Thứ tự thời gian-nguyên nhân-cách thức-nơi chốn là gợi ý, không thay thế cân nhắc trọng tâm và loại bổ ngữ.\n\n## Sai ở đâu và sửa thế nào?\n\nSai: *Am frühen Morgen ich habe gelernt.* → **Am frühen Morgen habe ich gelernt.** Cả cụm thời gian chiếm một vị trí; không chèn chủ ngữ trước habe.\n\n## Ví dụ Đức–Việt\n\n- Heute fahre ich mit dem Bus zur Arbeit. → Hôm nay tôi đi xe buýt đến chỗ làm.\n\n- Ich habe es ihm gestern erklärt. → Hôm qua tôi đã giải thích điều đó cho anh ấy.\n\n## Cách tự kiểm tra\n\n1. Xác định ý muốn diễn đạt và người thực hiện hành động.\n2. Đối chiếu cấu trúc trong bảng; kiểm tra dạng động từ, cách và đuôi nếu có.\n3. Đọc lại cả câu để chắc rằng nghĩa không đổi.\n4. Làm bài tập bên dưới rồi đọc giải thích, kể cả khi trả lời đúng.",
+      "content": "## Quy tắc trọng tâm\n\nBài nâng cao luyện đặt cụm dài ở đầu/cuối và vị trí động từ sau một mệnh đề đầu câu. Bài B1 đã học khung câu cơ bản; ở đây chú trọng độ rõ và trọng tâm thông tin.\n\n## Cấu trúc và ví dụ Đức–Việt\n\n| Cấu trúc | Ví dụ | Nghĩa |\n| --- | --- | --- |\n| mệnh đề chiếm Vorfeld | Was du gestern gesagt hast, habe ich verstanden. | Điều bạn nói hôm qua, tôi đã hiểu. |\n| Nachfeld là câu phụ | Ich habe gehofft, dass du kommst. | Tôi đã hy vọng bạn đến. |\n| khung Modalverb | Er muss morgen den Bericht fertigstellen. | Ngày mai anh ấy phải hoàn thành báo cáo. |\n| nhấn một bổ ngữ | Diesen Vorschlag möchte ich genauer prüfen. | Đề xuất này tôi muốn xem xét kỹ hơn. |\n\n## Phân tích cách dùng\n\nVorfeld chứa một thành phần, có thể là nhiều từ hoặc cả mệnh đề. Trong Was du gestern gesagt hast, habe ich verstanden, habe vẫn là thành phần thứ hai sau cả câu phụ, không phải từ thứ hai. Nachfeld thường chứa mệnh đề dài để giảm tải Mittelfeld; không được tùy ý đẩy mọi đại từ ra cuối. Chọn thứ tự theo điều đã biết và điều cần nhấn mạnh thay vì áp một chuỗi trạng ngữ cứng nhắc cho mọi câu.\n\n## Lỗi thường gặp\n\nSai: Was du gesagt hast, ich habe verstanden. → Was du gesagt hast, habe ich verstanden.",
       "exercises": [
         {
           "type": "fill",
-          "question": "Điền haben: Heute ___ ich viel gelernt.",
+          "question": "Điền haben: Was du gestern gesagt hast, ___ ich verstanden.",
           "answers": [
             "habe"
           ],
-          "explanation": "Heute ở vị trí đầu; động từ chia habe đứng ngay sau.",
+          "explanation": "Cả mệnh đề đầu chiếm Vorfeld; động từ chia habe đứng ngay sau.",
           "origin": "authored",
           "answerSource": "authored"
         }
@@ -2667,6 +2657,6 @@
       "origin": "authored-rebuild"
     }
   ],
-  "packVersion": 3,
+  "packVersion": 4,
   "description": "64 bài học được biên soạn theo chủ điểm; không phải bản chép toàn bộ sách hay Deutsch.vn."
 }

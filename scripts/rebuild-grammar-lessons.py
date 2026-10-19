@@ -15,5 +15,10 @@ for item in pack['items']:
  body+='## Cách tự kiểm tra\n\n1. Xác định ý muốn diễn đạt và người thực hiện hành động.\n2. Đối chiếu cấu trúc trong bảng; kiểm tra dạng động từ, cách và đuôi nếu có.\n3. Đọc lại cả câu để chắc rằng nghĩa không đổi.\n4. Làm bài tập bên dưới rồi đọc giải thích, kể cả khi trả lời đúng.'
  body=body.replace('Phần nguồn còn có giới từ thời gian và Genitiv.','').replace('đối chiếu phần nâng cao trong nguồn.','phân biệt hai động từ nguyên mẫu.').replace('müssen học','cần học')
  item['content']=body;item['exercises']=exercises;item['origin']='authored-rebuild';item['reviewStatus']='structured-lesson';item.pop('sourceContent',None);item.pop('sourceAnswers',None);item.pop('sourceDocument',None)
-pack.pop('sourceAnswerKey',None);pack['packVersion']=3;pack['name']='Elio · Ngữ pháp A1–B2';pack['warnings']=[];pack['description']='64 bài học được biên soạn theo chủ điểm; không phải bản chép toàn bộ sách hay Deutsch.vn.'
+overrides=json.loads(Path('scripts/grammar-lesson-overrides.json').read_text())
+for item in pack['items']:
+ if item['id'] in overrides:
+  item.update(overrides[item['id']]);item['topic']=item['title']
+  item['content']=item['content'].replace('## Mục tiêu và phạm vi','## Quy tắc trọng tâm').replace('auch quá khứ','cả quá khứ')
+pack.pop('sourceAnswerKey',None);pack['packVersion']=4;pack['name']='Elio · Ngữ pháp A1–B2';pack['warnings']=[];pack['description']='64 bài học được biên soạn theo chủ điểm; không phải bản chép toàn bộ sách hay Deutsch.vn.'
 p.write_text(json.dumps(pack,ensure_ascii=False,indent=2));print(len(pack['items']),p.stat().st_size)
