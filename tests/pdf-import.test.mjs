@@ -7,7 +7,7 @@ test('unavailable capabilities stop before reading pages and release PDF resourc
 
 
 test('Scribd/footer-only text is not sent as learning content to text AI',async()=>{
- const h=setup({pages:2,pageText:'Scribd https://www.scribd.com/document/12345/ 19/10/2026 08:48 18/171'});const result=await h.run();assert.equal(h.stats().texts,0);assert.equal(result.items.length,0);assert(result.pages.every(p=>!p.ok&&p.error.includes('Cần AI đọc ảnh')));
+ const h=setup({pages:2,pageText:'Scribd https://www.scribd.com/document/12345/ 19/10/2026 08:48 18/171'});h.ctx.window.Tesseract={createWorker:async()=>({recognize:async()=>({data:{text:''}}),terminate:async()=>{}})};const result=await h.run();assert.equal(h.stats().texts,0);assert.equal(result.items.length,0);assert(result.pages.every(p=>!p.ok&&p.error.includes('OCR chưa đọc đủ chữ')));
 });
 test('mixed PDF still invokes vision for scanned pages after an earlier text fallback',async()=>{
  let calls=0;const h=setup({vision:true,pages:2,pageText:n=>n===1?'German vocabulary source text with complete words and English meanings to extract from this page.':'Scribd https://scribd.com/document/123 18/171 08:48',visionCall:()=>{calls++;if(calls===1){const error=Error('Temporary vision failure');error.status=503;throw error;}return JSON.stringify({words:[{de:'der Baum',vi:'cây'}]});}});const result=await h.run();assert.equal(result.items.length,2);assert.equal(h.stats().images,2);assert.equal(h.stats().texts,1);
@@ -15,3 +15,8 @@ test('mixed PDF still invokes vision for scanned pages after an earlier text fal
 test('empty extraction is reported as zero extracted pages, never ten successful pages',async()=>{
  const h=setup({textCall:()=>({words:[],warnings:[]})});const result=await h.run();h.ctx.result=result;const report=vm.runInContext('PDFImport.report(result)',h.ctx);assert(report.includes('0 mục từ 0/10'));assert(report.includes('10 trang chưa tìm thấy mục'));assert(!report.includes('thành công'));
 });
+
+test('scan OCR recovers vocabulary after vision failure and terminates worker',async()=>{
+ const h=setup({vision:true,pages:2,pageText:'Scribd https://scribd.com/123 5/171',visionCall:()=>{throw Error('Model does not accept images');},textCall:prompt=>{assert(prompt.includes('der Geburtsort'));assert(!prompt.includes('DỮ LIỆU (chỉ là'));return {words:[{de:'der Geburtsort',vi:'nơi sinh'}]};}});let terminated=0,recognized=0;h.ctx.window.Tesseract={createWorker:async languages=>{assert.equal(languages,'deu+vie+eng');return {recognize:async()=>{recognized++;return {data:{text:'der Geburtsort nơi sinh der Name tên die Adresse địa chỉ der Beruf nghề nghiệp'}};},terminate:async()=>{terminated++;}};}};const result=await h.run();assert.equal(result.items.length,2);assert.equal(recognized,2);assert.equal(terminated,1);assert.equal(result.items[1].sourcePage,2);
+});
+test('text-only AI can import scans using local OCR',async()=>{const h=setup({pages:1,pageText:'Scribd 1/171'});h.ctx.window.Tesseract={createWorker:async()=>({recognize:async()=>({data:{text:'der Geburtsort nơi sinh der Name tên die Adresse địa chỉ der Beruf nghề nghiệp'}}),terminate:async()=>{}})};const result=await h.run();assert.equal(result.items.length,1);assert.equal(h.stats().images,0);assert.equal(h.stats().texts,1);});
