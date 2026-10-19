@@ -2,6 +2,7 @@
 // Đọc từng trang; không gửi cả tài liệu dài trong một phản hồi 8000 token.
 const PDFImport = {
  async read(file,{kind,prompt,onProgress=()=>{},isCurrent=()=>true}){
+  await window.ensureImportLibrary?.('pdf');
   if(!window.pdfjsLib)throw new Error('Chưa tải được PDF.js. Kiểm tra mạng rồi tải lại trang.');
   pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
   const doc=await pdfjsLib.getDocument({data:await file.arrayBuffer()}).promise;
