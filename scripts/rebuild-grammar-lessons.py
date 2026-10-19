@@ -20,5 +20,21 @@ for item in pack['items']:
  if item['id'] in overrides:
   item.update(overrides[item['id']]);item['topic']=item['title']
   item['content']=item['content'].replace('## Mục tiêu và phạm vi','## Quy tắc trọng tâm').replace('auch quá khứ','cả quá khứ')
-pack.pop('sourceAnswerKey',None);pack['packVersion']=4;pack['name']='Elio · Ngữ pháp A1–B2';pack['warnings']=[];pack['description']='64 bài học được biên soạn theo chủ điểm; không phải bản chép toàn bộ sách hay Deutsch.vn.'
-p.write_text(json.dumps(pack,ensure_ascii=False,indent=2));print(len(pack['items']),p.stat().st_size)
+audit=json.loads(Path('scripts/grammar-audit-rules.json').read_text())
+for item in pack['items']:
+ chapters=item.get('sourceChapters',[])
+ keys=audit['lessonSources'].get(item['id']) or list(dict.fromkeys(key for ch in chapters for key in audit['chapterSources'][str(ch)]))
+ item['reviewSources']=[audit['sources'][key] for key in keys]
+ item['reviewedOn']='2026-10-19'
+ item['reviewScope']='Quy tắc, phạm vi bảng, ví dụ Đức–Việt và đáp án; cấp độ là lộ trình của Elio.'
+ notes=list(dict.fromkeys(audit['chapterNotes'][str(ch)] for ch in chapters))
+ if notes:item['content']+='\n\n## Phạm vi và điểm cần nhớ\n\n'+'\n\n'.join('- '+note for note in notes)
+ # Spell out grammatical abbreviations instead of forcing learners to guess.
+ for short,long in [('Akk','Akkusativ'),('Dat','Dativ'),('Nom','Nominativ'),('Gen','Genitiv')]:
+  item['content']=re.sub(r'\b'+short+r'\b\.?',long,item['content'])
+pack.pop('sourceAnswerKey',None);pack['packVersion']=5;pack['name']='Elio · Ngữ pháp A1–B2';pack['warnings']=[];pack['description']='64 bài học được biên soạn theo chủ điểm; không phải bản chép toàn bộ sách hay Deutsch.vn.'
+p.write_text(json.dumps(pack,ensure_ascii=False,indent=2))
+report=['# Rà soát nội dung ngữ pháp Elio — 19/10/2026','', 'Phạm vi: 64 bài trong gói giáo trình do Elio tạo. Không tự thay nội dung người dùng import hoặc bài đã chỉnh tay. Đây là rà soát nội dung bởi trợ lý, không phải chứng nhận của Goethe/IDS hay bảo đảm không còn lỗi.', '', '## Thay đổi', '', '- Tách đuôi tính từ thành ba bảng độc lập: yếu, hỗn hợp, mạnh. Mỗi bảng có bốn cách × bốn nhóm giống/số, kèm giải thích cách chọn bảng, ví dụ phân tích và bài tập.', '- Tách bảng quán từ xác định/không xác định; giải thích ein không có số nhiều.', '- Bổ sung đủ bảng mein trước danh từ, đại từ sở hữu độc lập; phân biệt hai loại.', '- Tách Student/Junge/Herr và số ít/số nhiều; phân biệt Herrn/Herren.', '- Viết rõ phạm vi ba cách của bảng đại từ nhân xưng thay vì trộn hai bảng lặp.', '- Nêu ngoại lệ hậu tố -ieren và Partizip I; không lấy một mẹo làm quy tắc tuyệt đối.', '- Nêu rõ mẫu bewerben um/auf theo Duden, khuyến nghị cách dùng cho thư xin việc.', '- Viết đầy đủ tên cách; bổ sung điểm cần nhớ theo nhóm kiến thức, liên kết nguồn đối chiếu theo bài.', '- Bảng có cột đủ rộng, cuộn ngang và chỉ dẫn; giữ nguyên màu giao diện.', '', '## Ma trận bài và nguồn', '', '| Bài | Chủ điểm | Nguồn đối chiếu |', '| --- | --- | --- |']
+for item in pack['items']:report.append('| '+item['id']+' | '+item['title'].replace('|','/')+' | '+'; '.join('['+ref['title']+']('+ref['url']+')' for ref in item['reviewSources'])+' |')
+Path('docs').mkdir(exist_ok=True);Path('docs/grammar-content-audit.md').write_text('\n'.join(report))
+print(len(pack['items']),p.stat().st_size)

@@ -1,0 +1,359 @@
+{
+  "sources": {
+    "overview": {
+      "title": "Goethe-Institut · Deutsche Grammatik",
+      "url": "https://www.goethe.de/ins/de/de/prf/grm.html"
+    },
+    "adjective": {
+      "title": "IDS/grammis · Starke und schwache Adjektivflexion",
+      "url": "https://grammis.ids-mannheim.de/progr@mm/6751"
+    },
+    "mixed": {
+      "title": "IDS/grammis · Gemischte Adjektivflexion",
+      "url": "https://grammis.ids-mannheim.de/progr@mm/6752"
+    },
+    "vn": {
+      "title": "Deutsch Dương Hoàng · Tổng hợp chia đuôi tính từ",
+      "url": "https://deutschduonghoang.com/tong-hop-toan-bo-chia-duoi-tinh-tu-tieng-duc/"
+    },
+    "poss": {
+      "title": "IDS/grammis · Possessiv-Pronomen",
+      "url": "https://grammis.ids-mannheim.de/systematische-grammatik/385"
+    },
+    "possarticle": {
+      "title": "IDS/grammis · Possessiv-Artikel",
+      "url": "https://grammis.ids-mannheim.de/systematische-grammatik/373"
+    },
+    "pronoun": {
+      "title": "Duden · Pronomen",
+      "url": "https://www.duden.de/sprachwissen/fuer-lernende/wortarten-pronomen"
+    },
+    "reflex": {
+      "title": "IDS/grammis · Reflexiv-Pronomen",
+      "url": "https://grammis.ids-mannheim.de/systematische-grammatik/403"
+    },
+    "imperativ": {
+      "title": "IDS/grammis · Imperativ",
+      "url": "https://grammis.ids-mannheim.de/terminologie/104"
+    },
+    "verb": {
+      "title": "IDS/grammis · Verbflexion nach Person und Numerus",
+      "url": "https://grammis.ids-mannheim.de/progr@mm/4070"
+    },
+    "cases": {
+      "title": "IDS/grammis · Rollen und Situationen",
+      "url": "https://grammis.ids-mannheim.de/progr@mm/6727"
+    },
+    "preps": {
+      "title": "IDS/grammis · Wechselpräpositionen",
+      "url": "https://grammis.ids-mannheim.de/progr@mm/6858"
+    },
+    "neg": {
+      "title": "IDS/grammis · Negation",
+      "url": "https://grammis.ids-mannheim.de/progr@mm/6859"
+    },
+    "nouns": {
+      "title": "IDS/grammis · Flexionsklassen der Nomina",
+      "url": "https://grammis.ids-mannheim.de/progr@mm/4064"
+    },
+    "heart": {
+      "title": "Duden · Beugung des Substantivs Herz",
+      "url": "https://www.duden.de/sprachwissen/sprachratgeber/beugung-des-substantivs-herz"
+    },
+    "conn": {
+      "title": "IDS/grammis · Konnektoren als funktionale Klasse",
+      "url": "https://grammis.ids-mannheim.de/systematische-grammatik/366"
+    },
+    "rel": {
+      "title": "IDS/grammis · Relativsätze mit der, die, das",
+      "url": "https://grammis.ids-mannheim.de/progr@mm/6867"
+    },
+    "passiv": {
+      "title": "IDS/grammis · Passiv",
+      "url": "https://grammis.ids-mannheim.de/sgt/2237"
+    },
+    "seinpassiv": {
+      "title": "IDS/grammis · sein-Passiv",
+      "url": "https://grammis.ids-mannheim.de/progr@mm/6724"
+    },
+    "future": {
+      "title": "IDS/grammis · Futur",
+      "url": "https://grammis.ids-mannheim.de/vggf/2229?termini=term"
+    },
+    "partizip": {
+      "title": "IDS/grammis · Partizipien",
+      "url": "https://grammis.ids-mannheim.de/sgt/2240?termini=both"
+    },
+    "konj": {
+      "title": "IDS/grammis · Konjunktiv",
+      "url": "https://grammis.ids-mannheim.de/sgt/2233?termini=term"
+    },
+    "ersatz": {
+      "title": "IDS/grammis · Ersatzinfinitiv",
+      "url": "https://grammis.ids-mannheim.de/systematische-grammatik/1615"
+    },
+    "zu": {
+      "title": "IDS/grammis · Infinitivkonstruktion",
+      "url": "https://grammis.ids-mannheim.de/terminologie/909"
+    },
+    "order": {
+      "title": "IDS/grammis · Wortstellung im Mittelfeld",
+      "url": "https://grammis.ids-mannheim.de/progr@mm/5261"
+    },
+    "complement": {
+      "title": "IDS/grammis · Komplement",
+      "url": "https://grammis.ids-mannheim.de/progr@mm/5317"
+    },
+    "nominal": {
+      "title": "IDS/grammis · Nominalisierung",
+      "url": "https://grammis.ids-mannheim.de/vggf/2249?termini=term"
+    },
+    "writing": {
+      "title": "Goethe-Institut · B2 Schreiben, Modellsatz và tiêu chí",
+      "url": "https://bfu.goethe.de/b2_mod_2MX6/schreiben.php"
+    },
+    "leihen": {
+      "title": "Duden · leihen",
+      "url": "https://www.duden.de/rechtschreibung/leihen"
+    },
+    "holen": {
+      "title": "Duden · holen",
+      "url": "https://www.duden.de/rechtschreibung/holen"
+    },
+    "legen": {
+      "title": "Duden · legen",
+      "url": "https://www.duden.de/rechtschreibung/legen"
+    },
+    "lernen": {
+      "title": "Duden · lernen",
+      "url": "https://www.duden.de/rechtschreibung/lernen"
+    },
+    "bewerben": {
+      "title": "Duden · bewerben (um / auf eine Stelle)",
+      "url": "https://www.duden.de/rechtschreibung/bewerben"
+    },
+    "frieren": {
+      "title": "Duden · frieren — gefroren",
+      "url": "https://www.duden.de/rechtschreibung/frieren"
+    },
+    "kennen": {
+      "title": "Duden · kennen",
+      "url": "https://www.duden.de/rechtschreibung/kennen"
+    },
+    "partizipforms": {
+      "title": "Lingolia · Partizip I und II",
+      "url": "https://deutsch.lingolia.com/de/grammatik/verben/partizipien"
+    }
+  },
+  "chapterSources": {
+    "0": [
+      "pronoun"
+    ],
+    "1": [
+      "verb",
+      "overview"
+    ],
+    "2": [
+      "overview",
+      "nouns"
+    ],
+    "3": [
+      "verb",
+      "overview"
+    ],
+    "4": [
+      "imperativ"
+    ],
+    "5": [
+      "overview"
+    ],
+    "6": [
+      "possarticle",
+      "overview"
+    ],
+    "7": [
+      "cases",
+      "order"
+    ],
+    "8": [
+      "neg"
+    ],
+    "9": [
+      "pronoun"
+    ],
+    "10": [
+      "ersatz",
+      "overview"
+    ],
+    "11": [
+      "conn"
+    ],
+    "12": [
+      "preps",
+      "overview"
+    ],
+    "13": [
+      "adjective",
+      "mixed",
+      "vn"
+    ],
+    "14": [
+      "overview"
+    ],
+    "15": [
+      "overview",
+      "verb",
+      "frieren"
+    ],
+    "16": [
+      "verb",
+      "overview"
+    ],
+    "17": [
+      "overview"
+    ],
+    "18": [
+      "conn"
+    ],
+    "19": [
+      "passiv",
+      "seinpassiv"
+    ],
+    "20": [
+      "future"
+    ],
+    "21": [
+      "passiv"
+    ],
+    "22": [
+      "poss"
+    ],
+    "23": [
+      "reflex"
+    ],
+    "24": [
+      "nouns",
+      "overview"
+    ],
+    "25": [
+      "nouns",
+      "heart"
+    ],
+    "26": [
+      "rel"
+    ],
+    "27": [
+      "conn"
+    ],
+    "28": [
+      "complement"
+    ],
+    "29": [
+      "lernen",
+      "leihen",
+      "legen"
+    ],
+    "30": [
+      "order"
+    ],
+    "31": [
+      "konj",
+      "ersatz"
+    ],
+    "32": [
+      "zu"
+    ],
+    "33": [
+      "ersatz",
+      "passiv"
+    ],
+    "34": [
+      "partizip",
+      "partizipforms"
+    ],
+    "35": [
+      "konj"
+    ]
+  },
+  "chapterNotes": {
+    "0": "Đại từ trong câu làm chủ ngữ khác với đại từ ở vị trí bổ ngữ. Sie lịch sự viết hoa; sie còn có nghĩa cô ấy/họ.",
+    "1": "Bảng chia ở đây là các động từ mẫu, không phải danh sách toàn bộ động từ. Động từ mạnh có thể đổi nguyên âm; không suy một dạng cho mọi ngôi.",
+    "2": "Hai bảng phân biệt quán từ xác định và không xác định. Ein không có số nhiều; danh từ có thể còn đổi đuôi riêng.",
+    "3": "Động từ tách trong câu chính không giữ nguyên một khối tại vị trí thứ hai; câu phụ và cụm nguyên mẫu có cách đặt khác.",
+    "4": "Bảng phân biệt người nghe du/ihr/Sie. Không mang Umlaut của du fährst sang mệnh lệnh fahr; e/i-Wechsel như lesen → lies cần học riêng.",
+    "5": "Câu hỏi trực tiếp và câu hỏi gián tiếp có trật tự khác. Từ hỏi nhiều từ như mit wem vẫn là một thành phần.",
+    "6": "Gốc sở hữu nói ai sở hữu, đuôi nói giống/số/cách của danh từ được sở hữu; đây là hai quyết định riêng.",
+    "7": "Danh từ và đại từ có thể có thứ tự khác. Cách của bổ ngữ do động từ/giới từ quyết định, không do đứng trước hoặc sau.",
+    "8": "Phạm vi phủ định phụ thuộc nghĩa và ngữ cảnh; không có quy tắc “mọi nicht đều ở cuối”. Không cần làm khác với không được phép làm.",
+    "9": "Bảng đại từ nhân xưng nêu rõ ba cách thường dùng; Genitiv hiếm không thuộc phạm vi bảng nhập môn.",
+    "10": "Phân biệt nghĩa nghĩa vụ, lời dặn và sự cho phép. Chỉ Modalverb được chia trong khung câu đơn giản; động từ chính giữ nguyên mẫu.",
+    "11": "Denn nối câu chính, weil mở câu phụ; deshalb/trotzdem là trạng từ nối và có thể chiếm vị trí đầu.",
+    "12": "Chuyển động không tự động đồng nghĩa Akkusativ. Quy tắc nơi chốn/đích đến chỉ áp cho nhóm hai cách dùng theo nghĩa không gian.",
+    "13": "Chọn một trong ba bảng theo loại quán từ; rồi tra cách và giống/số. Genitiv mạnh đực/trung dùng -en ở tính từ.",
+    "14": "So sánh hơn dùng als, so sánh bằng dùng wie trong văn viết chuẩn. Tính từ so sánh trước danh từ vẫn nhận đuôi biến cách.",
+    "15": "Haben/sein theo cách dùng động từ; động từ có hậu tố -ieren khác các từ chỉ tình cờ có chuỗi chữ ieren. Không tự tạo mọi Partizip theo một công thức.",
+    "16": "Bảng Präteritum là động từ mẫu. Động từ mạnh có gốc riêng; việc chọn Präteritum hay Perfekt còn phụ thuộc thể loại và vùng sử dụng.",
+    "17": "Plusquamperfekt biểu thị việc trước một mốc quá khứ. Không dùng vì sự việc “rất lâu” nếu không có quan hệ trước–sau cần diễn đạt.",
+    "18": "Liên từ phải khớp quan hệ nghĩa. Quy tắc động từ cuối áp cho câu phụ chuẩn đang luyện; đừng đánh đồng mọi từ nối với liên từ phụ thuộc.",
+    "19": "Werden + Partizip II nói quá trình; sein + Partizip II có thể nói trạng thái, nhưng sein + Partizip II cũng có thể là Perfekt chủ động.",
+    "20": "Futur có thể biểu thị phỏng đoán, không chỉ tương lai. Nhìn mốc thời gian để phân biệt hoàn tất trước mốc với suy đoán quá khứ.",
+    "21": "Sich lassen diễn tả khả năng; sein + zu có thể diễn tả nghĩa vụ hoặc khả năng tùy ngữ cảnh, không luôn đồng nghĩa với müssen.",
+    "22": "Đại từ sở hữu độc lập khác từ sở hữu còn đi với danh từ. Dạng Genitiv có trong bảng tra nhưng ít dùng trong giao tiếp.",
+    "23": "Phân biệt Akkusativ/Dativ ở ngôi ich và du. Một tân ngữ Akkusativ khác thường đi cùng phản thân Dativ; vẫn học cách theo động từ/cụm cụ thể.",
+    "24": "Genitiv có đuôi trên cả quán từ và danh từ đực/trung. Danh từ yếu hoặc nhóm hỗn hợp cần tra mẫu riêng.",
+    "25": "Student/Junge thuộc nhóm yếu thông thường; Name/Gedanke và Herz có mô hình khác. Herr có Herrn ở số ít nhưng Herren ở số nhiều.",
+    "26": "Giống/số theo danh từ được nhắc tới; cách do vai trò của đại từ trong câu quan hệ hoặc giới từ quyết định. Dessen/deren chỉ quan hệ sở hữu.",
+    "27": "Hai vế cần song song về cấu trúc. Je mở mệnh đề có động từ cuối; desto + so sánh hơn đứng đầu câu chính.",
+    "28": "Học cả từ gốc, giới từ và cách. Không mang giới từ từ một động từ sang tính từ cùng nghĩa mà không kiểm tra.",
+    "29": "Các từ cùng bản dịch Việt vẫn có phạm vi dùng khác. Ví dụ trong bài minh họa nghĩa đang học, không liệt kê mọi nghĩa trong từ điển.",
+    "30": "Vị trí thứ hai nghĩa là thành phần thứ hai, không phải từ thứ hai. Thứ tự Mittelfeld còn phụ thuộc đại từ, trọng tâm và ngữ cảnh.",
+    "31": "Dạng giả định hiện tại và quá khứ khác nhau. Có thể gặp cả hai trong tài liệu nhiều cấp độ; cách chia bài là lộ trình Elio, không phải ranh giới CEFR tuyệt đối.",
+    "32": "Cụm nguyên mẫu không tự có chủ ngữ hiển ngôn. Trong mẫu mục đích thông thường, kiểm tra ai thực hiện hai hành động; nếu khác người, damit thường rõ hơn.",
+    "33": "Không gộp các chức năng của werden: trở nên, tương lai, bị động. Lassen + động từ khác dùng nguyên mẫu, không thêm zu.",
+    "34": "Partizip trước danh từ phải chia đuôi tính từ. Partizip II không luôn mang nghĩa bị động; sein → seiend và tun → tuend là dạng cần lưu ý.",
+    "35": "Konjunktiv I thường dùng khi tường thuật; Konjunktiv II có thể làm dạng thay thế, không tự động chứng minh người kể nghi ngờ lời nói."
+  },
+  "lessonSources": {
+    "book-dtd-b2-08": [
+      "writing",
+      "conn"
+    ],
+    "book-dtd-b2-09": [
+      "nominal",
+      "nouns"
+    ],
+    "book-dtd-b2-10": [
+      "nominal",
+      "adjective"
+    ],
+    "book-dtd-b2-13": [
+      "writing",
+      "conn"
+    ],
+    "book-dtd-b1-08": [
+      "kennen",
+      "lernen"
+    ],
+    "book-dtd-b1-09": [
+      "holen",
+      "leihen"
+    ],
+    "book-dtd-b1-10": [
+      "conn",
+      "preps"
+    ],
+    "book-dtd-b1-11": [
+      "legen",
+      "preps"
+    ],
+    "book-dtd-a2-02": [
+      "adjective",
+      "mixed",
+      "vn"
+    ],
+    "book-dtd-b1-15": [
+      "bewerben",
+      "complement"
+    ]
+  }
+}

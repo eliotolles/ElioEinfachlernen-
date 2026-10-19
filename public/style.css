@@ -136,3 +136,11 @@ body.elio-app.dark .lesson-prose .learning-table th{background:#302540;color:#f1
 #ai-settings[hidden]{display:none!important}
 
 body:not(.super-admin-tools) .nav-actions :is(#sync-state,#ui-language,.quick-color,#text-size-link,#ai-settings){display:none!important}
+
+/* Keep grammar tables readable instead of shrinking long words into narrow cells. */
+.lesson-prose .learning-table,.learning-content .learning-table{width:100%;min-width:calc(var(--table-columns,3) * 9rem);table-layout:auto;overflow-wrap:normal;word-break:normal;hyphens:none;line-height:1.6}
+.lesson-prose .learning-table th,.lesson-prose .learning-table td,.learning-content .learning-table th,.learning-content .learning-table td{min-width:9rem;max-width:28rem;white-space:normal;overflow-wrap:normal;word-break:normal;hyphens:none}
+.learning-table-hint{font-size:calc(14px * var(--text-scale,1));color:var(--muted);margin:18px 0 6px!important}
+.learning-table-hint+.learning-table-wrap{margin-top:6px}
+.learning-table-wrap{overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
+.lesson-prose .learning-table strong{font-weight:800;text-decoration:underline;text-underline-offset:3px}
