@@ -70,15 +70,3 @@ The grammar practice view excludes exercises marked `origin=ai` or `answerSource
 Grammar now has a compact topic navigation column, a typographic article header/body, and a generated in-page outline on wide screens (a collapsible outline on smaller screens). Heading sizes/weights, muted source-page labels/translations, rule emphasis, examples, notes and table cells have separate visual treatments. Existing short colon-terminated section labels and bold-only headings are conservatively recognized as headings; plain source text remains available without AI calls. New extraction prompts explicitly request hierarchical Markdown headings, emphasized rule labels, note blocks and single-line table rows with cell line breaks.
 
 The renderer also joins broken physical lines inside an unclosed pipe-table row, keeping German examples and their Vietnamese translations inside the same cell. No PDF is reparsed or account data overwritten to apply these visual changes. This is a readable lesson layout, not exact PDF facsimile preservation.
-
-
-### PDF AI routing and actionable failures
-PDF imports query authenticated `/api/ai/capabilities` before reading. The old `server-managed` key placeholder is no longer mistaken for a real vision capability. Text-only configurations read the PDF text layer; a failed image request can fall back to readable text and continue in text mode. Scan-only pages still need a working vision configuration. A provider that explicitly rejects image input is marked text-only without disabling a usable text API.
-
-AI failures expose sanitized quota/model/connection/configuration reasons instead of a generic repeated message; key-decryption errors tell Admin to re-enter keys. No credentials are returned by the capabilities endpoint or failure messages. Fatal quota/auth/connectivity failures stop subsequent page requests, report those pages as unprocessed, and preserve successful extracted items. Live provider quota/key health still requires an Admin test; automated coverage uses mocked providers.
-
-
-### Scan/footer-only PDF regression
-PDF fallback is per page: a successful text fallback on one page does not turn off vision for later scanned pages. A conservative text-quality check excludes URLs, watermark terms, timestamps and page counters before deciding whether text-only extraction is appropriate. The prompt explicitly tells AI to read supplied PDF content/images and never retrieve Scribd links. Empty text results that claim inaccessible links/metadata can be retried against the rendered page when vision is configured.
-
-Reports distinguish extracted pages, checked-but-empty pages, failures and unprocessed pages; an empty JSON array is no longer described as a successful content extraction. Image failures retain their diagnostic reason. These changes cannot recover learning content that is absent from the actual PDF, or make a broken/unavailable vision provider work; the source PDF must be inspected to distinguish those cases.
