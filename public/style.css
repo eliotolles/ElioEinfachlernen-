@@ -107,3 +107,7 @@
 .vocab-details-scroll th,.vocab-details-scroll td{text-align:left;vertical-align:top;padding:12px;border-bottom:1px solid var(--line)}
 .vocab-details-scroll th{position:sticky;top:0;background:var(--card);color:var(--text);z-index:1}
 .vocab-details-scroll td{overflow-wrap:anywhere}
+
+.exam-selection-actions{grid-column:1/-1;padding:18px;border:1px solid var(--line);border-radius:16px;background:var(--card)}
+#exam-selection-error:empty{display:none}
+#exam-selection-error{color:var(--text);border-left:3px solid var(--orange);padding-left:12px}
