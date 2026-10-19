@@ -1,0 +1,206 @@
+[
+  {
+    "id": "book-dtd-b2-08",
+    "title": "Redemittel für Argumentationen",
+    "topic": "Redemittel für Argumentationen",
+    "level": "B2",
+    "origin": "authored-supplement",
+    "content": "## Chủ điểm và cấp độ\n\n**Redemittel für Argumentationen · B2**. Bài bổ sung do Elio biên soạn, không trích từ PDF. Tham khảo phạm vi chủ điểm trong danh mục Deutsch.vn; ví dụ và bài tập được viết riêng.\n\n## Quy tắc trọng tâm\n\nChọn cách nói theo quan hệ giữa hai ý: giải thích, phản bác hay kết luận. Một cụm mở đầu không thay thế được lý do cụ thể. Hãy viết ý chính trước rồi chọn từ nối phù hợp.\n\n### Phân biệt cấu trúc câu\n\n| Cấu trúc | Ví dụ Đức–Việt | Vị trí động từ |\n| --- | --- | --- |\n| Ich vertrete die Auffassung, dass … | Ich vertrete die Auffassung, dass Bibliotheken länger öffnen sollten. — Tôi cho rằng thư viện nên mở cửa lâu hơn. | sollten ở cuối mệnh đề dass |\n| Für mich steht … im Vordergrund. | Für mich steht der Zugang zu Bildung im Vordergrund. — Với tôi, khả năng tiếp cận giáo dục là ưu tiên. | steht đứng sau thành phần đầu |\n| Das liegt daran, dass … | Das liegt daran, dass viele Menschen tagsüber arbeiten. — Đó là vì nhiều người làm việc ban ngày. | arbeiten cuối mệnh đề |\n\n## Diễn đạt có mức độ\n\n**Unter bestimmten Bedingungen könnte das sinnvoll sein.** — Trong một số điều kiện, điều đó có thể hợp lý. Câu này chừa chỗ cho ngoại lệ; không khẳng định mọi trường hợp đều giống nhau.\n\n**Dieser Einwand ist nachvollziehbar, überzeugt mich aber nur teilweise.** — Ý kiến phản đối này có thể hiểu được nhưng chỉ thuyết phục tôi một phần. Sau đó cần nói rõ điểm bạn chưa đồng ý.\n\n## Tự sửa trước khi nộp\n\nSai: *Deshalb die Bibliothek braucht mehr Personal.*\n\nĐúng: **Deshalb braucht die Bibliothek mehr Personal.** — Vì thế thư viện cần thêm nhân viên. Deshalb chiếm vị trí đầu; động từ chia phải đứng ngay sau.\n\nTránh lặp cùng một ý bằng nhiều cụm trang trọng. Không viết “nghiên cứu chứng minh” nếu bạn không có nguồn; hãy ghi rõ đó là ví dụ giả định hoặc trải nghiệm cá nhân.\n\n## Luyện chuyển ý\n\nNói quan điểm về thư viện mở buổi tối. Đưa một lý do, thừa nhận chi phí tăng và đề xuất thử nghiệm hai tối mỗi tuần. Đây là nhiệm vụ luyện tập tự do, không phải đề thi chính thức.",
+    "exercises": [
+      {
+        "type": "quiz",
+        "question": "Chọn câu đúng về vị trí động từ.",
+        "options": [
+          "Deshalb braucht die Bibliothek mehr Personal.",
+          "Deshalb die Bibliothek braucht mehr Personal."
+        ],
+        "answers": [
+          "Deshalb braucht die Bibliothek mehr Personal."
+        ],
+        "explanation": "Deshalb ở đầu câu nên braucht đứng vị trí thứ hai, trước chủ ngữ.",
+        "origin": "authored",
+        "answerSource": "authored"
+      },
+      {
+        "type": "fill",
+        "question": "Điền dạng đúng của können: Unter bestimmten Bedingungen ___ das sinnvoll sein. (Konjunktiv II, số ít)",
+        "answers": [
+          "könnte"
+        ],
+        "explanation": "Konjunktiv II könnte làm lời đánh giá thận trọng hơn; chủ ngữ das số ít.",
+        "origin": "authored",
+        "answerSource": "authored"
+      },
+      {
+        "type": "quiz",
+        "question": "Bạn chưa có nguồn nghiên cứu. Cách viết nào trung thực hơn?",
+        "options": [
+          "Ein denkbares Beispiel wäre ein Abendkurs.",
+          "Studien beweisen eindeutig, dass jeder Abendkurs erfolgreich ist."
+        ],
+        "answers": [
+          "Ein denkbares Beispiel wäre ein Abendkurs."
+        ],
+        "explanation": "Denkbar đánh dấu ví dụ giả định; câu còn lại khẳng định có chứng cứ nhưng chưa cung cấp nguồn.",
+        "origin": "authored",
+        "answerSource": "authored"
+      }
+    ],
+    "sourceChapters": [],
+    "sourcePages": [],
+    "levelSource": "https://deutsch.vn/b2niveau/grammatik/08-redemittel",
+    "reviewStatus": "authored-supplement",
+    "tag": "book-b2-08"
+  },
+  {
+    "id": "book-dtd-b2-09",
+    "title": "Wortbildung",
+    "topic": "Wortbildung",
+    "level": "B2",
+    "origin": "authored-supplement",
+    "content": "## Chủ điểm và cấp độ\n\n**Wortbildung · B2**. Bài bổ sung do Elio biên soạn, không trích từ PDF. Tham khảo phạm vi chủ điểm trong danh mục Deutsch.vn; ví dụ và bài tập được viết riêng.\n\n## Quy tắc trọng tâm\n\nĐừng đoán toàn bộ nghĩa chỉ từ một tiền tố. Hãy tách cấu tạo để đặt giả thuyết rồi kiểm tra từ điển, giống, số nhiều và cách dùng trong câu. Từ cùng họ có thể yêu cầu giới từ hoặc bổ ngữ khác nhau.\n\n## Một họ từ trong ngữ cảnh\n\n| Dạng | Ví dụ | Nghĩa |\n| --- | --- | --- |\n| động từ | Die Stadt plant einen neuen Radweg. | Thành phố lên kế hoạch cho một đường xe đạp mới. |\n| danh từ | Die Planung dauert sechs Monate. | Việc lập kế hoạch kéo dài sáu tháng. |\n| tính từ | Die Kosten sind noch nicht planbar. | Chi phí hiện chưa thể dự tính. |\n\n**planbar** mô tả điều có thể lên kế hoạch/dự tính, không mang nghĩa “người giỏi lập kế hoạch”. Chuyển loại từ có thể làm thay đổi trọng tâm câu.\n\n## Đọc từ ghép từ phải sang trái\n\nTrong **die Radwegplanung**, thành tố chính là **Planung**; các phần phía trước thu hẹp ý nghĩa thành việc quy hoạch đường xe đạp. So sánh **das Planungsteam**: thành tố chính là Team, nên dùng das. Danh từ ghép được viết liền trong cách viết thông thường; không tự thêm dấu cách theo tiếng Việt.\n\n## Tiền tố và cấu trúc động từ\n\n**Wir fahren um acht Uhr ab.** — Chúng tôi khởi hành lúc tám giờ. Abfahren tách trong câu chính này.\n\n**Wir erfahren morgen das Ergebnis.** — Ngày mai chúng tôi biết kết quả. Erfahren không tách. Không suy ra cách tách chỉ từ nghĩa tiếng Việt; học cả trọng âm và Partizip II.\n\n## Sổ tay từ mới\n\nMỗi mục nên ghi: từ đầy đủ, mạo từ, số nhiều nếu có, một câu và từ cùng họ. Ví dụ **die Genauigkeit** — độ chính xác; **genau** — chính xác. Các hậu tố -heit và -keit thường tạo danh từ giống cái, nhưng không phải tính từ nào cũng tự do ghép được với cả hai. Tra cứu dạng thực có thay vì tự chế từ.",
+    "exercises": [
+      {
+        "type": "fill",
+        "question": "Điền mạo từ xác định Nominativ: ___ Planungsteam arbeitet heute online.",
+        "answers": [
+          "Das"
+        ],
+        "explanation": "Thành tố cuối là das Team, nên danh từ ghép có giống trung.",
+        "origin": "authored",
+        "answerSource": "authored"
+      },
+      {
+        "type": "quiz",
+        "question": "Chọn câu đúng.",
+        "options": [
+          "Wir fahren um acht Uhr ab.",
+          "Wir abfahren um acht Uhr."
+        ],
+        "answers": [
+          "Wir fahren um acht Uhr ab."
+        ],
+        "explanation": "Abfahren là động từ tách: fahren được chia, ab đặt cuối câu chính.",
+        "origin": "authored",
+        "answerSource": "authored"
+      },
+      {
+        "type": "fill",
+        "question": "Tạo danh từ có mạo từ từ genau, nghĩa là độ chính xác.",
+        "answers": [
+          "die Genauigkeit"
+        ],
+        "explanation": "Dạng đúng là Genauigkeit, giống cái. Không tự tạo Genauheit theo suy đoán.",
+        "origin": "authored",
+        "answerSource": "authored"
+      }
+    ],
+    "sourceChapters": [],
+    "sourcePages": [],
+    "levelSource": "https://deutsch.vn/b2niveau/grammatik/09-wortbildung",
+    "reviewStatus": "authored-supplement",
+    "tag": "book-b2-09"
+  },
+  {
+    "id": "book-dtd-b2-10",
+    "title": "Nominalisierung",
+    "topic": "Nominalisierung",
+    "level": "B2",
+    "origin": "authored-supplement",
+    "content": "## Chủ điểm và cấp độ\n\n**Nominalisierung · B2**. Bài bổ sung do Elio biên soạn, không trích từ PDF. Tham khảo phạm vi chủ điểm trong danh mục Deutsch.vn; ví dụ và bài tập được viết riêng.\n\n## Quy tắc trọng tâm\n\nDanh từ hóa giúp nói về một hoạt động hoặc sự kiện như một đối tượng. Khi chuyển câu, phải bảo toàn người thực hiện, đối tượng, thời điểm và quan hệ nguyên nhân. Câu ngắn hơn chưa chắc rõ hơn.\n\n## Chuyển từng bước\n\n**Die Technikerin prüft das Gerät sorgfältig.** — Nữ kỹ thuật viên kiểm tra thiết bị cẩn thận.\n\n**Die sorgfältige Prüfung des Geräts durch die Technikerin dauert eine Stunde.** — Việc nữ kỹ thuật viên kiểm tra thiết bị cẩn thận kéo dài một giờ.\n\n- prüfen đổi thành Prüfung, giống cái.\n- sorgfältig thành tính từ có đuôi: die sorgfältige Prüfung.\n- das Gerät là đối tượng kiểm tra → des Geräts.\n- durch die Technikerin chỉ người thực hiện, tránh hiểu nhầm thiết bị là người kiểm tra.\n\n## Mệnh đề hay cụm danh từ?\n\n| Câu có động từ | Cụm thay thế | Nghĩa |\n| --- | --- | --- |\n| Nachdem der Kurs beendet war, … | Nach dem Ende des Kurses … | Sau khi khóa học kết thúc… |\n| Obwohl die Lieferung verspätet war, … | Trotz der verspäteten Lieferung … | Mặc dù hàng giao trễ… |\n\nĐộng từ của câu chính vẫn cần chia. Giới từ quyết định cách: nach + Dativ, trotz thường + Genitiv trong văn viết chuẩn. Không chuyển mọi wenn thành bei: wenn mang nghĩa điều kiện không phải lúc nào cũng diễn đạt chính xác bằng một cụm danh từ.\n\n## Infinitiv và viết hoa\n\n**Beim Reparieren trägt sie Handschuhe.** — Khi sửa chữa, cô ấy đeo găng tay. Beim = bei dem; Reparieren được dùng như danh từ, viết hoa. So sánh **Sie möchte das Gerät reparieren.**: reparieren là động từ nguyên mẫu, viết thường.\n\n## Khi nào nên giữ câu có động từ?\n\nNếu cụm danh từ có nhiều Genitiv nối nhau hoặc làm mất chủ thể, giữ mệnh đề thường dễ đọc hơn. Trong bài thi, dùng hình thức phù hợp với nhiệm vụ; danh từ hóa nhiều không tự động tạo điểm cao.",
+    "exercises": [
+      {
+        "type": "fill",
+        "question": "Điền dạng đúng: Nach dem Ende des ___ gingen alle nach Hause. (Kurs)",
+        "answers": [
+          "Kurses"
+        ],
+        "explanation": "Des yêu cầu Genitiv; danh từ giống đực Kurs thêm -es.",
+        "origin": "authored",
+        "answerSource": "authored"
+      },
+      {
+        "type": "quiz",
+        "question": "Chọn cách viết đúng khi nói “trong lúc sửa chữa”.",
+        "options": [
+          "beim Reparieren",
+          "beim reparieren"
+        ],
+        "answers": [
+          "beim Reparieren"
+        ],
+        "explanation": "Sau beim, động từ nguyên mẫu dùng như danh từ phải viết hoa.",
+        "origin": "authored",
+        "answerSource": "authored"
+      },
+      {
+        "type": "fill",
+        "question": "Điền mạo từ: Trotz ___ verspäteten Lieferung blieb die Kundin freundlich.",
+        "answers": [
+          "der"
+        ],
+        "explanation": "Lieferung là giống cái; Genitiv số ít của die là der.",
+        "origin": "authored",
+        "answerSource": "authored"
+      }
+    ],
+    "sourceChapters": [],
+    "sourcePages": [],
+    "levelSource": "https://deutsch.vn/b2niveau/grammatik/10-nominalisierung",
+    "reviewStatus": "authored-supplement",
+    "tag": "book-b2-10"
+  },
+  {
+    "id": "book-dtd-b2-13",
+    "title": "Argumentative Texte",
+    "topic": "Argumentative Texte",
+    "level": "B2",
+    "origin": "authored-supplement",
+    "content": "## Chủ điểm và cấp độ\n\n**Argumentative Texte · B2**. Bài bổ sung do Elio biên soạn, không trích từ PDF. Tham khảo phạm vi chủ điểm trong danh mục Deutsch.vn; ví dụ và bài tập được viết riêng.\n\n## Quy tắc trọng tâm\n\nViết để người đọc hiểu vì sao bạn đưa ra kết luận. Trước khi viết, đánh dấu các yêu cầu của đề, đối tượng đọc và thể loại cần dùng. Bố cục dưới đây là công cụ luyện viết, không thay thế yêu cầu của từng kỳ thi.\n\n## Lập dàn ý bằng câu hỏi\n\nChủ đề tự luyện: **Soll ein Sprachkurs auch am Sonntag stattfinden?** — Khóa học ngoại ngữ có nên tổ chức cả vào Chủ nhật không?\n\n| Câu hỏi khi lập ý | Ghi chú tự luyện |\n| --- | --- |\n| Ai được lợi? | Người làm việc cả tuần có thêm lựa chọn. |\n| Ai gặp khó khăn? | Giáo viên và người học cần thời gian nghỉ. |\n| Điều kiện thực hiện? | Đăng ký tự nguyện, có số lượng tối thiểu. |\n| Kết luận cụ thể? | Thử một buổi mỗi tháng rồi lấy phản hồi. |\n\n## Một đoạn mẫu được viết riêng\n\n**Ein Sonntagskurs könnte Berufstätigen den Zugang zum Unterricht erleichtern. Wer an Werktagen lange arbeitet, hätte dadurch eine zusätzliche Lernmöglichkeit. Denkbar wäre beispielsweise ein freiwilliger Konversationskurs an einem Sonntag im Monat. Allerdings müssten die Lehrkräfte selbst entscheiden können, ob sie an diesem Tag arbeiten möchten.**\n\nKhóa học Chủ nhật có thể giúp người đi làm dễ tiếp cận lớp học hơn. Người làm việc nhiều vào ngày thường sẽ có thêm cơ hội học. Chẳng hạn có thể tổ chức lớp hội thoại tự nguyện vào một Chủ nhật mỗi tháng. Tuy nhiên, giáo viên phải được tự quyết định có muốn làm việc ngày đó không.\n\nĐoạn trên nêu lợi ích, giải thích đối tượng hưởng lợi, đưa ví dụ giả định rồi giới hạn điều kiện. Nó không khẳng định có khảo sát hay số liệu thực tế.\n\n## Sửa lập luận yếu\n\n“Chủ nhật tốt vì rất tốt” chỉ lặp nhận xét. Hãy giải thích tốt cho ai và vì sao. “Tất cả mọi người đều rảnh Chủ nhật” là khái quát quá mức; sửa thành **Für manche Berufstätige wäre der Sonntag günstiger.** — Với một số người đi làm, Chủ nhật sẽ thuận tiện hơn.\n\n## Kiểm tra cuối bài\n\nĐối chiếu từng yêu cầu của đề với đoạn tương ứng. Kiểm tra đại từ chỉ đúng đối tượng, từ nối phản ánh đúng quan hệ và kết luận không đưa ý mới chưa được giải thích. Khi tự luyện, viết thêm một đoạn phản đối và một đề xuất thực tế; không học thuộc đoạn mẫu để ghép vào mọi đề.",
+    "exercises": [
+      {
+        "type": "quiz",
+        "question": "Câu nào tránh khái quát quá mức?",
+        "options": [
+          "Für manche Berufstätige wäre der Sonntag günstiger.",
+          "Alle Menschen haben sonntags immer Zeit."
+        ],
+        "answers": [
+          "Für manche Berufstätige wäre der Sonntag günstiger."
+        ],
+        "explanation": "Manche giới hạn phạm vi; wäre diễn tả đánh giá có điều kiện. Câu còn lại khẳng định tuyệt đối không có căn cứ.",
+        "origin": "authored",
+        "answerSource": "authored"
+      },
+      {
+        "type": "quiz",
+        "question": "Vai trò của “Denkbar wäre beispielsweise …” là gì?",
+        "options": [
+          "Đưa một khả năng minh họa giả định.",
+          "Khẳng định kết quả một nghiên cứu đã kiểm chứng."
+        ],
+        "answers": [
+          "Đưa một khả năng minh họa giả định."
+        ],
+        "explanation": "Denkbar và beispielsweise giới thiệu ví dụ có thể xảy ra, không phải dữ liệu nghiên cứu.",
+        "origin": "authored",
+        "answerSource": "authored"
+      },
+      {
+        "type": "fill",
+        "question": "Điền dạng Konjunktiv II của haben: Wer lange arbeitet, ___ dadurch eine zusätzliche Lernmöglichkeit.",
+        "answers": [
+          "hätte"
+        ],
+        "explanation": "Hätte chia theo chủ ngữ số ít wer; diễn tả lợi ích trong tình huống giả định.",
+        "origin": "authored",
+        "answerSource": "authored"
+      }
+    ],
+    "sourceChapters": [],
+    "sourcePages": [],
+    "levelSource": "https://deutsch.vn/b2niveau/grammatik/13-argumentative-texte",
+    "reviewStatus": "authored-supplement",
+    "tag": "book-b2-13"
+  }
+]

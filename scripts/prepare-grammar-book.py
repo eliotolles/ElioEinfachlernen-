@@ -96,6 +96,10 @@ for item in items:
  if 20 in item['sourceChapters']:body+='> '+notes[20]+'\n'
  item['content']=body.strip();item['reviewStatus']='guide-with-unverified-source-ocr';item.pop('sourceAnswers',None)
 pack={'id':'elio-user-grammar-book-v1','name':'Ngữ pháp từ PDF · A1–B2','type':'grammar','source':{'filename':source.name,'sha256':hashlib.sha256(source.read_bytes()).hexdigest(),'author':'Trần Khắc Đạt','title':'Ngữ pháp tiếng Đức theo cách dễ hiểu','pdfPages':len(doc),'originalFileStored':False},'warnings':['Lớp chữ OCR chứa lỗi. Đây là bản chuyển đổi cần rà soát, không phải bản sách đã hiệu đính.','Bài tập và lời giải nguồn giữ dạng đọc; không tự sinh đáp án chấm điểm.','Cấp độ theo danh mục Deutsch.vn; một chương tham khảo có thể bao gồm nhiều mức.'],'missingTopics':missing,'sourceAnswerKey':'\n\n'.join('## PDF '+str(i+1)+' · Trang sách '+str(i)+'\n\n'+markdown(doc[i]) for i in range(392,416)),'items':items}
+items.extend(json.loads(Path('scripts/grammar-book-supplements.json').read_text()))
+items.sort(key=lambda item:item['id'])
+pack['packVersion']=2
+pack['missingTopics']=[]
 Path('public/data/grammar-book-a1-b2.json').write_text(json.dumps(pack,ensure_ascii=False,indent=2))
 Path('/tmp/grammar-book-chapters.json').write_text(json.dumps(chapters,ensure_ascii=False,indent=2))
 print(json.dumps({'lessons':len(items),'levels':{l:sum(i['level']==l for i in items) for l in levels},'chaptersCovered':sorted(set(c for i in items for c in i['sourceChapters'])),'missing':missing,'bytes':Path('public/data/grammar-book-a1-b2.json').stat().st_size},ensure_ascii=False))
