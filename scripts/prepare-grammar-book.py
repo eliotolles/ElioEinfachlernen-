@@ -103,3 +103,7 @@ pack['missingTopics']=[]
 Path('public/data/grammar-book-a1-b2.json').write_text(json.dumps(pack,ensure_ascii=False,indent=2))
 Path('/tmp/grammar-book-chapters.json').write_text(json.dumps(chapters,ensure_ascii=False,indent=2))
 print(json.dumps({'lessons':len(items),'levels':{l:sum(i['level']==l for i in items) for l in levels},'chaptersCovered':sorted(set(c for i in items for c in i['sourceChapters'])),'missing':missing,'bytes':Path('public/data/grammar-book-a1-b2.json').stat().st_size},ensure_ascii=False))
+
+# Final learner-facing pack is rebuilt without raw OCR or answer-key dumps.
+import subprocess
+subprocess.run([sys.executable,"scripts/rebuild-grammar-lessons.py"],check=True)
