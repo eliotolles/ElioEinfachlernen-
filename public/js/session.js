@@ -33,5 +33,26 @@ const Account={profile:null,records:{},shared:{},config:{},pending:{},conflicts:
  async mergeFeedbackConflict(key){if(this.syncing)throw Error('Đang đồng bộ. Chờ vài giây rồi thử gộp lại.');const c=this.conflicts[key];if(!c||c.name!=='writingFeedback'||c.shared)throw Error('Chỉ hỗ trợ gộp bài chữa viết cá nhân.');const value=mergeWritingFeedback(c.value,c.latest?.value||{});await AccountCache.write(this.cacheKey('conflict-backup:'+Date.now()+':'+crypto.randomUUID()),structuredClone(c));if(this.conflicts[key]!==c)throw Error('Dữ liệu đã thay đổi. Kiểm tra lại trước khi gộp.');this.pending[key]={name:c.name,value,version:c.latest?.version||0,shared:false,stamp:crypto.randomUUID()};delete this.conflicts[key];await this.persist();await this.flush();document.dispatchEvent(new Event('cloudchange'));},
  async resolve(key,useLocal){const c=this.conflicts[key];if(!c)return;await AccountCache.write(this.cacheKey('conflict-backup:'+Date.now()),c);if(useLocal)this.pending[key]={...c,version:c.latest?.version||0,stamp:crypto.randomUUID()};else{(c.shared?this.shared:this.records)[c.name]=c.latest||{value:null,version:0};}delete this.conflicts[key];this.persist();await this.flush();document.dispatchEvent(new Event('cloudchange'));}
 };
-Account.ready=(async()=>{try{const me=await Account.request('/api/auth/me');Account.profile=me.user;if(!me.user.passwordExpired)await Account.refresh();return true;}catch(e){if(e.offline){try{const cached=JSON.parse(localStorage.getItem('elio:profile'));if(cached?.until>Date.now()){Account.profile=cached.user;const snapshot=await AccountCache.read(Account.cacheKey('snapshot'),{});Account.records=snapshot.records||{};Account.shared=snapshot.shared||{};Account.config=snapshot.config||{};Account.pending=await AccountCache.read(Account.cacheKey('pending'),{});Account.conflicts=await AccountCache.read(Account.cacheKey('conflicts'),{});Account.loaded=true;Account.online=false;return true;}}catch{}}return false;}})();
+async function restoreAccountSnapshot(){
+ const snapshot=await AccountCache.read(Account.cacheKey('snapshot'),null);
+ if(!snapshot||snapshot.user?.id!==Account.current())return false;
+ Account.records=snapshot.records||{};Account.shared=snapshot.shared||{};Account.config=snapshot.config||{};
+ [Account.pending,Account.conflicts]=await Promise.all([AccountCache.read(Account.cacheKey('pending'),{}),AccountCache.read(Account.cacheKey('conflicts'),{})]);
+ Account.loaded=true;return true;
+}
+Account.ready=(async()=>{
+ try{
+  const me=await Account.request('/api/auth/me');Account.profile=me.user;
+  if(!me.user.passwordExpired){
+   if(await restoreAccountSnapshot()){
+    // Authentication is fresh; cached content can render while cloud data refreshes.
+    Account.backgroundRefresh=Account.refresh().catch(e=>{if(e.offline)Account.online=false;Account.status(e.message);});
+   }else await Account.refresh();
+  }
+  return true;
+ }catch(e){
+  if(e.offline){try{const cached=JSON.parse(localStorage.getItem('elio:profile'));if(cached?.until>Date.now()){Account.profile=cached.user;if(await restoreAccountSnapshot()){Account.online=false;return true;}}}catch{}}
+  return false;
+ }
+})();
 window.addEventListener('online',()=>Account.flush());window.addEventListener('storage',e=>{if(e.key==='elio:logout'){Account.profile=null;Account.redirectToLogin();}});setInterval(()=>{if(Account.current())Account.flush();},15000);
