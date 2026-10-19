@@ -130,3 +130,5 @@ body.elio-app.dark .grammar-topic-link.active,body.elio-app.dark .exam-answer-op
 body.elio-app.dark .grammar-topic-link small,body.elio-app.dark .grammar-topic-number,body.elio-app.dark .grammar-list-label{color:#c9bed9}
 body.elio-app.dark .lesson-prose .learning-table th{background:#302540;color:#f1e8fa}
 #vocab-enrichment-stop[hidden]{display:none}
+
+#book-pack-zone[hidden]{display:none}.lesson-source-book{margin:24px 0;border:1px solid var(--line);border-radius:16px;padding:16px}.lesson-source-book>summary{font-weight:600;cursor:pointer}.lesson-source-book .lesson-prose{margin-top:20px}
