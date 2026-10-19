@@ -129,3 +129,4 @@ body.elio-app.dark .grammar-topic-link{background:#272032;color:var(--text);bord
 body.elio-app.dark .grammar-topic-link.active,body.elio-app.dark .exam-answer-option.selected{background:color-mix(in srgb,var(--orange) 18%,#19171e);border-color:var(--orange);color:var(--text)}
 body.elio-app.dark .grammar-topic-link small,body.elio-app.dark .grammar-topic-number,body.elio-app.dark .grammar-list-label{color:#c9bed9}
 body.elio-app.dark .lesson-prose .learning-table th{background:#302540;color:#f1e8fa}
+#vocab-enrichment-stop[hidden]{display:none}
