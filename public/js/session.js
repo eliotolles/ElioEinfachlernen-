@@ -43,7 +43,7 @@ async function restoreAccountSnapshot(){
 Account.ready=(async()=>{
  try{
   const me=await Account.request('/api/auth/me');Account.profile=me.user;
-  if(!me.user.passwordExpired){
+  if(!me.user.passwordExpired&&!Account.authPage()){
    if(await restoreAccountSnapshot()){
     // Authentication is fresh; cached content can render while cloud data refreshes.
     Account.backgroundRefresh=Account.refresh().catch(e=>{if(e.offline)Account.online=false;Account.status(e.message);});
