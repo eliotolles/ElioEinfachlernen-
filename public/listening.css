@@ -20,3 +20,16 @@
 #elio-diktat .ed-writing-column textarea{min-height:180px}
 #elio-diktat .ed-question-nav{max-height:170px;overflow:auto}
 @media(max-width:850px){#elio-diktat .ed-layout{grid-template-columns:1fr}#elio-diktat .ed-top-selectors{gap:12px}#elio-diktat .ed-top-selectors .ed-lessons{flex-basis:100%}#elio-diktat .ed-top-selectors>.ed-eyebrow{margin-left:0}#elio-diktat .ed-writing-column textarea{min-height:145px}}
+
+#elio-diktat .yt-import-row{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr) minmax(130px,.8fr) auto}
+#elio-diktat .yt-card-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px;margin:13px 0 24px}
+#elio-diktat .yt-card{overflow:hidden;border:1px solid var(--line);border-radius:10px;background:var(--paper);min-width:0}
+#elio-diktat .yt-card>button{padding:0;border:0;background:transparent;display:block;text-align:left;width:100%;color:var(--ink)}
+#elio-diktat .yt-card img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;background:#e9eddf}
+#elio-diktat .yt-card strong{display:block;padding:12px 13px 4px;font:500 17px Lexend,sans-serif;overflow-wrap:anywhere}
+#elio-diktat .yt-card small{display:block;padding:0 13px 12px}
+#elio-diktat .yt-card-actions{display:flex;gap:8px;padding:0 12px 12px}#elio-diktat .yt-card-actions button{font-size:12px;padding:5px 10px}
+#elio-diktat .yt-card.is-selected{border-color:var(--green);box-shadow:0 0 0 1px var(--green)}
+#elio-diktat .yt-library-section{margin-top:20px}#elio-diktat .yt-sub-backup{margin-top:15px}#elio-diktat #yt-transcribe{margin-top:12px}
+@media(max-width:1000px){#elio-diktat .yt-import-row{grid-template-columns:1fr 1fr}#elio-diktat .yt-card-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:550px){#elio-diktat .yt-import-row{grid-template-columns:1fr}#elio-diktat .yt-card-grid{grid-template-columns:1fr}}

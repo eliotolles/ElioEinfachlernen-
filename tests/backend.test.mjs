@@ -64,3 +64,19 @@ test('listening beta requires admin on page and storage; embeds retain cross-ori
  globalThis.ASSETS={'/hoeren.html':'<main>Listening beta</main>'};
  try{const response=await worker.fetch(new Request('https://elio.test/hoeren.html',{headers:{Cookie:owner.cookie}}),env);assert.equal(response.status,200);assert.equal(response.headers.get('Referrer-Policy'),'strict-origin-when-cross-origin');assert.match(await response.text(),/Listening beta/);}finally{delete globalThis.ASSETS;}
 });
+
+test('listening shared library is admin-owned and video transcription sends media only to Gemini',async()=>{
+ const regular=await call('/api/auth/register','POST',{email:'video-user@example.com',password:'Listener-493!'});
+ assert.equal((await call('/api/shared','PUT',{name:'listeningLibrary',value:[],version:0},regular.cookie)).status,403);
+ const shared=[{id:'video-common',youtubeId:'abcdefghijk',level:'B1',title:'Shared',cues:[]}];
+ assert.equal((await call('/api/shared','PUT',{name:'listeningLibrary',value:shared,version:0},owner.cookie)).status,200);
+ const state=await call('/api/state','GET',null,regular.cookie);assert.equal(state.body.shared.listeningLibrary.value[0].title,'Shared');
+ await call('/api/state','PUT',{name:'listeningLibrary',value:[{...shared[0],title:'overwrite'}],version:0},regular.cookie);
+ assert.equal((await call('/api/state','GET',null,regular.cookie)).body.records.listeningLibrary.value.length,0);
+ assert.equal((await call('/api/listening/transcribe','POST',{id:'abcdefghijk'},regular.cookie)).status,403);
+ assert.equal((await call('/api/listening/transcribe','POST',{id:'https://evil.test'},owner.cookie)).status,400);
+ const config=await call('/api/admin/ai','POST',{provider:'gemini',model:'test-video-model',key:'test-video-key',priority:0},owner.cookie);
+ const original=globalThis.fetch;let received;
+ globalThis.fetch=async(url,options)=>{assert.match(String(url),/generativelanguage.googleapis.com/);received=JSON.parse(options.body);return Response.json({candidates:[{finishReason:'STOP',content:{parts:[{text:JSON.stringify({cues:[{start:1,end:3,text:'Guten Morgen.'},{start:500,end:600,text:'Invalid range'}]})}]}}]});};
+ try{const response=await call('/api/listening/transcribe','POST',{id:'abcdefghijk',start:0},owner.cookie);assert.equal(response.status,200);assert.equal(response.body.cues.length,1);const media=received.contents[0].parts.find(p=>p.fileData);assert.equal(media.fileData.fileUri,'https://www.youtube.com/watch?v=abcdefghijk');assert.equal(media.videoMetadata.endOffset,'120s');}finally{globalThis.fetch=original;}
+});
