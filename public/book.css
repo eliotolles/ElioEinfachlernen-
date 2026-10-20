@@ -226,3 +226,19 @@ body.elio-app.book-app:not(.dark) .book-home-grid .book-chapter:nth-child(4){bac
 body.elio-app.book-app.dark .book-home-grid .book-chapter{background:#2d3c2f;border-color:#52604b}
 body.elio-app.book-app.dark .book-home-grid .book-chapter:nth-child(2),body.elio-app.book-app.dark .book-home-grid .book-chapter:nth-child(5){background:#35472e}
 body.elio-app.book-app.dark .book-home-grid .book-chapter:nth-child(4){background:#3a3e2f}
+/* Approved cover-style blend for contents and study; retain original artwork and controls. */
+body.book-app .book-contents,body.book-app .book-study{padding:30px 32px;min-height:570px}
+body.book-app .book-contents:before,body.book-app .book-study:before{inset:0 0 0 29%;background-position:62% 48%;filter:saturate(.85);transform:none}
+body.book-app .book-contents:after,body.book-app .book-study:after{background:linear-gradient(90deg,#faf7ee 0%,#faf7eef5 27%,#faf7eec9 45%,#faf7ee55 65%,#faf7ee12 90%),linear-gradient(0deg,#faf7ee,#faf7ee00 20%)}
+body.book-app .book-contents .book-toc{width:59%}
+body.book-app .book-study>*{max-width:60%}
+body.book-app .book-study>h1{max-width:75%}
+body.book-app.dark .book-contents:after,body.book-app.dark .book-study:after{background:linear-gradient(90deg,#203128,#203128f5 27%,#203128c9 45%,#20312855 65%,#20312812 90%),linear-gradient(0deg,#203128,#20312800 20%)}
+@media(max-width:700px){
+body.book-app .book-contents,body.book-app .book-study{padding:24px 16px;min-height:0}
+body.book-app .book-contents:before,body.book-app .book-study:before{inset:0;background-position:65% center}
+body.book-app .book-contents:after,body.book-app .book-study:after{background:linear-gradient(90deg,#faf7eef5,#faf7eee5 48%,#faf7eea8)}
+body.book-app.dark .book-contents:after,body.book-app.dark .book-study:after{background:linear-gradient(90deg,#203128f5,#203128e5 48%,#203128b8)}
+body.book-app .book-contents .book-toc{width:100%}
+body.book-app .book-study>*{max-width:100%}
+}
