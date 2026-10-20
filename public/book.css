@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Patrick+Hand&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Patrick+Hand&display=swap');
 body.book-app{--bg:#faf7ee;--card:#fffdf6;--text:#18231d;--muted:#65705f;--line:#d9d5c5;--soft:#edf0e1;--book-gold:#98723f;background:var(--bg)!important;color:var(--text);padding:0!important;margin:0;--sidebar-width:0px;--sidebar-collapsed-width:0px;font-family:Lexend,sans-serif;font-size:calc(16px * var(--text-scale,1));line-height:1.7}
 body.book-app.dark{--bg:#203128;--card:#263a2e;--text:#f6f0df;--muted:#bdc7b4;--line:#52604b;--soft:#304b36;--book-gold:#c9ab77;background:var(--bg)!important}
 body.book-app .book-legacy-shell,body.book-app .mobile-app-nav{display:none!important}
@@ -186,3 +186,14 @@ body.book-app #book-reading-status{display:block;font-size:13px;line-height:1.5;
 body.book-app .book-nav>a{font-size:calc(17px * var(--text-scale,1))}
 body.book-app .book-crumb{justify-content:flex-start;max-width:none;margin:0;padding:0 0 18px;background:transparent;border:0}
 @media(max-width:700px){body.book-app .book-nav{grid-template-columns:minmax(0,1fr) minmax(0,.75fr) minmax(0,1.2fr) auto;gap:6px}body.book-app .book-nav>a{font-size:calc(14px * var(--text-scale,1))}body.book-app .book-profile{gap:0}body.book-app #book-reading-toggle{min-width:36px;width:36px}body.book-app #book-account-toggle{min-width:38px}}
+
+/* Clear title hierarchy; descriptive copy keeps its lighter italic treatment. */
+body.elio-app.book-app h1,body.elio-app.book-app h2,body.elio-app.book-app h3,
+body.elio-app.book-app .book-spread h1,body.elio-app.book-app .book-spread h1 i,
+body.elio-app.book-app .book-chapter-heading,
+body.elio-app.book-app .book-chapter strong,
+body.elio-app.book-app .book-study-row strong{font-weight:700!important;color:var(--text)}
+body.elio-app.book-app .book-spread h1 i{color:#657a52}
+body.elio-app.book-app .book-brand>span,body.elio-app.book-app .book-start,
+body.elio-app.book-app label>span[data-i18n],body.elio-app.book-app .book-study-tabs button[aria-selected=true]{font-weight:600}
+body.elio-app.book-app .book-chapter em,body.elio-app.book-app .book-study-row small{font-weight:400!important;color:var(--muted)}
