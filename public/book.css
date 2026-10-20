@@ -160,3 +160,10 @@ body.elio-app.book-app.dark .grammar-topic-link small{color:var(--muted)}
 body.elio-app.book-app.dark .chat-bubble.user{background:var(--soft);color:var(--text)}
 body.elio-app.book-app.dark #selected-task{background:var(--soft);color:var(--text)}
 body.elio-app.book-app.dark .flashcard .game-word{color:var(--text)}
+/* Native hidden must win over legacy nav/footer flex declarations. */
+body.book-app [hidden]{display:none!important}
+body.book-app .book-footer .book-programs:not([hidden]){display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));width:340px;max-width:calc(100vw - 32px);gap:4px 8px;overflow:hidden;white-space:normal}
+body.book-app .book-footer .book-programs>a{min-width:0;white-space:normal;overflow-wrap:anywhere}
+body.book-app .book-footer .book-programs .book-menu-title,body.book-app .book-footer .book-programs .book-menu-settings{grid-column:1/-1;min-width:0}
+body.book-app .book-footer .book-programs .book-menu-settings select{width:66px;max-width:66px;min-width:0}
+@media(max-width:700px){body.book-app .book-footer .book-programs:not([hidden]){width:310px}}
