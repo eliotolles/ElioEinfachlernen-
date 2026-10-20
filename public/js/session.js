@@ -34,10 +34,10 @@ const Account={profile:null,records:{},shared:{},config:{},pending:{},conflicts:
  async resolve(key,useLocal){const c=this.conflicts[key];if(!c)return;await AccountCache.write(this.cacheKey('conflict-backup:'+Date.now()),c);if(useLocal)this.pending[key]={...c,version:c.latest?.version||0,stamp:crypto.randomUUID()};else{(c.shared?this.shared:this.records)[c.name]=c.latest||{value:null,version:0};}delete this.conflicts[key];this.persist();await this.flush();document.dispatchEvent(new Event('cloudchange'));}
 };
 async function restoreAccountSnapshot(){
- const snapshot=await AccountCache.read(Account.cacheKey('snapshot'),null);
+ const [snapshot,pending,conflicts]=await Promise.all([AccountCache.read(Account.cacheKey('snapshot'),null),AccountCache.read(Account.cacheKey('pending'),{}),AccountCache.read(Account.cacheKey('conflicts'),{})]);
  if(!snapshot||snapshot.user?.id!==Account.current())return false;
  Account.records=snapshot.records||{};Account.shared=snapshot.shared||{};Account.config=snapshot.config||{};
- [Account.pending,Account.conflicts]=await Promise.all([AccountCache.read(Account.cacheKey('pending'),{}),AccountCache.read(Account.cacheKey('conflicts'),{})]);
+ [Account.pending,Account.conflicts]=[pending,conflicts];
  Account.loaded=true;return true;
 }
 Account.ready=(async()=>{
