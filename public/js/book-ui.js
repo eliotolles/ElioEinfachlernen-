@@ -79,4 +79,5 @@
  for(const event of ['languagechange','cloudchange','authchange'])document.addEventListener(event,appearance);appearance();
  if(file==='history.html'){const kind=new URLSearchParams(location.search).get('kind'),select=document.getElementById('history-kind');if(kind&&select&&Array.from(select.options).some(o=>o.value===kind)){select.value=kind;select.dispatchEvent(new Event('change'));}}
  if(file==='quiz.html'&&location.hash==='#srs')document.getElementById('tab-srs')?.click();
+ window.ElioBookReady=true;
 })();
