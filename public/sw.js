@@ -1,4 +1,4 @@
-const CACHE='elio-cloud-v2-book-ui';
+const CACHE='elio-cloud-v3-static';
 self.addEventListener('install',()=>self.skipWaiting());
 self.addEventListener('activate',event=>event.waitUntil((async()=>{
  // Only obsolete static caches; never touch account snapshots or queued edits.

@@ -88,8 +88,8 @@
   main.querySelectorAll('.book-last-frame').forEach(node=>{if(node!==last)node.classList.remove('book-last-frame');});
   if(last&&!last.classList.contains('book-last-frame'))last.classList.add('book-last-frame');
  }
- let frameQueued=false;function queueFrames(){if(frameQueued)return;frameQueued=true;Promise.resolve().then(()=>{frameQueued=false;markLastFrame();});}
- if(typeof MutationObserver==='function')new MutationObserver(queueFrames).observe(main,{childList:true,subtree:true,attributes:true,attributeFilter:['hidden','aria-hidden']});
+ let frameQueued=false;function queueFrames(){if(frameQueued)return;frameQueued=true;(typeof requestAnimationFrame==='function'?requestAnimationFrame:fn=>Promise.resolve().then(fn))(()=>{frameQueued=false;markLastFrame();});}
+ if(typeof MutationObserver==='function')new MutationObserver(records=>{if(records.some(r=>r.type==='attributes'||[...r.addedNodes,...r.removedNodes].some(n=>n.nodeType===1&&(n.matches?.(frameSelector)||n.querySelector?.(frameSelector)))))queueFrames();}).observe(main,{childList:true,subtree:true,attributes:true,attributeFilter:['hidden','aria-hidden']});
  for(const event of ['click','change'])main.addEventListener(event,queueFrames);
  window.addEventListener('resize',queueFrames);markLastFrame();
  window.ElioBookReady=true;
