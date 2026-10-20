@@ -7,7 +7,8 @@ function mergeWritingFeedback(local,remote){
  merged[key]={...structuredClone(latest),attempts:unique([...(b.attempts||[]),...(a.attempts||[]),...[b,a].filter(v=>v.data!==undefined).map(v=>({data:v.data,essay:v.essay||'',updatedAt:v.updatedAt||0}))]).sort((x,y)=>Number(x.updatedAt||0)-Number(y.updatedAt||0)),conflictVersions:unique([...(b.conflictVersions||[]),...(a.conflictVersions||[]),snapshot(b),snapshot(a)])};
  }return merged;
 }
-const Account={profile:null,records:{},shared:{},config:{},pending:{},conflicts:{},syncing:false,online:true,
+const parentAccount=(()=>{try{return window.parent!==window&&window.parent.ElioNavigationHost?window.parent.ElioSharedAccount:null;}catch{return null;}})();
+const Account=parentAccount||{profile:null,records:{},shared:{},config:{},pending:{},conflicts:{},syncing:false,online:true,
  users(){try{return JSON.parse(localStorage.getItem('dt:_users')||'{}');}catch{return {};}},
  current(){return this.profile?.id||null;},
  displayName(){const value=this.get('settings',{}).userProfile?.name;return (typeof value==='string'&&value.trim()?value.trim().slice(0,60):this.profile?.email?.split('@')[0])||'Elio';},
@@ -40,7 +41,7 @@ async function restoreAccountSnapshot(){
  [Account.pending,Account.conflicts]=[pending,conflicts];
  Account.loaded=true;return true;
 }
-Account.ready=(async()=>{
+Account.ready=typeof parentAccount!=='undefined'&&parentAccount?Account.ready:(async()=>{
  try{
   const me=await Account.request('/api/auth/me');Account.profile=me.user;
   if(!me.user.passwordExpired&&!Account.authPage()){
@@ -55,4 +56,5 @@ Account.ready=(async()=>{
   return false;
  }
 })();
-window.addEventListener('online',()=>Account.flush());window.addEventListener('storage',e=>{if(e.key==='elio:logout'){Account.profile=null;Account.redirectToLogin();}});setInterval(()=>{if(Account.current())Account.flush();},15000);
+window.addEventListener('online',()=>Account.flush());window.addEventListener('storage',e=>{if(e.key==='elio:logout'){Account.profile=null;Account.redirectToLogin();}});if(!parentAccount)setInterval(()=>{if(Account.current())Account.flush();},15000);
+window.ElioSharedAccount=Account;

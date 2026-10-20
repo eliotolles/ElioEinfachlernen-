@@ -21,7 +21,7 @@ export function optimizeStartup(input){
   const scripts=content.match(/data-scripts=(['"])(.*?)\1/);
   if(scripts){
    const paths=JSON.parse(scripts[2].replaceAll('&quot;','"')).filter(src=>!/^https?:/.test(src));
-   const preload=[...new Set([...paths,'js/pdf-tools.js','js/cloud-ui.js','js/book-ui.js'])].map(src=>'<link rel="preload" as="script" href="'+src+'">').join('');
+   const preload=[...new Set([...paths,'js/pdf-tools.js','js/cloud-ui.js','js/navigation.js','js/book-ui.js'])].map(src=>'<link rel="preload" as="script" href="'+src+'">').join('');
    html=html.replace('</head>',preload+'</head>');
   }
   assets[name]=html;
