@@ -55,14 +55,13 @@ test('online German TTS authenticates, uses audio-only Gemini, returns no creden
 });
 test('AI fallback reaches the fifth enabled configuration and skips malformed JSON',async()=>{const previous=db.prepare('SELECT id,enabled FROM app_ai').all();db.prepare('UPDATE app_ai SET enabled=0').run();const ids=[];for(let i=0;i<5;i++){const r=await call('/api/admin/ai','POST',{label:'chain-'+i,provider:'groq',model:'llama-3.3-70b-versatile',key:'test-chain-'+i,priority:i},owner.cookie);assert.equal(r.status,200);ids.push(r.body.id);}const original=globalThis.fetch;let calls=0;globalThis.fetch=async()=>{calls++;if(calls===1)return Response.json({choices:[{message:{content:'invalid JSON'}}]});if(calls<5)return new Response('{}',{status:503});return Response.json({choices:[{message:{content:'{"ok":true}'}}]});};try{const r=await call('/api/ai','POST',{prompt:'Return JSON'},owner.cookie);assert.equal(r.status,200);assert.equal(calls,5);assert.equal(JSON.parse(r.body.text).ok,true);}finally{globalThis.fetch=original;for(const id of ids)db.prepare('DELETE FROM app_ai WHERE id=?').run(id);for(const r of previous)db.prepare('UPDATE app_ai SET enabled=? WHERE id=?').run(r.enabled,r.id);}});
 
-test('listening beta requires admin on page and storage; embeds retain cross-origin referrer',async()=>{
+test('listening page and private storage are open to signed-in users; public playback retains referrer',async()=>{
  const regular=await call('/api/auth/register','POST',{email:'listener@example.com',password:'Listener-493!'});
  assert.equal((await call('/hoeren.html')).status,401);
- assert.equal((await call('/hoeren.html','GET',null,regular.cookie)).status,403);
- assert.equal((await call('/api/state','PUT',{name:'listening',value:{videos:[]},version:0},regular.cookie)).status,403);
+ assert.equal((await call('/api/state','PUT',{name:'listening',value:{videos:[],attempts:{}},version:0},regular.cookie)).status,200);
  assert.equal((await call('/api/state','PUT',{name:'listening',value:{videos:[],attempts:{}},version:0},owner.cookie)).status,200);
- globalThis.ASSETS={'/hoeren.html':'<main>Listening beta</main>'};
- try{const response=await worker.fetch(new Request('https://elio.test/hoeren.html',{headers:{Cookie:owner.cookie}}),env);assert.equal(response.status,200);assert.equal(response.headers.get('Referrer-Policy'),'strict-origin-when-cross-origin');assert.match(await response.text(),/Listening beta/);}finally{delete globalThis.ASSETS;}
+ globalThis.ASSETS={'/hoeren.html':'<main>Listening</main>'};
+ try{for(const cookie of [owner.cookie,regular.cookie]){const response=await worker.fetch(new Request('https://elio.test/hoeren.html',{headers:{Cookie:cookie}}),env);assert.equal(response.status,200);assert.equal(response.headers.get('Referrer-Policy'),'strict-origin-when-cross-origin');assert.match(await response.text(),/Listening/);}}finally{delete globalThis.ASSETS;}
 });
 
 test('listening shared library is admin-owned and video transcription sends media only to Gemini',async()=>{
@@ -71,9 +70,9 @@ test('listening shared library is admin-owned and video transcription sends medi
  const shared=[{id:'video-common',youtubeId:'abcdefghijk',level:'B1',title:'Shared',cues:[]}];
  assert.equal((await call('/api/shared','PUT',{name:'listeningLibrary',value:shared,version:0},owner.cookie)).status,200);
  const state=await call('/api/state','GET',null,regular.cookie);assert.equal(state.body.shared.listeningLibrary.value[0].title,'Shared');
- await call('/api/state','PUT',{name:'listeningLibrary',value:[{...shared[0],title:'overwrite'}],version:0},regular.cookie);
- assert.equal((await call('/api/state','GET',null,regular.cookie)).body.records.listeningLibrary.value.length,0);
- assert.equal((await call('/api/listening/transcribe','POST',{id:'abcdefghijk'},regular.cookie)).status,403);
+ assert.equal((await call('/api/state','PUT',{name:'listeningLibrary',value:[{...shared[0],title:'overwrite'}],version:0},regular.cookie)).status,403);
+ assert.equal((await call('/api/state','GET',null,regular.cookie)).body.shared.listeningLibrary.value[0].title,'Shared');
+ assert.equal((await call('/api/listening/transcribe','POST',{id:'invalid'},regular.cookie)).status,400);
  assert.equal((await call('/api/listening/transcribe','POST',{id:'https://evil.test'},owner.cookie)).status,400);
  const config=await call('/api/admin/ai','POST',{provider:'gemini',model:'test-video-model',key:'test-video-key',priority:0},owner.cookie);
  const original=globalThis.fetch;let received;
@@ -87,4 +86,14 @@ test('German captions are read directly, prefer human tracks, and access failure
  try{const result=await call('/api/listening/captions','POST',{id:'abcdefghijk'},owner.cookie);assert.equal(result.status,200);assert.equal(result.body.source,'youtube');assert.equal(result.body.cues[0].text,'Guten Morgen!');assert.equal(result.body.cues[0].start,1);assert.match(urls[1],/v=manual/);assert.match(urls[1],/fmt=json3/);assert.equal(urls.length,2);
  urls=[];globalThis.fetch=async url=>{urls.push(String(url));return new Response('Consent or blocked',{status:403});};const blocked=await call('/api/listening/captions','POST',{id:'abcdefghijk'},owner.cookie);assert.equal(blocked.body.available,false);assert.equal(blocked.body.cues.length,0);assert.equal(urls.length,1);assert.match(blocked.body.reason,/403/);
  }finally{globalThis.fetch=original;}
+});
+
+test('personal listening videos stay private and each owner can delete their own uploads',async()=>{
+ const a=await call('/api/auth/register','POST',{email:'listen-a@example.com',password:'Listen-A-493!'}),b=await call('/api/auth/register','POST',{email:'listen-b@example.com',password:'Listen-B-493!'});
+ const value={videos:[{id:'private-video',youtubeId:'abcdefghijk',level:'A1',title:'Private'}],attempts:{}};
+ assert.equal((await call('/api/state','PUT',{name:'listening',value,version:0},a.cookie)).status,200);
+ assert.equal((await call('/api/state','GET',null,b.cookie)).body.records.listening,undefined);
+ assert.equal((await call('/api/state','PUT',{name:'listening',value:{videos:[],attempts:{}},version:1},a.cookie)).status,200);
+ assert.equal((await call('/api/state','GET',null,a.cookie)).body.records.listening.value.videos.length,0);
+ assert.equal((await call('/api/shared','PUT',{name:'listeningLibrary',value:[],version:1},a.cookie)).status,403);
 });

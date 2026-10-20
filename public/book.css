@@ -245,3 +245,7 @@ body.book-app .book-study>*{max-width:100%}
 /* Feather image edges so the illustration never starts as a hard rectangle. */
 body.book-app .book-contents:before,body.book-app .book-study:before{inset:0;background-position:right center;-webkit-mask-image:linear-gradient(90deg,transparent 15%,#000 58%);mask-image:linear-gradient(90deg,transparent 15%,#000 58%)}
 @media(max-width:700px){body.book-app .book-contents:before,body.book-app .book-study:before{-webkit-mask-image:linear-gradient(90deg,transparent,#000 70%);mask-image:linear-gradient(90deg,transparent,#000 70%)}}
+
+/* New landscape illustrations: preserve aspect ratio and feather into the paper. */
+body.book-app .book-contents:before,body.book-app .book-study:before{inset:0 0 0 28%;background-size:cover;background-position:center center;-webkit-mask-image:linear-gradient(90deg,transparent,#000 32%);mask-image:linear-gradient(90deg,transparent,#000 32%)}
+@media(max-width:700px){body.book-app .book-contents:before,body.book-app .book-study:before{inset:0;background-position:60% center;-webkit-mask-image:linear-gradient(90deg,transparent,#000 70%);mask-image:linear-gradient(90deg,transparent,#000 70%)}}

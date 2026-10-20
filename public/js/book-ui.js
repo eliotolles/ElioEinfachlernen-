@@ -5,7 +5,7 @@
  const root=document.body,main=document.querySelector('main');if(!main)return;
  root.classList.add('book-app');
  const modules=[['grammatik.html','Grammatik','Entdecke die Struktur der Sprache.','I'],['wortschatz.html','Wortschatz','Sammle Wörter, die dir die Welt näherbringen.','II'],['quiz.html','Quiz','Spielerisch lernen und deinen Wortschatz festigen.','III'],['schreiben.html','Schreiben','Gib deinen Gedanken eine Form.','IV'],['sprechen.html','Sprechen','Mach Deutsch zu deiner eigenen Stimme.','V'],['pruefung.html','Prüfungstraining','Goethe · telc · ÖSD. Mit jeder Übung sicherer.','VI']];
- if(Account.profile?.role==='super_admin')modules.push(['hoeren.html','Hören & Diktat','Höre genau hin. Schreibe Wort für Wort.','VII']);
+ modules.push(['hoeren.html','Hören & Diktat','Höre genau hin. Schreibe Wort für Wort.','VII']);
  const file=location.pathname.split('/').pop()||'index.html',home=file==='index.html';
  const lang=()=>App.settings().language;
  const tr=(vi,de,en)=>({vi,de,en})[lang()]||vi;
