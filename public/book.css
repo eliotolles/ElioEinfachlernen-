@@ -276,3 +276,9 @@ body.elio-app.book-app main .book-last-frame{border-radius:0 0 20px 20px}
 body.elio-app.book-app.module-speaking:not(.dark){--module-wash:#fff3d1;--module-edge:#efe0b5}
 body.elio-app.book-app main .book-home-grid>.book-chapter{border-radius:28px 0 28px 0}
 @media(max-width:600px){body.elio-app.book-app main .book-home-grid>.book-chapter{border-radius:20px 0 20px 0}}
+/* Quiet, continuous reading surface across learning modules. */
+body.elio-app.book-app main :is(.page-title,.panel,.exam-setup,.exam-selection-actions,.format-module,.vocab-deck-details,.lesson-reader,.exam-paper){background:transparent!important;background-image:none!important;box-shadow:none!important;border-radius:0!important;border-color:var(--line)!important}
+body.elio-app.book-app main .page-title{border:0;border-bottom:1px solid var(--line);padding:24px 0}
+body.elio-app.book-app main :is(.panel,.exam-setup,.exam-selection-actions,.format-module,.vocab-deck-details,.lesson-reader,.exam-paper){border-left:0;border-right:0;border-bottom:0;border-top:1px solid var(--line)}
+body.elio-app.book-app main .page-title :is(h1,p,em,.big-symbol){color:var(--text)!important}
+body.elio-app.book-app main .page-title p{color:var(--muted)!important}
