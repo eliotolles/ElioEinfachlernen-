@@ -11,6 +11,11 @@ self.addEventListener('fetch',event=>{
  if(event.request.method!=='GET'||url.origin!==self.location.origin||url.pathname.startsWith('/api/'))return;
  event.respondWith((async()=>{
   const cache=await caches.open(CACHE);
+  // Versioned public code/styles can be reused immediately on navigation.
+  // HTML stays network-first; private API responses are never intercepted.
+  if(url.searchParams.has('v')&&/\.(?:js|css)$/.test(url.pathname)){
+   const cached=await cache.match(event.request);if(cached)return cached;
+  }
   try{
    const response=await fetch(event.request);
    if(response.ok)event.waitUntil(cache.put(event.request,response.clone()).catch(()=>{}));

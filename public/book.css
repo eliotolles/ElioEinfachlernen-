@@ -257,3 +257,9 @@ body.book-app .book-contents:before,body.book-app .book-study:before{background-
 body.book-app .book-contents:before,body.book-app .book-study:before{background-size:cover;background-repeat:no-repeat;background-position:52% center}
 @media(min-width:1600px){body.book-app .book-contents:before,body.book-app .book-study:before{inset:0 0 0 32%;background-position:55% center}}
 @media(max-width:700px){body.book-app .book-contents:before,body.book-app .book-study:before{inset:0;background-size:cover;background-position:52% center}}
+
+/* Gold details only in dark mode; the light palette stays unchanged. */
+body.elio-app.book-app.dark #user-button .user-avatar{background:#e1c58a;color:#282319}
+body.elio-app.book-app.dark .page-title h1{color:#fff3d2}
+body.elio-app.book-app.dark .page-title em{color:#efd28c}
+body.elio-app.book-app.dark .page-title .big-symbol{color:#efd28c}
