@@ -273,5 +273,6 @@ body.elio-app.book-app main .book-last-frame{border-radius:0 0 20px 20px}
 }
 
 /* Home chapter cards: diagonally opposite rounded corners. */
+body.elio-app.book-app.module-speaking:not(.dark){--module-wash:#fff3d1;--module-edge:#efe0b5}
 body.elio-app.book-app main .book-home-grid>.book-chapter{border-radius:28px 0 28px 0}
 @media(max-width:600px){body.elio-app.book-app main .book-home-grid>.book-chapter{border-radius:20px 0 20px 0}}
