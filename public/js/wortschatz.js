@@ -42,3 +42,6 @@ function queueVocabularyEnrichment(deckId=null){const user=Auth.user,generation=
 $('#complete-vocab-meanings').onclick=()=>{if(!Auth.require())return;queueVocabularyEnrichment($('#vocab-deck')?.value==='all'?null:$('#vocab-deck')?.value);};
 $('#vocab-enrichment-stop').onclick=()=>{enrichmentGeneration++;$('#vocab-enrichment-stop').hidden=true;$('#vocab-meanings-status').textContent='Đã dừng. Các từ và phần AI đã lưu vẫn được giữ; bấm Bổ sung để tiếp tục.';};
 document.addEventListener('authchange',()=>{if(enrichmentUser===Auth.user)return;enrichmentUser=Auth.user;enrichmentGeneration++;$('#vocab-enrichment-stop').hidden=true;$('#vocab-meanings-status').textContent='';});
+
+// Refresh the available words on a retained view without resetting an active game.
+document.addEventListener('elioviewresume',()=>{words=Auth.get('vocab',[]);renderWords();if(typeof renderDecks==='function')renderDecks();});

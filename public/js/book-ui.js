@@ -93,5 +93,6 @@
  for(const event of ['click','change'])main.addEventListener(event,queueFrames);
  window.addEventListener('resize',queueFrames);markLastFrame();
  window.ElioBookReady=true;
+ document.addEventListener('elioviewresume',()=>App.apply());
  if(typeof ElioNavigation!=='undefined')ElioNavigation.install();
 })();
