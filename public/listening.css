@@ -33,3 +33,8 @@
 #elio-diktat .yt-library-section{margin-top:20px}#elio-diktat .yt-sub-backup{margin-top:15px}#elio-diktat #yt-transcribe{margin-top:12px}
 @media(max-width:1000px){#elio-diktat .yt-import-row{grid-template-columns:1fr 1fr}#elio-diktat .yt-card-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:550px){#elio-diktat .yt-import-row{grid-template-columns:1fr}#elio-diktat .yt-card-grid{grid-template-columns:1fr}}
+
+#elio-diktat .ed-sentence-controls{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+#elio-diktat #ed-segment-time{font-size:13px;color:var(--muted)}
+#elio-diktat .ed-play-row{gap:10px}#elio-diktat .ed-play-row .ed-speed{margin-left:0}
+#elio-diktat button:disabled{opacity:.5}
