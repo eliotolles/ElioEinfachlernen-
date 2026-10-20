@@ -219,3 +219,10 @@ body.elio-app.book-app .book-intro-copy{font-size:calc(18px * var(--text-scale,1
 body.elio-app.book-app .book-spread h1,body.elio-app.book-app .book-spread h1 i{font-weight:400!important}
 body.elio-app.book-app .book-spread h1{font-size:calc(68px * var(--text-scale,1));line-height:1.03;letter-spacing:-1px}
 @media(max-width:700px){body.elio-app.book-app .book-spread h1{font-size:calc(56px * var(--text-scale,1))}}
+/* Restore the approved alternating paper colors on the home chapter cards. */
+body.elio-app.book-app:not(.dark) .book-home-grid .book-chapter{background:#f3f3e8;border-color:#d8ddc8}
+body.elio-app.book-app:not(.dark) .book-home-grid .book-chapter:nth-child(2),body.elio-app.book-app:not(.dark) .book-home-grid .book-chapter:nth-child(5){background:#e8eddd}
+body.elio-app.book-app:not(.dark) .book-home-grid .book-chapter:nth-child(4){background:#eeeade}
+body.elio-app.book-app.dark .book-home-grid .book-chapter{background:#2d3c2f;border-color:#52604b}
+body.elio-app.book-app.dark .book-home-grid .book-chapter:nth-child(2),body.elio-app.book-app.dark .book-home-grid .book-chapter:nth-child(5){background:#35472e}
+body.elio-app.book-app.dark .book-home-grid .book-chapter:nth-child(4){background:#3a3e2f}
