@@ -215,3 +215,7 @@ body.elio-app.book-app .book-study-tabs button{font-size:calc(14px * var(--text-
 body.elio-app.book-app .book-spread h1{font-size:calc(70px * var(--text-scale,1))}
 body.elio-app.book-app .book-intro-copy{font-size:calc(18px * var(--text-scale,1));line-height:1.8;max-width:520px}
 @media(max-width:700px){body.elio-app.book-app .book-spread h1{font-size:calc(58px * var(--text-scale,1))}}
+/* Keep the editorial home headline light, independently of bold module headings. */
+body.elio-app.book-app .book-spread h1,body.elio-app.book-app .book-spread h1 i{font-weight:400!important}
+body.elio-app.book-app .book-spread h1{font-size:calc(68px * var(--text-scale,1));line-height:1.03;letter-spacing:-1px}
+@media(max-width:700px){body.elio-app.book-app .book-spread h1{font-size:calc(56px * var(--text-scale,1))}}
