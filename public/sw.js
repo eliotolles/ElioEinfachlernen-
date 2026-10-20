@@ -13,7 +13,7 @@ self.addEventListener('fetch',event=>{
   const cache=await caches.open(CACHE);
   // Versioned public code/styles can be reused immediately on navigation.
   // HTML stays network-first; private API responses are never intercepted.
-  if(url.searchParams.has('v')&&/\.(?:js|css)$/.test(url.pathname)){
+  if(url.searchParams.has('v')&&/\.(?:js|css)$/.test(url.pathname)||/^\/images\/[a-f0-9]{24}\.(?:jpg|png|webp)$/.test(url.pathname)){
    const cached=await cache.match(event.request);if(cached)return cached;
   }
   try{
