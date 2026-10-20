@@ -37,7 +37,7 @@
  if(file==='quiz.html'){
  root.classList.add('book-quiz');
  const level=document.getElementById('vocab-level'),practice=document.querySelector('.vocabulary-practice');
- if(level&&practice){const label=level.closest('label');practice.insertBefore(label,practice.querySelector('label'));}
+ if(level&&practice&&!document.getElementById('game-level')){const label=level.closest('label');practice.insertBefore(label,practice.querySelector('label'));}
  }else if(file==='wortschatz.html')root.classList.add('book-library');
  let panels;
  if(home){
