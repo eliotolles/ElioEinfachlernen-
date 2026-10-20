@@ -167,3 +167,12 @@ body.book-app .book-footer .book-programs>a{min-width:0;white-space:normal;overf
 body.book-app .book-footer .book-programs .book-menu-title,body.book-app .book-footer .book-programs .book-menu-settings{grid-column:1/-1;min-width:0}
 body.book-app .book-footer .book-programs .book-menu-settings select{width:66px;max-width:66px;min-width:0}
 @media(max-width:700px){body.book-app .book-footer .book-programs:not([hidden]){width:310px}}
+/* Desktop follows the browser width instead of a narrow centered book frame. */
+@media(min-width:851px){
+body.elio-app.book-app .book-shell{max-width:none!important;width:100%!important;margin:0!important;padding:24px clamp(24px,2.5vw,52px) 0}
+body.elio-app.book-app .book-shell>main{max-width:none!important;width:100%!important}
+body.elio-app.book-app.module-grammar .grammar-workspace{grid-template-columns:clamp(250px,19vw,340px) minmax(0,1fr);gap:28px}
+body.elio-app.book-app .grammar-sidebar{padding:20px 18px}
+body.elio-app.book-app .book-quiz .vocabulary-practice,body.elio-app.book-app.book-quiz .vocabulary-practice{max-width:none;width:100%;margin:0}
+body.elio-app.book-app .book-heading,body.elio-app.book-app .book-nav{width:100%;max-width:none;margin-left:0;margin-right:0}
+}
