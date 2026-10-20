@@ -242,3 +242,6 @@ body.book-app.dark .book-contents:after,body.book-app.dark .book-study:after{bac
 body.book-app .book-contents .book-toc{width:100%}
 body.book-app .book-study>*{max-width:100%}
 }
+/* Feather image edges so the illustration never starts as a hard rectangle. */
+body.book-app .book-contents:before,body.book-app .book-study:before{inset:0;background-position:right center;-webkit-mask-image:linear-gradient(90deg,transparent 15%,#000 58%);mask-image:linear-gradient(90deg,transparent 15%,#000 58%)}
+@media(max-width:700px){body.book-app .book-contents:before,body.book-app .book-study:before{-webkit-mask-image:linear-gradient(90deg,transparent,#000 70%);mask-image:linear-gradient(90deg,transparent,#000 70%)}}
