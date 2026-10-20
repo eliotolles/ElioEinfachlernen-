@@ -212,3 +212,6 @@ body.elio-app.book-app .book-study .book-study-row strong{font-size:calc(24px * 
 body.elio-app.book-app .book-toc .book-chapter em,body.elio-app.book-app .book-study .book-study-row small{font-size:calc(19px * var(--text-scale,1))}
 body.elio-app.book-app .book-study-tabs button{font-size:calc(14px * var(--text-scale,1))}
 }
+body.elio-app.book-app .book-spread h1{font-size:calc(70px * var(--text-scale,1))}
+body.elio-app.book-app .book-intro-copy{font-size:calc(18px * var(--text-scale,1));line-height:1.8;max-width:520px}
+@media(max-width:700px){body.elio-app.book-app .book-spread h1{font-size:calc(58px * var(--text-scale,1))}}
