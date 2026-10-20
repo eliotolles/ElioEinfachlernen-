@@ -14,6 +14,12 @@
  // Keep original shell nodes mounted: core and cloud handlers still own their state.
  const legacy=document.getElementById('navbar');legacy.classList.add('book-legacy-shell');legacy.setAttribute('aria-hidden','true');
  legacy.before(shell);shell.append(main);
+ const reading=document.createElement('div');reading.className='book-reading-control';reading.innerHTML='<button type="button" id="book-reading-toggle" aria-label="Cỡ chữ" aria-expanded="false" aria-controls="book-reading-menu">Aa</button><div id="book-reading-menu" hidden><label for="book-reading-size" id="book-reading-label">Cỡ chữ</label><select id="book-reading-size"><option value="16">16 · M</option><option value="18">18 · L</option><option value="20">20 · XL</option><option value="22">22 · XXL</option></select><small id="book-reading-status" role="status"></small></div>';shell.querySelector('.book-profile').prepend(reading);
+ const readingMenu=reading.querySelector('#book-reading-menu'),readingToggle=reading.querySelector('#book-reading-toggle'),readingSize=reading.querySelector('#book-reading-size');
+ readingToggle.onclick=()=>{readingMenu.hidden=!readingMenu.hidden;readingToggle.setAttribute('aria-expanded',String(!readingMenu.hidden));};
+ readingSize.onchange=()=>{try{App.saveSettings({textSize:Number(readingSize.value)});document.getElementById('book-reading-status').textContent=tr('Đã lưu cỡ chữ','Schriftgröße gespeichert','Text size saved');}catch(error){document.getElementById('book-reading-status').textContent=error.message;}};
+ document.addEventListener('click',e=>{if(!reading.contains(e.target)){readingMenu.hidden=true;readingToggle.setAttribute('aria-expanded','false');}});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'){readingMenu.hidden=true;readingToggle.setAttribute('aria-expanded','false');}});
  const avatar=document.getElementById('user-button');document.getElementById('book-account-toggle').append(avatar);avatar.onclick=null;avatar.setAttribute('aria-label','Tài khoản');avatar.setAttribute('aria-expanded','false');
  document.getElementById('book-account-toggle').onclick=()=>{const menu=document.getElementById('book-account-menu');menu.hidden=!menu.hidden;avatar.setAttribute('aria-expanded',String(!menu.hidden));};
  document.getElementById('book-logout').onclick=()=>Account.logout();
@@ -25,7 +31,7 @@
  const settings=footer.querySelector('.book-menu-settings');for(const id of ['theme','ui-language','text-size-link','ai-settings']){const node=document.getElementById(id);if(node)settings.append(node);}
  document.addEventListener('click',e=>{if(!footer.contains(e.target))closeMenu();if(!shell.querySelector('.book-profile').contains(e.target)){document.getElementById('book-account-menu').hidden=true;avatar.setAttribute('aria-expanded','false');}});
  document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMenu();document.getElementById('book-account-menu').hidden=true;avatar.setAttribute('aria-expanded','false');}});
- if(!home){const crumb=document.createElement('nav');crumb.className='book-crumb';const current=modules.find(m=>m[0]===file)?.[1]||document.title.split('·')[0];crumb.innerHTML=`<a href="index.html#contents">Mục lục</a><span>/</span><strong>${esc(current)}</strong>`;main.prepend(crumb);}
+ if(!home&&modules.some(m=>m[0]===file)){const crumb=document.createElement('nav');crumb.className='book-crumb';const current=modules.find(m=>m[0]===file)?.[1]||document.title.split('·')[0];crumb.innerHTML=`<a href="index.html#contents">Mục lục</a><span>/</span><strong>${esc(current)}</strong>`;main.prepend(crumb);}
  // Quiz uses the exact existing vocabulary and SRS engines, with the library kept mounted.
  if(file==='quiz.html'){
  root.classList.add('book-quiz');
@@ -63,7 +69,7 @@
  document.querySelectorAll('[data-book-page]').forEach(a=>a.onclick=e=>{e.preventDefault();const hash=a.dataset.bookPage==='intro'?'':a.dataset.bookPage;if(location.hash.slice(1)===hash)route();else location.hash=hash;});window.addEventListener('hashchange',route);route();
  }
  function appearance(){
- document.getElementById('book-profile-name').textContent=Account.displayName();
+ document.getElementById('book-profile-name').textContent=Account.displayName();readingSize.value=String(App.settings().textSize||16);readingToggle.setAttribute('aria-label',tr('Cỡ chữ','Schriftgröße','Text size'));document.getElementById('book-reading-label').textContent=tr('Cỡ chữ','Schriftgröße','Text size');
  const c=Account.config||{},brand=shell.querySelector('.book-brand');brand.querySelector('span').textContent=c.name||'Elio Einfach';if(c.logo){const mark=brand.querySelector('b');mark.replaceChildren();const img=document.createElement('img');img.src=c.logo;img.alt='';mark.append(img);}
  const slogan=tr('Học điều mới hôm nay, thay đổi ngày mai của bạn.','Lerne heute etwas Neues und verändere dein Morgen.','Learn something today and change your tomorrow.');shell.querySelector('.book-slogan').textContent=slogan;
  const navTexts=[tr('Lời mở đầu','Auftakt','Introduction'),tr('Mục lục','Inhalt','Contents'),tr('Góc học của bạn','Dein Lernraum','Your study space')];shell.querySelectorAll('[data-book-page]').forEach((a,i)=>a.textContent=navTexts[i]);

@@ -176,3 +176,13 @@ body.elio-app.book-app .grammar-sidebar{padding:20px 18px}
 body.elio-app.book-app .book-quiz .vocabulary-practice,body.elio-app.book-app.book-quiz .vocabulary-practice{max-width:none;width:100%;margin:0}
 body.elio-app.book-app .book-heading,body.elio-app.book-app .book-nav{width:100%;max-width:none;margin-left:0;margin-right:0}
 }
+body.book-app .book-profile{display:flex;align-items:center;gap:8px}
+body.book-app .book-reading-control{position:relative}
+body.book-app #book-reading-toggle{min-width:44px;height:44px;padding:5px;border:0;background:transparent;color:var(--text);font:500 calc(18px * var(--text-scale,1))/1.3 Georgia,serif}
+body.book-app #book-reading-menu{position:absolute;top:calc(100% + 8px);right:0;width:210px;padding:17px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--text);box-shadow:0 12px 30px #14251c20;z-index:65}
+body.book-app #book-reading-label{display:block;margin:0 0 10px;font-size:16px;font-weight:500}
+body.book-app #book-reading-size{width:100%;font-size:18px;padding:8px}
+body.book-app #book-reading-status{display:block;font-size:13px;line-height:1.5;margin-top:8px;color:var(--muted)}
+body.book-app .book-nav>a{font-size:calc(17px * var(--text-scale,1))}
+body.book-app .book-crumb{justify-content:flex-start;max-width:none;margin:0;padding:0 0 18px;background:transparent;border:0}
+@media(max-width:700px){body.book-app .book-nav{grid-template-columns:minmax(0,1fr) minmax(0,.75fr) minmax(0,1.2fr) auto;gap:6px}body.book-app .book-nav>a{font-size:calc(14px * var(--text-scale,1))}body.book-app .book-profile{gap:0}body.book-app #book-reading-toggle{min-width:36px;width:36px}body.book-app #book-account-toggle{min-width:38px}}
