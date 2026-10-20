@@ -250,6 +250,10 @@ body.book-app .book-contents:before,body.book-app .book-study:before{inset:0;bac
 body.book-app .book-contents:before,body.book-app .book-study:before{inset:0 0 0 28%;background-size:cover;background-position:center center;-webkit-mask-image:linear-gradient(90deg,transparent,#000 32%);mask-image:linear-gradient(90deg,transparent,#000 32%)}
 @media(max-width:700px){body.book-app .book-contents:before,body.book-app .book-study:before{inset:0;background-position:60% center;-webkit-mask-image:linear-gradient(90deg,transparent,#000 70%);mask-image:linear-gradient(90deg,transparent,#000 70%)}}
 
-/* Keep the supplied 1024px art at its native scale, independent of section height. */
-body.book-app .book-contents:before,body.book-app .book-study:before{background-size:min(100%,1024px) auto;background-repeat:no-repeat;background-position:right center;filter:none;transform:none}
-@media(max-width:700px){body.book-app .book-contents:before,body.book-app .book-study:before{background-size:min(100%,1024px) auto;background-position:center center}}
+/* Keep the restored 1672px art at its native scale, independent of section height. */
+body.book-app .book-contents:before,body.book-app .book-study:before{background-size:min(100%,1672px) auto;background-repeat:no-repeat;background-position:right center;filter:none;transform:none}
+@media(max-width:700px){body.book-app .book-contents:before,body.book-app .book-study:before{background-size:min(100%,1672px) auto;background-position:center center}}
+/* Responsive artwork fills each illustration area without distorting its aspect ratio. */
+body.book-app .book-contents:before,body.book-app .book-study:before{background-size:cover;background-repeat:no-repeat;background-position:52% center}
+@media(min-width:1600px){body.book-app .book-contents:before,body.book-app .book-study:before{inset:0 0 0 32%;background-position:55% center}}
+@media(max-width:700px){body.book-app .book-contents:before,body.book-app .book-study:before{inset:0;background-size:cover;background-position:52% center}}
