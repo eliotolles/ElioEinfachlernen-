@@ -7,12 +7,16 @@ let assetVersions={};try{assetVersions=JSON.parse(document.getElementById?.('eli
 const assetURL=src=>{const version=assetVersions[src]||assetVersion;return version?src+'?v='+encodeURIComponent(version):src;};
 for(const src of localScripts){const link=document.createElement('link');link.rel='preload';link.as='script';link.href=assetURL(src);document.head.append(link);}
 (async()=>{
+ if(window.ElioSessionLoaded)await window.ElioSessionLoaded;
  await Account.ready;
  if(!Account.current()||Account.profile.passwordExpired)return;
- for(const src of localScripts){
-  await new Promise((resolve,reject)=>{const s=document.createElement('script');s.src=assetURL(src);s.onload=resolve;s.onerror=()=>reject(Error('Không tải được '+src));document.body.append(s);});
- }
+ // Fetch together; async=false preserves the existing dependency/execution order.
+ await Promise.all(localScripts.map(src=>new Promise((resolve,reject)=>{
+  const s=document.createElement('script');s.async=false;s.src=assetURL(src);s.onload=resolve;s.onerror=()=>reject(Error('Không tải được '+src));document.body.append(s);
+ })));
  // Reveal once, after saved theme, module controls and the current shell are ready.
  if(!window.ElioBookReady)throw Error('Chưa tải xong giao diện Elio. Vui lòng tải lại trang.');
  document.documentElement.classList.remove('auth-pending');
+ const artwork=document.querySelector('meta[name="elio-artwork"]')?.content;
+ if(artwork){const loadArt=()=>artwork.split(',').forEach(src=>{const link=document.createElement('link');link.rel='stylesheet';link.href=assetURL(src);document.head.append(link);});if(window.requestIdleCallback)window.requestIdleCallback(loadArt,{timeout:1500});else setTimeout(loadArt,0);}
 })().catch(e=>{document.body.textContent=e.message;document.documentElement.classList.remove('auth-pending');});

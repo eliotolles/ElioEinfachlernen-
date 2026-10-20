@@ -1,6 +1,8 @@
+import {optimizeStartup} from './optimize-startup.mjs';
 import {createHash} from 'node:crypto';
 // Content revision keeps browser assets together without caching account API data.
 export function versionAssets(input){
+ input=optimizeStartup(input);
  const hash=createHash('sha256').update('elio-loading-brand-v2');for(const name of Object.keys(input).sort())hash.update(name).update(input[name]);
  const revision=hash.digest('hex').slice(0,16),assets={...input};
  const versions=Object.fromEntries(Object.entries(input).filter(([name])=>/\.(?:js|css)$/.test(name)).map(([name,content])=>[name.replace(/^\//,''),createHash('sha256').update(content).digest('hex').slice(0,16)]));
