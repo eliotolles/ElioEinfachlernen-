@@ -263,3 +263,10 @@ body.elio-app.book-app.dark #user-button .user-avatar{background:#e1c58a;color:#
 body.elio-app.book-app.dark .page-title h1{color:#fff3d2}
 body.elio-app.book-app.dark .page-title em{color:#efd28c}
 body.elio-app.book-app.dark .page-title .big-symbol{color:#efd28c}
+/* Paired chapter frames: rounded heading top, rounded content bottom. */
+body.elio-app.book-app main .page-title{border-radius:28px 28px 0 0}
+body.elio-app.book-app main :is(.panel,.exam-setup,.exam-selection-actions,.format-module,.vocab-deck-details,.lesson-reader,.exam-paper,.yt-card,.book-chapter){border-radius:0 0 20px 20px}
+@media(max-width:600px){
+ body.elio-app.book-app main .page-title{border-radius:20px 20px 0 0}
+ body.elio-app.book-app main :is(.panel,.exam-setup,.exam-selection-actions,.format-module,.vocab-deck-details,.lesson-reader,.exam-paper,.yt-card,.book-chapter){border-radius:0 0 16px 16px}
+}
