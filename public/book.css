@@ -265,9 +265,13 @@ body.elio-app.book-app.dark .page-title em{color:#efd28c}
 body.elio-app.book-app.dark .page-title .big-symbol{color:#efd28c}
 /* Only the outer beginning and ending of each screen are rounded. */
 body.elio-app.book-app main .page-title{border-radius:28px 28px 0 0}
-body.elio-app.book-app main :is(.panel,.exam-setup,.exam-selection-actions,.format-module,.vocab-deck-details,.lesson-reader,.exam-paper,.yt-card,.book-chapter){border-radius:0}
+body.elio-app.book-app main :is(.panel,.exam-setup,.exam-selection-actions,.format-module,.vocab-deck-details,.lesson-reader,.exam-paper,.yt-card){border-radius:0}
 body.elio-app.book-app main .book-last-frame{border-radius:0 0 20px 20px}
 @media(max-width:600px){
  body.elio-app.book-app main .page-title{border-radius:20px 20px 0 0}
  body.elio-app.book-app main .book-last-frame{border-radius:0 0 16px 16px}
 }
+
+/* Home chapter cards: diagonally opposite rounded corners. */
+body.elio-app.book-app main .book-home-grid>.book-chapter{border-radius:28px 0 28px 0}
+@media(max-width:600px){body.elio-app.book-app main .book-home-grid>.book-chapter{border-radius:20px 0 20px 0}}
