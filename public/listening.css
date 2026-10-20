@@ -7,3 +7,16 @@
 @media(max-width:650px){#elio-diktat .yt-import-row{grid-template-columns:1fr}#elio-diktat .ed-layout{grid-template-columns:1fr}#elio-diktat .yt-screen{padding:13px}#elio-diktat .yt-center h3{font-size:27px}#elio-diktat .yt-center p{margin:5px 0}#elio-diktat .yt-label{font-size:9px}}
 
 #elio-diktat{background:var(--bg,#faf7ee);color:var(--text,#1d3027)}#elio-diktat .yt-screen{padding:0;display:block;background:#203128;position:relative}#elio-diktat .yt-screen iframe{width:100%;height:100%;border:0;position:absolute;inset:0}#elio-diktat .yt-screen:empty:after{content:"Dán link YouTube để bắt đầu";display:grid;place-items:center;height:100%;color:#faf7ee}#elio-diktat .ed-layout{grid-template-columns:210px minmax(0,1fr)}@media(max-width:700px){#elio-diktat .ed-layout{grid-template-columns:1fr}}
+/* Horizontal lesson selection and balanced video/dictation workspace. */
+#elio-diktat .ed-top-selectors{display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding:18px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:23px}
+#elio-diktat .ed-top-selectors>label{margin:0;min-width:120px}
+#elio-diktat .ed-top-selectors>.ed-eyebrow{margin-left:8px}
+#elio-diktat .ed-top-selectors .ed-lessons{display:flex;gap:8px;flex-wrap:wrap;flex:1;margin-top:0!important;min-width:0}
+#elio-diktat .ed-top-selectors .ed-lessons button{max-width:100%;overflow-wrap:anywhere}
+#elio-diktat .ed-main-head{margin-top:24px}
+#elio-diktat .ed-layout{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:27px;margin-top:18px;align-items:start}
+#elio-diktat .ed-layout>section{min-width:0}
+#elio-diktat .yt-screen{margin-top:0;width:100%;aspect-ratio:16/9}
+#elio-diktat .ed-writing-column textarea{min-height:180px}
+#elio-diktat .ed-question-nav{max-height:170px;overflow:auto}
+@media(max-width:850px){#elio-diktat .ed-layout{grid-template-columns:1fr}#elio-diktat .ed-top-selectors{gap:12px}#elio-diktat .ed-top-selectors .ed-lessons{flex-basis:100%}#elio-diktat .ed-top-selectors>.ed-eyebrow{margin-left:0}#elio-diktat .ed-writing-column textarea{min-height:145px}}
