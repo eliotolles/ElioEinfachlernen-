@@ -79,5 +79,18 @@
  for(const event of ['languagechange','cloudchange','authchange'])document.addEventListener(event,appearance);appearance();
  if(file==='history.html'){const kind=new URLSearchParams(location.search).get('kind'),select=document.getElementById('history-kind');if(kind&&select&&Array.from(select.options).some(o=>o.value===kind)){select.value=kind;select.dispatchEvent(new Event('change'));}}
  if(file==='quiz.html'&&location.hash==='#srs')document.getElementById('tab-srs')?.click();
+ // Middle content frames stay square; only the final visible outer frame closes the screen.
+ const frameSelector='.panel,.exam-setup,.exam-selection-actions,.format-module,.vocab-deck-details,.lesson-reader,.exam-paper,.yt-card,.book-chapter';
+ function markLastFrame(){
+  const candidates=Array.from(main.querySelectorAll(frameSelector)).filter(node=>!node.parentElement?.closest(frameSelector));
+  const visible=node=>{for(let p=node;p&&p!==main.parentElement;p=p.parentElement){if(p.hidden||p.getAttribute('aria-hidden')==='true')return false;if(typeof getComputedStyle==='function'&&getComputedStyle(p).display==='none')return false;}return true;};
+  const last=candidates.reverse().find(visible);
+  main.querySelectorAll('.book-last-frame').forEach(node=>{if(node!==last)node.classList.remove('book-last-frame');});
+  if(last&&!last.classList.contains('book-last-frame'))last.classList.add('book-last-frame');
+ }
+ let frameQueued=false;function queueFrames(){if(frameQueued)return;frameQueued=true;Promise.resolve().then(()=>{frameQueued=false;markLastFrame();});}
+ if(typeof MutationObserver==='function')new MutationObserver(queueFrames).observe(main,{childList:true,subtree:true,attributes:true,attributeFilter:['hidden','aria-hidden']});
+ for(const event of ['click','change'])main.addEventListener(event,queueFrames);
+ window.addEventListener('resize',queueFrames);markLastFrame();
  window.ElioBookReady=true;
 })();
