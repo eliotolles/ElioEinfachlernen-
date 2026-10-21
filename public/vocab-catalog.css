@@ -44,3 +44,15 @@ body.book-library .catalog-detail-heading h3{margin:0;font-weight:700}
 .vocab-parent-group[open]>.vocab-parent-tab{min-height:88px}
 .vocab-parent-group[data-kind=level][open]>.vocab-parent-tab{min-height:120px}
 @media(max-width:480px){.vocab-catalog-panel>.vocab-catalog-grid{gap:10px}.vocab-parent-tab{min-height:94px;padding:14px 12px;gap:9px}.vocab-parent-tab strong{font-size:1rem}.vocab-parent-tab small{font-size:.9rem}.vocab-parent-icon{font-size:1.2rem}.vocab-parent-group[data-kind=level]>.vocab-parent-tab{min-height:136px}.vocab-level-badge{top:12px;right:12px}.vocab-parent-arrow{right:9px}}
+
+/* Slim expanded accordion; collapsed cards keep their existing layout. */
+.vocab-parent-group[open]>.vocab-parent-tab,.vocab-parent-group[data-kind=level][open]>.vocab-parent-tab{min-height:0;flex-direction:row;align-items:center;gap:12px;padding:14px 20px}
+.vocab-parent-group[open]>.vocab-parent-tab .vocab-parent-caption{flex-direction:row;align-items:baseline;flex-wrap:wrap;gap:12px}
+.vocab-parent-group[open]>.vocab-parent-tab .vocab-level-badge{position:static;margin-left:auto;margin-right:22px}
+.vocab-parent-group[open]>.vocab-parent-tab .vocab-parent-icon{font-size:1.25rem}
+.vocab-child-tabs{padding:14px;gap:12px}
+.vocab-child-tabs .vocab-catalog-card{min-height:0;padding:14px 16px;gap:7px}
+.vocab-child-tabs .vocab-catalog-card strong{font-size:1.05rem;line-height:1.4}
+.vocab-child-tabs .deck-card-management{margin-top:6px;gap:6px}
+.vocab-child-tabs .deck-card-management button{min-height:36px;padding:6px 10px;font-size:.9rem}
+@media(max-width:480px){.vocab-parent-group[open]>.vocab-parent-tab,.vocab-parent-group[data-kind=level][open]>.vocab-parent-tab{padding:12px;gap:9px}.vocab-child-tabs{padding:10px}.vocab-child-tabs .vocab-catalog-card{padding:12px}.vocab-parent-group[open]>.vocab-parent-tab .vocab-parent-caption{gap:8px}}
