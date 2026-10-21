@@ -16,3 +16,15 @@ body.book-library .catalog-detail-heading h3{margin:0;font-weight:700}
 @media(max-width:600px){body.book-library .personal-deck-grid{grid-template-columns:1fr}}
 
 .vocab-deck-card{min-width:0}.vocab-deck-card>.vocab-catalog-card{width:100%}.deck-card-management{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}.deck-card-management button{font-size:.95rem;padding:8px 12px}.deck-card-status:empty{display:none}.deck-card-status{font-size:.95rem;margin:8px 0}
+
+.vocab-parent-group{min-width:0;border:1px solid var(--border,#c8c8bb);border-radius:0!important;background:transparent}
+.vocab-parent-tab{display:flex!important;flex-direction:column;justify-content:center;align-items:flex-start;gap:12px;position:relative;box-sizing:border-box;width:100%;aspect-ratio:1;padding:22px;cursor:pointer;list-style:none;color:inherit}
+.vocab-parent-tab::-webkit-details-marker{display:none}.vocab-parent-tab::marker{content:''}
+.vocab-parent-tab strong{font-family:inherit;font-size:1.25rem;font-weight:700;line-height:1.4}
+.vocab-parent-tab small{font-size:1rem;opacity:.75}.vocab-parent-arrow{position:absolute;right:18px;bottom:18px;transition:transform .18s}
+.vocab-parent-group[open]{grid-column:1/-1}.vocab-parent-group[open]>.vocab-parent-tab{aspect-ratio:auto;min-height:100px;border-bottom:1px solid var(--border,#c8c8bb)}
+.vocab-parent-group[open] .vocab-parent-arrow{transform:rotate(180deg)}
+.vocab-child-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;padding:18px}
+.vocab-parent-tab:focus-visible{outline:2px solid currentColor;outline-offset:-4px}
+@media(max-width:760px){.vocab-child-tabs{grid-template-columns:repeat(2,minmax(0,1fr))}.vocab-parent-tab{padding:16px}}
+@media(max-width:480px){.vocab-catalog-panel>.vocab-catalog-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.vocab-child-tabs{grid-template-columns:1fr;padding:12px}.vocab-parent-tab strong{font-size:1.05rem}.vocab-parent-tab{gap:8px}.vocab-parent-tab small{font-size:.95rem}}

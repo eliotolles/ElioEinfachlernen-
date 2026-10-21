@@ -74,7 +74,20 @@
    }else{
     panel.querySelector('h2').textContent=labels[active];const filtered=all.filter(d=>d.source===active),byCategory=new Map();for(const d of filtered){const k=active==='level'?d.level:d.category||text('Chưa phân loại','Nicht zugeordnet','Unclassified');if(!byCategory.has(k))byCategory.set(k,[]);byCategory.get(k).push(d);}
     const categories=active==='industry'?[...new Set([...VocabCatalog.industries,...byCategory.keys()])]:active==='level'?VocabCatalog.levels:[...byCategory.keys()];
-    for(const category of categories){const entries=byCategory.get(category)||[],group=document.createElement('section');group.className='vocab-catalog-group';const h=document.createElement('h3');h.textContent=category;group.append(h);for(const deck of entries)group.append(deckCard(deck,panel));if(!entries.length){const p=document.createElement('p');p.className='muted';p.textContent=text('Chưa có bộ từ.','Noch keine Sets.','No word sets yet.');group.append(p);}grid.append(group);}
+    for(const category of categories){
+     const entries=byCategory.get(category)||[],group=document.createElement('details');group.className='vocab-parent-group';
+     const summary=document.createElement('summary');summary.className='vocab-parent-tab';
+     const title=document.createElement('strong');title.textContent=category;
+     const count=document.createElement('small');count.textContent=entries.length+' '+text('bộ từ','Wortsets','word sets');
+     const arrow=document.createElement('span');arrow.className='vocab-parent-arrow';arrow.textContent='⌄';arrow.setAttribute('aria-hidden','true');
+     summary.append(title,count,arrow);group.append(summary);
+     const children=document.createElement('div');children.className='vocab-child-tabs';
+     group.addEventListener('toggle',()=>{summary.setAttribute('aria-expanded',String(group.open));if(!group.open)return;for(const sibling of grid.children)if(sibling!==group&&sibling.tagName==='DETAILS')sibling.open=false;});
+     summary.setAttribute('aria-expanded','false');
+     for(const deck of entries)children.append(deckCard(deck,panel));
+     if(!entries.length){const p=document.createElement('p');p.className='muted';p.textContent=text('Chưa có bộ từ.','Noch keine Sets.','No word sets yet.');children.append(p);}
+     group.append(children);grid.append(group);
+    }
     if(!categories.length)grid.textContent=text('Chưa có bộ từ chung. Admin có thể import tài liệu tại đây.','Noch keine gemeinsamen Wortsets.','No shared word sets yet.');panel.querySelector('.vocab-catalog-admin').hidden=!admin();
    }
    rendered.set(active,signature);
@@ -84,7 +97,7 @@
  $('#vocab-level').addEventListener('change',()=>{opened.delete(personal);personalDetail.renderToken=null;personalDetail.deckSignature=null;personalDetail.replaceChildren();refresh();});
  function select(key){if(active===key)return;active=key;refresh();}
  function invalidate(){catalogCache=null;refresh();}
- function mountImports(){for(const [key,panel]of panels){const host=panel.querySelector('.vocab-catalog-admin');host.hidden=!admin();if(!admin()){host.replaceChildren();imports.delete(key);continue;}if(imports.has(key))continue;host.innerHTML='<div class="import-destination"><label>'+esc(text('Nhóm đích (chọn hoặc nhập mới)','Zielgruppe','Destination group'))+'<input data-category list="catalog-options-'+key+'" maxlength="100" value="'+esc(key==='level'?'A1':key==='industry'?VocabCatalog.industries[0]:'Cuộc sống hằng ngày')+'"><datalist id="catalog-options-'+key+'"></datalist></label>'+(key==='industry'?'':'<label>'+esc(text('Cấp độ khi import','Importniveau','Import level'))+'<select data-catalog-level>'+VocabCatalog.levels.map(l=>'<option>'+l+'</option>').join('')+'</select></label>')+'</div><div id="catalog-import-'+key+'"></div>';const list=host.querySelector('datalist');const choices=key==='industry'?VocabCatalog.industries:key==='level'?VocabCatalog.levels:['Cuộc sống hằng ngày','Gia đình','Giao thông','Nhà ở','Sức khỏe','Mua sắm'];list.innerHTML=choices.map(v=>'<option value="'+esc(v)+'"></option>').join('');if(key==='level'){host.querySelector('[data-category]').oninput=()=>{const v=host.querySelector('[data-category]').value.toUpperCase();if(VocabCatalog.levels.includes(v))host.querySelector('[data-catalog-level]').value=v;};host.querySelector('[data-catalog-level]').onchange=e=>host.querySelector('[data-category]').value=e.target.value;}
+ function mountImports(){for(const [key,panel]of panels){const host=panel.querySelector('.vocab-catalog-admin');host.hidden=!admin();if(!admin()){host.replaceChildren();imports.delete(key);continue;}if(imports.has(key))continue;host.innerHTML='<div class="import-destination"><label>'+esc(text('Nhóm đích (chọn hoặc nhập mới)','Zielgruppe','Destination group'))+'<input data-category list="catalog-options-'+key+'" maxlength="100" value="'+esc(key==='level'?'A1':key==='industry'?VocabCatalog.industries[0]:'Cuộc sống hằng ngày')+'"><datalist id="catalog-options-'+key+'"></datalist></label>'+'</div><div id="catalog-import-'+key+'"></div>';const list=host.querySelector('datalist');const choices=key==='industry'?VocabCatalog.industries:key==='level'?VocabCatalog.levels:['Cuộc sống hằng ngày','Gia đình','Giao thông','Nhà ở','Sức khỏe','Mua sắm'];list.innerHTML=choices.map(v=>'<option value="'+esc(v)+'"></option>').join('');
  const context=()=>{const c=VocabCatalog.context(host,key);if(key==='level'&&!VocabCatalog.levels.includes(c.category))throw Error('Chọn cấp độ từ A1 đến C2.');return c;};ImportHub.mount('vocabulary',collection=>{onVocabularyImported(collection);invalidate();},'#catalog-import-'+key,{context});imports.set(key,true);}}
  for(const e of ['vocabchange','cloudchange','elioviewresume'])document.addEventListener(e,invalidate);document.addEventListener('languagechange',refresh);document.addEventListener('authchange',()=>{catalogCache=null;mountImports();refresh();});mountImports();refresh();
 })();
