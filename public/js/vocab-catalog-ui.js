@@ -33,14 +33,31 @@
   const status=document.createElement('p');status.setAttribute('role','status');
   if(canManage(deck))for(const [remove,label]of [[false,text('Đổi tên','Umbenennen','Rename')],[true,text('× Xóa bộ','× Löschen','× Delete set')]]){
    const button=document.createElement('button');button.type='button';button.className='secondary';button.textContent=label;
-   button.onclick=async()=>{const item=decks().find(v=>v.id===deck.id);if(!item)return;const level=item.items[0]?vocabularyLevel(item.items[0]):item.level;$('#vocab-level').value=VocabCatalog.levels.includes(level)?level:'unknown';renderDecks();originalSelect.value=item.id;await changeVocabularyDeck(remove);status.textContent=$('#vocab-deck-manage-status').textContent;};actions.append(button);
+   button.onclick=async()=>{const item=decks().find(v=>v.id===deck.id);if(!item)return;await changeVocabularyDeck(remove,item.id);status.textContent=$('#vocab-deck-manage-status').textContent;};actions.append(button);
   }
   const close=document.createElement('button');close.type='button';close.className='secondary';close.textContent=text('Thu gọn','Schließen','Close');close.onclick=()=>{opened.delete(panel);d.renderToken=null;d.deckSignature=null;d.replaceChildren();};actions.append(close);heading.append(actions);d.append(heading,status);
   const wrap=document.createElement('div');wrap.className='table-wrap';wrap.innerHTML='<table class="learning-table"><thead><tr><th>Deutsch</th><th>'+esc(text('Nghĩa','Bedeutung','Meaning'))+'</th><th>'+esc(text('Loại từ','Wortart','Word class'))+'</th><th>'+esc(text('Ví dụ','Beispiel','Example'))+'</th></tr></thead><tbody></tbody></table>';d.append(wrap);
   const tbody=wrap.querySelector('tbody'),rowLanguage=language(),relatedLabel=esc(text('Đồng nghĩa & cụm từ','Synonyme & Wendungen','Synonyms & phrases'));wrap.addEventListener('toggle',event=>{const node=event.target;if(!node.matches?.('[data-word-related]')||!node.open||node.dataset.loaded)return;node.dataset.loaded='1';node.querySelector('div').innerHTML=Vocabulary.relatedHTML(deck.items[Number(node.dataset.wordRelated)]);},true);let offset=0;function batch(){if(d.renderToken!==token)return;const rows=deck.items.slice(offset,offset+150).map((w,i)=>'<tr><td><strong>'+esc(w.de)+'</strong><details data-word-related="'+(offset+i)+'"><summary>'+relatedLabel+'</summary><div></div></details></td><td>'+esc(Vocabulary.meaning(w,rowLanguage))+'</td><td>'+esc(w.type||'—')+'</td><td>'+esc(w.example||'—')+(w.exampleVi?'<br><small>'+esc(w.exampleVi)+'</small>':'')+'</td></tr>').join('');tbody.insertAdjacentHTML('beforeend',rows);offset+=150;if(offset<deck.items.length)(window.requestAnimationFrame||setTimeout)(batch);}
   batch();
  }
- function deckCard(deck,panel){const b=document.createElement('button');b.type='button';b.className='secondary vocab-catalog-card';const title=document.createElement('strong');title.textContent=deck.name;const count=document.createElement('small');count.textContent=deck.items.length+' '+text('từ','Wörter','words')+(deck.level?' · '+deck.level:'');const arrow=document.createElement('span');arrow.className='deck-card-arrow';arrow.textContent='↗';b.append(title,count,arrow);b.onclick=()=>openDeck(deck,panel);return b;}
+ function deckCard(deck,panel){
+  const card=document.createElement('div');card.className='vocab-deck-card';
+  const b=document.createElement('button');b.type='button';b.className='secondary vocab-catalog-card';
+  const title=document.createElement('strong');title.textContent=deck.name;
+  const count=document.createElement('small');count.textContent=deck.items.length+' '+text('từ','Wörter','words')+(deck.source!=='industry'&&deck.level?' · '+deck.level:'');
+  const arrow=document.createElement('span');arrow.className='deck-card-arrow';arrow.textContent='↗';b.append(title,count,arrow);b.onclick=()=>openDeck(deck,panel);card.append(b);
+  if(canManage(deck)){
+   const actions=document.createElement('div');actions.className='catalog-actions deck-card-management';
+   const status=document.createElement('p');status.setAttribute('role','status');status.className='deck-card-status';
+   for(const [remove,label,icon] of [[false,text('Sửa tên','Umbenennen','Rename'),'✎'],[true,text('Xóa bộ','Set löschen','Delete set'),'×']]){
+    const button=document.createElement('button');button.type='button';button.className='secondary';button.textContent=icon+' '+label;button.setAttribute('aria-label',label+': '+deck.name);
+    button.onclick=async()=>{button.disabled=true;await changeVocabularyDeck(remove,deck.id);status.textContent=$('#vocab-deck-manage-status').textContent;button.disabled=false;};actions.append(button);
+   }
+   card.append(actions,status);
+  }
+  return card;
+ }
+
  const tabButtons=new Map(),rendered=new Map();
  for(const key of ['topic','level','industry','mine']){const b=document.createElement('button');b.type='button';b.setAttribute('aria-controls',key==='mine'?'vocab-mine':'vocab-catalog-'+key);b.onclick=()=>select(key);tabs.append(b);tabButtons.set(key,b);}
  function refresh(){

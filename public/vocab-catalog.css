@@ -14,3 +14,5 @@ body.book-library .vocab-catalog-detail .table-wrap{overflow-x:auto!important}
 body.book-library .catalog-detail-heading{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin:24px 0 12px}
 body.book-library .catalog-detail-heading h3{margin:0;font-weight:700}
 @media(max-width:600px){body.book-library .personal-deck-grid{grid-template-columns:1fr}}
+
+.vocab-deck-card{min-width:0}.vocab-deck-card>.vocab-catalog-card{width:100%}.deck-card-management{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}.deck-card-management button{font-size:.95rem;padding:8px 12px}.deck-card-status:empty{display:none}.deck-card-status{font-size:.95rem;margin:8px 0}
