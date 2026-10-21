@@ -35,7 +35,7 @@ function renderBookPackControls(){const root=$('#book-pack-zone');if(root)root.h
 function mergeGrammarBookPack(all,pack){
  const old=all.find(c=>c.id===pack.id);
  if(old&&(old.packVersion||1)>=pack.packVersion)return {materials:all,added:0};
- if(old&&(old.packVersion||1)>=3){const byId=new Map(pack.items.map(i=>[i.id,i]));let changed=0;const items=old.items.map(item=>{const next=byId.get(item.id);if(!next||item.updatedAt||JSON.stringify(item)===JSON.stringify(next))return item;changed++;return next;});return {materials:all.map(c=>c.id===pack.id?{...c,items,packVersion:pack.packVersion}:c),added:changed,upgraded:true};}
+ if(old&&(old.packVersion||1)>=3){const targets=Array.isArray(pack.revisionTargets)?new Set(pack.revisionTargets):null;const byId=new Map(pack.items.filter(i=>!targets||targets.has(i.id)).map(i=>[i.id,i]));let changed=0;const items=old.items.map(item=>{const next=byId.get(item.id);if(!next||item.updatedAt||JSON.stringify(item)===JSON.stringify(next))return item;changed++;return next;});return {materials:all.map(c=>c.id===pack.id?{...c,items,packVersion:pack.packVersion}:c),added:changed,upgraded:true};}
  return {materials:old?all.map(c=>c.id===pack.id?{...pack,createdAt:old.createdAt||Date.now()}:c):[...all,{...pack,createdAt:Date.now()}],added:pack.items.length,replaced:!!old};
 }
 async function installGrammarBookPack(){
@@ -46,13 +46,13 @@ async function installGrammarBookPack(){
   status.textContent='Đang tải giáo trình đã chuẩn bị…';
   const response=await fetch('data/grammar-book-a1-b2.json');if(!response.ok)throw Error('Không tải được giáo trình. Hãy tải lại trang.');
   const pack=await response.json();if(user!==Auth.user)return;
-  if(pack.packVersion!==5||!Array.isArray(pack.items)||pack.items.length!==64||new Set(pack.items.map(l=>l.id)).size!==64||pack.items.some(l=>!l.title||!l.content||!['A1','A2','B1','B2'].includes(l.level)))throw Error('Gói giáo trình không hợp lệ.');
+  if(pack.packVersion!==6||!Array.isArray(pack.items)||pack.items.length!==64||new Set(pack.items.map(l=>l.id)).size!==64||pack.items.some(l=>!l.title||!l.content||!['A1','A2','B1','B2'].includes(l.level)))throw Error('Gói giáo trình không hợp lệ.');
   const merged=mergeGrammarBookPack(Auth.get('materials',[]),pack);
   if(!merged.added&&!merged.upgraded){status.textContent='Giáo trình đã ở phiên bản mới. Giữ nguyên nội dung đã sửa và bài bạn đã xóa.';return;}
   const old=Auth.get('materials',[]).find(c=>c.id===pack.id);if(old)await AccountCache.write(Account.cacheKey('grammar-book-backup'),structuredClone(old));if(user!==Auth.user)return;Auth.set('materials',merged.materials);loadGrammar();
   const first=grammarItems().find(l=>l.collectionId===pack.id&&($('#grammar-level').value==='all'||l.level===$('#grammar-level').value));if(first)openLesson(first.id);
   await Account.flush();if(user!==Auth.user)return;
-  status.textContent=Account.pending['shared:materials']||Account.conflicts['shared:materials']?'Đã thêm trên thiết bị; đang chờ đồng bộ. Kiểm tra Cài đặt.':`Đã đồng bộ ${merged.added} bài cập nhật. Gói đầy đủ: A1 12 · A2 13 · B1 17 · B2 22. Đã phân biệt nội dung theo chủ điểm; bài đã tự sửa, tài liệu khác và lịch sử vẫn giữ. Chỉ Admin được sửa/xóa nội dung chung.`;
+  status.textContent=Account.pending['shared:materials']||Account.conflicts['shared:materials']?'Đã thêm trên thiết bị; đang chờ đồng bộ. Kiểm tra Cài đặt.':`Đã đồng bộ ${merged.added} bài cập nhật trong đợt A2 bài 6–13 (80 câu bài tập). Giữ nguyên A1, A2 bài 1–5, B1–B2 và các bài đã chỉnh tay. Chỉ Admin được sửa/xóa nội dung chung.`;
  }catch(error){if(user===Auth.user)status.textContent=error.message;}finally{button.disabled=false;}
 }
 $('#book-pack-install').onclick=installGrammarBookPack;
