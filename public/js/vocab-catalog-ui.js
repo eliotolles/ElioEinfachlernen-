@@ -82,7 +82,7 @@
      const arrow=document.createElement('span');arrow.className='vocab-parent-arrow';arrow.textContent='⌄';arrow.setAttribute('aria-hidden','true');
      const icon=document.createElement('span');icon.className='vocab-parent-icon';icon.setAttribute('aria-hidden','true');icon.textContent=active==='level'?({A1:'🌱',A2:'🌿',B1:'🌳',B2:'✦',C1:'🌴',C2:'✧'}[category]||'📚'):active==='industry'?'💼':'📚';
      const caption=document.createElement('span');caption.className='vocab-parent-caption';caption.append(title,count);
-     summary.append(icon,caption,arrow);if(active==='level'){const badge=document.createElement('span');badge.className='vocab-level-badge';badge.textContent=category;summary.append(badge);}group.append(summary);
+     if(active==='topic')summary.append(icon);summary.append(caption,arrow);if(active==='level'){const badge=document.createElement('span');badge.className='vocab-level-badge';badge.textContent=category;summary.append(badge);}group.append(summary);
      const children=document.createElement('div');children.className='vocab-child-tabs';
      group.addEventListener('toggle',()=>{summary.setAttribute('aria-expanded',String(group.open));if(!group.open)return;for(const sibling of grid.children)if(sibling!==group&&sibling.tagName==='DETAILS')sibling.open=false;});
      summary.setAttribute('aria-expanded','false');
