@@ -46,13 +46,13 @@ async function installGrammarBookPack(){
   status.textContent='Đang tải giáo trình đã chuẩn bị…';
   const response=await fetch('data/grammar-book-a1-b2.json');if(!response.ok)throw Error('Không tải được giáo trình. Hãy tải lại trang.');
   const pack=await response.json();if(user!==Auth.user)return;
-  if(pack.packVersion!==6||!Array.isArray(pack.items)||pack.items.length!==64||new Set(pack.items.map(l=>l.id)).size!==64||pack.items.some(l=>!l.title||!l.content||!['A1','A2','B1','B2'].includes(l.level)))throw Error('Gói giáo trình không hợp lệ.');
+  if(pack.packVersion!==7||!Array.isArray(pack.items)||pack.items.length!==64||new Set(pack.items.map(l=>l.id)).size!==64||pack.items.some(l=>!l.title||!l.content||!['A1','A2','B1','B2'].includes(l.level)))throw Error('Gói giáo trình không hợp lệ.');
   const merged=mergeGrammarBookPack(Auth.get('materials',[]),pack);
   if(!merged.added&&!merged.upgraded){status.textContent='Giáo trình đã ở phiên bản mới. Giữ nguyên nội dung đã sửa và bài bạn đã xóa.';return;}
   const old=Auth.get('materials',[]).find(c=>c.id===pack.id);if(old)await AccountCache.write(Account.cacheKey('grammar-book-backup'),structuredClone(old));if(user!==Auth.user)return;Auth.set('materials',merged.materials);loadGrammar();
   const first=grammarItems().find(l=>l.collectionId===pack.id&&($('#grammar-level').value==='all'||l.level===$('#grammar-level').value));if(first)openLesson(first.id);
   await Account.flush();if(user!==Auth.user)return;
-  status.textContent=Account.pending['shared:materials']||Account.conflicts['shared:materials']?'Đã thêm trên thiết bị; đang chờ đồng bộ. Kiểm tra Cài đặt.':`Đã đồng bộ ${merged.added} bài cập nhật trong đợt A2 bài 6–13 (80 câu bài tập). Giữ nguyên A1, A2 bài 1–5, B1–B2 và các bài đã chỉnh tay. Chỉ Admin được sửa/xóa nội dung chung.`;
+  status.textContent=Account.pending['shared:materials']||Account.conflicts['shared:materials']?'Đã thêm trên thiết bị; đang chờ đồng bộ. Kiểm tra Cài đặt.':`Đã đồng bộ ${merged.added} bài cập nhật. Gói mới gồm A2 bài 6–13, 17 bài B1 và 22 bài B2 (470 câu bài tập trong 47 bài cập nhật). Giữ nguyên A1, A2 bài 1–5, bài đã chỉnh tay và bài đã xóa. Chỉ Admin được sửa/xóa nội dung chung.`;
  }catch(error){if(user===Auth.user)status.textContent=error.message;}finally{button.disabled=false;}
 }
 $('#book-pack-install').onclick=installGrammarBookPack;
@@ -161,8 +161,9 @@ function decorateGrammarAnswer(result){
  .sprach-question .options{display:grid;gap:10px}.sprach-option{display:flex!important;align-items:center;gap:14px;width:100%;text-align:left;padding:14px!important;border:1px solid var(--line)!important;border-radius:10px!important;background:transparent!important;color:var(--text)!important;font-size:1.05rem!important}
  .sprach-option:disabled{opacity:1}.sprach-letter{display:grid;place-items:center;width:32px;height:32px;flex-shrink:0;border:1px solid var(--line);border-radius:7px;font-weight:700}.sprach-choice{margin-left:auto;width:18px;height:18px;border:1px solid currentColor;border-radius:50%;flex-shrink:0}.sprach-option[aria-pressed="true"] .sprach-choice{background:var(--accent,#26754b);box-shadow:inset 0 0 0 4px var(--bg)}
  .sprach-option.is-correct{background:rgba(50,132,90,.13)!important;border-color:#32845a!important}.sprach-option.is-incorrect{background:rgba(196,92,76,.12)!important;border-color:#c45c4c!important}
- .sprach-navigation{display:grid;gap:8px;margin-top:20px}.sprach-navigation button{font-size:.95rem;padding:10px}.sprach-passage{border-bottom:1px solid var(--line);padding-bottom:20px;margin-bottom:22px;font-size:1.08rem;line-height:1.85}
+ .sprach-question .answer-message{white-space:pre-line;line-height:1.75}.sprach-navigation{display:grid;gap:8px;margin-top:20px}.sprach-navigation button{font-size:.95rem;padding:10px}.sprach-passage{border-bottom:1px solid var(--line);padding-bottom:20px;margin-bottom:22px;font-size:1.08rem;line-height:1.85}
  .grammar-tabs [aria-selected="true"]{font-weight:750;border-bottom:3px solid var(--accent,#26754b)}
  @media(max-width:850px){.sprach-grid{grid-template-columns:1fr}.sprach-sheet{border-left:0}.sprach-numbers{grid-template-columns:repeat(auto-fill,minmax(40px,1fr))}.sprach-navigation{grid-template-columns:1fr 1fr}.sprach-heading{padding:18px}.sprach-paper{padding:18px}}
  `;document.head.append(style);
 })();
+
