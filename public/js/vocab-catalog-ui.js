@@ -82,7 +82,35 @@
      const arrow=document.createElement('span');arrow.className='vocab-parent-arrow';arrow.textContent='⌄';arrow.setAttribute('aria-hidden','true');
      const icon=document.createElement('span');icon.className='vocab-parent-icon';icon.setAttribute('aria-hidden','true');icon.textContent=active==='level'?({A1:'🌱',A2:'🌿',B1:'🌳',B2:'✦',C1:'🌴',C2:'✧'}[category]||'📚'):active==='industry'?'💼':'📚';
      const caption=document.createElement('span');caption.className='vocab-parent-caption';caption.append(title,count);
-     if(active==='topic')summary.append(icon);summary.append(caption,arrow);if(active==='level'){const badge=document.createElement('span');badge.className='vocab-level-badge';badge.textContent=category;summary.append(badge);}group.append(summary);
+     if(active!=='topic'){
+      const levelIndex=Math.max(0,VocabCatalog.levels.indexOf(category));
+      const professionPaths={
+       'Điều dưỡng':'M12 3v18M3 12h18',
+       'Nhà hàng, khách sạn':'M4 18h16M5 15a7 7 0 0 1 14 0M12 5v3',
+       'Đầu bếp':'M7 14a4 4 0 1 1-2-7 5 5 0 0 1 9-2 4 4 0 1 1 3 9v6H7z',
+       'Khách sạn':'M4 20V8h16v12M8 8V4h8v4M9 20v-5h6v5',
+       'Bán hàng':'M4 8h16l-1 12H5zM8 8V6a4 4 0 0 1 8 0v2',
+       'Mẫu câu bán hàng':'M4 4h16v12H9l-5 4zM8 8h8M8 12h5',
+       'Trợ lý nha khoa':'M8 4c-5-1-5 7-2 10l2 6 3-5h2l3 5 2-6c3-3 3-11-2-10l-4 1z',
+       'Xây dựng':'M3 19h18M5 16V9l7-5 7 5v7M10 19v-6h4v6',
+       'Nghề nail':'M8 21V10a4 4 0 0 1 8 0v11M9 10h6M10 3h4',
+       'Công nghệ ô tô':'M4 16V9h16v7M6 9l2-5h8l2 5M6 16v3M18 16v3M7 12h1M16 12h1',
+       'Lái xe ô tô':'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18M3 11h18M12 12v9',
+       'Cơ khí':'M14 4a6 6 0 0 0-7 7L3 17l4 4 6-6a6 6 0 0 0 7-7l-4 4-4-4z',
+       'Công nghệ và điện tử':'M7 7h10v10H7zM9 3v4M15 3v4M9 17v4M15 17v4M3 9h4M3 15h4M17 9h4M17 15h4',
+       'Điện':'M13 2 5 14h6l-1 8 9-13h-6z',
+       'Kinh doanh':'M4 19V5M4 19h16M8 15l4-5 4 2 4-7',
+       'Khoa học':'M9 3h6M10 3v7l-6 9h16l-6-9V3M7 15h10',
+       'Trường học và giáo dục':'M3 5h7l2 2 2-2h7v14h-7l-2 2-2-2H3zM12 7v14',
+       'Chính trị':'M3 9l9-6 9 6zM5 12v7M12 12v7M19 12v7M3 21h18',
+       'Toán học':'M5 5h6M8 2v6M15 5h6M5 14l6 6M11 14l-6 6M15 15h6M15 19h6',
+       'Khoa học máy tính':'M3 4h18v13H3zM8 21h8M12 17v4M7 9l-2 2 2 2M17 9l2 2-2 2',
+       'Vật liệu':'M12 3l9 5-9 5-9-5zM3 12l9 5 9-5M3 16l9 5 9-5'
+      };
+      const path=active==='level'?Array.from({length:3},(_,i)=>{const h=5+(i+1)*(levelIndex+2)/2;return 'M'+(5+i*6)+' 20v-'+h.toFixed(1);}).join(' '):(professionPaths[category]||'M12 3l9 9-9 9-9-9zM8 12h8M12 8v8');
+      icon.textContent='';icon.innerHTML='<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="'+path+'"/></svg>';
+     }
+     summary.append(icon,caption,arrow);if(active==='level'){const badge=document.createElement('span');badge.className='vocab-level-badge';badge.textContent=category;summary.append(badge);}group.append(summary);
      const children=document.createElement('div');children.className='vocab-child-tabs';
      group.addEventListener('toggle',()=>{summary.setAttribute('aria-expanded',String(group.open));if(!group.open)return;for(const sibling of grid.children)if(sibling!==group&&sibling.tagName==='DETAILS')sibling.open=false;});
      summary.setAttribute('aria-expanded','false');
