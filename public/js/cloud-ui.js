@@ -15,6 +15,7 @@ if('serviceWorker' in navigator)navigator.serviceWorker.register('/sw.js').catch
 
 function renderGrammarConflicts(){
  if(!location.pathname.endsWith('/grammatik.html'))return;
+ if(Account.profile?.role!=='super_admin'){document.getElementById('grammar-sync-conflicts')?.remove();return;}
  const main=document.querySelector('main');if(!main)return;
  let box=document.getElementById('grammar-sync-conflicts');
  if(!box){box=document.createElement('section');box.id='grammar-sync-conflicts';box.className='panel';main.prepend(box);}
@@ -26,7 +27,7 @@ function renderGrammarConflicts(){
   const row=document.createElement('div'),status=document.createElement('p');status.setAttribute('role','status');
   for(const [label,local]of [['Giữ bản trên thiết bị này',true],['Dùng bản từ server',false]]){
    const button=document.createElement('button');button.type='button';button.className='secondary';button.textContent=label;
-   button.onclick=async()=>{const buttons=[...row.querySelectorAll('button')];buttons.forEach(b=>b.disabled=true);try{await Account.resolve(key,local);if(Account.conflicts[key]||Account.pending[key]){status.textContent=Account.pending[key]?.error||'Chưa đồng bộ xong. Giữ trang mở và thử lại.';}else{renderGrammarConflicts();}}catch(e){status.textContent=e.message;}finally{buttons.forEach(b=>b.disabled=false);}};
+   button.onclick=async()=>{if(Account.profile?.role!=='super_admin')return;const buttons=[...row.querySelectorAll('button')];buttons.forEach(b=>b.disabled=true);try{await Account.resolve(key,local);if(Account.conflicts[key]||Account.pending[key]){status.textContent=Account.pending[key]?.error||'Chưa đồng bộ xong. Giữ trang mở và thử lại.';}else{renderGrammarConflicts();}}catch(e){status.textContent=e.message;}finally{buttons.forEach(b=>b.disabled=false);}};
    row.append(button);
   }row.append(status);box.append(row);
  }
