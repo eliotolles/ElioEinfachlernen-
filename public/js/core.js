@@ -32,3 +32,30 @@ const translationObserver=new MutationObserver(records=>{
  const schedule=typeof requestAnimationFrame==='function'?requestAnimationFrame:fn=>setTimeout(fn,0);
  schedule(()=>{translationPending=false;const roots=[...translationRoots].filter(Boolean);translationRoots.clear();for(const root of roots){if(root.isConnected===false||roots.some(other=>other!==root&&other.contains?.(root)))continue;translateLegacy(root);}});
 });translationObserver.observe(document.body,{childList:true,subtree:true,characterData:true});document.addEventListener('languagechange',()=>translateLegacy());translateLegacy();
+
+const GermanSpeech=(()=>{
+ let version=0,audio=null,url=null;const cache=new Map();
+ function stop(){version++;window.speechSynthesis?.cancel();audio?.pause();audio=null;if(url)URL.revokeObjectURL(url);url=null;}
+ const icon='<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 4 6 8H3v8h3l5 4zM15 8a6 6 0 0 1 0 8M18 5a10 10 0 0 1 0 14"/></svg>';
+ function button(text,rate=.85){return '<button type="button" class="vocab-pronounce" data-pronounce="'+esc(text)+'" data-rate="'+rate+'" aria-label="'+esc((rate<.8?({vi:'Đọc chậm tiếng Đức: ',de:'Deutsch langsam anhören: ',en:'Hear German slowly: '}[App.settings().language]):({vi:'Nghe phát âm tiếng Đức: ',de:'Deutsch anhören: ',en:'Hear German pronunciation: '}[App.settings().language]))+text)+'">'+(rate<.8?'<span aria-hidden="true">0.65×</span>':icon)+'</button>';}
+ async function read(text,b,rate,preview){
+  stop();const token=version,user=Auth.user;const config=preview||Account.config||{};rate=Number(rate)||Number(config.germanSpeechRate)||.9;rate=Math.max(.5,Math.min(1.3,rate));text=String(text).trim();if(!text)return;
+  const synth=window.speechSynthesis,voices=(synth?.getVoices()||[]).filter(v=>/^de(?:[-_]|$)/i.test(v.lang));
+  const voice=config.germanSpeechVoice||'Kore';const chosen=voice==='device'?(voices.find(v=>v.lang==='de-DE')||voices[0]):null;
+  b?.setAttribute('aria-busy','true');
+  try{
+   if(chosen&&typeof SpeechSynthesisUtterance!=='undefined'){const utterance=new SpeechSynthesisUtterance(text);utterance.lang='de-DE';utterance.voice=chosen;utterance.rate=rate;utterance.onerror=e=>{if(!['canceled','interrupted'].includes(e.error))toast('Không phát được giọng Đức: '+e.error);};synth.speak(utterance);return;}
+   if(voice==='device'&&!chosen)throw Error('Thiết bị chưa có giọng tiếng Đức. Hãy cài giọng Deutsch hoặc nhờ admin chọn giọng trực tuyến.');
+   const key=user+'|'+voice+'|'+text;let result=cache.get(key);
+   if(!result){toast('Đang tải giọng đọc tiếng Đức…');result=await Account.request('/api/speech/tts','POST',{text,voice:voice,preview:!!preview});if(cache.size>=30)cache.delete(cache.keys().next().value);cache.set(key,result);}
+   if(token!==version||user!==Auth.user)return;
+   const bytes=Uint8Array.from(atob(result.data),c=>c.charCodeAt(0));let blob;
+   if(/wav/i.test(result.mimeType))blob=new Blob([bytes],{type:'audio/wav'});
+   else{const rate=Number(result.mimeType.match(/rate=(\d+)/i)?.[1])||24000;if(rate<8000||rate>48000||bytes.length%2)throw Error('Âm thanh không hợp lệ.');const header=new ArrayBuffer(44),view=new DataView(header),write=(offset,value)=>{for(let i=0;i<value.length;i++)view.setUint8(offset+i,value.charCodeAt(i));};write(0,'RIFF');view.setUint32(4,36+bytes.length,true);write(8,'WAVE');write(12,'fmt ');view.setUint32(16,16,true);view.setUint16(20,1,true);view.setUint16(22,1,true);view.setUint32(24,rate,true);view.setUint32(28,rate*2,true);view.setUint16(32,2,true);view.setUint16(34,16,true);write(36,'data');view.setUint32(40,bytes.length,true);blob=new Blob([header,bytes],{type:'audio/wav'});}
+   url=URL.createObjectURL(blob);audio=new Audio(url);audio.playbackRate=rate;await audio.play();
+  }catch(e){if(token===version)toast(e.message);}finally{b?.removeAttribute('aria-busy');}
+ }
+ document.addEventListener('click',e=>{const b=e.target.closest?.('[data-pronounce]');if(b){e.preventDefault();read(b.dataset.pronounce,b,undefined);}});
+ document.addEventListener('authchange',stop);window.addEventListener?.('pagehide',stop);
+ return {button,controls:text=>button(text),read,stop};
+})();
