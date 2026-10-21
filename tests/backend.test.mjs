@@ -97,3 +97,19 @@ test('personal listening videos stay private and each owner can delete their own
  assert.equal((await call('/api/state','GET',null,a.cookie)).body.records.listening.value.videos.length,0);
  assert.equal((await call('/api/shared','PUT',{name:'listeningLibrary',value:[],version:1},a.cookie)).status,403);
 });
+
+test('enriched vocabulary above 2 MB saves and round-trips while unrelated records retain their limit',async()=>{
+ const original=db.prepare("SELECT * FROM app_shared WHERE name='vocab'").get();
+ const words=Array.from({length:3400},(_,i)=>({id:'large-word-'+i,deckId:i<1500?'goethe':'netzwerk',deckName:i<1500?'Goethe B1':'Netzwerk B1',de:'das Wort '+i,vi:'từ vựng',en:'word',meaningDe:'Ein Wort in einem Satz.',type:'Nomen',example:'Dieses Wort steht in einem langen deutschen Beispielsatz. '.repeat(8),exampleVi:'Từ này xuất hiện trong một câu ví dụ bằng tiếng Đức.'}));
+ assert(new TextEncoder().encode(JSON.stringify(words)).length>2000000);
+ const version=original?.version||0;
+ const saved=await call('/api/shared','PUT',{name:'vocab',value:words,version},owner.cookie);
+ assert.equal(saved.status,200);assert.equal(saved.body.version,version+1);
+ const state=await call('/api/state','GET',null,owner.cookie);
+ assert.deepEqual(state.body.shared.vocab.value,words);
+ assert.equal((await call('/api/shared','PUT',{name:'vocab',value:words,version},owner.cookie)).status,409);
+ const regular=await call('/api/auth/register','POST',{email:'large-vocab-user@example.com',password:'Learner-test-493!'});assert.equal((await call('/api/shared','PUT',{name:'vocab',value:words,version:0},regular.cookie)).status,403);
+ assert.equal((await call('/api/state','PUT',{name:'drafts',value:{text:'x'.repeat(1600000)},version:0},owner.cookie)).status,413);
+ assert.equal((await call('/api/shared','PUT',{name:'vocab',value:[{de:'a',en:'x'.repeat(12000000)}],version:version+1},owner.cookie)).status,413);
+ assert.equal(db.prepare("SELECT version FROM app_shared WHERE name='vocab'").get().version,version+1);
+});
