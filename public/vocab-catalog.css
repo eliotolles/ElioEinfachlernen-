@@ -28,3 +28,19 @@ body.book-library .catalog-detail-heading h3{margin:0;font-weight:700}
 .vocab-parent-tab:focus-visible{outline:2px solid currentColor;outline-offset:-4px}
 @media(max-width:760px){.vocab-child-tabs{grid-template-columns:repeat(2,minmax(0,1fr))}.vocab-parent-tab{padding:16px}}
 @media(max-width:480px){.vocab-catalog-panel>.vocab-catalog-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.vocab-child-tabs{grid-template-columns:1fr;padding:12px}.vocab-parent-tab strong{font-size:1.05rem}.vocab-parent-tab{gap:8px}.vocab-parent-tab small{font-size:.95rem}}
+
+/* Compact library cards: content defines height, never a viewport-sized square. */
+.vocab-parent-group{border-radius:14px!important;overflow:hidden;background:var(--panel,transparent);box-shadow:0 2px 8px #00000008}
+.vocab-parent-tab{aspect-ratio:auto!important;min-height:88px;padding:18px 20px;flex-direction:row;align-items:center;justify-content:flex-start;gap:14px}
+.vocab-parent-icon{font-size:1.5rem;flex:0 0 auto;line-height:1}
+.vocab-parent-caption{display:flex;flex-direction:column;gap:7px;min-width:0;padding-right:18px}
+.vocab-parent-tab strong{font-size:1.12rem;line-height:1.35;overflow-wrap:anywhere}
+.vocab-parent-tab small{font-size:.95rem;font-weight:400;opacity:.72;line-height:1.3}
+.vocab-parent-arrow{right:15px;bottom:auto;top:50%;transform:translateY(-50%)}
+.vocab-parent-group[open] .vocab-parent-arrow{transform:translateY(-50%) rotate(180deg)}
+.vocab-parent-group[data-kind=level]>.vocab-parent-tab{min-height:150px;align-items:flex-start;flex-direction:column;gap:18px}
+.vocab-parent-group[data-kind=level] .vocab-parent-caption{gap:9px}
+.vocab-level-badge{position:absolute;top:18px;right:18px;border-radius:99px;padding:4px 10px;font-size:.8rem;font-weight:700;background:var(--border,#d6ddd3);color:inherit}
+.vocab-parent-group[open]>.vocab-parent-tab{min-height:88px}
+.vocab-parent-group[data-kind=level][open]>.vocab-parent-tab{min-height:120px}
+@media(max-width:480px){.vocab-catalog-panel>.vocab-catalog-grid{gap:10px}.vocab-parent-tab{min-height:94px;padding:14px 12px;gap:9px}.vocab-parent-tab strong{font-size:1rem}.vocab-parent-tab small{font-size:.9rem}.vocab-parent-icon{font-size:1.2rem}.vocab-parent-group[data-kind=level]>.vocab-parent-tab{min-height:136px}.vocab-level-badge{top:12px;right:12px}.vocab-parent-arrow{right:9px}}

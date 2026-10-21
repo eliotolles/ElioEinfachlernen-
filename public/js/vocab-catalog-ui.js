@@ -75,12 +75,14 @@
     panel.querySelector('h2').textContent=labels[active];const filtered=all.filter(d=>d.source===active),byCategory=new Map();for(const d of filtered){const k=active==='level'?d.level:d.category||text('Chưa phân loại','Nicht zugeordnet','Unclassified');if(!byCategory.has(k))byCategory.set(k,[]);byCategory.get(k).push(d);}
     const categories=active==='industry'?[...new Set([...VocabCatalog.industries,...byCategory.keys()])]:active==='level'?VocabCatalog.levels:[...byCategory.keys()];
     for(const category of categories){
-     const entries=byCategory.get(category)||[],group=document.createElement('details');group.className='vocab-parent-group';
+     const entries=byCategory.get(category)||[],group=document.createElement('details');group.className='vocab-parent-group';group.dataset.kind=active;
      const summary=document.createElement('summary');summary.className='vocab-parent-tab';
      const title=document.createElement('strong');title.textContent=category;
      const count=document.createElement('small');count.textContent=entries.length+' '+text('bộ từ','Wortsets','word sets');
      const arrow=document.createElement('span');arrow.className='vocab-parent-arrow';arrow.textContent='⌄';arrow.setAttribute('aria-hidden','true');
-     summary.append(title,count,arrow);group.append(summary);
+     const icon=document.createElement('span');icon.className='vocab-parent-icon';icon.setAttribute('aria-hidden','true');icon.textContent=active==='level'?({A1:'🌱',A2:'🌿',B1:'🌳',B2:'✦',C1:'🌴',C2:'✧'}[category]||'📚'):active==='industry'?'💼':'📚';
+     const caption=document.createElement('span');caption.className='vocab-parent-caption';caption.append(title,count);
+     summary.append(icon,caption,arrow);if(active==='level'){const badge=document.createElement('span');badge.className='vocab-level-badge';badge.textContent=category;summary.append(badge);}group.append(summary);
      const children=document.createElement('div');children.className='vocab-child-tabs';
      group.addEventListener('toggle',()=>{summary.setAttribute('aria-expanded',String(group.open));if(!group.open)return;for(const sibling of grid.children)if(sibling!==group&&sibling.tagName==='DETAILS')sibling.open=false;});
      summary.setAttribute('aria-expanded','false');
