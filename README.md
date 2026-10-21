@@ -20,6 +20,8 @@ Writes queue in IndexedDB (localStorage fallback) and retry; per-record version 
 
 ## AI administration
 
+In Admin → Tài khoản → Quản lý Admin, a Super Admin can grant an existing account access by email, edit its role, or remove its Admin role. Removing Admin access restores the ordinary user role and preserves the account, password, ID, and learning data. Role changes revoke the affected account's sessions; it must sign in again. The server rejects self-demotion, blocked-account promotion, unknown accounts, and changes that would remove the last active administrator. Concurrent role changes also recheck the acting administrator inside the database update. Account deletion and password changes are not part of this control.
+
 Super Admin can add Gemini/Groq/OpenAI configurations, encrypted with AES-GCM using `AI_ENCRYPTION_KEY`; plaintext keys are never returned. Routing uses priority, cooldown, temporary failure fallback and vision-capable models for images. Provider quota rules still apply; multiple keys can share quota. Up to four configurations are attempted per request. Actual provider calls require configured keys. Admin also manages common content JSON, theme/name/logo/homepage text and blocking regular users. New app logic/layout changes still require code deployment.
 
 ## Verification and limits

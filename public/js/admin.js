@@ -8,6 +8,45 @@ $('#admin-site-form').onsubmit=e=>{e.preventDefault();adminAction(async()=>{cons
 for(const [key,value]of Object.entries({name:'Elio Einfach',accent:'#26754b',font:'lexend',...Account.config})){const field=$('#admin-site-form').elements.namedItem(key);if(field)field.value=value;}
 function renderAdminContent(){$('#admin-content-json').value=JSON.stringify(Account.shared[$('#admin-content-kind').value]?.value||[],null,2);}$('#admin-content-kind').onchange=renderAdminContent;$('#admin-content-save').onclick=()=>adminAction(async()=>{const name=$('#admin-content-kind').value,value=JSON.parse($('#admin-content-json').value);if(!Array.isArray(value))throw Error('Cần mảng JSON.');Account.set(name,value);await Account.flush();if(Object.keys(Account.pending).length)throw Error('Nội dung còn chờ đồng bộ. Kiểm tra trạng thái kết nối.');if(Object.keys(Account.conflicts).length)throw Error('Xung đột dữ liệu. Mở Cài đặt để xử lý.');});
 async function renderAdminUsers(){const data=await Account.request('/api/admin/users');$('#admin-users').innerHTML=data.items.map(u=>`<div class="admin-row"><strong>${esc(u.email)}</strong> · ${esc(u.role)} ${u.blocked?'· Khóa':''}${u.role==='user'?` <button class="secondary" data-user="${esc(u.id)}" data-blocked="${u.blocked}">${u.blocked?'Mở khóa':'Khóa'}</button>`:''}</div>`).join('');document.querySelectorAll('[data-user]').forEach(b=>b.onclick=()=>adminAction(async()=>{await Account.request('/api/admin/users','PATCH',{id:b.dataset.user,blocked:b.dataset.blocked!=='1'});await renderAdminUsers();}));}
+const roleForm=$('#admin-role-form'),roleStatus=$('#admin-role-status');
+function resetAdminRoleForm(){roleForm.reset();roleForm.elements.id.value='';roleForm.elements.email.readOnly=false;}
+$('#admin-manage-toggle').onclick=async()=>{
+ const button=$('#admin-manage-toggle'),panel=$('#admin-manage-panel');panel.hidden=!panel.hidden;button.setAttribute('aria-expanded',String(!panel.hidden));
+ if(!panel.hidden)try{await renderAdminRoles();roleForm.elements.email.focus();}catch(error){roleStatus.textContent=error.message;}
+};
+$('#admin-role-cancel').onclick=()=>{resetAdminRoleForm();roleStatus.textContent='';};
+let roleSaving=false;
+async function saveAdminRole(target,role){
+ if(roleSaving)return;
+ const removing=role==='user',email=target.email;
+ if(!confirm(removing?'Gỡ quyền Super Admin của '+email+'? Tài khoản và dữ liệu học vẫn được giữ.':'Cấp Super Admin cho '+email+'? Tài khoản này sẽ được quản lý nội dung chung, cấu hình AI và người dùng.'))return;
+ roleSaving=true;roleStatus.textContent='Đang lưu quyền…';
+ const controls=[...roleForm.querySelectorAll('input,select,button'),...$('#admin-role-list').querySelectorAll('button')],previous=controls.map(control=>control.disabled);controls.forEach(control=>control.disabled=true);
+ try{
+  const data=target.id?{id:target.id,role}:{email,role};
+  const result=await Account.request('/api/admin/users','PATCH',data);
+  resetAdminRoleForm();
+  await Promise.all([renderAdminUsers(),renderAdminRoles()]);
+  roleStatus.textContent=result.changed?'Đã '+(removing?'gỡ quyền Admin':'cấp Super Admin')+' cho '+email+'. Tài khoản này cần đăng nhập lại.':'Tài khoản đã có quyền đã chọn.';
+ }catch(error){roleStatus.textContent=error.message;}
+ finally{controls.forEach((control,i)=>control.disabled=previous[i]);roleSaving=false;}
+}
+roleForm.onsubmit=e=>{e.preventDefault();saveAdminRole({id:roleForm.elements.id.value,email:roleForm.elements.email.value.trim()},roleForm.elements.role.value);};
+async function renderAdminRoles(){
+ const data=await Account.request('/api/admin/users?role=super_admin');
+ const host=$('#admin-role-list');host.replaceChildren();
+ for(const user of data.items){
+  const row=document.createElement('div');row.className='admin-row';
+  const name=document.createElement('strong');name.textContent=user.email;
+  const text=document.createElement('p');text.textContent='Super Admin'+(user.id===Account.profile.id?' · Bạn':'')+(user.blocked?' · Đang khóa':'');
+  const edit=document.createElement('button');edit.type='button';edit.className='secondary';edit.textContent='Sửa quyền';
+  edit.onclick=()=>{if(roleSaving)return;roleForm.elements.id.value=user.id;roleForm.elements.email.value=user.email;roleForm.elements.email.readOnly=true;roleForm.elements.role.value='super_admin';roleForm.elements.role.focus();};
+  const remove=document.createElement('button');remove.type='button';remove.className='secondary';remove.textContent='Gỡ Admin';remove.disabled=user.id===Account.profile.id||data.items.filter(item=>!item.blocked).length<=1;
+  if(remove.disabled)remove.title='Cần một Super Admin khác để gỡ quyền.';
+  remove.onclick=()=>saveAdminRole(user,'user');row.append(name,text,edit,document.createTextNode(' '),remove);host.append(row);
+ }
+ if(!data.items.length)host.textContent='Chưa có Admin.';
+}
 renderAdminAI().catch(e=>adminMessage(e.message));renderAdminUsers().catch(e=>adminMessage(e.message));renderAdminContent();
 
 $('#admin-ai-form').elements.provider.onchange=()=>{const fields=$('#admin-ai-form').elements;const previous=fields.model.value;const known=Object.values(AI_MODEL_SUGGESTIONS).some(c=>c.items.some(m=>m.id===previous));if(known)fields.model.value='';renderModelSuggestions();};renderModelSuggestions();
