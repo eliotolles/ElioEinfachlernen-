@@ -18,7 +18,7 @@
  $('#vocab-deck-details').hidden=true;
  const personal=originalSelect.closest('.panel'),personalGrid=document.createElement('div'),personalDetail=document.createElement('div');
  personalGrid.className='vocab-catalog-grid personal-deck-grid';personalDetail.className='vocab-catalog-detail';personal.append(personalGrid,personalDetail);
- const opened=new Map();
+ const reader=document.createElement('section');reader.id='vocab-deck-reader';reader.className='vocab-catalog-detail vocab-deck-reader';reader.hidden=true;main.append(reader);let readerVisible=false,libraryScroll=0;
  const tabs=document.createElement('nav');tabs.className='vocab-catalog-tabs';tabs.setAttribute('aria-label','Wortschatz');mine.before(tabs);
  const panels=new Map(),imports=new Map();let active='topic';
  for(const key of ['topic','level','industry']){
@@ -26,8 +26,8 @@
  }
  function canManage(deck){try{Vocabulary.planDeckChange(deck.id);return true;}catch{return false;}}
  function openDeck(deck,panel){
-  const d=panel.querySelector('.vocab-catalog-detail');const signature=catalogRevision+':'+language()+':'+deck.id;if(d.deckSignature===signature&&d.firstChild)return;d.deckSignature=signature;opened.set(panel,deck.id);d.replaceChildren();const token={};d.renderToken=token;
-  const heading=document.createElement('div');heading.className='catalog-detail-heading';const h=document.createElement('h3');h.textContent=deck.name;heading.append(h);
+  const d=reader;const signature=catalogRevision+':'+language()+':'+deck.id;if(d.deckSignature===signature&&d.firstChild)return;d.deckSignature=signature;d.replaceChildren();const token={};d.renderToken=token;
+  const heading=document.createElement('div');heading.className='catalog-detail-heading';const h=document.createElement('h1');h.className='vocab-deck-title';h.tabIndex=-1;h.textContent=deck.name;heading.append(h);const count=document.createElement('p');count.className='help-text';count.textContent=deck.items.length+' '+text('từ','Wörter','words');heading.append(count);
   const actions=document.createElement('div');actions.className='catalog-actions';
   const learn=document.createElement('a');learn.className='button';learn.textContent=text('Học trong Quiz →','Im Quiz lernen →','Study in Quiz →');learn.href='quiz.html#deck='+encodeURIComponent(deck.id);actions.append(learn);
   const status=document.createElement('p');status.setAttribute('role','status');
@@ -35,17 +35,19 @@
    const button=document.createElement('button');button.type='button';button.className='secondary';button.textContent=label;
    button.onclick=async()=>{const item=decks().find(v=>v.id===deck.id);if(!item)return;await changeVocabularyDeck(remove,item.id);status.textContent=$('#vocab-deck-manage-status').textContent;};actions.append(button);
   }
-  const close=document.createElement('button');close.type='button';close.className='secondary';close.textContent=text('Thu gọn','Schließen','Close');close.onclick=()=>{opened.delete(panel);d.renderToken=null;d.deckSignature=null;d.replaceChildren();};actions.append(close);heading.append(actions);d.append(heading,status);
+  const close=document.createElement('a');close.className='button secondary';close.textContent=text('← Quay lại các bộ từ','← Zurück zur Sammlung','← Back to vocabulary sets');close.href='wortschatz.html#catalog='+active;actions.append(close);
+  const crumb=document.createElement('nav');crumb.className='vocab-deck-breadcrumb';crumb.setAttribute('aria-label',text('Đường dẫn','Brotkrumennavigation','Breadcrumb'));const contents=document.createElement('a');contents.href='index.html#contents';contents.textContent=text('Mục lục','Inhalt','Contents');const library=document.createElement('a');library.href=close.href;library.textContent='Wortschatz';const current=document.createElement('strong');current.textContent=deck.name;for(const node of [contents,library,current]){if(crumb.childNodes.length){const separator=document.createElement('span');separator.textContent='/';separator.setAttribute('aria-hidden','true');crumb.append(separator);}crumb.append(node);}heading.append(actions);d.append(crumb,heading,status);document.title=deck.name+' · Wortschatz · Elio Einfach';
+
   const wrap=document.createElement('div');wrap.className='table-wrap';wrap.innerHTML='<table class="learning-table"><thead><tr><th>Deutsch</th><th>'+esc(text('Nghĩa','Bedeutung','Meaning'))+'</th><th>'+esc(text('Loại từ','Wortart','Word class'))+'</th><th>'+esc(text('Ví dụ','Beispiel','Example'))+'</th></tr></thead><tbody></tbody></table>';d.append(wrap);
   const tbody=wrap.querySelector('tbody'),rowLanguage=language(),relatedLabel=esc(text('Đồng nghĩa & cụm từ','Synonyme & Wendungen','Synonyms & phrases'));wrap.addEventListener('toggle',event=>{const node=event.target;if(!node.matches?.('[data-word-related]')||!node.open||node.dataset.loaded)return;node.dataset.loaded='1';node.querySelector('div').innerHTML=Vocabulary.relatedHTML(deck.items[Number(node.dataset.wordRelated)]);},true);let offset=0;function batch(){if(d.renderToken!==token)return;const rows=deck.items.slice(offset,offset+150).map((w,i)=>'<tr><td><span class="vocab-word-audio"><strong>'+esc(w.de)+'</strong>'+VocabularySpeech.controls(w.de)+'</span><details data-word-related="'+(offset+i)+'"><summary>'+relatedLabel+'</summary><div></div></details></td><td>'+esc(Vocabulary.meaning(w,rowLanguage))+'</td><td>'+Vocabulary.typeHTML(w)+'</td><td>'+Vocabulary.examplesHTML(w)+'</td></tr>').join('');tbody.insertAdjacentHTML('beforeend',rows);offset+=150;if(offset<deck.items.length)(window.requestAnimationFrame||setTimeout)(batch);}
-  batch();
+  batch();h.focus({preventScroll:true});
  }
  function deckCard(deck,panel){
   const card=document.createElement('div');card.className='vocab-deck-card';
-  const b=document.createElement('button');b.type='button';b.className='secondary vocab-catalog-card';
+  const b=document.createElement('a');b.className='button secondary vocab-catalog-card';b.href=VocabCatalog.deckHref(deck.id,active);
   const title=document.createElement('strong');title.textContent=deck.name;
   const count=document.createElement('small');count.textContent=deck.items.length+' '+text('từ','Wörter','words')+(deck.source!=='industry'&&deck.level?' · '+deck.level:'');
-  const arrow=document.createElement('span');arrow.className='deck-card-arrow';arrow.textContent='↗';b.append(title,count,arrow);b.onclick=()=>openDeck(deck,panel);card.append(b);
+  const arrow=document.createElement('span');arrow.className='deck-card-arrow';arrow.textContent='↗';b.append(title,count,arrow);card.append(b);
   if(canManage(deck)){
    const actions=document.createElement('div');actions.className='catalog-actions deck-card-management';
    const status=document.createElement('p');status.setAttribute('role','status');status.className='deck-card-status';
@@ -68,14 +70,14 @@
   const all=decks(),level=($('#vocab-level').value||'A1').toLowerCase(),signature=catalogRevision+':'+language()+':'+(active==='mine'?level:'');
   const panel=active==='mine'?personal:panels.get(active);
   if(rendered.get(active)!==signature){
-   const grid=active==='mine'?personalGrid:panel.querySelector('.vocab-catalog-grid');grid.replaceChildren();
+   const grid=active==='mine'?personalGrid:panel.querySelector('.vocab-catalog-grid');const expanded=new Set([...grid.querySelectorAll('.vocab-parent-group[open]')].map(group=>group.dataset.category));grid.replaceChildren();
    if(active==='mine'){
     const selected=all.filter(d=>d.source==='mine'&&d.levels.has(level));for(const deck of selected)grid.append(deckCard(deck,panel));if(!selected.length)grid.textContent=text('Cấp độ này chưa có bộ từ.','Keine Wortsets auf diesem Niveau.','No word sets at this level.');
    }else{
     panel.querySelector('h2').textContent=labels[active];const filtered=all.filter(d=>d.source===active),byCategory=new Map();for(const d of filtered){const k=active==='level'?d.level:d.category||text('Chưa phân loại','Nicht zugeordnet','Unclassified');if(!byCategory.has(k))byCategory.set(k,[]);byCategory.get(k).push(d);}
     const categories=active==='industry'?[...new Set([...VocabCatalog.industries,...byCategory.keys()])]:active==='level'?VocabCatalog.levels:[...byCategory.keys()];
     for(const category of categories){
-     const entries=byCategory.get(category)||[],group=document.createElement('details');group.className='vocab-parent-group';group.dataset.kind=active;
+     const entries=byCategory.get(category)||[],group=document.createElement('details');group.className='vocab-parent-group';group.dataset.kind=active;group.dataset.category=category;group.open=expanded.has(category);
      const summary=document.createElement('summary');summary.className='vocab-parent-tab';
      const title=document.createElement('strong');title.textContent=category;
      const count=document.createElement('small');count.textContent=entries.length+' '+text('bộ từ','Wortsets','word sets');
@@ -113,7 +115,7 @@
      summary.append(icon,caption,arrow);if(active==='level'){const badge=document.createElement('span');badge.className='vocab-level-badge';badge.textContent=category;summary.append(badge);}group.append(summary);
      const children=document.createElement('div');children.className='vocab-child-tabs';
      group.addEventListener('toggle',()=>{summary.setAttribute('aria-expanded',String(group.open));if(!group.open)return;for(const sibling of grid.children)if(sibling!==group&&sibling.tagName==='DETAILS')sibling.open=false;});
-     summary.setAttribute('aria-expanded','false');
+     summary.setAttribute('aria-expanded',String(group.open));
      for(const deck of entries)children.append(deckCard(deck,panel));
      if(!entries.length){const p=document.createElement('p');p.className='muted';p.textContent=text('Chưa có bộ từ.','Noch keine Sets.','No word sets yet.');children.append(p);}
      group.append(children);grid.append(group);
@@ -122,12 +124,25 @@
    }
    rendered.set(active,signature);
   }
-  const id=opened.get(panel);if(id){const deck=all.find(d=>d.id===id);if(deck)openDeck(deck,panel);else{const detail=panel.querySelector('.vocab-catalog-detail');detail.renderToken=null;detail.replaceChildren();opened.delete(panel);}}
+  renderReader();
  }
- $('#vocab-level').addEventListener('change',()=>{opened.delete(personal);personalDetail.renderToken=null;personalDetail.deckSignature=null;personalDetail.replaceChildren();refresh();});
+ $('#vocab-level').addEventListener('change',()=>{personalDetail.renderToken=null;personalDetail.deckSignature=null;personalDetail.replaceChildren();refresh();});
+
+ function renderReader(){
+  const route=VocabCatalog.route(location.hash),show=!!route.deck;
+  if(show&&!readerVisible){libraryScroll=window.scrollY||0;window.scrollTo(0,0);}
+  if(!show&&readerVisible){reader.renderToken=null;reader.deckSignature=null;reader.replaceChildren();document.title='Elio · Wortschatz';window.scrollTo(0,libraryScroll);}
+  readerVisible=show;reader.hidden=!show;document.body.classList.toggle('vocab-deck-reading',show);
+  if(!show)return;
+  const deck=decks().find(d=>d.id===route.deck);
+  if(deck){openDeck(deck,reader);return;}
+  reader.renderToken=null;reader.deckSignature=null;reader.replaceChildren();const message=document.createElement('p');message.textContent=text('Bộ từ đã bị xóa hoặc tài khoản này không có quyền xem.','Dieses Wortset ist nicht verfügbar.','This word set is no longer available to this account.');const back=document.createElement('a');back.href='wortschatz.html#catalog='+route.catalog;back.className='button secondary';back.textContent=text('← Quay lại Wortschatz','← Zurück zu Wortschatz','← Back to Wortschatz');reader.append(message,back);
+ }
+ function routeChanged(){const route=VocabCatalog.route(location.hash);if(location.hash.includes('catalog='))active=route.catalog;refresh();}
+ window.addEventListener('hashchange',routeChanged);
  function select(key){if(active===key)return;active=key;refresh();}
  function invalidate(){catalogCache=null;refresh();}
  function mountImports(){for(const [key,panel]of panels){const host=panel.querySelector('.vocab-catalog-admin');host.hidden=!admin();if(!admin()){host.replaceChildren();imports.delete(key);continue;}if(imports.has(key))continue;host.innerHTML='<div class="import-destination"><label>'+esc(text('Nhóm đích (chọn hoặc nhập mới)','Zielgruppe','Destination group'))+'<input data-category list="catalog-options-'+key+'" maxlength="100" value="'+esc(key==='level'?'A1':key==='industry'?VocabCatalog.industries[0]:'Cuộc sống hằng ngày')+'"><datalist id="catalog-options-'+key+'"></datalist></label>'+'</div><div id="catalog-import-'+key+'"></div>';const list=host.querySelector('datalist');const choices=key==='industry'?VocabCatalog.industries:key==='level'?VocabCatalog.levels:['Cuộc sống hằng ngày','Gia đình','Giao thông','Nhà ở','Sức khỏe','Mua sắm'];list.innerHTML=choices.map(v=>'<option value="'+esc(v)+'"></option>').join('');
  const context=()=>{const c=VocabCatalog.context(host,key);if(key==='level'&&!VocabCatalog.levels.includes(c.category))throw Error('Chọn cấp độ từ A1 đến C2.');return c;};ImportHub.mount('vocabulary',collection=>{onVocabularyImported(collection);invalidate();},'#catalog-import-'+key,{context});imports.set(key,true);}}
- for(const e of ['vocabchange','cloudchange','elioviewresume'])document.addEventListener(e,invalidate);document.addEventListener('languagechange',refresh);document.addEventListener('authchange',()=>{catalogCache=null;mountImports();refresh();});mountImports();refresh();
+ for(const e of ['vocabchange','cloudchange','elioviewresume'])document.addEventListener(e,invalidate);document.addEventListener('languagechange',refresh);document.addEventListener('authchange',()=>{catalogCache=null;mountImports();refresh();});mountImports();routeChanged();
 })();

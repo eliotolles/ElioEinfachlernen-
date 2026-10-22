@@ -63,3 +63,15 @@ body.book-library .catalog-detail-heading h3{margin:0;font-weight:700}
 
 /* Inline pronunciation follows the text baseline on every screen. */
 .vocab-word-audio{display:inline;line-height:1.65}.vocab-pronounce{display:inline-flex!important;vertical-align:-.12em;width:1.35em!important;height:1.35em!important;min-height:0!important;min-width:0!important;padding:0!important;margin:0 .15em!important;border:0!important;border-radius:0!important;box-shadow:none!important;font-size:inherit!important;line-height:1!important}.vocab-pronounce svg{width:1em;height:1em}.vocab-example-audio{display:block;line-height:1.65;margin-bottom:.45em}.vocab-audio-controls{display:inline}
+
+/* A deck is its own client route, with the library kept mounted for instant return. */
+body.vocab-deck-reading main>:not(#vocab-deck-reader){display:none!important}
+#vocab-deck-reader[hidden]{display:none!important}
+#vocab-deck-reader{width:100%;max-width:none;margin:0;padding:0;min-width:0}
+.vocab-deck-breadcrumb{display:flex;align-items:baseline;flex-wrap:wrap;gap:10px;margin:0 0 22px;font-size:.95rem;line-height:1.5}.vocab-deck-breadcrumb strong{overflow-wrap:anywhere}
+body.book-library .vocab-deck-title{font-size:clamp(1.6rem,2.5vw,2.3rem);line-height:1.3;margin:0;font-weight:650;overflow-wrap:anywhere}
+#vocab-deck-reader .catalog-detail-heading{margin:0 0 22px;align-items:flex-start}#vocab-deck-reader .catalog-detail-heading>.help-text{margin:4px 0}#vocab-deck-reader .catalog-actions{width:100%}
+#vocab-deck-reader .table-wrap{width:100%;max-height:none!important;overflow-x:auto!important;overflow-y:visible!important}
+#vocab-deck-reader .learning-table{table-layout:fixed;min-width:740px}#vocab-deck-reader th:first-child{width:22%}#vocab-deck-reader th:nth-child(2){width:22%}#vocab-deck-reader th:nth-child(3){width:16%}#vocab-deck-reader th:last-child{width:40%}
+#vocab-deck-reader td{vertical-align:top;line-height:1.65;padding:16px;overflow-wrap:anywhere}
+@media(max-width:600px){#vocab-deck-reader .catalog-actions{gap:8px}#vocab-deck-reader .catalog-actions a,#vocab-deck-reader .catalog-actions button{padding:10px 12px}.vocab-deck-breadcrumb{gap:7px;font-size:.95rem}}

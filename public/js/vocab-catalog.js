@@ -1,6 +1,8 @@
 'use strict';
 const VocabCatalog={
  labels:{vi:{topic:'Theo chủ đề',level:'Theo cấp độ',industry:'Theo chuyên ngành',mine:'Của tôi',all:'Tất cả nguồn'},en:{topic:'By topic',level:'By level',industry:'By profession',mine:'My vocabulary',all:'All sources'},de:{topic:'Nach Thema',level:'Nach Niveau',industry:'Nach Beruf',mine:'Meine Wörter',all:'Alle Quellen'}},
+ route(hash){const params=new URLSearchParams(String(hash||'').replace(/^#/,''));return {deck:params.get('deck')||'',catalog:['topic','level','industry','mine'].includes(params.get('catalog'))?params.get('catalog'):'topic'};},
+ deckHref(id,catalog){return 'wortschatz.html#'+new URLSearchParams({deck:id,catalog:['topic','level','industry','mine'].includes(catalog)?catalog:'topic'}).toString();},
  levels:['A1','A2','B1','B2','C1','C2'],
  industries:['Điều dưỡng','Nhà hàng, khách sạn','Bán hàng','Mẫu câu bán hàng','Trợ lý nha khoa','Xây dựng','Nghề nail','Đầu bếp','Khách sạn','Công nghệ ô tô','Lái xe ô tô','Cơ khí','Công nghệ và điện tử','Điện','Kinh doanh','Khoa học','Trường học và giáo dục','Chính trị','Toán học','Khoa học máy tính','Vật liệu'],
  source(collection){return ['topic','level','industry'].includes(collection?.catalog)?collection.catalog:'mine';},
