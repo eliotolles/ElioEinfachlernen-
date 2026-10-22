@@ -83,7 +83,7 @@ test('listening shared library is admin-owned and video transcription sends medi
 test('German captions are read directly, prefer human tracks, and access failures stay explicit',async()=>{
  const original=globalThis.fetch;let urls=[];
  globalThis.fetch=async url=>{urls.push(String(url));if(String(url).includes('/watch?'))return new Response('var ytInitialPlayerResponse = '+JSON.stringify({captions:{playerCaptionsTracklistRenderer:{captionTracks:[{languageCode:'en',baseUrl:'https://www.youtube.com/api/timedtext?v=english'},{languageCode:'de',kind:'asr',baseUrl:'https://www.youtube.com/api/timedtext?v=automatic'},{languageCode:'de',baseUrl:'https://www.youtube.com/api/timedtext?v=manual'}]}}})+';');return Response.json({events:[{tStartMs:1000,dDurationMs:2000,segs:[{utf8:'Guten '},{utf8:'Morgen!'}]},{tStartMs:4000,dDurationMs:1000,segs:[{utf8:'Hallo.'}]}]});};
- try{const result=await call('/api/listening/captions','POST',{id:'abcdefghijk'},owner.cookie);assert.equal(result.status,200);assert.equal(result.body.source,'youtube');assert.equal(result.body.cues[0].text,'Guten Morgen!');assert.equal(result.body.cues[0].start,1);assert.match(urls[1],/v=manual/);assert.match(urls[1],/fmt=json3/);assert.equal(urls.length,2);
+ try{const result=await call('/api/listening/captions','POST',{id:'abcdefghijk'},owner.cookie);assert.equal(result.status,200);assert.equal(result.body.source,'youtube');assert.equal(result.body.cues[0].text,'Guten Morgen!');assert.equal(result.body.cues[0].start,1);assert.match(urls[1],/v=manual/);assert(!urls[1].includes('fmt='));assert.equal(urls.length,2);
  urls=[];globalThis.fetch=async url=>{urls.push(String(url));return new Response('Consent or blocked',{status:403});};const blocked=await call('/api/listening/captions','POST',{id:'abcdefghijk'},owner.cookie);assert.equal(blocked.body.available,false);assert.equal(blocked.body.cues.length,0);assert.equal(urls.length,1);assert.match(blocked.body.reason,/403/);
  }finally{globalThis.fetch=original;}
 });
@@ -241,5 +241,14 @@ test('CC follows only bounded same-YouTube redirects and stops at consent or sig
  try{const r=await call('/api/listening/captions','POST',{id:'abcdefghijk'},owner.cookie);assert.equal(r.body.available,true);assert.equal(urls.length,3);
  for(const location of ['https://consent.youtube.com/m?continue=x','https://accounts.google.com/login','https://evil.test/watch','http://www.youtube.com/watch','/signin']){urls=[];globalThis.fetch=async url=>{urls.push(String(url));return new Response(null,{status:302,headers:{Location:location}});};const denied=await call('/api/listening/captions','POST',{id:'abcdefghijk'},owner.cookie);assert.equal(denied.body.available,false);assert.equal(denied.body.code,'CAPTIONS_REDIRECT_ERROR');assert.equal(urls.length,1);}
  urls=[];globalThis.fetch=async url=>{urls.push(String(url));return new Response(null,{status:302,headers:{Location:String(url)}});};assert.equal((await call('/api/listening/captions','POST',{id:'abcdefghijk'},owner.cookie)).body.available,false);assert.equal(urls.length,1);
+ }finally{globalThis.fetch=original;}
+});
+
+test('CC keeps the exact original URL, reads XML and VTT, and separates empty responses from size errors',async()=>{
+ const original=globalThis.fetch;let payload='',seen=[];const base='https://www.youtube.com/api/timedtext?v=abcdefghijk&sig=a%20b&lang=de';
+ globalThis.fetch=async url=>{seen.push(String(url));if(String(url).includes('/watch?'))return new Response('var ytInitialPlayerResponse = '+JSON.stringify({captions:{playerCaptionsTracklistRenderer:{captionTracks:[{languageCode:'de',baseUrl:base}]}}})+';');return new Response(payload);};
+ try{for(const raw of ['<transcript><text start="0" dur="2">Hallo &amp; guten Tag!</text></transcript>','<timedtext><body><p t="0" d="2000"><s>Hallo &amp; guten Tag!</s></p></body></timedtext>','WEBVTT\n\n00:00.000 --> 00:02.000\nHallo &amp; guten Tag!']){payload=raw;seen=[];const r=await call('/api/listening/captions','POST',{id:'abcdefghijk'},owner.cookie);assert.equal(r.body.available,true);assert.equal(r.body.cues[0].text,'Hallo & guten Tag!');assert.equal(r.body.cues[0].end,2);assert.equal(seen[1],base);assert.equal(seen.length,2);}
+ payload='';seen=[];const empty=await call('/api/listening/captions','POST',{id:'abcdefghijk'},owner.cookie);assert.equal(empty.body.code,'CAPTIONS_EMPTY');assert.equal(seen.length,3);
+ payload='x'.repeat(3000001);assert.equal((await call('/api/listening/captions','POST',{id:'abcdefghijk'},owner.cookie)).body.code,'CAPTIONS_TOO_LARGE');
  }finally{globalThis.fetch=original;}
 });
