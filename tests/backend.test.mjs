@@ -224,3 +224,9 @@ test('playlist import is admin-only, encrypts its key and paginates public video
  globalThis.fetch=async()=>new Response(key,{status:403});const denied=await call('/api/admin/listening/playlist','POST',{id:'PL1234567890'},owner.cookie);assert.equal(denied.status,403);assert(!JSON.stringify(denied.body).includes(key));
  }finally{globalThis.fetch=original;await call('/api/admin/youtube-key','DELETE',null,owner.cookie);}
 });
+
+test('caption transport failures identify the failing stage and never call an AI provider',async()=>{
+ const user=await call('/api/auth/register','POST',{email:'caption-diagnostic@example.com',password:'Caption-Test-493!'}),original=globalThis.fetch;let calls=0;
+ globalThis.fetch=async(url,options)=>{calls++;assert.equal(new URL(url).hostname,'www.youtube.com');assert.equal(options.redirect,'manual');throw new TypeError('Transport failed https://youtube.com/private?signature=secret');};
+ try{const r=await call('/api/listening/captions','POST',{id:'video123ABC'},user.cookie);assert.equal(r.body.available,false);assert.equal(r.body.code,'CAPTIONS_TRANSPORT_ERROR');assert.match(r.body.reason,/trang video/);assert(!r.body.reason.includes('signature'));assert.equal(calls,1);}finally{globalThis.fetch=original;}
+});
