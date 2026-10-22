@@ -314,6 +314,11 @@ async function publicGermanCaptions(env,id){
  const cues=[];const events=Array.isArray(data.events)?data.events:[];for(let i=0;i<events.length;i++){const e=events[i];if(!e||e.tStartMs===null||e.tStartMs===undefined)continue;const text=(Array.isArray(e.segs)?e.segs:[]).map(s=>typeof s?.utf8==='string'?s.utf8:'').join('').replace(/\s+/g,' ').trim(),start=Number(e.tStartMs)/1000;let end=(Number(e.tStartMs)+Number(e.dDurationMs))/1000;if(e.dDurationMs===null||e.dDurationMs===undefined||!Number.isFinite(end)||end<=start){const next=events.slice(i+1).find(n=>n&&n.tStartMs!==null&&n.tStartMs!==undefined&&Number.isFinite(Number(n.tStartMs))&&Number(n.tStartMs)>Number(e.tStartMs));end=next?Number(next.tStartMs)/1000:NaN;}if(!text||!Number.isFinite(start)||!Number.isFinite(end)||start<0||end<=start)continue;const previous=cues[cues.length-1];if(previous&&previous.text===text&&previous.start===start&&previous.end===end)continue;cues.push({start,end,text});if(cues.length>1500)return unavailable('Phụ đề vượt 1500 đoạn. Hãy dùng video ngắn hơn.');}if(!cues.length)return unavailable('Tệp phụ đề không có đoạn lời thoại đọc được.');return {available:true,source:track.kind==='asr'?'youtube-auto':'youtube',language:track.languageCode,cues};
  }catch(e){const kind=e?.name==='AbortError'||e?.name==='TimeoutError'?'quá thời gian chờ':String(e?.name||'Error').slice(0,40);if(e?.status)return unavailable('Bước '+stage+': '+e.message,'CAPTIONS_REDIRECT_ERROR');const detail=String(e?.message||'không có mô tả').replace(/https?:\/\/[^\s"'<>]+/g,'[URL]').replace(/[\r\n]/g,' ').slice(0,160);return unavailable('Lỗi tải '+stage+' từ YouTube · '+kind+': '+detail+'. Video có CC vẫn có thể gặp lỗi truy cập này.','CAPTIONS_TRANSPORT_ERROR');}
 }
+function normalizeTranscriptCues(cues,start,end){
+ if(!Array.isArray(cues)||cues.length>150)throw error(502,'AI trả bản chép sai định dạng.');
+ const seconds=value=>{if(typeof value==='number')return value;if(typeof value!=='string'||!value.trim())return NaN;const text=value.trim();if(/^\d+(?:\.\d+)?$/.test(text))return Number(text);if(!/^\d+(?::\d{1,2}){1,2}(?:\.\d+)?$/.test(text))return NaN;const parts=text.split(':').map(Number);if(parts.slice(1).some(n=>n>=60))return NaN;return parts.reduce((a,b)=>a*60+b,0);};
+ return cues.map((c,index)=>{let from=seconds(c?.start),to=seconds(c?.end);if(typeof c?.text!=='string'||!c.text.trim()||c.text.length>1500||!Number.isFinite(from)||!Number.isFinite(to)||from<start-.5||to>end+.5)throw error(502,'Câu AI '+(index+1)+' có nội dung hoặc mốc thời gian không hợp lệ; chưa đánh dấu đoạn hoàn tất.');from=Math.max(start,from);to=Math.min(end,to);if(to<=from)throw error(502,'Câu AI '+(index+1)+' có mốc kết thúc không sau mốc bắt đầu.');return {start:from,end:to,text:c.text.trim()};}).sort((a,b)=>a.start-b.start);
+}
 // OAuth uses a single-use server-side flow and verifies Google's signed ID token.
 function googleConfigured(env){return !!(env.GOOGLE_CLIENT_ID&&env.GOOGLE_CLIENT_SECRET);}
 function oauthCookie(value,maxAge=600){return `elio_google_state=${value}; Path=/api/auth/google; HttpOnly; Secure; SameSite=Lax; Max-Age=${maxAge}`;}
@@ -427,10 +432,8 @@ if(path==='/api/listening/transcribe'&&request.method==='POST'){
  let data;try{data=JSON.parse(result.text.trim().replace(/^```(?:json)?\s*/i,'').replace(/\s*```$/,''));}catch{throw error(502,'AI trả bản chép sai định dạng.');}
  if(data.status==='inaccessible')throw error(422,'AI chưa truy cập hoặc nghe được video. Không tạo đáp án giả.');
  if(!Array.isArray(data.cues)||data.cues.length>150)throw error(502,'AI trả bản chép sai định dạng.');
- const valid=c=>typeof c?.text==='string'&&c.text.trim()&&c.text.length<=1500&&Number.isFinite(c.start)&&Number.isFinite(c.end)&&c.start>=start&&c.end<=end&&c.end>c.start;
- if(!data.cues.every(valid))throw error(502,'Một hoặc nhiều câu AI có mốc/nội dung không hợp lệ; chưa đánh dấu đoạn hoàn tất.');
- if(!data.cues.length&&data.status!=='no_speech')throw error(422,'AI chưa xác nhận được lời thoại hoặc khoảng lặng trong đoạn này.');
- const cues=data.cues.map(c=>({start:c.start,end:c.end,text:c.text.trim()})).sort((a,b)=>a.start-b.start);
+ const cues=normalizeTranscriptCues(data.cues,start,end);
+ if(!cues.length&&data.status!=='no_speech')throw error(422,'AI chưa xác nhận được lời thoại hoặc khoảng lặng trong đoạn này.');
  return json({cues,start,end,status:cues.length?'ok':'no_speech',source:'ai',warning:'Bản chép AI; cần kiểm tra độ chính xác và thời gian.'});
 }
 if(path==='/api/ai'&&request.method==='POST')return json(await runAI(env,u,await body(request,14000000)));
