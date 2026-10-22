@@ -138,7 +138,7 @@ test('AI workplace routes text, image, general and speech separately with fallba
  const user=await call('/api/auth/register','POST',{email:'jobs-test@example.com',password:'Jobs-Test-493!'});
  const existing=db.prepare('SELECT id,enabled FROM app_ai').all();db.prepare('UPDATE app_ai SET enabled=0').run();
  assert.equal((await call('/api/admin/ai','POST',{provider:'groq',model:'test',key:'x',job:'speech'},admin.cookie)).status,400);
- assert.equal((await call('/api/admin/ai','POST',{provider:'gemini',model:'test',key:'x',job:'image',vision:false},admin.cookie)).status,400);
+ assert.equal((await call('/api/admin/ai','POST',{provider:'groq',model:'test',key:'x',job:'image',vision:false},admin.cookie)).status,400);
  const ids={};for(const job of ['image','speech','text','general']){const r=await call('/api/admin/ai','POST',{label:job,provider:'gemini',model:'test-model',key:'key-'+job,job,vision:job==='image',priority:1},admin.cookie);assert.equal(r.status,200);ids[job]=r.body.id;}
  const list=await call('/api/admin/ai','GET',null,admin.cookie);assert.equal(list.body.items.find(r=>r.id===ids.image).job,'image');assert(!JSON.stringify(list.body).includes('key-image'));
  const original=globalThis.fetch;let used=[];
@@ -176,5 +176,21 @@ test('TTS quota failures update the exact key, fall back within speech and tests
   used=[];await call('/api/speech/tts','POST',{text:'Guten Tag.',fallback:true},user.cookie);assert.deepEqual(used,['tts-quota-1']);
   const success=await call('/api/admin/ai/test','POST',{id:ids[1]},admin.cookie);assert.equal(success.status,200);assert.equal(success.body.tested,'speech');assert.match(db.prepare('SELECT status FROM app_ai WHERE id=?').get(ids[1]).status,/TTS thành công/);
   const failed=await call('/api/admin/ai/test','POST',{id:ids[0]},admin.cookie);assert.equal(failed.status,503);assert.match(failed.body.error,/Quota model giọng đọc bằng 0/);assert(!JSON.stringify(failed.body).includes('private-key-hidden'));assert.equal(failed.body.speechAttempts[0].label,'Voice 0');
+ }finally{globalThis.fetch=original;for(const id of ids){db.prepare('DELETE FROM app_ai WHERE id=?').run(id);db.prepare('DELETE FROM app_ai_jobs WHERE id=?').run(id);}for(const row of existing)db.prepare('UPDATE app_ai SET enabled=? WHERE id=?').run(row.enabled,row.id);}
+});
+
+test('explicit assignments outrank legacy keys and workplace tests exercise the correct capability',async()=>{
+ const admin=await call('/api/auth/login','POST',{email:'owner@example.com',password:env.ADMIN_INITIAL_PASSWORD});const user=await call('/api/auth/register','POST',{email:'strict-jobs@example.com',password:'Strict-Jobs-493!'});
+ const existing=db.prepare('SELECT id,enabled FROM app_ai').all();db.prepare('UPDATE app_ai SET enabled=0').run();const ids=[];
+ async function add(extra){const r=await call('/api/admin/ai','POST',{provider:'gemini',model:'test-model',key:'strict-legacy',priority:0,...extra},admin.cookie);assert.equal(r.status,200);ids.push(r.body.id);return r.body.id;}
+ const legacy=await add({}),text=await add({key:'strict-text',job:'text',priority:9}),image=await add({key:'strict-image',job:'image',vision:false}),speech=await add({key:'strict-speech',job:'speech',model:'a-text-model'});
+ assert.equal(db.prepare('SELECT vision FROM app_ai WHERE id=?').get(image).vision,1);assert.equal(db.prepare('SELECT model FROM app_ai WHERE id=?').get(speech).model,'gemini-2.5-flash-preview-tts');
+ const original=globalThis.fetch;let used=[];globalThis.fetch=async(url,options)=>{const key=options.headers['x-goog-api-key'],body=JSON.parse(options.body);used.push(key);if(key==='strict-image')assert(body.contents[0].parts.some(p=>p.inline_data?.mime_type==='image/png'));return Response.json({candidates:[{finishReason:'STOP',content:{parts:[{text:'{"ok":true}'}]}}]});};
+ try{
+  assert.equal((await call('/api/ai','POST',{prompt:'Grade this'},user.cookie)).status,200);assert.deepEqual(used,['strict-text']);
+  used=[];db.prepare('UPDATE app_ai SET cooldown=? WHERE id=?').run(Date.now()+60000,text);assert.equal((await call('/api/ai','POST',{prompt:'Grade this'},user.cookie)).status,503);assert.equal(used.length,0);
+  db.prepare('UPDATE app_ai SET cooldown=0,enabled=0 WHERE id=?').run(text);assert.equal((await call('/api/ai','POST',{prompt:'Grade this'},user.cookie)).status,503);assert.equal(used.length,0);
+  const tested=await call('/api/admin/ai/test','POST',{id:image},admin.cookie);assert.equal(tested.status,200);assert.equal(tested.body.tested,'image');assert.equal(used.at(-1),'strict-image');
+  assert.equal((await call('/api/admin/ai','PATCH',{id:speech,job:'text'},admin.cookie)).status,200);assert.equal(db.prepare('SELECT model FROM app_ai WHERE id=?').get(speech).model,'gemini-flash-latest');assert.equal((await call('/api/admin/ai','PATCH',{id:speech,model:'gemini-2.5-flash-preview-tts'},admin.cookie)).status,400);
  }finally{globalThis.fetch=original;for(const id of ids){db.prepare('DELETE FROM app_ai WHERE id=?').run(id);db.prepare('DELETE FROM app_ai_jobs WHERE id=?').run(id);}for(const row of existing)db.prepare('UPDATE app_ai SET enabled=? WHERE id=?').run(row.enabled,row.id);}
 });
