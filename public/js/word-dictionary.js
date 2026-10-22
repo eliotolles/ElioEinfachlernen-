@@ -40,4 +40,4 @@ const WordDictionary={
  },
  showSaved(word,anchor){return this.open(word.de,{sentence:word.source?.sentence,translation:word.source?.translation},anchor,word);}
 };
-document.addEventListener('authchange',()=>{WordDictionary.close();WordDictionary.cache.clear();});
+let dictionaryOwner=Auth.user;document.addEventListener('authchange',()=>{if(dictionaryOwner===Auth.user)return;dictionaryOwner=Auth.user;WordDictionary.close();WordDictionary.cache.clear();});
