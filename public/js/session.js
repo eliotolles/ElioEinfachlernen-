@@ -11,13 +11,13 @@ function mergeWritingFeedback(local,remote){
 function mergeCaptionLibraries(local,remote){
  if(!Array.isArray(local)||!Array.isArray(remote)||local.length!==remote.length)return null;
  const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b),result=[];
- const strip=v=>Object.fromEntries(Object.entries(v).filter(([k])=>!['cues','processedUntil','duration','transcriptionPending'].includes(k)));
+ const strip=v=>Object.fromEntries(Object.entries(v).filter(([k])=>!['cues','processedUntil','duration','transcriptionPending','captionFetchState','captionFetchReason','transcriptSource'].includes(k)));
  const byId=new Map(remote.map(v=>[v.id,v]));if(byId.size!==remote.length)return null;
  for(const a of local){const b=byId.get(a.id);if(!b)return null;if(same(a,b)){result.push(structuredClone(a));continue;}
   if(!same(strip(a),strip(b))||!Array.isArray(a.cues)||!Array.isArray(b.cues))return null;
   const shorter=a.cues.length<=b.cues.length?a:b,longer=shorter===a?b:a;
   if(!shorter.cues.every((c,i)=>same(c,longer.cues[i])))return null;
-  const value=structuredClone(longer);value.processedUntil=Math.max(Number(a.processedUntil)||0,Number(b.processedUntil)||0);
+  const value=structuredClone(longer);if(value.cues.length){value.captionFetchState='ready';delete value.captionFetchReason;}else if([a.captionFetchState,b.captionFetchState].some(state=>['queued','fetching'].includes(state))){value.captionFetchState='queued';delete value.captionFetchReason;}value.processedUntil=Math.max(Number(a.processedUntil)||0,Number(b.processedUntil)||0);
   const duration=Math.max(Number(a.duration)||0,Number(b.duration)||0);if(duration)value.duration=duration;
   if(a.transcriptionPending!==undefined||b.transcriptionPending!==undefined)value.transcriptionPending=duration?value.processedUntil<Math.min(duration,7200):Boolean(a.transcriptionPending||b.transcriptionPending);
   result.push(value);
@@ -96,4 +96,5 @@ Account.ready=typeof parentAccount!=='undefined'&&parentAccount?Account.ready:(a
 })();
 window.addEventListener('online',()=>Account.flush());window.addEventListener('storage',e=>{if(e.key==='elio:logout'){Account.profile=null;Account.redirectToLogin();}});if(!parentAccount)setInterval(()=>{if(Account.current())Account.flush();},15000);
 window.ElioSharedAccount=Account;
+
 
