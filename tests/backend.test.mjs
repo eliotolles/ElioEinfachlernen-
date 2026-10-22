@@ -162,3 +162,19 @@ test('legacy speech key migrates once into the unified managed speech list witho
  const repeated=await call('/api/admin/ai','GET',null,admin.cookie);assert.equal(repeated.body.items.filter(r=>r.id===item.id).length,1);assert.equal(repeated.body.items.find(r=>r.id===item.id).enabled,0);assert.equal(repeated.body.items.find(r=>r.id===item.id).priority,9);
  assert.equal((await call('/api/admin/ai','DELETE',{id:item.id},admin.cookie)).status,200);assert.equal(db.prepare('SELECT job FROM app_ai_jobs WHERE id=?').get(item.id),undefined);
 });
+
+test('TTS quota failures update the exact key, fall back within speech and tests report audio capability',async()=>{
+ const admin=await call('/api/auth/login','POST',{email:'owner@example.com',password:env.ADMIN_INITIAL_PASSWORD});
+ const user=await call('/api/auth/register','POST',{email:'tts-quota-test@example.com',password:'Tts-Quota-493!'});
+ const existing=db.prepare('SELECT id,enabled FROM app_ai').all();db.prepare('UPDATE app_ai SET enabled=0').run();const ids=[];
+ for(let i=0;i<2;i++){const r=await call('/api/admin/ai','POST',{label:'Voice '+i,provider:'gemini',model:'gemini-2.5-flash-preview-tts',key:'tts-quota-'+i,job:'speech',priority:i},admin.cookie);ids.push(r.body.id);}
+ const original=globalThis.fetch;let used=[];
+ globalThis.fetch=async(url,options)=>{const key=options.headers['x-goog-api-key'];used.push(key);if(key==='tts-quota-0')return Response.json({error:{message:'private-key-hidden limit: 0',details:[{violations:[{quotaId:'requests_per_day',quotaValue:'0'}]},{retryDelay:'45s'}]}},{status:429});return Response.json({candidates:[{finishReason:'STOP',content:{parts:[{inlineData:{mimeType:'audio/wav',data:'AAA='}}]}}]});};
+ try{
+  assert.equal((await call('/api/speech/tts','POST',{text:'Hallo.',fallback:true},user.cookie)).status,200);assert.deepEqual(used,['tts-quota-0','tts-quota-1']);
+  const first=db.prepare('SELECT status,cooldown FROM app_ai WHERE id=?').get(ids[0]);assert.match(first.status,/Quota model giọng đọc bằng 0/);assert(first.cooldown>Date.now());assert(!first.status.includes('private-key-hidden'));
+  used=[];await call('/api/speech/tts','POST',{text:'Guten Tag.',fallback:true},user.cookie);assert.deepEqual(used,['tts-quota-1']);
+  const success=await call('/api/admin/ai/test','POST',{id:ids[1]},admin.cookie);assert.equal(success.status,200);assert.equal(success.body.tested,'speech');assert.match(db.prepare('SELECT status FROM app_ai WHERE id=?').get(ids[1]).status,/TTS thành công/);
+  const failed=await call('/api/admin/ai/test','POST',{id:ids[0]},admin.cookie);assert.equal(failed.status,503);assert.match(failed.body.error,/Quota model giọng đọc bằng 0/);assert(!JSON.stringify(failed.body).includes('private-key-hidden'));assert.equal(failed.body.speechAttempts[0].label,'Voice 0');
+ }finally{globalThis.fetch=original;for(const id of ids){db.prepare('DELETE FROM app_ai WHERE id=?').run(id);db.prepare('DELETE FROM app_ai_jobs WHERE id=?').run(id);}for(const row of existing)db.prepare('UPDATE app_ai SET enabled=? WHERE id=?').run(row.enabled,row.id);}
+});
