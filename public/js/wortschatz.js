@@ -44,5 +44,6 @@ $('#vocab-enrichment-stop').onclick=()=>{enrichmentGeneration++;$('#vocab-enrich
 document.addEventListener('authchange',()=>{if(enrichmentUser===Auth.user)return;enrichmentUser=Auth.user;enrichmentGeneration++;$('#vocab-enrichment-stop').hidden=true;$('#vocab-meanings-status').textContent='';});
 
 // Refresh the available words on a retained view without resetting an active game.
-document.addEventListener('elioviewresume',()=>{words=Auth.get('vocab',[]);renderWords();if(typeof renderDecks==='function')renderDecks();});
+let resumedVocabularyRevision=typeof VocabCatalog!=='undefined'?VocabCatalog.dataRevision(Account):'';
+document.addEventListener('elioviewresume',()=>{const next=typeof VocabCatalog!=='undefined'?VocabCatalog.dataRevision(Account):'';if(next&&next===resumedVocabularyRevision)return;resumedVocabularyRevision=next;words=Auth.get('vocab',[]);renderWords();if(typeof renderDecks==='function')renderDecks();});
 
