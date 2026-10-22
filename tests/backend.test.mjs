@@ -194,3 +194,13 @@ test('explicit assignments outrank legacy keys and workplace tests exercise the 
   assert.equal((await call('/api/admin/ai','PATCH',{id:speech,job:'text'},admin.cookie)).status,200);assert.equal(db.prepare('SELECT model FROM app_ai WHERE id=?').get(speech).model,'gemini-flash-latest');assert.equal((await call('/api/admin/ai','PATCH',{id:speech,model:'gemini-2.5-flash-preview-tts'},admin.cookie)).status,400);
  }finally{globalThis.fetch=original;for(const id of ids){db.prepare('DELETE FROM app_ai WHERE id=?').run(id);db.prepare('DELETE FROM app_ai_jobs WHERE id=?').run(id);}for(const row of existing)db.prepare('UPDATE app_ai SET enabled=? WHERE id=?').run(row.enabled,row.id);}
 });
+
+test('listening metadata uses public YouTube title without AI keys and rejects invalid input',async()=>{
+ const user=await call('/api/auth/register','POST',{email:'yt-title-test@example.com',password:'Title-Test-493!'});const original=globalThis.fetch;let urls=[];
+ globalThis.fetch=async url=>{urls.push(String(url));return Response.json({title:'Nicos Weg · B1 · Ein neuer Tag',author_name:'Channel'});};
+ try{assert.equal((await call('/api/listening/metadata','POST',{id:'title123ABC'})).status,401);assert.equal((await call('/api/listening/metadata','POST',{id:'https://example.com'},user.cookie)).status,400);assert.equal(urls.length,0);
+ const r=await call('/api/listening/metadata','POST',{id:'title123ABC'},user.cookie);assert.equal(r.status,200);assert.equal(r.body.title,'Nicos Weg · B1 · Ein neuer Tag');assert.equal(urls.length,1);assert.match(urls[0],/^https:\/\/www.youtube.com\/oembed\?/);
+ await call('/api/listening/metadata','POST',{id:'title123ABC'},user.cookie);assert.equal(urls.length,1);
+ globalThis.fetch=async()=>new Response('Private',{status:403});const blocked=await call('/api/listening/metadata','POST',{id:'privat123AB'},user.cookie);assert.equal(blocked.body.available,false);assert(!blocked.body.title);
+ }finally{globalThis.fetch=original;}
+});
