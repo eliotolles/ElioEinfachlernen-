@@ -61,7 +61,7 @@ const ListeningStudy={
   function tick(time){
    if(active!=='subtitles'||!Number.isFinite(time))return;const cues=api.video()?.cues||[];const next=ListeningStudy.cueAt(cues,time);if(next===followIndex)return;followIndex=next;
    subtitleRows.forEach((row,i)=>{row.className='ls-subtitle'+(i===next?' current':'');row.setAttribute('aria-current',String(i===next));});
-   const row=subtitleRows[next];if(!row||!subtitleList)return;const top=row.offsetTop-subtitleList.offsetTop,bottom=top+row.offsetHeight;if(top<subtitleList.scrollTop||bottom>subtitleList.scrollTop+subtitleList.clientHeight)subtitleList.scrollTop=Math.max(0,top-subtitleList.clientHeight/3);
+   const row=subtitleRows[next];if(!row||!subtitleList)return;const top=row.offsetParent===subtitleList?row.offsetTop:row.getBoundingClientRect().top-subtitleList.getBoundingClientRect().top+subtitleList.scrollTop,bottom=top+row.offsetHeight;if(top<subtitleList.scrollTop||bottom>subtitleList.scrollTop+subtitleList.clientHeight)subtitleList.scrollTop=Math.max(0,top-subtitleList.clientHeight/3);
   }
   return {render,tick,continuous:()=>active==='subtitles'||active==='vocabulary',loop:()=>active==='shadowing'&&repeat,playback:state=>{playing=state===1;const b=side.querySelector('.ls-shadow-play');if(b)b.textContent=playing?'Ⅱ Dừng câu':'▶ Nghe câu';}};
  }
