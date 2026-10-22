@@ -27,3 +27,7 @@
 #elio-diktat .yt-collection-levels button[aria-pressed=true]{background:var(--orange);color:white;border-color:var(--orange)}
 #elio-diktat .yt-collection-videos{max-height:540px;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;padding:0 16px 16px}
 #elio-diktat .yt-collection-videos .yt-card{min-width:0}
+
+#elio-diktat .yt-collection-level-section{border-top:1px solid var(--line);padding-top:14px}
+#elio-diktat .yt-collection-level-section>h4{margin:0 16px 14px;font-size:17px;color:var(--text)}
+#elio-diktat .yt-collection-level-section .yt-collection-videos{max-height:none;overflow:visible}
