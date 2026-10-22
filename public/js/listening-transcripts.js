@@ -1,6 +1,6 @@
 'use strict';
 // A transient CC queue: only completed captions are written to account storage.
-const ListeningCaptionImport={
+const ListeningTranscripts={
  parseTranscript(input,duration){
   const text=String(input||'').replace(/\r/g,'').trim();
   if(!text||text.length>1500000)throw Error('Dán bản chép lời có mốc thời gian, tối đa 1,5 MB.');
@@ -60,6 +60,6 @@ const ListeningCaptionImport={
     changed();if(pending.size&&!paused)await sleep(3500);
    }}finally{running=false;changed({done,failed,paused});}
   }
-  return {enqueue,label,async start(){if(running)return;running=true;changed();if(lock){try{await lock(async granted=>{if(granted)await drain();else{running=false;changed({message:'Hàng đợi đang chạy trong tab khác.'});}});}catch(e){running=false;changed({message:e.message});}}else await drain();},pause(){paused=true;changed();},get running(){return running;},get pending(){return pending.size;}};
+  return {enqueue,label,resetAccess(){ccUnavailable=false;},async start(){if(running)return;running=true;changed();if(lock){try{await lock(async granted=>{if(granted)await drain();else{running=false;changed({message:'Hàng đợi đang chạy trong tab khác.'});}});}catch(e){running=false;changed({message:e.message});}}else await drain();},pause(){paused=true;changed();},get running(){return running;},get pending(){return pending.size;}};
  }
 };

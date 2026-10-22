@@ -1,5 +1,5 @@
 import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import vm from 'node:vm';
-const c={};vm.createContext(c);vm.runInContext(fs.readFileSync('public/js/listening-caption-import.js','utf8')+';this.api=ListeningCaptionImport;',c);const api=c.api;
+const c={};vm.createContext(c);vm.runInContext(fs.readFileSync('public/js/listening-transcripts.js','utf8')+';this.api=ListeningTranscripts;',c);const api=c.api;
 test('YouTube transcript accepts separate timestamps and multiline German',()=>{const r=api.parseTranscript('0:10\nGuten Morgen!\nWie geht es Ihnen?\n0:17 Danke, gut.',97);assert.equal(r.length,2);assert.equal(r[0].start,10);assert.equal(r[0].end,17);assert.equal(r[1].end,97);assert.match(r[0].text,/Ihnen/);});
 test('SRT keeps actual endings rather than inferring next start',()=>{const r=api.parseTranscript('1\n00:00:10,000 --> 00:00:12,500\nGuten Morgen!\n\n2\n00:00:17,000 --> 00:00:19,000\nHallo!',NaN);assert.equal(r[0].end,12.5);assert.equal(r[1].start,17);});
 test('invalid transcript fails instead of inventing times',()=>{for(const [t,d] of [['Hallo',97],['0:17 Hallo\n0:10 Welt',97],['0:10 Hallo',NaN],['0:10 Hallo',5]])assert.throws(()=>api.parseTranscript(t,d));});
