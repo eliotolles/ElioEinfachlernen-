@@ -25,12 +25,11 @@ const WordDictionary={
   const load=async()=>{status.textContent='Đang tra nghĩa theo câu…';body.replaceChildren();try{
    const word=stored||await this.lookup(token,context,user);if(!valid())return;status.textContent=word.aiGenerated?.includes('dictionary')?'Tra nghĩa bằng AI · đối chiếu theo ngữ cảnh':'Từ trong kho từ vựng';title.textContent=word.de;
    if(word.surface&&PersonalVocabulary.key(word.surface)!==PersonalVocabulary.key(word.de))body.append(el('small','Trong câu: '+word.surface));
-   body.append(el('p',word.vi));if(word.type||word.forms)body.append(el('small',[word.type,word.forms].filter(Boolean).join(' · ')));
-   if(word.note)body.append(el('p',word.note));
+   body.append(el('p',word.vi));if(word.type)body.append(el('small',word.type));if(word.forms){const forms=el('details');forms.append(el('summary','Dạng từ'),el('p',word.forms));body.append(forms);}
    const read=el('button','🔊 Nghe từ');read.type='button';read.onclick=()=>GermanSpeech.read(word.de);body.append(read);
-   if(context.sentence){body.append(el('h4','Câu trong video'),el('p',context.sentence));if(context.translation)body.append(el('small',context.translation));}
+   if(context.sentence){body.append(el('h4','Câu trong video'),el('p',context.sentence));}
    if(word.example){body.append(el('h4','Ví dụ'),el('p',word.example));if(word.exampleVi)body.append(el('small',word.exampleVi));}
-   for(const [key,label]of [['synonyms','Từ liên quan'],['phrases','Cụm từ']]){if(!Array.isArray(word[key])||!word[key].length)continue;body.append(el('h4',label));for(const item of word[key])body.append(el('p',item.de+' — '+(item.vi||'')));}
+   for(const [key,label]of [['synonyms','Từ liên quan'],['phrases','Cụm từ']]){if(!Array.isArray(word[key])||!word[key].length)continue;body.append(el('h4',label));for(const item of word[key])if(PersonalVocabulary.key(item.de)!==PersonalVocabulary.key(word.de))body.append(el('p',item.de+' — '+(item.vi||'')));}
    if(stored){const link=el('a','Mở bộ từ trong Wortschatz →');link.href='wortschatz.html#'+new URLSearchParams({catalog:'mine',deck:stored.deckId||''});body.append(link);return;}
    const form=el('form'),folderLabel=el('label','Bộ từ cá nhân'),folder=el('input');folder.maxLength=80;folder.required=true;folder.value=context.collection||'Từ trong video';folder.setAttribute('list','dictionary-personal-folders');folder.setAttribute('aria-label','Bộ từ cá nhân');const list=el('datalist');list.id='dictionary-personal-folders';for(const name of PersonalVocabulary.folders()){const o=el('option');o.value=name;list.append(o);}folderLabel.append(folder,list);
    const levelLabel=el('label','Cấp độ'),level=el('select');level.setAttribute('aria-label','Cấp độ lưu từ');for(const value of PersonalVocabulary.levels){const o=el('option',value);o.value=value;level.append(o);}level.value=PersonalVocabulary.levels.includes(context.level)?context.level:PersonalVocabulary.levels.includes(word.level)?word.level:'B1';levelLabel.append(level);
