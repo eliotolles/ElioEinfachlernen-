@@ -1,7 +1,7 @@
 'use strict';
 const ListeningCaptionImport={
  toSrt(cues){const time=n=>{const ms=Math.round(n*1000);return [Math.floor(ms/3600000),Math.floor(ms/60000)%60,Math.floor(ms/1000)%60].map(n=>String(n).padStart(2,'0')).join(':')+','+String(ms%1000).padStart(3,'0');};return cues.filter(c=>Number.isFinite(c.start)&&Number.isFinite(c.end)&&c.start>=0&&c.end>c.start&&typeof c.text==='string'&&c.text.trim()).slice().sort((a,b)=>a.start-b.start).map((c,i)=>(i+1)+'\n'+time(c.start)+' --> '+time(c.end)+'\n'+c.text.trim()).join('\n\n')+'\n';},
- create({videos,user,request,save,progress=()=>{},sleep=ms=>new Promise(r=>setTimeout(r,ms)),lock}){
+ create({videos,user,request,save,progress=()=>{},sleep=ms=>new Promise(r=>setTimeout(r,ms)),lock,applied=()=>{},settled=()=>{}}){
   let running=false,paused=false;
   async function drain(){const owner=user();let done=0,unavailable=0;paused=false;
    // A fetching flag left by a closed tab is a saved checkpoint, not a finished result.
@@ -13,7 +13,7 @@ const ListeningCaptionImport={
     if(v.cues?.length){v.captionFetchState='ready';}
     else if(result.available&&Array.isArray(result.cues)&&result.cues.length){v.cues=result.cues;v.transcriptSource=result.source;v.processedUntil=0;v.captionFetchState='ready';delete v.captionFetchReason;done++;}
     else{v.captionFetchState='unavailable';v.captionFetchReason=result.reason||'Không lấy được CC tiếng Đức. Có thể mở video để dùng AI dự phòng hoặc nhập SRT/VTT.';unavailable++;}
-    await save();await sleep(3500);
+    await save();if(user()===owner&&v.captionFetchState==='ready')await applied(v);if(user()===owner)await settled(v);await sleep(3500);
    }
    progress(paused?'Đã tạm dừng lấy CC; các video đã xử lý vẫn được lưu.': 'Đã xử lý hàng đợi CC: '+done+' video có phụ đề · '+unavailable+' video chưa lấy được. Không tự gọi AI hàng loạt.');
    }catch(e){progress(e.message+' Đã giữ hàng đợi; giải quyết đồng bộ rồi bấm Tiếp tục lấy CC.');}finally{running=false;}
@@ -21,3 +21,4 @@ const ListeningCaptionImport={
   return {async start(){if(running)return;running=true;if(lock){try{await lock(async granted=>{if(granted)await drain();else{running=false;progress('Hàng đợi CC đang chạy ở tab khác.');}});}catch(e){running=false;progress(e.message);}}else await drain();},pause(){paused=true;},get running(){return running;}};
  }
 };
+
