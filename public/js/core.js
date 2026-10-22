@@ -34,16 +34,27 @@ const translationObserver=new MutationObserver(records=>{
 });translationObserver.observe(document.body,{childList:true,subtree:true,characterData:true});document.addEventListener('languagechange',()=>translateLegacy());translateLegacy();
 
 const PiperGerman=(()=>{
- let worker=null,serial=0;const pending=new Map();
+ // Route frames share the top app's worker, model download and warm-up promise.
+ try{if(window.parent!==window&&window.parent.location.origin===location.origin&&window.parent.ElioPiperService)return window.parent.ElioPiperService;}catch{}
+ let worker=null,serial=0,preparation=null;const pending=new Map();
  function reset(message){worker?.terminate();worker=null;for(const job of pending.values()){clearTimeout(job.timer);job.reject(Error(message));}pending.clear();}
- function request(text,prepare=false){
+ function request(text,prepare=false,quiet=false){
   if(!window.Worker||!navigator.storage?.getDirectory||!window.isSecureContext)return Promise.reject(Error('Thiết bị chưa hỗ trợ Piper trong trình duyệt.'));
-  if(!worker){worker=new Worker('/js/piper-worker.js',{type:'module'});worker.onmessage=({data})=>{const job=pending.get(data.id);if(!job)return;if(data.type==='progress'){const now=Date.now();if(now-job.last>2500){job.last=now;toast('Đang tải bộ giọng Đức'+(data.percent===null?'…':': '+data.percent+'%'));}return;}clearTimeout(job.timer);pending.delete(data.id);data.type==='error'?job.reject(Error(data.message)):job.resolve(data.audio||true);};worker.onerror=()=>reset('Không tải được Piper. Kiểm tra mạng hoặc dùng API giọng đọc riêng.');}
-  return new Promise((resolve,reject)=>{const id=++serial;const timer=setTimeout(()=>reset('Piper chờ quá lâu trên thiết bị này.'),180000);pending.set(id,{resolve,reject,timer,last:0});worker.postMessage({id,text,prepare});});
+  if(!worker){worker=new Worker('/js/piper-worker.js',{type:'module'});worker.onmessage=({data})=>{const job=pending.get(data.id);if(!job)return;if(data.type==='progress'){const now=Date.now();if(!job.quiet&&now-job.last>2500){job.last=now;toast('Đang tải bộ giọng Đức'+(data.percent===null?'…':': '+data.percent+'%'));}return;}clearTimeout(job.timer);pending.delete(data.id);data.type==='error'?job.reject(Error(data.message)):job.resolve(data.audio||true);};worker.onerror=()=>reset('Không tải được Piper. Kiểm tra mạng hoặc dùng API giọng đọc riêng.');}
+  return new Promise((resolve,reject)=>{const id=++serial;const timer=setTimeout(()=>reset('Piper chờ quá lâu trên thiết bị này.'),180000);pending.set(id,{resolve,reject,timer,last:0,quiet});worker.postMessage({id,text,prepare});});
  }
- async function prepare(){toast('Tải bộ giọng Đức lần đầu; các lần sau dùng bản đã lưu.');await navigator.storage?.persist?.().catch(()=>false);await request('',true);toast('Bộ giọng Đức đã sẵn sàng trên thiết bị này.');}
+ async function prepare({silent=false}={}){
+  if(!silent)toast('Chuẩn bị bộ giọng Đức; dùng lại bản đã lưu nếu có.');
+  if(!preparation){const warm=()=>request('',true,silent);preparation=(navigator.locks?.request?navigator.locks.request('elio-piper-german-prepare',warm):warm()).catch(error=>{preparation=null;throw error;});}
+  await preparation;if(!silent)toast('Bộ giọng Đức đã sẵn sàng trên thiết bị này.');
+ }
  window.addEventListener?.('pagehide',()=>reset('Đã rời trang.'));
- return {read:text=>request(text),prepare};
+ const service={read:async text=>{await prepare({silent:true});return request(text);},prepare};window.ElioPiperService=service;return service;
+})();
+
+// All signed-in roles preload after the initial page has painted. No playback or API fallback.
+(()=>{let scheduled=false;function preload(){if(scheduled||!Auth.user||!window.Worker||!navigator.storage?.getDirectory||!window.isSecureContext)return;scheduled=true;const run=()=>{PiperGerman.prepare({silent:true}).catch(()=>{scheduled=false;});};if(typeof window.requestIdleCallback==='function')window.requestIdleCallback(run,{timeout:8000});else setTimeout(run,1800);}
+ if(document.readyState==='complete')preload();else window.addEventListener?.('load',preload,{once:true});document.addEventListener('authchange',preload);document.addEventListener('elioviewresume',preload);
 })();
 
 const GermanSpeech=(()=>{
