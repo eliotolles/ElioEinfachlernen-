@@ -150,6 +150,17 @@ async function youtubeMetadata(id){
  try{const response=await fetch('https://www.youtube.com/watch?v='+id+'&hl=de',{redirect:'error',signal:AbortSignal.timeout(4000)});if(response.ok){const html=await response.text();if(html.length<=6000000){const player=embeddedJSON(html,'ytInitialPlayerResponse =')||embeddedJSON(html,'ytInitialPlayerResponse=');if(player?.videoDetails?.videoId===id){const value=remember(player.videoDetails.title);if(value)return value;}}}}catch{}
  return unavailable();
 }
+async function youtubePlaylistPage(env,data){
+ const id=String(data.id||''),page=String(data.pageToken||'');if(!/^[A-Za-z0-9_-]{10,150}$/.test(id)||!/^[A-Za-z0-9_=-]{0,1000}$/.test(page))throw error(400,'Playlist hoặc mã trang không hợp lệ.');
+ const row=(await sql(env,"SELECT value FROM app_config WHERE name='youtubeSecret'")).rows[0];const key=row?await decrypt(env,row.value):env.YOUTUBE_API_KEY;if(!key)throw error(400,'Chưa cấu hình YouTube Data API key. Mở Cấu hình YouTube trong mục nhập playlist.');
+ const params=new URLSearchParams({part:'snippet,status',playlistId:id,maxResults:'50'});if(page)params.set('pageToken',page);
+ let response;try{response=await fetch('https://www.googleapis.com/youtube/v3/playlistItems?'+params,{headers:{'X-Goog-Api-Key':key},redirect:'error',signal:AbortSignal.timeout(12000)});}catch{throw error(503,'Không kết nối được YouTube. Thử lại sau.');}
+ if(!response.ok){if(response.status===404)throw error(404,'Không tìm thấy playlist công khai.');if(response.status===403)throw error(403,'YouTube từ chối: kiểm tra key, bật YouTube Data API v3, quyền hoặc quota.');throw error(502,'YouTube chưa trả được danh sách video.');}
+ let result;try{result=await response.json();}catch{throw error(502,'YouTube trả dữ liệu không hợp lệ.');}
+ if(!Array.isArray(result.items))throw error(502,'YouTube chưa trả danh sách video.');const items=[];let skipped=0;
+ for(const item of result.items){const s=item.snippet,id=s?.resourceId?.videoId,title=s?.title;if(!/^[A-Za-z0-9_-]{11}$/.test(id||'')||typeof title!=='string'||!title.trim()||item.status?.privacyStatus==='private'||['Private video','Deleted video'].includes(title)){skipped++;continue;}items.push({youtubeId:id,title:title.trim().slice(0,300)});}
+ return {items,skipped,nextPageToken:typeof result.nextPageToken==='string'?result.nextPageToken:'',total:Number(result.pageInfo?.totalResults)||0};
+}
 async function publicGermanCaptions(id){
  if(!/^[A-Za-z0-9_-]{11}$/.test(id||''))throw error(400,'Mã video không hợp lệ.');
  const unavailable=reason=>({available:false,reason,cues:[]});
@@ -233,6 +244,8 @@ if(path==='/api/auth/register'||path==='/api/auth/login'){if(request.method!=='P
 if(path==='/api/auth/logout'&&request.method==='POST'){const token=(request.headers.get('Cookie')||'').match(/elio_session=([a-f0-9]{64})/)?.[1];if(token)await sql(env,'DELETE FROM app_sessions WHERE token_hash=?',[await digest(token)]);return json({ok:true},200,{'Set-Cookie':'elio_session=; Path=/; HttpOnly; Secure; SameSite=None; Partitioned; Max-Age=0'});}
 const u=await session(request,env,path==='/api/auth/me'||path==='/api/auth/password');
 if(path==='/api/admin/mail-sender'){admin(u);if(request.method==='DELETE'){await sql(env,"DELETE FROM app_mail_sender WHERE id='gmail'");return json({ok:true});}if(request.method!=='GET')throw error(405,'Method not allowed');const row=(await sql(env,"SELECT updated_at FROM app_mail_sender WHERE id='gmail'")).rows[0];return json({enabled:googleConfigured(env),connected:!!row,email:senderEmail(env),dailyLimit:100,monthlyLimit:3000});}
+if(path==='/api/admin/youtube-key'){admin(u);if(request.method==='GET'){const row=(await sql(env,"SELECT name FROM app_config WHERE name='youtubeSecret'")).rows[0];return json({configured:!!row||!!env.YOUTUBE_API_KEY});}if(request.method==='PUT'){const d=await body(request,1500);if(typeof d.key!=='string'||!/^[-_A-Za-z0-9]{20,200}$/.test(d.key.trim()))throw error(400,'YouTube API key không hợp lệ.');await sql(env,"INSERT INTO app_config(name,value) VALUES('youtubeSecret',?) ON CONFLICT(name) DO UPDATE SET value=excluded.value",[await encrypt(env,d.key.trim())]);return json({ok:true});}if(request.method==='DELETE'){await sql(env,"DELETE FROM app_config WHERE name='youtubeSecret'");return json({ok:true});}throw error(405,'Method not allowed');}
+if(path==='/api/admin/listening/playlist'){admin(u);if(request.method!=='POST')throw error(405,'Method not allowed');await limit(env,'youtube-playlist:'+u.id,120,60000);return json(await youtubePlaylistPage(env,await body(request,2000)));}
 if(path==='/api/auth/me'&&request.method==='GET')return json({user:publicUser(u)});
 if(path==='/api/auth/password'&&request.method==='POST'){const d=await body(request,1000);checkPassword(d.newPassword);if(!await passwordMatches(d.currentPassword,u.password_hash))throw error(400,'Mật khẩu hiện tại chưa đúng.');if(await passwordMatches(d.newPassword,u.password_hash))throw error(400,'Mật khẩu mới phải khác mật khẩu hiện tại.');const now=Date.now();await sql(env,'UPDATE app_users SET password_hash=?,password_changed=? WHERE id=?',[await passwordHash(d.newPassword),now,u.id]);await sql(env,'DELETE FROM app_sessions WHERE user_id=?',[u.id]);return issueSession(env,{...u,password_changed:now});}
 if(path==='/api/state'&&request.method==='GET')return json(await state(env,u));
