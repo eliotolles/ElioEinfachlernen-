@@ -261,3 +261,9 @@ test('CC track discovery accepts alternate JSON embeddings and distinguishes con
  }finally{globalThis.fetch=original;}
 });
 
+
+test('admin renames AI without changing its role, model, priority or key',async()=>{
+ const admin=await call('/api/auth/login','POST',{email:'owner@example.com',password:env.ADMIN_INITIAL_PASSWORD});const created=await call('/api/admin/ai','POST',{label:'old',provider:'groq',model:'test-model',key:'rename-test-only',priority:7,job:'text'},admin.cookie);const regular=await call('/api/auth/register','POST',{email:'rename-user@example.com',password:'Rename-Test-493!'});const id=created.body.id,before=db.prepare('SELECT * FROM app_ai WHERE id=?').get(id);
+ assert.equal((await call('/api/admin/ai','PATCH',{id,label:'Chấm chữa · Groq'},regular.cookie)).status,403);assert.equal((await call('/api/admin/ai','PATCH',{id,label:'   '},admin.cookie)).status,400);assert.equal((await call('/api/admin/ai','PATCH',{id,label:'new',priority:0},admin.cookie)).status,400);assert.equal((await call('/api/admin/ai','PATCH',{id,label:'Chấm chữa · Groq'},admin.cookie)).status,200);const after=db.prepare('SELECT * FROM app_ai WHERE id=?').get(id);assert.equal(after.label,'Chấm chữa · Groq');assert.deepEqual({...after,label:before.label},{...before});assert.equal(db.prepare('SELECT job FROM app_ai_jobs WHERE id=?').get(id).job,'text');assert.equal((await call('/api/admin/ai','PATCH',{id,label:'Chấm chữa 2',priority:2},admin.cookie)).status,200);const sorted=db.prepare('SELECT * FROM app_ai WHERE id=?').get(id);assert.equal(sorted.priority,2);assert.equal(sorted.secret,before.secret);assert.equal(sorted.model,before.model);
+ db.prepare('DELETE FROM app_ai WHERE id=?').run(id);db.prepare('DELETE FROM app_ai_jobs WHERE id=?').run(id);
+});
