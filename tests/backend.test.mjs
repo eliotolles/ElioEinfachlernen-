@@ -1,6 +1,14 @@
 import {test,before} from 'node:test';import assert from 'node:assert/strict';import {DatabaseSync} from 'node:sqlite';import worker,{passwordHash,passwordMatches} from '../worker/index.js';
 const db=new DatabaseSync(':memory:');const env={ADMIN_EMAILS:'owner@example.com,owner2@example.com',ADMIN_INITIAL_PASSWORD:'Test-pass-493!',AI_ENCRYPTION_KEY:'test-secret-long-value',TEST_DB:async(q,args=[])=>{const stmt=db.prepare(q);if(/^SELECT/i.test(q.trim()))return {rows:stmt.all(...args),changes:0};const result=stmt.run(...args);return {rows:[],changes:Number(result.changes)};}};
 async function call(path,method='GET',data=null,cookie=''){const req=new Request('https://elio.test'+path,{method,headers:{Origin:'https://elio.test',Cookie:cookie,...(data?{'Content-Type':'application/json'}:{})},body:data?JSON.stringify(data):undefined});const r=await worker.fetch(req,env);return {status:r.status,body:await r.json(),cookieHeader:r.headers.get('Set-Cookie'),cookie:r.headers.get('Set-Cookie')?.split(';')[0]};}
+// Direct YouTube parser tests isolate the optional transcript service. Its own
+// transport and fallback contract is exercised separately below.
+async function directCaptions(method,data,cookie){
+ const transport=globalThis.fetch;
+ globalThis.fetch=(url,options)=>new URL(url).hostname==='api.freetranscriptapi.com'
+  ?Promise.resolve(new Response(null,{status:503})):transport(url,options);
+ try{return await call('/api/listening/captions',method,data,cookie);}finally{globalThis.fetch=transport;}
+}
 let owner,alice,bob;
 before(async()=>{owner=await call('/api/auth/login','POST',{email:'owner@example.com',password:env.ADMIN_INITIAL_PASSWORD});alice=await call('/api/auth/register','POST',{email:'alice@example.com',password:'Alice-Test-493!'});bob=await call('/api/auth/register','POST',{email:'bob@example.com',password:'Bob-Test-493!'});});
 test('salted hashes and password matching',async()=>{const a=await passwordHash('different-password');const b=await passwordHash('different-password');assert.notEqual(a,b);assert(await passwordMatches('different-password',a));assert(!await passwordMatches('wrong',a));});
@@ -75,16 +83,22 @@ test('listening shared library is admin-owned and video transcription sends medi
  assert.equal((await call('/api/listening/transcribe','POST',{id:'invalid'},regular.cookie)).status,400);
  assert.equal((await call('/api/listening/transcribe','POST',{id:'https://evil.test'},owner.cookie)).status,400);
  const config=await call('/api/admin/ai','POST',{provider:'gemini',model:'test-video-model',key:'test-video-key',priority:0},owner.cookie);
- const original=globalThis.fetch;let received;
- globalThis.fetch=async(url,options)=>{assert.match(String(url),/generativelanguage.googleapis.com/);received=JSON.parse(options.body);return Response.json({candidates:[{finishReason:'STOP',content:{parts:[{text:JSON.stringify({cues:[{start:1,end:3,text:'Guten Morgen.'},{start:500,end:600,text:'Invalid range'}]})}]}}]});};
- try{const response=await call('/api/listening/transcribe','POST',{id:'abcdefghijk',start:0},owner.cookie);assert.equal(response.status,200);assert.equal(response.body.cues.length,1);const media=received.contents[0].parts.find(p=>p.fileData);assert.equal(media.fileData.fileUri,'https://www.youtube.com/watch?v=abcdefghijk');assert.equal(media.videoMetadata.endOffset,'120s');}finally{globalThis.fetch=original;}
+ const original=globalThis.fetch;let received,cues=[{start:1,end:3,text:'Guten Morgen.'}];
+ globalThis.fetch=async(url,options)=>{assert.match(String(url),/generativelanguage.googleapis.com/);received=JSON.parse(options.body);return Response.json({candidates:[{finishReason:'STOP',content:{parts:[{text:JSON.stringify({cues})}]}}]});};
+ try{
+  const response=await call('/api/listening/transcribe','POST',{id:'abcdefghijk',start:0},owner.cookie);assert.equal(response.status,200);assert.equal(response.body.cues.length,1);const media=received.contents[0].parts.find(p=>p.fileData);assert.equal(media.fileData.fileUri,'https://www.youtube.com/watch?v=abcdefghijk');assert.equal(media.videoMetadata.endOffset,'120s');
+  cues.push({start:500,end:600,text:'Outside the requested interval'});
+  const invalid=await call('/api/listening/transcribe','POST',{id:'abcdefghijk',start:0},owner.cookie);assert.equal(invalid.status,502);assert.equal(invalid.body.cues,undefined);
+  cues=[{start:'02:01.5',end:'02:03',text:'Guten Morgen.'}];
+  const resumed=await call('/api/listening/transcribe','POST',{id:'abcdefghijk',start:120,end:240},owner.cookie);assert.equal(resumed.status,200);assert.equal(resumed.body.cues[0].start,121.5);
+ }finally{globalThis.fetch=original;}
 });
 
 test('German captions are read directly, prefer human tracks, and access failures stay explicit',async()=>{
  const original=globalThis.fetch;let urls=[];
  globalThis.fetch=async url=>{urls.push(String(url));if(String(url).includes('/watch?'))return new Response('var ytInitialPlayerResponse = '+JSON.stringify({captions:{playerCaptionsTracklistRenderer:{captionTracks:[{languageCode:'en',baseUrl:'https://www.youtube.com/api/timedtext?v=english'},{languageCode:'de',kind:'asr',baseUrl:'https://www.youtube.com/api/timedtext?v=automatic'},{languageCode:'de',baseUrl:'https://www.youtube.com/api/timedtext?v=manual'}]}}})+';');return Response.json({events:[{tStartMs:1000,dDurationMs:2000,segs:[{utf8:'Guten '},{utf8:'Morgen!'}]},{tStartMs:4000,dDurationMs:1000,segs:[{utf8:'Hallo.'}]}]});};
- try{const result=await call('/api/listening/captions','POST',{id:'abcdefghijk'},owner.cookie);assert.equal(result.status,200);assert.equal(result.body.source,'youtube');assert.equal(result.body.cues[0].text,'Guten Morgen!');assert.equal(result.body.cues[0].start,1);assert.match(urls[1],/v=manual/);assert(!urls[1].includes('fmt='));assert.equal(urls.length,2);
- urls=[];globalThis.fetch=async url=>{urls.push(String(url));return new Response('Consent or blocked',{status:403});};const blocked=await call('/api/listening/captions','POST',{id:'abcdefghijk'},owner.cookie);assert.equal(blocked.body.available,false);assert.equal(blocked.body.cues.length,0);assert.equal(urls.length,1);assert.match(blocked.body.reason,/403/);
+ try{const result=await directCaptions('POST',{id:'abcdefghijk'},owner.cookie);assert.equal(result.status,200);assert.equal(result.body.source,'youtube');assert.equal(result.body.cues[0].text,'Guten Morgen!');assert.equal(result.body.cues[0].start,1);assert.match(urls[1],/v=manual/);assert(!urls[1].includes('fmt='));assert.equal(urls.length,2);
+ urls=[];globalThis.fetch=async url=>{urls.push(String(url));return new Response('Consent or blocked',{status:403});};const blocked=await directCaptions('POST',{id:'abcdefghijk'},owner.cookie);assert.equal(blocked.body.available,false);assert.equal(blocked.body.cues.length,0);assert.equal(urls.length,1);assert.match(blocked.body.reason,/403/);
  }finally{globalThis.fetch=original;}
 });
 
@@ -228,36 +242,36 @@ test('playlist import is admin-only, encrypts its key and paginates public video
 test('caption transport failures identify the failing stage and never call an AI provider',async()=>{
  const user=await call('/api/auth/register','POST',{email:'caption-diagnostic@example.com',password:'Caption-Test-493!'}),original=globalThis.fetch;let calls=0;
  globalThis.fetch=async(url,options)=>{calls++;assert.equal(new URL(url).hostname,'www.youtube.com');assert.equal(options.redirect,'manual');throw new TypeError('Transport failed https://youtube.com/private?signature=secret');};
- try{const r=await call('/api/listening/captions','POST',{id:'video123ABC'},user.cookie);assert.equal(r.body.available,false);assert.equal(r.body.code,'CAPTIONS_TRANSPORT_ERROR');assert.match(r.body.reason,/trang video/);assert(!r.body.reason.includes('signature'));assert.equal(calls,1);}finally{globalThis.fetch=original;}
+ try{const r=await directCaptions('POST',{id:'video123ABC'},user.cookie);assert.equal(r.body.available,false);assert.equal(r.body.code,'CAPTIONS_TRANSPORT_ERROR');assert.match(r.body.reason,/trang video/);assert(!r.body.reason.includes('signature'));assert.equal(calls,1);}finally{globalThis.fetch=original;}
 });
 
 test('CC parser accepts missing duration when next timestamp exists and preserves repeated speech',async()=>{
  const original=globalThis.fetch;globalThis.fetch=async url=>String(url).includes('/watch?')?new Response('var ytInitialPlayerResponse = '+JSON.stringify({captions:{playerCaptionsTracklistRenderer:{captionTracks:[{languageCode:'de-DE',baseUrl:'https://www.youtube.com/api/timedtext?v=abcdefghijk&sig=keep-this'}]}}})+';'):(assert.equal(new URL(url).searchParams.get('sig'),'keep-this'),Response.json({events:[{tStartMs:0,segs:[{utf8:'Ja.'}]},{tStartMs:1000,dDurationMs:500,segs:[{utf8:'Ja.'}]},{tStartMs:2000,dDurationMs:500,segs:[{utf8:'Nein.'}]},{tStartMs:null,dDurationMs:500,segs:[{utf8:'Invalid'}]},{tStartMs:3000,segs:[{utf8:'Unknown end'}]}]}));
- try{const r=await call('/api/listening/captions','POST',{id:'abcdefghijk'},owner.cookie);assert.equal(r.body.available,true);assert.equal(r.body.language,'de-DE');assert.deepEqual(r.body.cues,[{start:0,end:1,text:'Ja.'},{start:1,end:1.5,text:'Ja.'},{start:2,end:2.5,text:'Nein.'}]);}finally{globalThis.fetch=original;}
+ try{const r=await directCaptions('POST',{id:'abcdefghijk'},owner.cookie);assert.equal(r.body.available,true);assert.equal(r.body.language,'de-DE');assert.deepEqual(r.body.cues,[{start:0,end:1,text:'Ja.'},{start:1,end:1.5,text:'Ja.'},{start:2,end:2.5,text:'Nein.'}]);}finally{globalThis.fetch=original;}
 });
 
 test('CC follows only bounded same-YouTube redirects and stops at consent or sign-in',async()=>{
  const original=globalThis.fetch;let urls=[];globalThis.fetch=async url=>{urls.push(String(url));if(urls.length===1)return new Response(null,{status:302,headers:{Location:'/watch?v=abcdefghijk&hl=de&canonical=1'}});if(String(url).includes('/watch?'))return new Response('var ytInitialPlayerResponse = '+JSON.stringify({captions:{playerCaptionsTracklistRenderer:{captionTracks:[{languageCode:'de',baseUrl:'https://www.youtube.com/api/timedtext?v=abcdefghijk'}]}}})+';');return Response.json({events:[{tStartMs:0,dDurationMs:1000,segs:[{utf8:'Hallo!'}]}]});};
- try{const r=await call('/api/listening/captions','POST',{id:'abcdefghijk'},owner.cookie);assert.equal(r.body.available,true);assert.equal(urls.length,3);
- for(const location of ['https://consent.youtube.com/m?continue=x','https://accounts.google.com/login','https://evil.test/watch','http://www.youtube.com/watch','/signin']){urls=[];globalThis.fetch=async url=>{urls.push(String(url));return new Response(null,{status:302,headers:{Location:location}});};const denied=await call('/api/listening/captions','POST',{id:'abcdefghijk'},owner.cookie);assert.equal(denied.body.available,false);assert.equal(denied.body.code,'CAPTIONS_REDIRECT_ERROR');assert.equal(urls.length,1);}
- urls=[];globalThis.fetch=async url=>{urls.push(String(url));return new Response(null,{status:302,headers:{Location:String(url)}});};assert.equal((await call('/api/listening/captions','POST',{id:'abcdefghijk'},owner.cookie)).body.available,false);assert.equal(urls.length,1);
+ try{const r=await directCaptions('POST',{id:'abcdefghijk'},owner.cookie);assert.equal(r.body.available,true);assert.equal(urls.length,3);
+ for(const location of ['https://consent.youtube.com/m?continue=x','https://accounts.google.com/login','https://evil.test/watch','http://www.youtube.com/watch','/signin']){urls=[];globalThis.fetch=async url=>{urls.push(String(url));return new Response(null,{status:302,headers:{Location:location}});};const denied=await directCaptions('POST',{id:'abcdefghijk'},owner.cookie);assert.equal(denied.body.available,false);assert.equal(denied.body.code,'CAPTIONS_REDIRECT_ERROR');assert.equal(urls.length,1);}
+ urls=[];globalThis.fetch=async url=>{urls.push(String(url));return new Response(null,{status:302,headers:{Location:String(url)}});};assert.equal((await directCaptions('POST',{id:'abcdefghijk'},owner.cookie)).body.available,false);assert.equal(urls.length,1);
  }finally{globalThis.fetch=original;}
 });
 
 test('CC keeps the exact original URL, reads XML and VTT, and separates empty responses from size errors',async()=>{
  const original=globalThis.fetch;let payload='',seen=[];const base='https://www.youtube.com/api/timedtext?v=abcdefghijk&sig=a%20b&lang=de';
  globalThis.fetch=async url=>{seen.push(String(url));if(String(url).includes('/watch?'))return new Response('var ytInitialPlayerResponse = '+JSON.stringify({captions:{playerCaptionsTracklistRenderer:{captionTracks:[{languageCode:'de',baseUrl:base}]}}})+';');return new Response(payload);};
- try{for(const raw of ['<transcript><text start="0" dur="2">Hallo &amp; guten Tag!</text></transcript>','<timedtext><body><p t="0" d="2000"><s>Hallo &amp; guten Tag!</s></p></body></timedtext>','WEBVTT\n\n00:00.000 --> 00:02.000\nHallo &amp; guten Tag!']){payload=raw;seen=[];const r=await call('/api/listening/captions','POST',{id:'abcdefghijk'},owner.cookie);assert.equal(r.body.available,true);assert.equal(r.body.cues[0].text,'Hallo & guten Tag!');assert.equal(r.body.cues[0].end,2);assert.equal(seen[1],base);assert.equal(seen.length,2);}
- payload='';seen=[];const empty=await call('/api/listening/captions','POST',{id:'abcdefghijk'},owner.cookie);assert.equal(empty.body.code,'CAPTIONS_EMPTY');assert.equal(seen.length,3);
- payload='x'.repeat(3000001);assert.equal((await call('/api/listening/captions','POST',{id:'abcdefghijk'},owner.cookie)).body.code,'CAPTIONS_TOO_LARGE');
+ try{for(const raw of ['<transcript><text start="0" dur="2">Hallo &amp; guten Tag!</text></transcript>','<timedtext><body><p t="0" d="2000"><s>Hallo &amp; guten Tag!</s></p></body></timedtext>','WEBVTT\n\n00:00.000 --> 00:02.000\nHallo &amp; guten Tag!']){payload=raw;seen=[];const r=await directCaptions('POST',{id:'abcdefghijk'},owner.cookie);assert.equal(r.body.available,true);assert.equal(r.body.cues[0].text,'Hallo & guten Tag!');assert.equal(r.body.cues[0].end,2);assert.equal(seen[1],base);assert.equal(seen.length,2);}
+ payload='';seen=[];const empty=await directCaptions('POST',{id:'abcdefghijk'},owner.cookie);assert.equal(empty.body.code,'CAPTIONS_EMPTY');assert.equal(seen.length,3);
+ payload='x'.repeat(3000001);assert.equal((await directCaptions('POST',{id:'abcdefghijk'},owner.cookie)).body.code,'CAPTIONS_TOO_LARGE');
  }finally{globalThis.fetch=original;}
 });
 
 test('CC track discovery accepts alternate JSON embeddings and distinguishes consent from parsing failure',async()=>{
  const reader=await call('/api/auth/register','POST',{email:'cc-track-reader@example.com',password:'Caption-Test-493!'});const original=globalThis.fetch;const player={videoDetails:{videoId:'abcdefghijk'},playabilityStatus:{status:'OK'},captions:{playerCaptionsTracklistRenderer:{captionTracks:[{languageCode:'de',baseUrl:'https://www.youtube.com/api/timedtext?v=abcdefghijk'}]}}};let html,calls=0;
  globalThis.fetch=async url=>{calls++;return String(url).includes('/watch?')?new Response(html):Response.json({events:[{tStartMs:0,dDurationMs:1000,segs:[{utf8:'Hallo.'}]}]});};
- try{for(const source of ['var ytInitialPlayerResponse  =  '+JSON.stringify(player)+';','window["ytInitialPlayerResponse"] = '+JSON.stringify(player)+';','{"player_response":'+JSON.stringify(JSON.stringify(player))+'}','{"captions" : '+JSON.stringify(player.captions)+'}']){html=source;calls=0;const r=await call('/api/listening/captions','POST',{id:'abcdefghijk'},reader.cookie);assert.equal(r.body.available,true);assert.equal(calls,2);}
- for(const [source,code]of [['<title>Before you continue to YouTube</title>','CAPTIONS_CONSENT'],['var ytInitialPlayerResponse = '+JSON.stringify({playabilityStatus:{status:'LOGIN_REQUIRED'}}),'CAPTIONS_PLAYABILITY'],['var ytInitialPlayerResponse = '+JSON.stringify({videoDetails:{videoId:'differentID'}}),'CAPTIONS_VIDEO_MISMATCH'],['<html>Unexpected page</html>','CAPTIONS_PAGE_FORMAT']]){html=source;calls=0;const r=await call('/api/listening/captions','POST',{id:'abcdefghijk'},reader.cookie);assert.equal(r.body.available,false);assert.equal(r.body.code,code);assert.equal(calls,1);}
+ try{for(const source of ['var ytInitialPlayerResponse  =  '+JSON.stringify(player)+';','window["ytInitialPlayerResponse"] = '+JSON.stringify(player)+';','{"player_response":'+JSON.stringify(JSON.stringify(player))+'}','{"captions" : '+JSON.stringify(player.captions)+'}']){html=source;calls=0;const r=await directCaptions('POST',{id:'abcdefghijk'},reader.cookie);assert.equal(r.body.available,true);assert.equal(calls,2);}
+ for(const [source,code]of [['<title>Before you continue to YouTube</title>','CAPTIONS_CONSENT'],['var ytInitialPlayerResponse = '+JSON.stringify({playabilityStatus:{status:'LOGIN_REQUIRED'}}),'CAPTIONS_PLAYABILITY'],['var ytInitialPlayerResponse = '+JSON.stringify({videoDetails:{videoId:'differentID'}}),'CAPTIONS_VIDEO_MISMATCH'],['<html>Unexpected page</html>','CAPTIONS_PAGE_FORMAT']]){html=source;calls=0;const r=await directCaptions('POST',{id:'abcdefghijk'},reader.cookie);assert.equal(r.body.available,false);assert.equal(r.body.code,code);assert.equal(calls,1);}
  }finally{globalThis.fetch=original;}
 });
 
