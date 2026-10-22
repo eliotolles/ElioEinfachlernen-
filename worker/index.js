@@ -144,7 +144,11 @@ async function youtubeMetadata(id){
  if(!/^[A-Za-z0-9_-]{11}$/.test(id||''))throw error(400,'Mã video YouTube không hợp lệ.');
  const cached=youtubeTitleCache.get(id);if(cached&&cached.until>Date.now())return cached.value;
  const unavailable=()=>({available:false,reason:'Không lấy được tên video từ YouTube. Bạn có thể nhập tên thủ công.'});
- try{const response=await fetch('https://www.youtube.com/oembed?url='+encodeURIComponent('https://www.youtube.com/watch?v='+id)+'&format=json',{redirect:'error',signal:AbortSignal.timeout(8000)});if(!response.ok)return unavailable();const text=await response.text();if(text.length>32000)return unavailable();const data=JSON.parse(text);const title=typeof data.title==='string'?data.title.replace(/[\u0000-\u001f\u007f]/g,' ').trim().slice(0,300):'';if(!title)return unavailable();const value={available:true,id,title};if(youtubeTitleCache.size>=200)youtubeTitleCache.delete(youtubeTitleCache.keys().next().value);youtubeTitleCache.set(id,{until:Date.now()+3600000,value});return value;}catch{return unavailable();}
+ const remember=raw=>{const title=typeof raw==='string'?raw.replace(/[\u0000-\u001f\u007f]/g,' ').trim().slice(0,300):'';if(!title)return null;const value={available:true,id,title};if(youtubeTitleCache.size>=200)youtubeTitleCache.delete(youtubeTitleCache.keys().next().value);youtubeTitleCache.set(id,{until:Date.now()+3600000,value});return value;};
+ try{const response=await fetch('https://www.youtube.com/oembed?url='+encodeURIComponent('https://www.youtube.com/watch?v='+id)+'&format=json',{redirect:'error',signal:AbortSignal.timeout(4000)});if(response.ok){const text=await response.text();if(text.length<=32000){const value=remember(JSON.parse(text).title);if(value)return value;}}}catch{}
+ // Use public player metadata only; never bypass consent or sign-in walls.
+ try{const response=await fetch('https://www.youtube.com/watch?v='+id+'&hl=de',{redirect:'error',signal:AbortSignal.timeout(4000)});if(response.ok){const html=await response.text();if(html.length<=6000000){const player=embeddedJSON(html,'ytInitialPlayerResponse =')||embeddedJSON(html,'ytInitialPlayerResponse=');if(player?.videoDetails?.videoId===id){const value=remember(player.videoDetails.title);if(value)return value;}}}}catch{}
+ return unavailable();
 }
 async function publicGermanCaptions(id){
  if(!/^[A-Za-z0-9_-]{11}$/.test(id||''))throw error(400,'Mã video không hợp lệ.');
