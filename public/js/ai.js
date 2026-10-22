@@ -8,7 +8,7 @@ async function serverAI(prompt,attachments=[],options={}){
  try{for(let round=0;round<8;round++){
  if(Auth.user!==user)throw Error('Tài khoản đã thay đổi.');
  if(continuation){for(let seconds=30;seconds>0;seconds--){notify('Đã giữ nội dung trước đó. AI tự viết tiếp sau '+seconds+' giây…');await new Promise(resolve=>setTimeout(resolve,1000));if(Auth.user!==user)throw Error('Tài khoản đã thay đổi.');}notify('AI đang viết tiếp phần còn lại…');}
- const result=await Account.request('/api/ai','POST',{prompt,attachments,continuation,explanationLanguage:options.language||App.explain?.()||'vi'});
+ const result=await Account.request('/api/ai','POST',{prompt,attachments,continuation,task:options.task||'text',explanationLanguage:options.language||App.explain?.()||'vi'});
  if(typeof result.text!=='string')throw Error('AI không trả về nội dung.');
  continuation=continuation&&result.text.startsWith(continuation)?result.text:continuation+result.text;
  // Keep each received fragment before starting another network request.

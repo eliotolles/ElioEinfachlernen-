@@ -113,3 +113,41 @@ test('enriched vocabulary above 2 MB saves and round-trips while unrelated recor
  assert.equal((await call('/api/shared','PUT',{name:'vocab',value:[{de:'a',en:'x'.repeat(12000000)}],version:version+1},owner.cookie)).status,413);
  assert.equal(db.prepare("SELECT version FROM app_shared WHERE name='vocab'").get().version,version+1);
 });
+
+test('dedicated speech secret is admin-only, encrypted, absent from state and exclusively used for fallback',async()=>{
+ const admin=await call('/api/auth/login','POST',{email:'owner@example.com',password:env.ADMIN_INITIAL_PASSWORD});
+ const user=await call('/api/auth/register','POST',{email:'speech-private@example.com',password:'Speech-Private-493!'});
+ assert.equal((await call('/api/admin/speech-key','PUT',{key:'test-dedicated-tts'},user.cookie)).status,403);
+ await call('/api/admin/speech-key','DELETE',null,admin.cookie);
+ assert.equal((await call('/api/speech/tts','POST',{text:'Hallo.',fallback:true},user.cookie)).status,503);
+ assert.equal((await call('/api/admin/speech-key','PUT',{key:'test-dedicated-tts'},admin.cookie)).status,200);
+ assert.notEqual(db.prepare("SELECT value FROM app_config WHERE name='speechSecret'").get().value,'test-dedicated-tts');
+ assert.deepEqual((await call('/api/admin/speech-key','GET',null,admin.cookie)).body,{configured:true});
+ const state=await call('/api/state','GET',null,user.cookie);assert(!JSON.stringify(state.body).includes('speechSecret'));assert(!JSON.stringify(state.body).includes('test-dedicated-tts'));
+ const config=await call('/api/admin/config','PUT',{germanSpeechVoice:'piper:thorsten',germanSpeechFallbackVoice:'Sulafat'},admin.cookie);assert.equal(config.status,200);
+ assert.equal((await call('/api/state','GET',null,user.cookie)).body.config.germanSpeechVoice,'piper:thorsten');
+ const original=globalThis.fetch;let count=0;
+ globalThis.fetch=async(url,options)=>{count++;assert.equal(options.headers['x-goog-api-key'],'test-dedicated-tts');assert.equal(JSON.parse(options.body).generationConfig.speechConfig.voiceConfig.prebuiltVoiceConfig.voiceName,'Sulafat');return Response.json({candidates:[{finishReason:'STOP',content:{parts:[{inlineData:{mimeType:'audio/wav',data:'AAA='}}]}}]});};
+ try{assert.equal((await call('/api/speech/tts','POST',{text:'Guten Morgen.',fallback:true},user.cookie)).status,200);assert.equal(count,1);}finally{globalThis.fetch=original;}
+ await call('/api/admin/speech-key','DELETE',null,admin.cookie);
+ assert.deepEqual((await call('/api/admin/speech-key','GET',null,admin.cookie)).body,{configured:false});
+});
+
+test('AI workplace routes text, image, general and speech separately with fallback confined to its group',async()=>{
+ const admin=await call('/api/auth/login','POST',{email:'owner@example.com',password:env.ADMIN_INITIAL_PASSWORD});
+ const user=await call('/api/auth/register','POST',{email:'jobs-test@example.com',password:'Jobs-Test-493!'});
+ const existing=db.prepare('SELECT id,enabled FROM app_ai').all();db.prepare('UPDATE app_ai SET enabled=0').run();
+ assert.equal((await call('/api/admin/ai','POST',{provider:'groq',model:'test',key:'x',job:'speech'},admin.cookie)).status,400);
+ assert.equal((await call('/api/admin/ai','POST',{provider:'gemini',model:'test',key:'x',job:'image',vision:false},admin.cookie)).status,400);
+ const ids={};for(const job of ['image','speech','text','general']){const r=await call('/api/admin/ai','POST',{label:job,provider:'gemini',model:'test-model',key:'key-'+job,job,vision:job==='image',priority:1},admin.cookie);assert.equal(r.status,200);ids[job]=r.body.id;}
+ const list=await call('/api/admin/ai','GET',null,admin.cookie);assert.equal(list.body.items.find(r=>r.id===ids.image).job,'image');assert(!JSON.stringify(list.body).includes('key-image'));
+ const original=globalThis.fetch;let used=[];
+ globalThis.fetch=async(url,options)=>{used.push(options.headers['x-goog-api-key']);return Response.json({candidates:[{finishReason:'STOP',content:{parts:[String(url).includes('tts:')?{inlineData:{mimeType:'audio/wav',data:'AAA='}}:{text:'{"ok":true}'}]}}]});};
+ try{
+  assert.equal((await call('/api/ai','POST',{prompt:'Text'},user.cookie)).status,200);assert.equal(used.at(-1),'key-text');
+  assert.equal((await call('/api/ai','POST',{prompt:'Fill blank fields',task:'general'},user.cookie)).status,200);assert.equal(used.at(-1),'key-general');
+  assert.equal((await call('/api/ai','POST',{prompt:'Read image',attachments:[{mimeType:'image/png',data:'AAAA'}]},user.cookie)).status,200);assert.equal(used.at(-1),'key-image');
+  assert.equal((await call('/api/speech/tts','POST',{text:'Hallo.',fallback:true},user.cookie)).status,200);assert.equal(used.at(-1),'key-speech');
+  await call('/api/admin/ai','PATCH',{id:ids.text,enabled:false,priority:1},admin.cookie);const count=used.length;assert.equal((await call('/api/ai','POST',{prompt:'Text'},user.cookie)).status,503);assert.equal(used.length,count);
+ }finally{globalThis.fetch=original;for(const id of Object.values(ids)){db.prepare('DELETE FROM app_ai WHERE id=?').run(id);db.prepare('DELETE FROM app_ai_jobs WHERE id=?').run(id);}for(const row of existing)db.prepare('UPDATE app_ai SET enabled=? WHERE id=?').run(row.enabled,row.id);}
+});
