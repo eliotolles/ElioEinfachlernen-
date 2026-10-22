@@ -17,7 +17,7 @@ test('duplicate URL formats show an inline warning without writes, navigation or
  const f=fixture();await f.add();const before={...f.counts};f.fields['#yt-link'].value='https://www.youtube.com/watch?v=abcdefghijk';await f.add();assert.equal(f.context.sharedVideos.length,1);assert.deepEqual(f.counts,before);assert.equal(f.context.location.hash,'#original');assert.ok(f.fields['#yt-import-status'].textContent.includes('đã có trong bộ Nicos Weg · B1'));assert.ok(f.fields['#yt-import-status'].textContent.includes('Không thêm bản trùng'));
 });
 test('ordinary users still open their newly added private video',async()=>{
- const f=fixture(false);await f.add();assert.equal(f.context.library.videos.length,1);assert.equal(f.context.sharedVideos.length,0);assert.equal(f.context.location.hash,'#Nicos Weg:private:'+f.context.library.videos[0].id);
+ const f=fixture(false);await f.add();assert.equal(f.context.library.videos.length,1);assert.equal(f.context.sharedVideos.length,0);assert.equal(f.counts.captions,1);assert.equal(f.context.location.hash,'#Nicos Weg:private:'+f.context.library.videos[0].id);
 });
 test('account changes while title metadata loads cancel the import',async()=>{
  const f=fixture();let resolve;f.context.videoTitles.update=()=>new Promise(r=>resolve=r);const pending=f.add();f.context.Auth.user='different';resolve();await pending;assert.equal(f.context.sharedVideos.length,0);assert.equal(f.context.location.hash,'#original');assert.equal(f.counts.save,0);assert.equal(f.fields['#yt-add'].disabled,false);
