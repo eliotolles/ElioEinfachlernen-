@@ -5,7 +5,7 @@ const ListeningCaptionImport={
  describe(v){if(v.cues?.length)return (v.transcriptSource==='ai'?'Bản chép AI':'Đã có phụ đề')+' · '+v.cues.length+' câu';return v.captionFetchState==='fetching'?'Đang lấy CC tiếng Đức…':v.captionFetchState==='queued'?'Đang chờ lấy CC':v.captionFetchState==='unavailable'?'Không lấy được CC: '+(v.captionFetchReason||'YouTube chưa cung cấp phụ đề tiếng Đức.'):'Chưa có phụ đề';},
  create({videos,user,request,save,progress=()=>{},sleep=ms=>new Promise(r=>setTimeout(r,ms)),lock,applied=()=>{},settled=()=>{}}){
   let running=false,paused=false;
-  async function drain(){const owner=user();let done=0,unavailable=0;paused=false;
+  async function drain(){const owner=user();let done=0,unavailable=0,completion='';paused=false;
    // A fetching flag left by a closed tab is a saved checkpoint, not a finished result.
    for(const v of videos())if(v.captionFetchState==='fetching'&&!v.cues?.length)v.captionFetchState='queued';
    try{while(!paused&&user()===owner){let v=videos().find(v=>['queued','fetching'].includes(v.captionFetchState)&&!v.cues?.length);if(!v)break;
@@ -17,8 +17,8 @@ const ListeningCaptionImport={
     else{v.captionFetchState='unavailable';v.captionFetchReason=result.reason||'Không lấy được CC tiếng Đức. Có thể mở video để dùng AI dự phòng hoặc nhập SRT/VTT.';unavailable++;}
     await save();if(user()===owner&&v.captionFetchState==='ready')await applied(v);if(user()===owner)await settled(v);await sleep(3500);
    }
-   progress(paused?'Đã tạm dừng lấy CC; các video đã xử lý vẫn được lưu.': 'Đã xử lý hàng đợi CC: '+done+' video có phụ đề · '+unavailable+' video chưa lấy được. Không tự gọi AI hàng loạt.');
-   }catch(e){progress(e.message+' Đã giữ hàng đợi; giải quyết đồng bộ rồi bấm Tiếp tục lấy CC.');}finally{running=false;}
+   completion=(paused?'Đã tạm dừng lấy CC; các video đã xử lý vẫn được lưu.': 'Đã xử lý hàng đợi CC: '+done+' video có phụ đề · '+unavailable+' video chưa lấy được. Không tự gọi AI hàng loạt.');
+   }catch(e){completion=e.message+' Đã giữ hàng đợi; giải quyết đồng bộ rồi bấm Tiếp tục lấy CC.';}finally{running=false;if(completion)progress(completion);}
   }
   return {async start(){if(running)return;running=true;progress('Đang khởi động hàng đợi phụ đề…');if(lock){try{await lock(async granted=>{if(granted)await drain();else{running=false;progress('Hàng đợi CC đang chạy ở tab khác.');}});}catch(e){running=false;progress(e.message);}}else await drain();},pause(){paused=true;},get running(){return running;}};
  }
