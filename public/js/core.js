@@ -49,7 +49,7 @@ const PiperGerman=(()=>{
   await preparation;if(!silent)toast('Bộ giọng Đức đã sẵn sàng trên thiết bị này.');
  }
  window.addEventListener?.('pagehide',()=>reset('Đã rời trang.'));
- const service={read:async text=>{await prepare({silent:true});return request(text);},prepare};window.ElioPiperService=service;return service;
+ const service={read:async text=>{await prepare({silent:true});return request(text,false,true);},prepare};window.ElioPiperService=service;return service;
 })();
 
 // All signed-in roles preload after the initial page has painted. No playback or API fallback.
@@ -73,7 +73,6 @@ const GermanSpeech=(()=>{
    let fallback=false;
    if(voice==='piper:thorsten'){
     try{
-     toast('Piper đang chuẩn bị giọng Đức… Lần đầu cần tải bộ giọng.');
      const blob=await PiperGerman.read(text);if(token!==version||user!==Auth.user)return;
      url=URL.createObjectURL(blob);audio=new Audio(url);audio.playbackRate=rate;
     }catch(error){if(token!==version||user!==Auth.user)return;toast('Piper chưa chạy được: '+error.message+' Đang thử API giọng đọc riêng.');fallback=true;}
