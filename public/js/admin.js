@@ -9,7 +9,21 @@ $('#admin-ai-form').onsubmit=e=>{e.preventDefault();const f=e.target.elements;ad
 $('#admin-site-form').onsubmit=e=>{e.preventDefault();adminAction(async()=>{const data=Object.fromEntries(new FormData(e.target));await Account.request('/api/admin/config','PUT',data);await Account.refresh();App.apply();});};
 for(const [key,value]of Object.entries({name:'Elio Einfach',accent:'#26754b',font:'lexend',germanSpeechVoice:'Kore',germanSpeechRate:.9,germanSpeechFallbackVoice:'Kore',...Account.config})){const field=$('#admin-site-form').elements.namedItem(key);if(field)field.value=value;}
 function renderAdminContent(){$('#admin-content-json').value=JSON.stringify(Account.shared[$('#admin-content-kind').value]?.value||[],null,2);}$('#admin-content-kind').onchange=renderAdminContent;$('#admin-content-save').onclick=()=>adminAction(async()=>{const name=$('#admin-content-kind').value,value=JSON.parse($('#admin-content-json').value);if(!Array.isArray(value))throw Error('Cần mảng JSON.');Account.set(name,value);await Account.flush();if(Object.keys(Account.pending).length)throw Error('Nội dung còn chờ đồng bộ. Kiểm tra trạng thái kết nối.');if(Object.keys(Account.conflicts).length)throw Error('Xung đột dữ liệu. Mở Cài đặt để xử lý.');});
-async function renderAdminUsers(){const data=await Account.request('/api/admin/users');$('#admin-users').innerHTML=data.items.map(u=>`<div class="admin-row"><strong>${esc(u.email)}</strong> · ${esc(u.role)} ${u.blocked?'· Khóa':''}${u.role==='user'?` <button class="secondary" data-user="${esc(u.id)}" data-blocked="${u.blocked}">${u.blocked?'Mở khóa':'Khóa'}</button>`:''}</div>`).join('');document.querySelectorAll('[data-user]').forEach(b=>b.onclick=()=>adminAction(async()=>{await Account.request('/api/admin/users','PATCH',{id:b.dataset.user,blocked:b.dataset.blocked!=='1'});await renderAdminUsers();}));}
+let accountDeleting=false;
+async function renderAdminUsers(){
+ const data=await Account.request('/api/admin/users');
+ $('#admin-users').innerHTML=data.items.map(u=>`<div class="admin-row"><strong>${esc(u.email)}</strong> · ${esc(u.role)} ${u.blocked?'· Khóa':''}${u.role==='user'?` <button type="button" class="secondary" data-user="${esc(u.id)}" data-blocked="${u.blocked}">${u.blocked?'Mở khóa':'Khóa'}</button>`:''} <button type="button" class="secondary" style="color:var(--danger,#b33737)" data-delete-user="${esc(u.id)}" data-email="${esc(u.email)}" ${u.canDelete===false||u.id===Account.profile.id?'disabled':''} title="${esc(u.deleteReason||'Xóa vĩnh viễn tài khoản và dữ liệu học cá nhân')}">Xóa tài khoản</button></div>`).join('');
+ document.querySelectorAll('[data-user]').forEach(b=>b.onclick=()=>adminAction(async()=>{await Account.request('/api/admin/users','PATCH',{id:b.dataset.user,blocked:b.dataset.blocked!=='1'});await renderAdminUsers();}));
+ document.querySelectorAll('[data-delete-user]').forEach(button=>button.onclick=async()=>{
+  if(accountDeleting||button.disabled)return;
+  const email=button.dataset.email,confirmation=prompt('Xóa vĩnh viễn tài khoản '+email+'?\nToàn bộ dữ liệu học cá nhân và phiên đăng nhập trên máy chủ sẽ bị xóa, không thể hoàn tác. Nội dung chung được giữ nguyên.\n\nNhập chính xác email để xác nhận:', '');
+  if(confirmation===null)return;if(confirmation!==email){adminMessage('Email xác nhận không khớp. Chưa xóa tài khoản.');return;}
+  accountDeleting=true;const buttons=[...$('#admin-users').querySelectorAll('button')],previous=buttons.map(b=>b.disabled);buttons.forEach(b=>b.disabled=true);
+  try{await adminAction(async()=>{await Account.request('/api/admin/users','DELETE',{id:button.dataset.deleteUser,confirmEmail:confirmation});await renderAdminUsers();if(!$('#admin-manage-panel').hidden)await renderAdminRoles();return 'Đã xóa tài khoản '+email+' và dữ liệu học cá nhân trên máy chủ.';});}
+  finally{buttons.forEach((b,i)=>b.disabled=previous[i]);accountDeleting=false;}
+ });
+}
+
 const roleForm=$('#admin-role-form'),roleStatus=$('#admin-role-status');
 function resetAdminRoleForm(){roleForm.reset();roleForm.elements.id.value='';roleForm.elements.email.readOnly=false;}
 $('#admin-manage-toggle').onclick=async()=>{
@@ -69,3 +83,4 @@ if(adminMain){
  adminMain.querySelector('h1').after(nav);activate(location.hash.slice(1)||'ai');window.addEventListener('hashchange',()=>activate(location.hash.slice(1)));
  const form=$('#admin-ai-form');const add=document.createElement('details');add.className='admin-add-ai';const summary=document.createElement('summary');summary.textContent='＋ Thêm cấu hình AI';form.before(add);add.append(summary,form);
 }
+

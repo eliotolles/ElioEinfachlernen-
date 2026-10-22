@@ -44,7 +44,7 @@ test('role changes reject unknown accounts, blocked accounts, ambiguous targets 
  assert.equal((await call('/api/admin/users','PATCH',{id,role:'super_admin'},owner.cookie)).status,400);
  assert.equal((await call('/api/admin/users','PATCH',{id},owner.cookie)).status,400);
  assert.equal((await call('/api/admin/users','PATCH',{id:owner.body.user.id,role:'user'},owner.cookie)).status,400);
- assert.equal((await call('/api/admin/users','DELETE',{id},owner.cookie)).status,404);
+ assert.equal((await call('/api/admin/users','DELETE',{id},owner.cookie)).status,400);
 });
 
 test('concurrent admins cannot demote each other and leave no administrator',async()=>{
@@ -58,3 +58,4 @@ test('concurrent admins cannot demote each other and leave no administrator',asy
  assert.equal(results.filter(result=>result.status===200).length,1);
  assert.equal(db.prepare("SELECT count(*) AS n FROM app_users WHERE role='super_admin' AND blocked=0").get().n,1);
 });
+
