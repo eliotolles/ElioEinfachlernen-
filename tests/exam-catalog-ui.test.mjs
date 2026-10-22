@@ -12,7 +12,7 @@ function fixture(){
   replaceChildren(...nodes){this.children=[];this.append(...nodes);}
   setAttribute(k,v){this.attrs[k]=v;}
   get options(){return this.children;}
-  querySelector(){return this.children.find(n=>n.tag==='summary');}
+  querySelector(selector){return selector===':scope > summary'?this.children.find(n=>n.tag==='summary'):null;}
   dispatchEvent(event){this.onchange?.(event);for(const fn of handlers.get(event.type)||[])fn({...event,target:this});}
   click(){this.onclick?.();}
   focus(){}
@@ -43,4 +43,16 @@ test('skill and full mock actions delegate the explicit selection to the origina
  const f=fixture();f.open();f.click('Luyện kỹ năng');f.click('Teil 2 · Text ↗');
  assert.deepEqual(f.calls[0],{exam:'Goethe',level:'B1',folder:'samples',mode:'part',skill:'reading',part:'2'});
  f.click('Thi thử');f.click('Bắt đầu thi thử →');assert.equal(f.calls[1].mode,'full');
+});
+
+test('collection editing checks permissions and keeps original task identities and metadata',()=>{
+ const old={id:'shared-test',type:'exam',name:'Đề gốc',exam:'Goethe',level:'B1',ownerId:'admin',items:[{id:'task-1',title:'Bài viết',content:'Nội dung gốc',skill:'writing',teil:1,sourcePage:4,questions:[{id:'q1',prompt:'Old',answer:'A'}]}]};
+ let records=[structuredClone(old)],allowed=false,writes=0;
+ const context=vm.createContext({Auth:{user:'admin',get:()=>records,set:(_,next)=>{writes++;records=next;}},Account:{canEdit:()=>allowed},document:{getElementById:()=>null,dispatchEvent:()=>{}},Event:class{}});
+ vm.runInContext(fs.readFileSync(new URL('../public/js/exam-catalog-ui.js',import.meta.url),'utf8'),context);
+ const api=vm.runInContext('ExamCollectionEdits',context),expected=JSON.stringify(old),patch={name:'Đề đã sửa',items:[{...old.items[0],title:'Tiêu đề mới',content:'Nội dung mới',questions:[{id:'q1',prompt:'New',answer:'B'}]}]};
+ assert.throws(()=>api.save(old.id,patch,expected,'admin'),/quyền/);assert.equal(writes,0);
+ allowed=true;api.save(old.id,patch,expected,'admin');assert.equal(records[0].items[0].id,'task-1');assert.equal(records[0].items[0].sourcePage,4);assert.equal(records[0].ownerId,'admin');assert.equal(records[0].items[0].questions[0].answer,'B');
+ assert.throws(()=>api.save(old.id,patch,expected,'admin'),/đã thay đổi/);assert.equal(writes,1);
+ assert.throws(()=>api.save(old.id,patch,JSON.stringify(records[0]),'another-account'),/quyền/);
 });
