@@ -193,10 +193,25 @@ function parseCaptionPayload(raw){
  if(/^\s*WEBVTT/.test(raw)){const seconds=v=>v.split(':').reduce((n,p)=>n*60+Number(p),0);for(const block of raw.replace(/\r/g,'').split(/\n\s*\n/)){const lines=block.split('\n'),i=lines.findIndex(l=>l.includes('-->'));if(i<0)continue;const t=lines[i].match(/([\d:.]+)\s+-->\s+([\d:.]+)/);if(!t)continue;const start=seconds(t[1]),end=seconds(t[2]);events.push({tStartMs:start*1000,dDurationMs:(end-start)*1000,segs:[{utf8:decode(lines.slice(i+1).join(' '))}]});}return {events};}
  return null;
 }
+// Read JSON values only. Never execute scripts received from a video page.
+function youtubePageJSON(html,pattern){
+ pattern.lastIndex=0;let match,count=0;while((match=pattern.exec(html))&&count++<12){let start=pattern.lastIndex;while(/\s/.test(html[start]||'')&&start<html.length)start++;const first=html[start];if(first==='"'){let escape=false;for(let i=start+1;i<html.length;i++){const c=html[i];if(escape){escape=false;continue;}if(c==='\\'){escape=true;continue;}if(c==='"'){try{const value=JSON.parse(html.slice(start,i+1));if(typeof value==='string')return JSON.parse(value);return value;}catch{break;}}}}else if(first==='{'){const value=embeddedJSON(html.slice(start),'');if(value)return value;}}
+ return null;
+}
+function youtubeCaptionPage(html,id){
+ const player=youtubePageJSON(html,/(?:\bytInitialPlayerResponse\b|window\s*\[\s*["']ytInitialPlayerResponse["']\s*\])\s*=\s*/g)||youtubePageJSON(html,/"(?:player_response|playerResponse|ytInitialPlayerResponse)"\s*:\s*/g);
+ if(player?.videoDetails?.videoId&&player.videoDetails.videoId!==id)return {code:'CAPTIONS_VIDEO_MISMATCH',reason:'YouTube trả dữ liệu của video khác. Chưa lưu phụ đề.'};
+ const status=player?.playabilityStatus?.status;
+ if(status&&status!=='OK')return {code:'CAPTIONS_PLAYABILITY',reason:'YouTube yêu cầu xác nhận hoặc không cho máy chủ truy cập video (trạng thái '+String(status).replace(/[^A-Z_]/g,'').slice(0,40)+').'};
+ const captions=player?.captions||youtubePageJSON(html,/"captions"\s*:\s*/g),renderer=captions?.playerCaptionsTracklistRenderer||youtubePageJSON(html,/"playerCaptionsTracklistRenderer"\s*:\s*/g);
+ if(Array.isArray(renderer?.captionTracks)&&renderer.captionTracks.length)return {tracks:renderer.captionTracks};
+ if(!player&&/(?:<form[^>]+action=["'][^"']*consent\.|<title>\s*Before you continue|<title>\s*Bevor Sie)/i.test(html))return {code:'CAPTIONS_CONSENT',reason:'YouTube trả trang xác nhận quyền riêng tư thay vì trang video. Máy chủ không tự vượt bước xác nhận.'};
+ return {code:player?'CAPTIONS_TRACKS_MISSING':'CAPTIONS_PAGE_FORMAT',reason:player?'Dữ liệu video YouTube không chứa danh sách CC có thể tải. CC trong trình phát vẫn có thể hoạt động.':'Không nhận diện được dữ liệu video trong trang YouTube trả về. Chưa thể kết luận video không có CC.'};
+}
 async function publicGermanCaptions(id){
  if(!/^[A-Za-z0-9_-]{11}$/.test(id||''))throw error(400,'Mã video không hợp lệ.');
  const unavailable=(reason,code='CAPTIONS_UNAVAILABLE')=>({available:false,reason,code,cues:[]});let stage='trang video';
- try{const response=await fetchCaptionResource('https://www.youtube.com/watch?v='+id+'&hl=de');if(!response.ok)return unavailable('YouTube chưa cho máy chủ đọc trang video (HTTP '+response.status+').');const html=await response.text();if(html.length>6000000)return unavailable('Trang video quá lớn để đọc phụ đề.');const player=embeddedJSON(html,'ytInitialPlayerResponse =')||embeddedJSON(html,'ytInitialPlayerResponse=');const captions=player?.captions||embeddedJSON(html,'"captions":');const tracks=captions?.playerCaptionsTracklistRenderer?.captionTracks;if(!Array.isArray(tracks))return unavailable('Không đọc được danh sách phụ đề công khai. Video vẫn có thể có CC trong trình phát.');const candidates=tracks.filter(t=>/^de(?:[-_]|$)/i.test(t.languageCode||'')).sort((a,b)=>Number(a.kind==='asr')-Number(b.kind==='asr'));if(!candidates.length)return unavailable('Không tìm được phụ đề tiếng Đức gốc có thể tải. Không dùng phụ đề ngôn ngữ khác làm đáp án.');let track,data,lastReason='YouTube trả tệp phụ đề trống.',lastCode='CAPTIONS_EMPTY';
+ try{const response=await fetchCaptionResource('https://www.youtube.com/watch?v='+id+'&hl=de');if(!response.ok)return unavailable('YouTube chưa cho máy chủ đọc trang video (HTTP '+response.status+').');const html=await response.text();if(html.length>6000000)return unavailable('Trang video quá lớn để đọc phụ đề.');const page=youtubeCaptionPage(html,id);if(!page.tracks)return unavailable(page.reason,page.code);const tracks=page.tracks;const candidates=tracks.filter(t=>/^de(?:[-_]|$)/i.test(t.languageCode||'')).sort((a,b)=>Number(a.kind==='asr')-Number(b.kind==='asr'));if(!candidates.length)return unavailable('Không tìm được phụ đề tiếng Đức gốc có thể tải. Không dùng phụ đề ngôn ngữ khác làm đáp án.');let track,data,lastReason='YouTube trả tệp phụ đề trống.',lastCode='CAPTIONS_EMPTY';
  stage='tệp phụ đề';
  for(const candidate of candidates.slice(0,3)){
   let url;try{url=new URL(candidate.baseUrl);}catch{continue;}

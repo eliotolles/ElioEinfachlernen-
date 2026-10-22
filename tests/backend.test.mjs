@@ -252,3 +252,11 @@ test('CC keeps the exact original URL, reads XML and VTT, and separates empty re
  payload='x'.repeat(3000001);assert.equal((await call('/api/listening/captions','POST',{id:'abcdefghijk'},owner.cookie)).body.code,'CAPTIONS_TOO_LARGE');
  }finally{globalThis.fetch=original;}
 });
+
+test('CC track discovery accepts alternate JSON embeddings and distinguishes consent from parsing failure',async()=>{
+ const reader=await call('/api/auth/register','POST',{email:'cc-track-reader@example.com',password:'Caption-Test-493!'});const original=globalThis.fetch;const player={videoDetails:{videoId:'abcdefghijk'},playabilityStatus:{status:'OK'},captions:{playerCaptionsTracklistRenderer:{captionTracks:[{languageCode:'de',baseUrl:'https://www.youtube.com/api/timedtext?v=abcdefghijk'}]}}};let html,calls=0;
+ globalThis.fetch=async url=>{calls++;return String(url).includes('/watch?')?new Response(html):Response.json({events:[{tStartMs:0,dDurationMs:1000,segs:[{utf8:'Hallo.'}]}]});};
+ try{for(const source of ['var ytInitialPlayerResponse  =  '+JSON.stringify(player)+';','window["ytInitialPlayerResponse"] = '+JSON.stringify(player)+';','{"player_response":'+JSON.stringify(JSON.stringify(player))+'}','{"captions" : '+JSON.stringify(player.captions)+'}']){html=source;calls=0;const r=await call('/api/listening/captions','POST',{id:'abcdefghijk'},reader.cookie);assert.equal(r.body.available,true);assert.equal(calls,2);}
+ for(const [source,code]of [['<title>Before you continue to YouTube</title>','CAPTIONS_CONSENT'],['var ytInitialPlayerResponse = '+JSON.stringify({playabilityStatus:{status:'LOGIN_REQUIRED'}}),'CAPTIONS_PLAYABILITY'],['var ytInitialPlayerResponse = '+JSON.stringify({videoDetails:{videoId:'differentID'}}),'CAPTIONS_VIDEO_MISMATCH'],['<html>Unexpected page</html>','CAPTIONS_PAGE_FORMAT']]){html=source;calls=0;const r=await call('/api/listening/captions','POST',{id:'abcdefghijk'},reader.cookie);assert.equal(r.body.available,false);assert.equal(r.body.code,code);assert.equal(calls,1);}
+ }finally{globalThis.fetch=original;}
+});
