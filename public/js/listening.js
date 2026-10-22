@@ -204,9 +204,29 @@ function installCaptionTools(){
  fallback.append(note,q('#yt-transcribe'),stopTranscriptionButton,copyPrivate);
  section.append(title,state,captionSync,actions,summary,fallback);q('.ed-writing-column').prepend(section);
 }
-function showCaptionSync(){const keys=['listening',...(sharedVideos.some(v=>v.id===selected)?['shared:listeningLibrary']:[])];const conflict=keys.some(k=>Account.conflicts?.[k]),pending=keys.map(k=>Account.pending?.[k]).find(Boolean);captionSync.textContent=conflict?'Phụ đề có xung đột đồng bộ. Mở Cài đặt & đồng bộ để kiểm tra; bản trên thiết bị vẫn được giữ.':pending?(pending.error||'Phụ đề đang chờ đồng bộ lên tài khoản…'):video()?.cues.length?'Phụ đề đã đồng bộ lên tài khoản ✓':'';}
+const captionRecovery=document.createElement('section');captionRecovery.id='yt-caption-recovery';captionRecovery.hidden=true;captionRecovery.style.cssText='border:1px solid var(--line);border-radius:8px;padding:16px;margin-bottom:16px;background:var(--card);color:var(--text)';
+const recoveryNote=document.createElement('p');recoveryNote.setAttribute('role','status');recoveryNote.textContent='Dữ liệu nghe trên thiết bị đang xung đột với máy chủ. Có thể sao lưu bản cục bộ rồi tải lại bản máy chủ, không xóa kho video trên database.';
+const recoveryButton=document.createElement('button');recoveryButton.type='button';recoveryButton.id='yt-reload-listening';recoveryButton.textContent='Bỏ bản xung đột & tải lại';captionRecovery.append(recoveryNote,recoveryButton);root.prepend(captionRecovery);
+async function reloadListeningFromServer(){
+ const owner=Auth.user;recoveryButton.disabled=true;captionQueue.pause();
+ try{
+  recoveryNote.textContent='Đang dừng hàng đợi để tải lại dữ liệu nghe…';
+  const until=Date.now()+30000;while((captionQueue.running||transcriptionBusy||Account.syncing)&&Date.now()<until){transcriptionCancelled=true;await new Promise(resolve=>setTimeout(resolve,150));if(Auth.user!==owner)throw Error('Tài khoản đã thay đổi. Chưa bỏ bản xung đột.');}
+  if(captionQueue.running||transcriptionBusy||Account.syncing)throw Error('Yêu cầu hiện tại chưa dừng xong. Dữ liệu chưa bị bỏ; hãy thử lại khi yêu cầu kết thúc.');
+  for(const key of ['shared:listeningLibrary','listening']){if(Auth.user!==owner)throw Error('Tài khoản đã thay đổi.');if(Account.conflicts?.[key])await Account.resolve(key,false);}
+  if(Auth.user!==owner)throw Error('Tài khoản đã thay đổi.');
+  await Account.refresh(['listening','listeningLibrary']);
+  if(Auth.user!==owner)return;
+  library=Auth.get('listening',{videos:[],attempts:{}});sharedVideos=Auth.get('listeningLibrary',[]);if(!video()){selected=null;index=0;stop();}render();showCaptionSync();
+  recoveryNote.textContent='Đã tải lại dữ liệu nghe từ máy chủ. Bản xung đột cũ đã được sao lưu; kho video trên máy chủ không bị xóa.';
+  message(recoveryNote.textContent);
+ }catch(error){captionRecovery.hidden=false;recoveryNote.textContent=error.message;}finally{recoveryButton.disabled=false;}
+}
+recoveryButton.onclick=reloadListeningFromServer;
+function showCaptionSync(){captionRecovery.hidden=!['listening','shared:listeningLibrary'].some(k=>Account.conflicts?.[k]);const keys=['listening',...(sharedVideos.some(v=>v.id===selected)?['shared:listeningLibrary']:[])];const conflict=keys.some(k=>Account.conflicts?.[k]),pending=keys.map(k=>Account.pending?.[k]).find(Boolean);captionSync.textContent=conflict?'Phụ đề có xung đột đồng bộ. Mở Cài đặt & đồng bộ để kiểm tra; bản trên thiết bị vẫn được giữ.':pending?(pending.error||'Phụ đề đang chờ đồng bộ lên tài khoản…'):video()?.cues.length?'Phụ đề đã đồng bộ lên tài khoản ✓':'';}
 document.addEventListener('cloudchange',showCaptionSync);const captionSyncClock=setInterval(showCaptionSync,2000);window.addEventListener('pagehide',()=>clearInterval(captionSyncClock));
 installCaptionTools();selected=null;routeCollection();showCaptionSync();if(allVideos().some(v=>canEditVideo(v)&&['queued','fetching'].includes(v.captionFetchState)&&!v.cues?.length))captionQueue.start();})();
+
 
 
 
