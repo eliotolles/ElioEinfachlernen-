@@ -151,3 +151,14 @@ test('AI workplace routes text, image, general and speech separately with fallba
   await call('/api/admin/ai','PATCH',{id:ids.text,enabled:false,priority:1},admin.cookie);const count=used.length;assert.equal((await call('/api/ai','POST',{prompt:'Text'},user.cookie)).status,503);assert.equal(used.length,count);
  }finally{globalThis.fetch=original;for(const id of Object.values(ids)){db.prepare('DELETE FROM app_ai WHERE id=?').run(id);db.prepare('DELETE FROM app_ai_jobs WHERE id=?').run(id);}for(const row of existing)db.prepare('UPDATE app_ai SET enabled=? WHERE id=?').run(row.enabled,row.id);}
 });
+
+test('legacy speech key migrates once into the unified managed speech list without exposing or losing the key',async()=>{
+ const admin=await call('/api/auth/login','POST',{email:'owner@example.com',password:env.ADMIN_INITIAL_PASSWORD});
+ await call('/api/admin/speech-key','PUT',{key:'migration-test-only'},admin.cookie);
+ const cipher=db.prepare("SELECT value FROM app_config WHERE name='speechSecret'").get().value;
+ const list=await call('/api/admin/ai','GET',null,admin.cookie);const item=list.body.items.find(r=>r.id==='legacy-speech-key');assert(item);assert.equal(item.job,'speech');assert.equal(item.model,'gemini-2.5-flash-preview-tts');assert.equal(item.enabled,1);
+ assert(!JSON.stringify(list.body).includes('migration-test-only'));assert(!JSON.stringify(list.body).includes(cipher));assert.equal(db.prepare("SELECT secret FROM app_ai WHERE id='legacy-speech-key'").get().secret,cipher);assert.equal(db.prepare("SELECT value FROM app_config WHERE name='speechSecret'").get(),undefined);
+ await call('/api/admin/ai','PATCH',{id:item.id,enabled:false,priority:9},admin.cookie);
+ const repeated=await call('/api/admin/ai','GET',null,admin.cookie);assert.equal(repeated.body.items.filter(r=>r.id===item.id).length,1);assert.equal(repeated.body.items.find(r=>r.id===item.id).enabled,0);assert.equal(repeated.body.items.find(r=>r.id===item.id).priority,9);
+ assert.equal((await call('/api/admin/ai','DELETE',{id:item.id},admin.cookie)).status,200);assert.equal(db.prepare('SELECT job FROM app_ai_jobs WHERE id=?').get(item.id),undefined);
+});
