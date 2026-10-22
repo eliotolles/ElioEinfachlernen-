@@ -44,7 +44,8 @@ const ExamCollectionEdits={
   const list=document.createElement('div');list.className='exam-catalog-collections';list.setAttribute('role','region');list.setAttribute('aria-label',t.sets);
   const folders=[...select('sim-folder').options];
   if(!folders.length){const empty=document.createElement('p');empty.textContent=t.empty;list.append(empty);}
-  for(const folder of folders){const row=document.createElement('div');row.className='exam-catalog-collection-row';const button=document.createElement('button');button.type='button';button.className='exam-catalog-collection';const name=document.createElement('span');name.textContent=folder.text;const next=document.createElement('span');next.textContent='↗';next.setAttribute('aria-hidden','true');button.append(name,next);button.onclick=()=>{choose('sim-folder',folder.value);start();};row.append(button);
+  const groups=new Map();
+  for(const folder of folders){const collection=folder.value.startsWith('import:')?Auth.get('materials',[]).find(c=>'import:'+c.id===folder.value):null;const groupName=collection?.groupName;let target=list;if(groupName){if(!groups.has(groupName)){const detail=document.createElement('details');detail.className='exam-catalog-group';const summary=document.createElement('summary');summary.textContent=groupName;const children=document.createElement('div');children.className='exam-catalog-collections';children.setAttribute('role','region');children.setAttribute('aria-label',groupName);detail.append(summary,children);groups.set(groupName,{detail,children,summary,count:0});}const group=groups.get(groupName);group.count++;group.summary.textContent=groupName+' · '+group.count+' bộ đề';target=group.children;}const row=document.createElement('div');row.className='exam-catalog-collection-row';const button=document.createElement('button');button.type='button';button.className='exam-catalog-collection';const name=document.createElement('span');name.textContent=folder.text;const next=document.createElement('span');next.textContent='↗';next.setAttribute('aria-hidden','true');button.append(name,next);button.onclick=()=>{choose('sim-folder',folder.value);start();};row.append(button);
    if(folder.value.startsWith('import:')&&typeof Account!=='undefined'){
     const id=folder.value.slice(7),collection=Auth.get('materials',[]).find(c=>c.id===id&&c.type==='exam');
     if(collection&&Account.canEdit('materials',id)){
@@ -52,9 +53,9 @@ const ExamCollectionEdits={
      const remove=document.createElement('button');remove.type='button';remove.className='exam-catalog-delete';remove.textContent='×';remove.setAttribute('aria-label','Xóa bộ đề · '+folder.text);remove.onclick=()=>{if(!Account.canEdit('materials',id)||!confirm('Xóa bộ đề này? Bài đã làm vẫn được giữ.'))return;Auth.set('materials',Auth.get('materials',[]).filter(c=>c.id!==id));document.dispatchEvent(new Event('exam-library-change'));};row.append(edit,remove);
     }
    }
-   list.append(row);
+   target.append(row);
   }
-  parent.append(hint,list);
+  parent.append(hint,list,...[...groups.values()].map(g=>g.detail));
  }
  function editCollection(id){
   if(!Account.canEdit('materials',id))return;
@@ -117,3 +118,4 @@ const ExamCollectionEdits={
  document.addEventListener('exam-library-change',()=>queueMicrotask(render));
  render();
 })();
+
