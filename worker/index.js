@@ -154,8 +154,16 @@ async function youtubePlaylistPage(env,data){
  const id=String(data.id||''),page=String(data.pageToken||'');if(!/^[A-Za-z0-9_-]{10,150}$/.test(id)||!/^[A-Za-z0-9_=-]{0,1000}$/.test(page))throw error(400,'Playlist hoặc mã trang không hợp lệ.');
  const row=(await sql(env,"SELECT value FROM app_config WHERE name='youtubeSecret'")).rows[0];const key=row?await decrypt(env,row.value):env.YOUTUBE_API_KEY;if(!key)throw error(400,'Chưa cấu hình YouTube Data API key. Mở Cấu hình YouTube trong mục nhập playlist.');
  const params=new URLSearchParams({part:'snippet,status',playlistId:id,maxResults:'50',key});if(page)params.set('pageToken',page);
- let response,lastTimeout=false;for(const host of ['www.googleapis.com','youtube.googleapis.com']){try{response=await fetch('https://'+host+'/youtube/v3/playlistItems?'+params,{redirect:'error',signal:AbortSignal.timeout(12000)});break;}catch(e){lastTimeout=e?.name==='TimeoutError'||e?.name==='AbortError';}}
- if(!response)throw error(503,lastTimeout?'YouTube phản hồi quá thời gian chờ. Máy chủ đã thử lại qua địa chỉ dự phòng.':'Máy chủ chưa kết nối được Google YouTube API qua cả hai địa chỉ. Đây chưa phải thông báo hết quota hoặc sai key.');
+ let response;const failures=[];
+ for(const host of ['www.googleapis.com','youtube.googleapis.com']){
+  const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),12000);
+  try{response=await fetch('https://'+host+'/youtube/v3/playlistItems?'+params,{redirect:'manual',signal:controller.signal});break;}
+  catch(e){const detail=String(e?.message||'Lỗi kết nối không có mô tả').replaceAll(key,'[KEY]').replace(/https?:\/\/[^\s"'<>]+/g,'[URL]').slice(0,220);failures.push({host,name:String(e?.name||'Error').slice(0,40),detail});}
+  finally{clearTimeout(timeout);}
+ }
+ if(!response)throw error(503,'Gọi YouTube thất bại: '+failures.map(f=>f.host+' · '+f.name+': '+f.detail).join(' | '),{code:'YOUTUBE_TRANSPORT_ERROR'});
+ if(response.status>=300&&response.status<400)throw error(502,'Google chuyển hướng yêu cầu API (HTTP '+response.status+'). Không gửi key tiếp sang địa chỉ chuyển hướng.',{code:'YOUTUBE_REDIRECT'});
+
  if(!response.ok){let reason='';try{const payload=await response.json();reason=payload?.error?.errors?.[0]?.reason||payload?.error?.status||'';}catch{}
  const reasons={quotaExceeded:'Đã hết quota YouTube của dự án Google Cloud. Chờ quota ngày mới.',dailyLimitExceeded:'Đã hết quota YouTube trong ngày.',keyInvalid:'YouTube API key không hợp lệ. Hãy tạo hoặc lưu lại key.',API_KEY_INVALID:'YouTube API key không hợp lệ. Hãy tạo hoặc lưu lại key.',accessNotConfigured:'Chưa bật YouTube Data API v3 trong dự án chứa key.',ipRefererBlocked:'API key đang bị giới hạn IP hoặc Website không phù hợp với backend.',forbidden:'Không có quyền đọc playlist. Kiểm tra playlist và giới hạn của key.',playlistNotFound:'Không tìm thấy playlist công khai.',playlistItemsNotAccessible:'Không có quyền đọc playlist này.'};
  throw error(response.status===404?404:response.status===403?403:502,reasons[reason]||'YouTube trả HTTP '+response.status+'. Kiểm tra đã bật YouTube Data API v3 và key chỉ giới hạn API này, không giới hạn Website.');}
