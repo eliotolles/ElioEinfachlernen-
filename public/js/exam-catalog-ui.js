@@ -1,5 +1,17 @@
 'use strict';
 const ExamCollectionEdits={
+ setListeningHidden(ids,hidden,user){
+  if(Auth.user!==user)throw Error('Tài khoản đã thay đổi.');
+  const selected=new Set(ids),all=Auth.get('materials',[]),members=all.filter(c=>selected.has(c.id));
+  if(!selected.size||members.length!==selected.size||members.some(c=>c.type!=='exam'||!Account.canEdit('materials',c.id)))throw Error('Bạn không có quyền chỉnh sửa bộ đề này.');
+  let count=0;
+  const updated=all.map(c=>{if(!selected.has(c.id))return c;const archived=c.archivedItems||[];
+   const moving=(hidden?c.items:archived).filter(t=>t.skill==='listening');if(!moving.length)return c;count+=moving.length;
+   return {...c,items:hidden?c.items.filter(t=>t.skill!=='listening'):[...c.items,...moving.filter(t=>!c.items.some(old=>old.id===t.id))],archivedItems:hidden?[...archived,...moving]:archived.filter(t=>t.skill!=='listening')};
+  });
+  if(count){Auth.set('materials',updated);document.dispatchEvent(new Event('exam-library-change'));}
+  return count;
+ },
  save(id,patch,expected,user){
   if(Auth.user!==user||!Account.canEdit('materials',id))throw Error('Bạn không có quyền chỉnh sửa bộ đề này.');
   const all=Auth.get('materials',[]),old=all.find(c=>c.id===id&&c.type==='exam');
@@ -45,7 +57,7 @@ const ExamCollectionEdits={
   const folders=[...select('sim-folder').options];
   if(!folders.length){const empty=document.createElement('p');empty.textContent=t.empty;list.append(empty);}
   const groups=new Map();
-  for(const folder of folders){const collection=folder.value.startsWith('import:')?Auth.get('materials',[]).find(c=>'import:'+c.id===folder.value):null;const groupName=collection?.groupName;let target=list;if(groupName){if(!groups.has(groupName)){const detail=document.createElement('details');detail.className='exam-catalog-group';const summary=document.createElement('summary');summary.textContent=groupName;const children=document.createElement('div');children.className='exam-catalog-collections';children.setAttribute('role','region');children.setAttribute('aria-label',groupName);detail.append(summary,children);groups.set(groupName,{detail,children,summary,count:0});}const group=groups.get(groupName);group.count++;group.summary.textContent=groupName+' · '+group.count+' bộ đề';target=group.children;}const row=document.createElement('div');row.className='exam-catalog-collection-row';const button=document.createElement('button');button.type='button';button.className='exam-catalog-collection';const name=document.createElement('span');name.textContent=folder.text;const next=document.createElement('span');next.textContent='↗';next.setAttribute('aria-hidden','true');button.append(name,next);button.onclick=()=>{choose('sim-folder',folder.value);start();};row.append(button);
+  for(const folder of folders){const collection=folder.value.startsWith('import:')?Auth.get('materials',[]).find(c=>'import:'+c.id===folder.value):null;const groupName=collection?.groupName;let target=list;if(groupName){if(!groups.has(groupName)){const detail=document.createElement('details');detail.className='exam-catalog-group';const summary=document.createElement('summary');summary.textContent=groupName;const children=document.createElement('div');children.className='exam-catalog-collections';children.setAttribute('role','region');children.setAttribute('aria-label',groupName);detail.append(summary,children);groups.set(groupName,{detail,children,summary,count:0,ids:[]});}const group=groups.get(groupName);group.count++;group.ids.push(collection.id);group.summary.textContent=groupName+' · '+group.count+' bộ đề';target=group.children;}const row=document.createElement('div');row.className='exam-catalog-collection-row';const button=document.createElement('button');button.type='button';button.className='exam-catalog-collection';const name=document.createElement('span');name.textContent=folder.text;const next=document.createElement('span');next.textContent='↗';next.setAttribute('aria-hidden','true');button.append(name,next);button.onclick=()=>{choose('sim-folder',folder.value);start();};row.append(button);
    if(folder.value.startsWith('import:')&&typeof Account!=='undefined'){
     const id=folder.value.slice(7),collection=Auth.get('materials',[]).find(c=>c.id===id&&c.type==='exam');
     if(collection&&Account.canEdit('materials',id)){
@@ -54,6 +66,17 @@ const ExamCollectionEdits={
     }
    }
    target.append(row);
+  }
+  for(const group of groups.values()){
+   const members=Auth.get('materials',[]).filter(c=>group.ids.includes(c.id));
+   if(typeof Account!=='undefined'&&members.length&&members.every(c=>Account.canEdit('materials',c.id))){
+    const hidden=!members.some(c=>c.items.some(t=>t.skill==='listening'));
+    if(!hidden||members.some(c=>(c.archivedItems||[]).some(t=>t.skill==='listening'))){
+     const toggle=document.createElement('button');toggle.type='button';toggle.className='secondary';toggle.textContent=hidden?'Khôi phục bài nghe':'Bỏ bài nghe';
+     toggle.onclick=async()=>{try{const count=ExamCollectionEdits.setListeningHidden(group.ids,!hidden,Auth.user);toast((hidden?'Đã khôi phục ':'Đã bỏ ')+count+' phần nghe.');if(Account.flush){await Account.flush();const key=Account.profile?.role==='super_admin'?'shared:materials':'materials';toast(Account.pending?.[key]||Account.conflicts?.[key]?'Thay đổi đang chờ đồng bộ.':'Đã đồng bộ bộ đề ✓');}}catch(error){toast(error.message);}};
+     group.detail.append(toggle);
+    }
+   }
   }
   parent.append(hint,list,...[...groups.values()].map(g=>g.detail));
  }
@@ -118,4 +141,5 @@ const ExamCollectionEdits={
  document.addEventListener('exam-library-change',()=>queueMicrotask(render));
  render();
 })();
+
 
