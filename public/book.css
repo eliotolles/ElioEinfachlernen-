@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Patrick+Hand&display=swap');
 body.book-app{--bg:#faf7ee;--card:#fffdf6;--text:#18231d;--muted:#65705f;--line:#d9d5c5;--soft:#edf0e1;--book-gold:#98723f;background:var(--bg)!important;color:var(--text);padding:0!important;margin:0;--sidebar-width:0px;--sidebar-collapsed-width:0px;font-family:Lexend,sans-serif;font-size:calc(16px * var(--text-scale,1));line-height:1.7}
 body.book-app.dark{--bg:#203128;--card:#263a2e;--text:#f6f0df;--muted:#bdc7b4;--line:#52604b;--soft:#304b36;--book-gold:#c9ab77;background:var(--bg)!important}
@@ -296,83 +297,138 @@ body.book-app main .module-portrait img{display:block;width:100%;height:auto;asp
 }
 @media(max-width:380px){body.book-app main .page-title,body.book-app main .module-heading{flex-wrap:wrap}body.book-app main .module-portrait{width:100px;margin-left:auto}}
 
-
-/* Approved illustrated mobile layout. Reuse mounted controls, routes and artwork. */
-@media (max-width:700px){
- body.elio-app.book-app .book-shell{padding:14px 16px 0;min-width:0}
- body.elio-app.book-app .book-heading{gap:14px;padding:0 0 13px}
- body.elio-app.book-app .book-brand{gap:8px;font-size:calc(17px * var(--text-scale,1));min-width:0}
- body.elio-app.book-app .book-brand>span{font-weight:600;white-space:normal;line-height:1.2}
- body.elio-app.book-app .book-brand b{width:30px;height:34px;flex:none}
- body.elio-app.book-app .book-slogan{font-size:calc(15px * var(--text-scale,1));line-height:1.35;max-width:44%;color:var(--muted)}
- body.elio-app.book-app .book-nav{display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-start;gap:0 16px;padding:5px 0 8px}
- body.elio-app.book-app .book-nav>a{font-size:calc(14px * var(--text-scale,1));min-height:44px;line-height:1.35;flex:0 1 auto;max-width:45%;padding:8px 0;overflow-wrap:anywhere}
- body.elio-app.book-app .book-nav>a[aria-current=page]{font-weight:600;border-bottom:2px solid var(--text)}
- body.elio-app.book-app .book-profile{margin-left:auto;gap:0;min-height:44px}
- body.elio-app.book-app .book-account-menu{max-width:calc(100vw - 32px);font-size:calc(15px * var(--text-scale,1))}
- body.elio-app.book-app .book-shell>main{padding:18px 0 20px!important;min-width:0}
- body.elio-app.book-app .book-spread{display:flex;flex-direction:column;align-items:stretch;gap:0;padding:0 0 22px;border-bottom:1px solid var(--line)}
- body.elio-app.book-app .book-painting{order:-1;width:100%;max-width:none;padding:0;margin:0 0 22px;transform:none;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--card)}
- body.elio-app.book-app .book-painting>div{height:auto;aspect-ratio:1.78;background-image:var(--book-contents-art,var(--book-home-art));background-size:cover;background-position:center 46%}
- body.elio-app.book-app .book-painting figcaption{font-size:calc(16px * var(--text-scale,1));margin:0;padding:9px 12px;color:var(--muted);line-height:1.4}
- body.elio-app.book-app .book-spread>div{padding:0 4px}
- body.elio-app.book-app .book-spread h1{font-size:calc(42px * var(--text-scale,1));line-height:1.06;margin:10px 0 14px;letter-spacing:-.8px}
- body.elio-app.book-app .book-spread .book-eyebrow{font-size:calc(12px * var(--text-scale,1));margin-bottom:7px}
- body.elio-app.book-app .book-intro-copy{font-size:calc(16px * var(--text-scale,1));line-height:1.7;max-width:none;margin:0 0 12px}
- body.elio-app.book-app .book-start{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:10px 18px;background:var(--orange);color:#fffdf6;border:0;border-radius:6px;font-size:calc(15px * var(--text-scale,1));font-weight:600}
- body.elio-app.book-app.dark .book-start{background:var(--book-gold);color:var(--bg)}
- body.elio-app.book-app .book-hand{font-size:calc(23px * var(--text-scale,1));margin:14px 0 0;transform:rotate(-2deg);color:var(--muted)}
- body.elio-app.book-app .book-chapter-heading{font-size:calc(28px * var(--text-scale,1));line-height:1.2;margin:23px 0 14px}
- body.elio-app.book-app .book-home-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
- body.elio-app.book-app main .book-home-grid>.book-chapter{display:flex;flex-direction:row;gap:8px;align-items:flex-start;min-height:0;padding:14px 11px;border-radius:6px;border:1px solid var(--line);background:var(--card)}
- body.elio-app.book-app main .book-home-grid>.book-chapter>small{font-size:calc(17px * var(--text-scale,1));min-width:16px;line-height:1.35;margin:2px 0 0}
- body.elio-app.book-app main .book-home-grid>.book-chapter strong{font-size:calc(22px * var(--text-scale,1));line-height:1.2;overflow-wrap:anywhere}
- body.elio-app.book-app main .book-home-grid>.book-chapter em{font-size:calc(16px * var(--text-scale,1));line-height:1.45;margin-top:6px}
- body.elio-app.book-app .book-real-stats{margin-top:20px;padding:12px 0}
- body.elio-app.book-app .book-real-stats .stat-box{padding:10px 12px}
- body.elio-app.book-app .book-real-stats .stat-box strong{font-size:calc(30px * var(--text-scale,1));line-height:1.3}
- body.elio-app.book-app .book-real-stats .stat-box small{font-size:calc(13px * var(--text-scale,1))}
- body.elio-app.book-app .book-contents,body.elio-app.book-app .book-study{padding:0 4px 20px;background:var(--bg);border-radius:0;overflow:hidden}
- body.elio-app.book-app .book-contents:before,body.elio-app.book-app .book-study:before{position:relative;display:block;inset:auto;width:calc(100% + 8px);margin:0 -4px 20px;aspect-ratio:1.9;background-size:cover;background-position:center 48%;mask-image:linear-gradient(#000 80%,transparent);-webkit-mask-image:linear-gradient(#000 80%,transparent);opacity:1;z-index:0}
- body.elio-app.book-app .book-study:before{background-image:var(--book-study-art);background-position:center 60%}
- body.elio-app.book-app .book-contents:after,body.elio-app.book-app .book-study:after{background:none;pointer-events:none}
- body.elio-app.book-app .book-contents>h1,body.elio-app.book-app .book-study>h1{font-size:calc(34px * var(--text-scale,1));line-height:1.12;margin:0 0 17px;max-width:100%}
- body.elio-app.book-app .book-contents .book-toc{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;width:100%}
- body.elio-app.book-app .book-toc .book-chapter{display:flex;flex-direction:column;gap:7px;min-width:0;padding:14px 12px;border:1px solid var(--line);border-radius:6px;background:var(--card)}
+/* Elio mobile studio: structural mobile presentation, approved illustrated demo. */
+body.book-app :is(.studio-mobile-bar,.studio-mobile-menu,.studio-mobile-bottom,.studio-mobile-home){display:none}
+body.book-app .studio-module-tools{display:contents;border:0;padding:0;margin:0}
+body.book-app .studio-module-tools>summary{display:none}
+@media(max-width:700px){
+ body.elio-app.book-app{font-family:'DM Sans',sans-serif;line-height:1.6}
+ body.elio-app.book-app .book-shell{padding:0 16px;min-width:0;min-height:100dvh}
+ body.elio-app.book-app .book-heading,body.elio-app.book-app .book-nav>[data-book-page],body.elio-app.book-app .book-footer{display:none!important}
+ body.elio-app.book-app .book-nav{display:flex;flex-wrap:nowrap;align-items:center;justify-content:space-between;gap:8px;margin:0;padding:12px 0;background:var(--bg);border-bottom:1px solid var(--line);z-index:40}
+ body.elio-app.book-app .studio-mobile-bar{display:flex;gap:8px;align-items:center;min-width:0;flex:1}
+ body.elio-app.book-app #studio-menu-toggle{padding:0;min-width:40px;min-height:44px;background:transparent;border:0;color:var(--text);border-radius:6px}
+ body.elio-app.book-app #studio-menu-toggle[aria-expanded=true]{background:var(--soft)}
+ body.elio-app.book-app .studio-mobile-brand{display:flex;gap:8px;align-items:center;min-width:0}
+ body.elio-app.book-app .studio-mobile-brand>b{width:29px;height:33px;flex:none;display:grid;place-items:center;border-radius:11px 11px 11px 2px;background:#245e3f;color:#fffdf6;font:500 29px/1 Lexend,sans-serif}
+ body.elio-app.book-app .studio-mobile-brand>b img{width:100%;height:100%;object-fit:contain}
+ body.elio-app.book-app .studio-mobile-brand strong{display:block;font:600 calc(16px * var(--text-scale,1))/1.25 'DM Sans',sans-serif;letter-spacing:-.4px}
+ body.elio-app.book-app #studio-current-page{display:block;font-size:calc(12px * var(--text-scale,1));line-height:1.4;color:var(--muted);margin-top:2px}
+ body.elio-app.book-app .book-profile{margin:0;gap:0;flex:none}
+ body.elio-app.book-app #book-reading-toggle{width:34px;min-width:34px;height:44px;font-size:calc(17px * var(--text-scale,1))}
+ body.elio-app.book-app #user-button,body.elio-app.book-app #book-account-toggle{min-width:38px;width:38px;min-height:44px}
+ body.elio-app.book-app #user-button .user-avatar{width:32px;height:32px;font-size:16px}
+ body.elio-app.book-app .book-account-menu{max-width:calc(100vw - 32px);font-family:'DM Sans',sans-serif}
+ body.elio-app.book-app .studio-mobile-menu:not([hidden]){display:block;padding:12px 0 14px;border-bottom:1px solid var(--line);background:var(--bg)}
+ body.elio-app.book-app .studio-menu-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+ body.elio-app.book-app .studio-menu-links>a{display:flex;gap:10px;align-items:center;min-height:46px;padding:10px;border:1px solid var(--line);border-radius:6px;background:var(--card);color:var(--text);font-size:calc(14px * var(--text-scale,1));line-height:1.35;overflow-wrap:anywhere}
+ body.elio-app.book-app .studio-menu-links>a svg{flex:none;width:19px;height:19px;color:var(--orange)}
+ body.elio-app.book-app.dark .studio-menu-links>a svg{color:var(--book-gold)}
+ body.elio-app.book-app .studio-menu-links>a[aria-current=page]{background:var(--soft);border-color:var(--orange);font-weight:600}
+ body.elio-app.book-app .studio-menu-tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:12px}
+ body.elio-app.book-app .studio-menu-tools>*{margin:0;max-width:100%;font-size:16px}
+ body.elio-app.book-app .studio-menu-tools select{width:auto}
+ body.elio-app.book-app .book-shell>main{padding:21px 0!important;min-width:0}
+ body.elio-app.book-app .book-home>[data-book-screen=intro]>.studio-mobile-home{display:block}
+ body.elio-app.book-app .book-home>[data-book-screen=intro]>:not(.studio-mobile-home),body.elio-app.book-app .book-home>.book-bottom-slogan{display:none!important}
+ body.elio-app.book-app .studio-greeting>p{margin:0 0 7px;color:var(--muted);font-size:calc(14px * var(--text-scale,1));line-height:1.55}
+ body.elio-app.book-app .studio-greeting>h1{font:500 calc(32px * var(--text-scale,1))/1.13 'Playfair Display',Georgia,serif;letter-spacing:-1px;margin:0 0 22px;color:var(--text)}
+ body.elio-app.book-app .studio-resume{border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--card)}
+ body.elio-app.book-app .studio-home-art{margin:0}
+ body.elio-app.book-app .studio-home-art>div{width:100%;aspect-ratio:1.78;background-image:var(--book-contents-art,var(--book-home-art));background-position:center 46%;background-size:cover;background-repeat:no-repeat}
+ body.elio-app.book-app .studio-home-art figcaption{font:italic calc(15px * var(--text-scale,1))/1.4 'Playfair Display',Georgia,serif;text-align:center;padding:9px 10px;border-bottom:1px solid var(--line);color:var(--orange);background:var(--bg)}
+ body.elio-app.book-app.dark .studio-home-art figcaption{color:var(--book-gold)}
+ body.elio-app.book-app .studio-resume-copy{padding:20px}
+ body.elio-app.book-app .studio-kicker{font-size:calc(11px * var(--text-scale,1));letter-spacing:1.5px;font-weight:600;color:var(--muted)}
+ body.elio-app.book-app .studio-resume-copy>h2{font:500 calc(28px * var(--text-scale,1))/1.2 'Playfair Display',Georgia,serif;letter-spacing:-.8px;margin:10px 0 12px}
+ body.elio-app.book-app .studio-resume-copy>p{font-size:calc(15px * var(--text-scale,1));line-height:1.65;color:var(--muted);margin:0 0 18px}
+ body.elio-app.book-app .studio-primary{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:46px;padding:11px 15px;border-radius:6px;background:var(--orange);color:#fffdf6;font-size:calc(14px * var(--text-scale,1));line-height:1.4;font-weight:600}
+ body.elio-app.book-app.dark .studio-primary{background:var(--book-gold);color:var(--bg)}
+ body.elio-app.book-app .studio-section-title{margin:25px 0 13px}
+ body.elio-app.book-app .studio-section-title>h2,body.elio-app.book-app .studio-today h2{font:500 calc(23px * var(--text-scale,1))/1.25 'Playfair Display',Georgia,serif;margin:0;letter-spacing:-.6px}
+ body.elio-app.book-app .studio-module-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+ body.elio-app.book-app .studio-module{display:flex;gap:8px;align-items:flex-start;padding:14px 11px;border:1px solid var(--line);border-radius:6px;background:var(--card);min-width:0;color:var(--text)}
+ body.elio-app.book-app .studio-module-icon{flex:none;display:grid;place-items:center;width:22px;height:23px;color:var(--orange)}
+ body.elio-app.book-app.dark .studio-module-icon{color:var(--book-gold)}
+ body.elio-app.book-app .studio-module>span:nth-child(2){min-width:0;flex:1}
+ body.elio-app.book-app .studio-module strong{display:block;font:600 calc(15px * var(--text-scale,1))/1.35 'DM Sans',sans-serif;color:var(--text);overflow-wrap:anywhere;letter-spacing:-.3px}
+ body.elio-app.book-app .studio-module small{display:block;font:400 calc(12px * var(--text-scale,1))/1.5 'DM Sans',sans-serif;color:var(--muted);margin-top:5px}
+ body.elio-app.book-app .studio-arrow{display:none}
+ body.elio-app.book-app .studio-today{border:1px solid var(--line);border-radius:6px;padding:18px 16px;margin-top:22px;background:var(--card)}
+ body.elio-app.book-app .studio-today>header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:4px}
+ body.elio-app.book-app .studio-today>header>a{font-size:calc(12px * var(--text-scale,1));color:var(--orange);min-height:44px;display:flex;align-items:center}
+ body.elio-app.book-app.dark .studio-today>header>a{color:var(--book-gold)}
+ body.elio-app.book-app .studio-live-tasks .book-study-row{padding:13px 0;gap:10px;align-items:start}
+ body.elio-app.book-app .studio-live-tasks .book-study-row strong{font:600 calc(15px * var(--text-scale,1))/1.4 'DM Sans',sans-serif}
+ body.elio-app.book-app .studio-live-tasks .book-study-row small,body.elio-app.book-app .studio-live-tasks>p{font:400 calc(13px * var(--text-scale,1))/1.6 'DM Sans',sans-serif;margin:4px 0 0;color:var(--muted)}
+ body.elio-app.book-app .studio-live-tasks .book-study-row>a{font:500 calc(12px * var(--text-scale,1))/1.5 'DM Sans',sans-serif;max-width:78px;min-height:44px;color:var(--orange)}
+ body.elio-app.book-app.dark .studio-live-tasks .book-study-row>a{color:var(--book-gold)}
+ body.elio-app.book-app .studio-live-tasks .book-study-row:last-child{border-bottom:0}
+ body.elio-app.book-app .studio-live-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;padding:18px 0;margin-top:18px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+ body.elio-app.book-app .studio-live-stats>div{text-align:center;padding:0 7px;min-width:0;border-right:1px solid var(--line)}
+ body.elio-app.book-app .studio-live-stats>div:last-child{border:0}
+ body.elio-app.book-app .studio-live-stats strong{display:block;font:500 calc(28px * var(--text-scale,1))/1.3 'Playfair Display',Georgia,serif;overflow-wrap:anywhere}
+ body.elio-app.book-app .studio-live-stats small{display:block;color:var(--muted);font-size:calc(12px * var(--text-scale,1));margin-top:5px}
+ body.elio-app.book-app .studio-study-art{margin:22px 0 0;border:5px solid var(--card);border-radius:42% 42% 4px 4px;overflow:hidden}
+ body.elio-app.book-app .studio-study-art>div{height:170px;background-image:var(--book-study-art,var(--book-home-art));background-size:cover;background-position:center 64%}
+ body.elio-app.book-app .studio-motivation{font:italic calc(20px * var(--text-scale,1))/1.5 'Playfair Display',Georgia,serif;color:var(--muted);text-align:center;margin:18px 8px 8px;padding:0;border:0}
+ body.elio-app.book-app .book-contents,body.elio-app.book-app .book-study{padding:0 0 18px;min-height:0;overflow:hidden;background:var(--bg)}
+ body.elio-app.book-app .book-contents:before,body.elio-app.book-app .book-study:before{position:relative;display:block;inset:auto;z-index:0;aspect-ratio:2;width:100%;margin-bottom:20px;background-size:cover;background-position:center;mask-image:linear-gradient(#000 75%,transparent);-webkit-mask-image:linear-gradient(#000 75%,transparent)}
+ body.elio-app.book-app .book-contents:after,body.elio-app.book-app .book-study:after{display:none}
+ body.elio-app.book-app .book-contents>h1,body.elio-app.book-app .book-study>h1{font:500 calc(32px * var(--text-scale,1))/1.2 'Playfair Display',Georgia,serif;margin:0 0 20px}
+ body.elio-app.book-app .book-contents .book-toc{width:100%;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+ body.elio-app.book-app .book-toc .book-chapter{display:flex;flex-direction:column;gap:8px;padding:15px 12px;border:1px solid var(--line);background:var(--card);border-radius:6px}
  body.elio-app.book-app .book-toc .book-chapter>small{font-size:calc(18px * var(--text-scale,1));line-height:1.2}
- body.elio-app.book-app .book-toc .book-chapter strong{font-size:calc(23px * var(--text-scale,1));line-height:1.2;overflow-wrap:anywhere}
- body.elio-app.book-app .book-toc .book-chapter em{font-size:calc(17px * var(--text-scale,1));line-height:1.4;margin-top:7px}
- body.elio-app.book-app .book-study-tabs{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-bottom:10px}
- body.elio-app.book-app .book-study-tabs button{min-height:46px;padding:10px;font-size:calc(14px * var(--text-scale,1));border-radius:6px}
- body.elio-app.book-app .book-study-row{gap:12px;padding:16px 0;align-items:flex-start}
- body.elio-app.book-app .book-study .book-study-row strong{font-size:calc(23px * var(--text-scale,1));line-height:1.25}
- body.elio-app.book-app .book-study .book-study-row small{font-size:calc(18px * var(--text-scale,1));line-height:1.5}
- body.elio-app.book-app .book-study-row>a{font-size:calc(16px * var(--text-scale,1));min-height:44px;max-width:90px;overflow-wrap:anywhere}
- body.elio-app.book-app .book-bottom-slogan{font-size:calc(21px * var(--text-scale,1));line-height:1.4;margin:22px 0 0}
- body.elio-app.book-app .book-crumb{font-size:calc(14px * var(--text-scale,1));gap:8px;padding-bottom:12px;flex-wrap:wrap;overflow-wrap:anywhere}
- body.elio-app.book-app main .page-title,body.elio-app.book-app main .module-heading{gap:14px;margin:0 0 18px;padding:12px 0 18px;align-items:center}
- body.elio-app.book-app main .page-title h1,body.elio-app.book-app main .module-heading h1{font-size:calc(30px * var(--text-scale,1));line-height:1.15;overflow-wrap:anywhere}
- body.elio-app.book-app main .page-title p{font-size:calc(15px * var(--text-scale,1));line-height:1.6}
- body.elio-app.book-app main .module-portrait{width:88px;max-width:27%;padding:4px;transform:rotate(1deg)}
- body.elio-app.book-app .workspace{grid-template-columns:minmax(0,1fr);gap:18px}
+ body.elio-app.book-app .book-toc .book-chapter strong{font:600 calc(20px * var(--text-scale,1))/1.3 'Playfair Display',Georgia,serif;overflow-wrap:anywhere}
+ body.elio-app.book-app .book-toc .book-chapter em{font:italic calc(16px * var(--text-scale,1))/1.45 'Cormorant Garamond',Georgia,serif}
+ body.elio-app.book-app .book-study>*{max-width:100%}
+ body.elio-app.book-app .book-study-tabs{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+ body.elio-app.book-app .book-study-tabs button{font:500 calc(14px * var(--text-scale,1))/1.4 'DM Sans',sans-serif;min-height:46px;border-radius:6px;padding:10px}
+ body.elio-app.book-app .book-study .book-study-row strong{font:600 calc(20px * var(--text-scale,1))/1.3 'Playfair Display',Georgia,serif}
+ body.elio-app.book-app .book-study .book-study-row small{font:italic calc(17px * var(--text-scale,1))/1.5 'Cormorant Garamond',Georgia,serif}
+ body.elio-app.book-app .studio-mobile-bottom{position:sticky;bottom:0;z-index:40;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;margin:0 -16px;padding:8px 10px calc(8px + env(safe-area-inset-bottom,0px));background:var(--bg);border-top:1px solid var(--line)}
+ body.elio-app.book-app .studio-mobile-bottom>a{display:flex;align-items:center;justify-content:center;gap:7px;min-height:44px;padding:8px 4px;font-size:calc(13px * var(--text-scale,1));line-height:1.3;border-radius:6px;color:var(--muted)}
+ body.elio-app.book-app .studio-mobile-bottom>a[aria-current=page]{background:var(--soft);color:var(--text);font-weight:600}
+ body.elio-app.book-app .studio-mobile-bottom>a svg{width:18px;height:18px;flex:none}
+ body.elio-app.book-app .workspace{grid-template-columns:minmax(0,1fr);gap:16px}
  body.elio-app.book-app .workspace>*{min-width:0}
- body.elio-app.book-app .panel{padding:17px 0}
- body.elio-app.book-app :is(input,textarea,select){font-size:calc(16px * var(--text-scale,1));max-width:100%}
- body.elio-app.book-app .book-footer{gap:8px;min-height:58px;padding:7px 0 calc(7px + env(safe-area-inset-bottom,0px))!important}
- body.elio-app.book-app .book-footer>span{font-size:calc(11px * var(--text-scale,1));letter-spacing:.15px;max-width:none;flex:1}
- body.elio-app.book-app .book-history-link{font-size:calc(14px * var(--text-scale,1));min-height:44px;display:flex;align-items:center}
- body.elio-app.book-app .book-footer .book-programs:not([hidden]){width:340px;max-width:calc(100vw - 32px);max-height:65dvh;overflow-y:auto;overscroll-behavior:contain}
- body.elio-app.book-app .book-footer .book-programs>a{font-size:calc(15px * var(--text-scale,1));min-height:46px}
-}
-@media (max-width:360px){
- body.elio-app.book-app .book-shell{padding-left:12px;padding-right:12px}
- body.elio-app.book-app .book-nav{column-gap:12px}
- body.elio-app.book-app .book-slogan{font-size:calc(14px * var(--text-scale,1))}
- body.elio-app.book-app .book-home-grid,body.elio-app.book-app .book-contents .book-toc{grid-template-columns:minmax(0,1fr)}
- body.elio-app.book-app main .book-home-grid>.book-chapter,body.elio-app.book-app .book-toc .book-chapter{flex-direction:row;gap:12px}
- body.elio-app.book-app .book-painting>div{aspect-ratio:1.6}
-}
-@media (max-width:700px) and (pointer:coarse){
+ body.elio-app.book-app .studio-module-tools{display:block;border:1px solid var(--line);border-radius:6px;padding:0;margin:0;background:var(--card)}
+ body.elio-app.book-app .studio-module-tools>summary{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:48px;font:500 calc(14px * var(--text-scale,1))/1.4 'DM Sans',sans-serif;padding:13px 15px;margin:0;color:var(--text);list-style:none}
+ body.elio-app.book-app .studio-module-tools>summary:after{content:'＋';font-size:20px;font-weight:400}
+ body.elio-app.book-app .studio-module-tools[open]>summary{border-bottom:1px solid var(--line)}
+ body.elio-app.book-app .studio-module-tools[open]>summary:after{content:'−'}
+ body.elio-app.book-app .studio-module-tools>aside{border:0!important;padding:16px!important;margin:0!important;display:block}
+ body.elio-app.book-app .book-crumb{font-size:calc(13px * var(--text-scale,1));padding-bottom:12px;gap:8px;flex-wrap:wrap}
+ body.elio-app.book-app main .page-title,body.elio-app.book-app main .module-heading{margin:0 0 18px;padding:8px 0 18px;gap:16px}
+ body.elio-app.book-app main .page-title h1,body.elio-app.book-app main .module-heading h1{font:500 calc(29px * var(--text-scale,1))/1.2 'Playfair Display',Georgia,serif;letter-spacing:-.8px}
+ body.elio-app.book-app main .page-title p{font-size:calc(14px * var(--text-scale,1));line-height:1.65}
+ body.elio-app.book-app main .module-portrait{width:88px;max-width:26%;padding:4px}
+ body.elio-app.book-app :is(input,select,textarea){font-size:calc(16px * var(--text-scale,1));font-family:inherit;max-width:100%}
+ body.elio-app.book-app .panel{padding:18px 0}
+ body.elio-app.book-app .studio-module-tools .panel{padding:0;border:0}
  body.elio-app.book-app :is(button,.button,summary){min-height:44px}
  body.elio-app.book-app button:hover,body.elio-app.book-app .button:hover{transform:none}
+}
+@media(max-width:360px){
+ body.elio-app.book-app .book-shell{padding:0 12px}
+ body.elio-app.book-app .studio-mobile-bottom{margin:0 -12px}
+ body.elio-app.book-app .studio-module-grid,body.elio-app.book-app .book-contents .book-toc{grid-template-columns:minmax(0,1fr)}
+ body.elio-app.book-app .studio-module small{font-size:calc(13px * var(--text-scale,1))}
+ body.elio-app.book-app .studio-mobile-brand strong{font-size:calc(14px * var(--text-scale,1))}
+ body.elio-app.book-app .studio-mobile-brand>b{display:none}
+}
+@media(max-width:700px){
+ body.elio-app.book-app .vocab-catalog-tabs{gap:6px;margin:0 0 18px}
+ body.elio-app.book-app .vocab-catalog-tabs button{font:500 calc(14px * var(--text-scale,1))/1.35 'DM Sans',sans-serif;border-radius:6px;padding:11px 9px;min-height:46px}
+ body.elio-app.book-app .vocab-catalog-grid{gap:10px}
+ body.elio-app.book-app .vocab-parent-tab{aspect-ratio:auto;min-height:104px;padding:16px;gap:8px}
+ body.elio-app.book-app .vocab-catalog-card{border-radius:6px!important;min-height:108px;padding:16px 30px 16px 16px}
+ body.elio-app.book-app .vocab-catalog-card strong{font:600 calc(17px * var(--text-scale,1))/1.4 'DM Sans',sans-serif}
+ body.elio-app.book-app .vocab-catalog-card small{font:400 calc(13px * var(--text-scale,1))/1.5 'DM Sans',sans-serif}
+ body.elio-app.book-app .editor textarea{min-height:260px;font-size:calc(17px * var(--text-scale,1));line-height:1.8}
+ body.elio-app.book-app .task-prompt{font-size:calc(16px * var(--text-scale,1));line-height:1.7}
+ body.elio-app.book-app .book-reading-control{z-index:2}
+}
+@media(max-width:700px){
+ body.elio-app.book-app :is(.studio-greeting>h1,.studio-resume-copy>h2,.studio-section-title>h2,.studio-today h2){font-weight:500!important}
 }

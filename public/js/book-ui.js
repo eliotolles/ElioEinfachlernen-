@@ -77,6 +77,81 @@
  if(home){panels.querySelector('.book-bottom-slogan').textContent=slogan;panels.querySelector('.book-intro-copy').textContent=c.intro||App.t('intro');panels.querySelector('[data-book-screen="intro"] h1').innerHTML=tr('Mỗi ngày,<br>một <i>trang mới.</i>','Jeden Tag<br>eine <i>neue Seite.</i>','Every day,<br>a <i>new page.</i>');panels.querySelector('.book-start').textContent=App.t('learn')+' ↗';panels.querySelector('.book-chapter-heading').textContent=tr('Những chương đang chờ bạn','Deine nächsten Kapitel','Your next chapters');panels.querySelector('[data-book-screen="contents"] h1').textContent=navTexts[1];panels.querySelector('[data-book-screen="study"] h1').textContent=navTexts[2];const names=[tr('Lịch sử học','Lernverlauf','History'),tr('Việc cần làm','Aufgaben','To do'),tr('Bài cần học','Weiterlernen','Lessons'),tr('Từ cần ôn','Wiederholen','Review words')];panels.querySelectorAll('[data-study-tab]').forEach((b,i)=>b.textContent=names[i]);}
  }
  for(const event of ['languagechange','cloudchange','authchange'])document.addEventListener(event,appearance);appearance();
+ // Mobile studio is a real presentation of existing learning data, not the demo's sample data.
+ const studioIcon=name=>{const paths={menu:'M4 6h16M4 12h16M4 18h16',home:'m3 10 9-7 9 7M5 9v12h14V9M9 21v-8h6v8',book:'M12 6c-3-3-8-3-10-2v15c3-1 7-1 10 2 3-3 7-3 10-2V4c-3-1-7-1-10 2Zm0 0v15',layers:'m12 3 10 5-10 5L2 8l10-5ZM2 12l10 5 10-5M2 16l10 5 10-5',quiz:'M9 3H4v5h5V3ZM20 3h-5v5h5V3ZM9 15H4v5h5v-5ZM17 13v8M13 17h8',pen:'m15 3 6 6-12 12H3v-6L15 3ZM12 6l6 6',mic:'M12 16a4 4 0 0 0 4-4V6a4 4 0 0 0-8 0v6a4 4 0 0 0 4 4ZM4 11v1a8 8 0 0 0 16 0v-1M12 20v3M8 23h8',clock:'M12 8v5l3 2M9 2h6M12 2v3M19 5l2 2M21 14a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z',headphones:'M3 14v-3a9 9 0 0 1 18 0v3M3 12h4v9H3v-9ZM17 12h4v9h-4v-9',arrow:'M5 12h14m-5-5 5 5-5 5',grid:'M3 3h7v7H3V3ZM14 3h7v7h-7V3ZM3 14h7v7H3v-7ZM14 14h7v7h-7v-7',check:'m5 12 4 4L19 6',settings:'M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8ZM12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2'};return '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="'+(paths[name]||paths.book)+'"/></svg>';};
+ const mobileTitles=()=>({
+  'index.html':tr('Tổng quan','Übersicht','Overview'),'grammatik.html':tr('Ngữ pháp','Grammatik','Grammar'),
+  'wortschatz.html':tr('Từ vựng','Wortschatz','Vocabulary'),'quiz.html':'Quiz','schreiben.html':tr('Luyện viết','Schreiben','Writing'),
+  'sprechen.html':tr('Luyện nói','Sprechen','Speaking'),'hoeren.html':tr('Luyện nghe','Hören','Listening'),
+  'pruefung.html':tr('Thi thử','Prüfung','Exam practice'),'tutor.html':'AI Tutor','settings.html':tr('Cài đặt','Einstellungen','Settings'),
+  'history.html':tr('Lịch sử học','Lernverlauf','History'),'admin.html':tr('Quản trị','Verwaltung','Administration')});
+ const mobileDescriptions=()=>({
+  'grammatik.html':tr('Hiểu quy tắc, vững từng câu.','Regeln verstehen. Sicher anwenden.','Understand rules. Build better sentences.'),
+  'wortschatz.html':tr('Bộ từ, ví dụ và lịch ôn của bạn.','Deine Wörter und Wiederholungen.','Your words, examples and reviews.'),
+  'quiz.html':tr('Chọn bộ từ và chơi để nhớ lâu.','Wortsammlung wählen und üben.','Choose a set and learn through play.'),
+  'schreiben.html':tr('Viết rõ ý, hiểu từng lỗi sai.','Schreiben und aus Fehlern lernen.','Write clearly. Learn from corrections.'),
+  'sprechen.html':tr('Trò chuyện và luyện nói cùng AI.','Mit KI ins Gespräch kommen.','Speak and practice with AI.'),
+  'pruefung.html':tr('Goethe · telc · ÖSD.','Goethe · telc · ÖSD.','Goethe · telc · ÖSD.'),
+  'hoeren.html':tr('Nghe từng câu, chép và đối chiếu.','Satz für Satz hören und schreiben.','Listen, transcribe and compare.')});
+ const iconNames=['book','layers','quiz','pen','mic','clock','headphones'];
+ const mobileLinks=()=>modules.map(([url],i)=>'<a class="studio-module" href="'+url+'"><span class="studio-module-icon">'+studioIcon(iconNames[i])+'</span><span><strong>'+esc(mobileTitles()[url])+'</strong><small>'+esc(mobileDescriptions()[url])+'</small></span><span class="studio-arrow" aria-hidden="true">↗</span></a>').join('');
+ const studioBar=document.createElement('div');studioBar.className='studio-mobile-bar';
+ studioBar.innerHTML='<button type="button" id="studio-menu-toggle" aria-expanded="false" aria-controls="studio-mobile-menu" aria-label="'+tr('Mở chương trình','Programme öffnen','Open programs')+'">'+studioIcon('menu')+'</button><a href="index.html" class="studio-mobile-brand"><b>e</b><span><strong>Elio Einfach</strong><small id="studio-current-page"></small></span></a>';
+ shell.querySelector('.book-nav').prepend(studioBar);
+ const mobileMenu=document.createElement('nav');mobileMenu.id='studio-mobile-menu';mobileMenu.className='studio-mobile-menu';mobileMenu.hidden=true;
+ mobileMenu.setAttribute('aria-label',tr('Chương trình học','Lernprogramme','Learning programs'));
+ shell.querySelector('.book-nav').after(mobileMenu);
+ const menuButton=studioBar.querySelector('button');
+ function closeStudioMenu(){mobileMenu.hidden=true;menuButton.setAttribute('aria-expanded','false');}
+ menuButton.onclick=()=>{mobileMenu.hidden=!mobileMenu.hidden;menuButton.setAttribute('aria-expanded',String(!mobileMenu.hidden));};
+ mobileMenu.addEventListener('click',event=>{if(event.target.closest('a'))closeStudioMenu();});
+ document.addEventListener('click',event=>{if(!mobileMenu.contains(event.target)&&!studioBar.contains(event.target))closeStudioMenu();});
+ document.addEventListener('keydown',event=>{if(event.key==='Escape')closeStudioMenu();});
+ const mobileBottom=document.createElement('nav');mobileBottom.className='studio-mobile-bottom';mobileBottom.setAttribute('aria-label',tr('Không gian học','Lernraum','Study space'));shell.append(mobileBottom);
+ function updateMobileChrome(){
+  const titles=mobileTitles(),screen=home?location.hash.slice(1):'';
+  const title=screen==='contents'?tr('Mục lục','Inhalt','Contents'):screen==='study'?tr('Góc học','Lernraum','Study space'):titles[file]||'Elio Einfach';
+  document.getElementById('studio-current-page').textContent=title;
+  mobileMenu.innerHTML='<div class="studio-menu-links">'+modules.map(([url],i)=>'<a href="'+url+'"'+(url===file?' aria-current="page"':'')+'>'+studioIcon(iconNames[i])+esc(titles[url])+'</a>').join('')+'<a href="tutor.html">'+studioIcon('mic')+'AI Tutor</a><a href="settings.html">'+studioIcon('settings')+esc(titles['settings.html'])+'</a>'+(admin()?'<a href="admin.html">'+studioIcon('grid')+esc(titles['admin.html'])+'</a>':'')+'</div><div class="studio-menu-tools"></div>';
+  mobileBottom.innerHTML=[['index.html','home',titles['index.html'],'intro'],['index.html#contents','grid',tr('Mục lục','Inhalt','Contents'),'contents'],['index.html#study','book',tr('Góc học','Lernraum','Study space'),'study']].map(([url,icon,label,key])=>'<a href="'+url+'"'+(home&&(screen||'intro')===key?' aria-current="page"':'')+'>'+studioIcon(icon)+'<span>'+esc(label)+'</span></a>').join('');
+  const logo=Account.config?.logo,brand=studioBar.querySelector('b');
+  if(logo){const image=document.createElement('img');image.src=logo;image.alt='';brand.replaceChildren(image);}else brand.textContent='e';
+  studioBar.querySelector('strong').textContent=Account.config?.name||'Elio Einfach';
+ }
+ updateMobileChrome();
+ // Move, rather than duplicate, the original theme/language controls and their handlers.
+ const phoneLayout=window.matchMedia('(max-width:700px)'),studioControls=[];
+ for(const id of ['theme','ui-language','text-size-link','ai-settings']){const node=document.getElementById(id);if(node)studioControls.push({node,parent:node.parentElement});}
+ function placeStudioControls(){for(const {node,parent} of studioControls){const target=phoneLayout.matches?mobileMenu.querySelector('.studio-menu-tools'):parent;if(target)target.append(node);}}
+ placeStudioControls();phoneLayout.addEventListener('change',placeStudioControls);
+ function refreshStudio(){updateMobileChrome();placeStudioControls();if(home)renderMobileDashboard();}
+ for(const event of ['languagechange','cloudchange','authchange','progresschange'])document.addEventListener(event,refreshStudio);
+ window.addEventListener('hashchange',()=>{updateMobileChrome();placeStudioControls();closeStudioMenu();});
+ // Keep the same module nodes and handlers; only fold configuration above the lesson on phones.
+ const studioFolds=[];
+ for(const workspace of main.querySelectorAll('.workspace')){
+  const aside=Array.from(workspace.children).find(node=>node.tagName==='ASIDE');if(!aside)continue;
+  const fold=document.createElement('details');fold.className='studio-module-tools';fold.open=!phoneLayout.matches;
+  const summary=document.createElement('summary');summary.textContent=tr('Chọn bài · Tài liệu & tùy chọn','Aufgabe · Materialien & Optionen','Task · Materials & options');
+  aside.before(fold);fold.append(summary,aside);studioFolds.push(fold);
+ }
+ phoneLayout.addEventListener('change',()=>{for(const fold of studioFolds)fold.open=!phoneLayout.matches;});
+ let mobileDashboard=null;
+ if(home){
+  mobileDashboard=document.createElement('section');mobileDashboard.className='studio-mobile-home';mobileDashboard.setAttribute('aria-label',tr('Tổng quan học tập','Lernübersicht','Learning overview'));
+  panels.querySelector('[data-book-screen="intro"]').prepend(mobileDashboard);
+  renderMobileDashboard();
+ }
+ function renderMobileDashboard(){
+  if(!mobileDashboard)return;
+  const titles=mobileTitles(),stats=App.stats(),drafts=Auth.get('drafts',{}),hasDraft=Object.values(drafts).some(value=>typeof value==='string'?value.trim():value?.essay||value?.text),session=Auth.get('grammarSession',{});
+  const resume=hasDraft?'schreiben.html':session.lessonId?'grammatik.html':'index.html#contents';
+  const action=hasDraft?tr('Viết tiếp bài của bạn','Weiterschreiben','Continue your writing'):session.lessonId?tr('Học tiếp bài đang dở','Lektion fortsetzen','Resume your lesson'):tr('Bắt đầu học','Jetzt lernen','Start learning');
+  const caption=hasDraft?tr('Bản nháp vẫn ở đây. Tiếp tục từ nơi bạn dừng lại.','Dein Entwurf wartet. Mach dort weiter, wo du aufgehört hast.','Your draft is here. Pick up where you left off.'):tr('Chọn một chương và học theo nhịp của bạn.','Wähle ein Kapitel und lerne in deinem Tempo.','Choose a chapter and learn at your own pace.');
+  const pending=document.getElementById('book-panel-todo')?.innerHTML||'',name=Account.displayName();
+  mobileDashboard.innerHTML='<div class="studio-greeting"><p>'+esc(tr('Chào '+name+'. Hôm nay học thêm một chút nhé.','Hallo '+name+'. Zeit für ein neues Kapitel.','Hello '+name+'. A little learning today.'))+'</p><h1>'+tr('Từng ngày,<br>một chương mới.','Jeden Tag<br>ein neues Kapitel.','A new chapter,<br>every day.')+'</h1></div><section class="studio-resume"><figure class="studio-home-art"><div role="img" aria-label="Tranh bầu trời sao và cánh đồng hướng dương Elio"></div><figcaption>Ein neuer Tag. Ein neues Kapitel.</figcaption></figure><div class="studio-resume-copy"><span class="studio-kicker">ELIO · DEIN LERNRAUM</span><h2>'+tr('Ý tưởng của bạn.<br>Tiếng Đức của bạn.','Deine Gedanken.<br>Dein Deutsch.','Your thoughts.<br>Your German.')+'</h2><p>'+esc(caption)+'</p><a href="'+resume+'" class="studio-primary">'+esc(action)+studioIcon('arrow')+'</a></div></section><div class="studio-section-title"><h2>'+tr('Những chương của bạn','Deine Kapitel','Your chapters')+'</h2></div><div class="studio-module-grid">'+mobileLinks()+'</div><section class="studio-today"><header><h2>'+tr('Cho hôm nay','Für heute','For today')+'</h2><a href="index.html#study">'+tr('Xem tất cả','Alles ansehen','View all')+' ↗</a></header><div class="studio-live-tasks">'+pending+'</div></section><section class="studio-live-stats" aria-label="'+tr('Tiến độ học thực tế','Dein Lernfortschritt','Your learning progress')+'"><div><strong>'+esc(String(stats.streak??0))+'</strong><small>'+esc(App.t('streak'))+'</small></div><div><strong>'+esc(String(stats.xp??0))+'</strong><small>XP</small></div><div><strong>'+esc(String(stats.mastered??0))+'</strong><small>'+esc(App.t('mastered'))+'</small></div></section><figure class="studio-study-art"><div role="img" aria-label="Góc học trong tranh Elio"></div></figure><blockquote class="studio-motivation">'+esc(tr('Học điều mới hôm nay, thay đổi ngày mai của bạn.','Lerne heute etwas Neues und verändere dein Morgen.','Learn something today and change your tomorrow.'))+'</blockquote>';
+ }
+
  if(file==='history.html'){const kind=new URLSearchParams(location.search).get('kind'),select=document.getElementById('history-kind');if(kind&&select&&Array.from(select.options).some(o=>o.value===kind)){select.value=kind;select.dispatchEvent(new Event('change'));}}
  if(file==='quiz.html'&&location.hash==='#srs')document.getElementById('tab-srs')?.click();
  // Middle content frames stay square; only the final visible outer frame closes the screen.
@@ -96,3 +171,4 @@
  document.addEventListener('elioviewresume',()=>App.apply());
  if(typeof ElioNavigation!=='undefined')ElioNavigation.install();
 })();
+
