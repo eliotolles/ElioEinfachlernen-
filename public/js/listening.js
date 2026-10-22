@@ -42,7 +42,29 @@ const videoLevelLabel=document.createElement('label');videoLevelLabel.textConten
 q('#yt-link').closest('label').after(collectionLabel,videoLevelLabel);
 function refreshCollectionOptions(){collectionOptions.replaceChildren();for(const name of new Set(['Nicos Weg','Tagesschau','Easy German',...allVideos().map(collectionName).filter(n=>n!=='Chưa phân bộ')])){const o=document.createElement('option');o.value=name;collectionOptions.append(o);}}
 const titleStatus=document.createElement('small');titleStatus.setAttribute('role','status');q('#yt-link').after(titleStatus);const titleUser=Auth.user;const videoTitles=ListeningVideoTitle.bind({link:q('#yt-link'),name:q('#yt-name'),status:titleStatus,parseId,fetchMetadata:id=>Account.request('/api/listening/metadata','POST',{id}),isCurrent:()=>Auth.user===titleUser});
-q('#yt-add').onclick=async()=>{const id=parseId(q('#yt-link').value.trim());if(!id){q('#yt-import-status').textContent='Link YouTube không hợp lệ.';return;}const button=q('#yt-add'),user=Auth.user,destination={level:videoLevelInput.value,collection:collectionInput.value.trim().slice(0,100),scope:q('#yt-scope').value};button.disabled=true;try{await videoTitles.update();if(user!==Auth.user||parseId(q('#yt-link').value.trim())!==id)return;draft();level=destination.level;q('#ed-level').value=level;const collection=destination.collection;const target=isAdmin&&destination.scope==='shared'?sharedVideos:library.videos;let v=target.find(v=>v.youtubeId===id&&v.level===level&&collectionName(v)===(collection||'Chưa phân bộ'));if(!v){v={id:crypto.randomUUID(),youtubeId:id,title:q('#yt-name').value.trim()||'YouTube · '+id,level,collection,cues:[]};target.push(v);}selected=v.id;index=0;save();location.hash=collectionHref(collectionName(v),destination.scope==='shared'&&isAdmin?'shared':'private',v.id);render();q('#yt-import-status').textContent='Đã lưu video vào '+level+'.';if(!v.cues.length)prepareCaptions(true);}finally{button.disabled=false;}};q('#ed-level').onchange=()=>{draft();level=q('#ed-level').value;videoLevelInput.value=level;collectionFilters.clear();selected=allVideos().find(v=>v.level===level)?.id||null;index=0;render();mount();};
+q('#yt-add').onclick=async()=>{
+ const id=parseId(q('#yt-link').value.trim()),notice=q('#yt-import-status');
+ if(!id){notice.textContent='Link YouTube không hợp lệ.';return;}
+ const button=q('#yt-add');if(button.disabled)return;
+ const user=Auth.user,destination={level:videoLevelInput.value,collection:collectionInput.value.trim().slice(0,100),scope:q('#yt-scope').value};
+ const target=isAdmin&&destination.scope==='shared'?sharedVideos:library.videos;
+ const collection=destination.collection||'Chưa phân bộ';
+ const duplicate=()=>target.find(v=>v.youtubeId===id&&v.level===destination.level&&collectionName(v)===collection);
+ const duplicateNotice=()=>{notice.textContent='Video này đã có trong bộ '+collection+' · '+destination.level+'. Không thêm bản trùng.';};
+ if(duplicate()){duplicateNotice();return;}
+ button.disabled=true;
+ try{
+  await videoTitles.update();if(user!==Auth.user||parseId(q('#yt-link').value.trim())!==id)return;
+  if(duplicate()){duplicateNotice();return;}
+  draft();stop();level=destination.level;q('#ed-level').value=level;
+  const v={id:crypto.randomUUID(),youtubeId:id,title:q('#yt-name').value.trim()||'YouTube · '+id,level,collection:destination.collection,cues:[]};
+  target.push(v);selected=v.id;index=0;save();
+  if(!isAdmin)location.hash=collectionHref(collectionName(v),'private',v.id);
+  render();notice.textContent='Đã thêm video vào bộ '+collection+' · '+level+'.'+(isAdmin?' Bạn có thể nhập link tiếp theo.':'');
+  if(!v.cues.length)prepareCaptions(true);
+ }catch(error){notice.textContent=error.message||'Chưa thêm được video. Hãy thử lại.';}
+ finally{button.disabled=false;}
+};q('#ed-level').onchange=()=>{draft();level=q('#ed-level').value;videoLevelInput.value=level;collectionFilters.clear();selected=allVideos().find(v=>v.level===level)?.id||null;index=0;render();mount();};
 function seconds(s){const p=s.replace(',','.').split(':').map(Number);if(p.length<2||p.some(n=>!Number.isFinite(n)))return NaN;return p.reduce((a,b)=>a*60+b,0);}q('#yt-sub').onchange=async()=>{const v=video(),user=Auth.user;if(v&&!canEditVideo(v)){message('Chỉ Admin được sửa phụ đề video chung. Tạo bản riêng để chỉnh.');return;}if(!v){message('Chọn video trước khi nhập phụ đề.');return;}const f=q('#yt-sub').files[0];if(!f)return;if(f.size>1500000){message('Phụ đề tối đa 1,5 MB.');return;}const text=(await f.text()).replace(/\r/g,''),cues=[];for(const block of text.split(/\n\s*\n/)){const lines=block.split('\n'),i=lines.findIndex(l=>l.includes('-->'));if(i<0)continue;const times=lines[i].split('-->'),start=seconds(times[0].trim()),end=seconds(times[1].trim().split(/\s/)[0]),content=lines.slice(i+1).join(' ').replace(/<[^>]*>/g,'').replace(/&amp;/g,'&').trim();if(content&&Number.isFinite(start)&&end>start)cues.push({start,end,text:content});}if(Auth.user!==user||video()?.id!==v.id)return;if(!cues.length){message('Không đọc được phụ đề; dữ liệu cũ được giữ.');return;}if(cues.length>1500){message('Phụ đề quá dài: tối đa 1500 đoạn mỗi video.');return;}if(v.cues.length&&!confirm('Thay phụ đề hiện tại và xóa các câu trả lời cũ của video này?'))return;stop();v.transcriptSource='srt';v.cues=cues.sort((a,b)=>a.start-b.start);for(const k of Object.keys(library.attempts))if(k.startsWith(v.id+':'))delete library.attempts[k];index=0;save();render();message('Đã nhập '+cues.length+' đoạn. Phân đoạn theo mốc SRT/VTT; phụ đề có thể chưa tách đúng câu.');};
 function segment(){const c=cue();if(c)return c;const length=manualLength,start=index*length,duration=playerReady?Number(player?.getDuration?.())||0:0;return {start,end:duration?Math.min(start+length,duration):start+length};}
 function clock(n){return Math.floor(n/60)+':'+String(Math.floor(n%60)).padStart(2,'0');}
