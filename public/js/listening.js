@@ -125,6 +125,7 @@ async function transcribe(v=video()){
    transcriptStatus(v,'AI đang tạo phụ đề '+Math.floor(start)+'–'+Math.ceil(end)+' / '+Math.ceil(duration)+' giây. Tự chạy tiếp và lưu từng đoạn…');
    const result=await requestAIWithRetry('/api/listening/transcribe',{id:v.youtubeId,start,end},{isCurrent:current,onProgress:m=>transcriptStatus(v,m)});
    if(!current())return;
+   v=allVideos().find(x=>x.id===v.id);
    if(!Array.isArray(result.cues)||result.end!==end||result.start!==start||!result.cues.length)throw Error('AI chưa trả đủ dữ liệu hợp lệ cho đoạn này. Dừng tại giây '+start+' để tránh bỏ sót lời.');
    v.cues=[...v.cues,...result.cues].sort((a,b)=>a.start-b.start).filter((c,i,a)=>!i||c.start!==a[i-1].start||c.text!==a[i-1].text);
    v.transcriptSource='ai';v.processedUntil=end;save();if(selected===v.id)render();
