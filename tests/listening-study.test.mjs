@@ -29,3 +29,6 @@ test('shadowing plays and pauses the selected cue, repeats only in its tab and s
 test('tab browsing and sentence practice do not call analysis services',()=>{
  const f=fixture();for(const name of ['Phụ đề','Từ cần học','Shadowing','Nghe chép']){assert.ok(f.button(name));f.button(name).click();}assert.equal(f.answer.value,'Draft preserved');assert.equal(f.plays,0);assert.equal(f.aiCalls,0);
 });
+
+
+test('continuous subtitles follow timestamp boundaries and backward seeking without AI or replacing dictation drafts',()=>{const f=fixture();f.button('Phụ đề').click();assert.equal(f.panel.continuous(),true);const list=f.root.querySelector('.ls-subtitles');list.clientHeight=50;list.scrollTop=0;list.offsetTop=0;list.children.forEach((n,i)=>{n.offsetTop=i*100;n.offsetHeight=80;});f.panel.tick(2.1);assert.equal(list.children[1].attrs['aria-current'],'true');assert(list.scrollTop>0);f.panel.tick(.5);assert.equal(list.children[0].attrs['aria-current'],'true');f.panel.tick(4);assert(list.children.every(n=>n.attrs['aria-current']==='false'));f.button('Shadowing').click();assert.equal(f.panel.continuous(),false);assert.equal(f.aiCalls,0);assert.equal(f.answer.value,'Draft preserved');});

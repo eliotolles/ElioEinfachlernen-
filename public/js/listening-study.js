@@ -1,5 +1,6 @@
 'use strict';
 const ListeningStudy={
+ cueAt(cues,time){let hit=-1;for(let i=0;i<cues.length;i++){if(cues[i].start>time)break;if(time>=cues[i].start&&time<cues[i].end)hit=i;}return hit;},
  mount(api){
   const root=api.root,side=root.querySelector('.ed-writing-column');if(!side)return null;
   const node=(tag,text,cls)=>{const e=document.createElement(tag);if(text!==undefined)e.textContent=text;if(cls)e.className=cls;return e;};
@@ -10,7 +11,7 @@ const ListeningStudy={
   const language=node('div','Tiếng Đức → Tiếng Việt · phụ đề song ngữ','ls-language');
   const panels={subtitles:node('div',undefined,'ls-panel'),vocabulary:node('div',undefined,'ls-panel'),shadowing:node('div',undefined,'ls-panel'),dictation};
   const names={subtitles:'Phụ đề',vocabulary:'Từ cần học',shadowing:'Shadowing',dictation:'Nghe chép'};
-  const tabButtons={};let active='shadowing',repeat=false,meaning=true,busy=false,lastId=null,playing=false;
+  const tabButtons={};let active='shadowing',repeat=false,meaning=true,busy=false,lastId=null,playing=false,subtitleRows=[],subtitleList=null,followIndex=-1,wordObserver=null;
   for(const [key,name]of Object.entries(names)){const b=node('button',name);b.type='button';b.id='ls-tab-'+key;b.setAttribute('role','tab');b.setAttribute('aria-controls','ls-'+key);panels[key].id='ls-'+key;panels[key].setAttribute('role','tabpanel');panels[key].setAttribute('aria-labelledby',b.id);b.onclick=()=>{api.pause();repeat=false;active=key;render();};tabButtons[key]=b;tabs.append(b);}
   side.append(tabs,header,language,analysisButton,...Object.values(panels));
   const underVideo=node('p',undefined,'ls-video-sentence');underVideo.setAttribute('lang','de');root.querySelector('#yt-player-wrap').after(underVideo);
@@ -22,6 +23,7 @@ const ListeningStudy={
   function button(label,handler,cls){const b=node('button',label,cls);b.type='button';b.onclick=handler;return b;}
   function timestamp(n){return Math.floor(n/60)+':'+String(Math.floor(n%60)).padStart(2,'0');}
   function render(){
+   wordObserver?.disconnect();wordObserver=null;
    const v=api.video(),cues=v?.cues||[],index=api.index(),c=cues[index],d=data(v);
    if(lastId!==v?.id){repeat=false;playing=false;lastId=v?.id;note.textContent='';}
    title.textContent=v?.title||'Chọn video để bắt đầu';state.textContent=cues.length?cues.length+' câu · '+Math.min(d.processedUntil,cues.length)+' câu đã phân tích':'Chưa có phụ đề';
@@ -30,8 +32,8 @@ const ListeningStudy={
    underVideo.hidden=active!=='shadowing'||!c;underVideo.textContent=c?.text||'';
    panels.subtitles.replaceChildren();panels.vocabulary.replaceChildren();panels.shadowing.replaceChildren();
    if(!cues.length){empty(panels.subtitles);empty(panels.vocabulary);empty(panels.shadowing);return;}
-   const subtitles=node('div',undefined,'ls-subtitles');subtitles.setAttribute('role','list');
-   cues.forEach((cue,i)=>{const row=button('',()=>{api.select(i);api.play();},'ls-subtitle'+(i===index?' current':''));row.setAttribute('role','listitem');row.append(node('small',timestamp(cue.start)),node('span',cue.text));if(d.translations[i])row.append(node('small',d.translations[i],'ls-translation'));subtitles.append(row);});panels.subtitles.append(subtitles);
+   const subtitles=node('div',undefined,'ls-subtitles');subtitles.setAttribute('role','list');subtitleRows=[];subtitleList=subtitles;followIndex=-1;const wordContexts=new Map();if(typeof IntersectionObserver==='function'&&typeof WordDictionary!=='undefined')wordObserver=new IntersectionObserver(entries=>{for(const entry of entries){if(!entry.isIntersecting)continue;const item=wordContexts.get(entry.target);if(item){WordDictionary.text(entry.target,item.text,item.context);wordContexts.delete(entry.target);}wordObserver?.unobserve(entry.target);}},{root:subtitles,rootMargin:'100px'});
+   cues.forEach((cue,i)=>{const row=node('div',undefined,'ls-subtitle'+(i===index?' current':''));row.setAttribute('role','listitem');const seek=button('▶ '+timestamp(cue.start),()=>{api.select(i);api.play();},'ls-cue-seek');seek.setAttribute('aria-label','Phát câu '+(i+1));const text=node('span');if(typeof WordDictionary!=='undefined'){const context={videoId:v.id,youtubeId:v.youtubeId,collection:v.collection||'Từ trong video',level:v.level,start:cue.start,translation:d.translations[i]||''};if(wordObserver){text.textContent=cue.text;wordContexts.set(text,{text:cue.text,context});wordObserver.observe(text);}else WordDictionary.text(text,cue.text,context);}else text.textContent=cue.text;row.append(seek,text);if(d.translations[i])row.append(node('small',d.translations[i],'ls-translation'));subtitles.append(row);subtitleRows.push(row);});panels.subtitles.append(subtitles);
    if(!d.words.length)panels.vocabulary.append(node('p','Bấm “Phân tích phụ đề” để lấy từ cần học, nghĩa và câu trong video.','ls-empty'));
    else{
     const progress=node('p','Đã học '+d.words.filter(w=>d.known.includes(w.de)).length+' / '+d.words.length+' từ','ls-progress');panels.vocabulary.append(progress);
@@ -40,7 +42,7 @@ const ListeningStudy={
      const known=node('label',undefined,'ls-known'),check=node('input');check.type='checkbox';check.checked=d.known.includes(word.de);check.onchange=()=>{const latest=data(api.video());latest.known=check.checked?[...new Set([...latest.known,word.de])]:latest.known.filter(x=>x!==word.de);persist(latest);render();};known.append(check,document.createTextNode('Đã học'));head.append(known);row.append(head,node('p',word.vi),button('▶ '+cue.text,()=>{api.select(word.cueIndex);api.play();},'ls-word-example'),node('small',timestamp(cue.start)));panels.vocabulary.append(row);}
    }
    const nav=node('div',undefined,'ls-shadow-nav');const previous=button('←',()=>api.select(index-1));previous.disabled=index===0;previous.setAttribute('aria-label','Câu trước');const next=button('→',()=>api.select(index+1));next.disabled=index===cues.length-1;next.setAttribute('aria-label','Câu tiếp');nav.append(previous,node('span','Câu '+(index+1)+' / '+cues.length),next);
-   const sentence=node('p',c?.text||'','ls-shadow-sentence');sentence.lang='de';const translated=node('p',meaning?(d.translations[index]||''):'','ls-translation');
+   const sentence=node('p',c?.text||'','ls-shadow-sentence');sentence.lang='de';if(c&&typeof WordDictionary!=='undefined')WordDictionary.text(sentence,c.text,{videoId:v.id,youtubeId:v.youtubeId,collection:v.collection||'Từ trong video',level:v.level,start:c.start,translation:d.translations[index]||''});const translated=node('p',meaning?(d.translations[index]||''):'','ls-translation');
    const actions=node('div',undefined,'ls-shadow-actions');const play=button(playing?'Ⅱ Dừng câu':'▶ Nghe câu',()=>playing?api.pause():api.play(),'ls-shadow-play');play.disabled=!api.ready();const loop=button('↻ Lặp',()=>{repeat=!repeat;render();});loop.setAttribute('aria-pressed',String(repeat));const toggle=button('Nghĩa',()=>{meaning=!meaning;render();});toggle.setAttribute('aria-pressed',String(meaning));actions.append(play,loop,toggle);
    const rates=node('div',undefined,'ls-rates');for(const rate of [.5,.75,1]){const b=button(rate+'×',()=>{api.speed(rate);render();});b.setAttribute('aria-pressed',String(api.speed()===rate));rates.append(b);}
    panels.shadowing.append(nav,sentence,translated,actions,rates,node('p','Nghe câu mẫu, dừng để đọc theo hoặc bật Lặp để luyện lại câu đó.','ls-instruction'));
@@ -56,7 +58,13 @@ const ListeningStudy={
     latest.words=[...new Map([...latest.words,...words].map(w=>[w.de.toLocaleLowerCase('de'),w])).values()];latest.processedUntil=Math.max(latest.processedUntil,to);if(typeof result.summary==='string')latest.summary=result.summary;persist(latest);note.textContent='Đã phân tích '+to+' / '+v.cues.length+' câu.';
    }catch(error){note.textContent=error.message;}finally{busy=false;render();}
   };
-  return {render,loop:()=>active==='shadowing'&&repeat,playback:state=>{playing=state===1;const b=side.querySelector('.ls-shadow-play');if(b)b.textContent=playing?'Ⅱ Dừng câu':'▶ Nghe câu';}};
+  function tick(time){
+   if(active!=='subtitles'||!Number.isFinite(time))return;const cues=api.video()?.cues||[];const next=ListeningStudy.cueAt(cues,time);if(next===followIndex)return;followIndex=next;
+   subtitleRows.forEach((row,i)=>{row.className='ls-subtitle'+(i===next?' current':'');row.setAttribute('aria-current',String(i===next));});
+   const row=subtitleRows[next];if(!row||!subtitleList)return;const top=row.offsetTop-subtitleList.offsetTop,bottom=top+row.offsetHeight;if(top<subtitleList.scrollTop||bottom>subtitleList.scrollTop+subtitleList.clientHeight)subtitleList.scrollTop=Math.max(0,top-subtitleList.clientHeight/3);
+  }
+  return {render,tick,continuous:()=>active==='subtitles'||active==='vocabulary',loop:()=>active==='shadowing'&&repeat,playback:state=>{playing=state===1;const b=side.querySelector('.ls-shadow-play');if(b)b.textContent=playing?'Ⅱ Dừng câu':'▶ Nghe câu';}};
  }
 };
+
 

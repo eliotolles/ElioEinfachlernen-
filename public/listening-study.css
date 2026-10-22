@@ -36,3 +36,6 @@
 #elio-diktat .yt-collection-level-section{border-top:1px solid var(--line);padding-top:14px}
 #elio-diktat .yt-collection-level-section>h4{margin:0 16px 14px;font-size:17px;color:var(--text)}
 #elio-diktat .yt-collection-level-section .yt-collection-videos{max-height:none;overflow:visible}
+
+.ls-subtitle{cursor:default;text-align:left}.ls-subtitle>span{display:block}.ls-subtitle .ls-cue-seek{border:0;background:none;color:var(--muted);padding:0 0 8px;min-height:0;font-size:12px}.ls-subtitles{position:relative;scroll-behavior:smooth}.ls-subtitle.current{box-shadow:inset 3px 0 var(--orange)}
+.ls-subtitle{border:1px solid var(--line);border-radius:8px;width:100%;box-sizing:border-box}
