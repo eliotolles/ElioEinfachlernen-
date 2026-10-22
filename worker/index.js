@@ -200,7 +200,7 @@ async function youtubeDuration(env,id){
  const row=(await sql(env,"SELECT value FROM app_config WHERE name='youtubeSecret'")).rows[0];const key=row?await decrypt(env,row.value):env.YOUTUBE_API_KEY;
  if(!key)throw error(503,'Cần cấu hình YouTube Data API key để lấy thời lượng cho xử lý tự động.');
  const params=new URLSearchParams({part:'contentDetails',id,key});let response;
- try{response=await fetch('https://www.googleapis.com/youtube/v3/videos?'+params,{redirect:'error',signal:AbortSignal.timeout(10000)});}catch{throw error(503,'Chưa kết nối được API thời lượng YouTube.');}
+ for(const host of ['www.googleapis.com','youtube.googleapis.com']){try{response=await fetch('https://'+host+'/youtube/v3/videos?'+params,{redirect:'error',signal:AbortSignal.timeout(10000)});break;}catch{}}if(!response)throw error(503,'Chưa kết nối được API thời lượng YouTube. Mở video rồi thử tiếp để dùng thời lượng từ trình phát.');
  if(!response.ok)throw error(503,'Không lấy được thời lượng từ YouTube Data API (HTTP '+response.status+'). Kiểm tra key và quota.');
  const data=await response.json(),raw=data.items?.[0]?.contentDetails?.duration,m=typeof raw==='string'&&raw.match(/^PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+(?:\.\d+)?)S)?$/),duration=m?Number(m[1]||0)*3600+Number(m[2]||0)*60+Number(m[3]||0):0;
  if(!duration)throw error(422,'Video chưa có thời lượng cố định hoặc không truy cập được.');return {duration};
