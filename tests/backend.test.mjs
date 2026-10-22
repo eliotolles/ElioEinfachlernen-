@@ -230,3 +230,8 @@ test('caption transport failures identify the failing stage and never call an AI
  globalThis.fetch=async(url,options)=>{calls++;assert.equal(new URL(url).hostname,'www.youtube.com');assert.equal(options.redirect,'manual');throw new TypeError('Transport failed https://youtube.com/private?signature=secret');};
  try{const r=await call('/api/listening/captions','POST',{id:'video123ABC'},user.cookie);assert.equal(r.body.available,false);assert.equal(r.body.code,'CAPTIONS_TRANSPORT_ERROR');assert.match(r.body.reason,/trang video/);assert(!r.body.reason.includes('signature'));assert.equal(calls,1);}finally{globalThis.fetch=original;}
 });
+
+test('CC parser accepts missing duration when next timestamp exists and preserves repeated speech',async()=>{
+ const original=globalThis.fetch;globalThis.fetch=async url=>String(url).includes('/watch?')?new Response('var ytInitialPlayerResponse = '+JSON.stringify({captions:{playerCaptionsTracklistRenderer:{captionTracks:[{languageCode:'de-DE',baseUrl:'https://www.youtube.com/api/timedtext?v=abcdefghijk&sig=keep-this'}]}}})+';'):(assert.equal(new URL(url).searchParams.get('sig'),'keep-this'),Response.json({events:[{tStartMs:0,segs:[{utf8:'Ja.'}]},{tStartMs:1000,dDurationMs:500,segs:[{utf8:'Ja.'}]},{tStartMs:2000,dDurationMs:500,segs:[{utf8:'Nein.'}]},{tStartMs:null,dDurationMs:500,segs:[{utf8:'Invalid'}]},{tStartMs:3000,segs:[{utf8:'Unknown end'}]}]}));
+ try{const r=await call('/api/listening/captions','POST',{id:'abcdefghijk'},owner.cookie);assert.equal(r.body.available,true);assert.equal(r.body.language,'de-DE');assert.deepEqual(r.body.cues,[{start:0,end:1,text:'Ja.'},{start:1,end:1.5,text:'Ja.'},{start:2,end:2.5,text:'Nein.'}]);}finally{globalThis.fetch=original;}
+});
