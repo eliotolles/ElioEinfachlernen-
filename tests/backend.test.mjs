@@ -133,7 +133,7 @@ test('dedicated speech secret is admin-only, encrypted, absent from state and ex
  assert.deepEqual((await call('/api/admin/speech-key','GET',null,admin.cookie)).body,{configured:false});
 });
 
-test('AI workplace routes text, image, general and speech separately with fallback confined to its group',async()=>{
+test('AI workplace routes text, image, general and speech separately with compatible general support',async()=>{
  const admin=await call('/api/auth/login','POST',{email:'owner@example.com',password:env.ADMIN_INITIAL_PASSWORD});
  const user=await call('/api/auth/register','POST',{email:'jobs-test@example.com',password:'Jobs-Test-493!'});
  const existing=db.prepare('SELECT id,enabled FROM app_ai').all();db.prepare('UPDATE app_ai SET enabled=0').run();
@@ -148,7 +148,7 @@ test('AI workplace routes text, image, general and speech separately with fallba
   assert.equal((await call('/api/ai','POST',{prompt:'Fill blank fields',task:'general'},user.cookie)).status,200);assert.equal(used.at(-1),'key-general');
   assert.equal((await call('/api/ai','POST',{prompt:'Read image',attachments:[{mimeType:'image/png',data:'AAAA'}]},user.cookie)).status,200);assert.equal(used.at(-1),'key-image');
   assert.equal((await call('/api/speech/tts','POST',{text:'Hallo.',fallback:true},user.cookie)).status,200);assert.equal(used.at(-1),'key-speech');
-  await call('/api/admin/ai','PATCH',{id:ids.text,enabled:false,priority:1},admin.cookie);const count=used.length;assert.equal((await call('/api/ai','POST',{prompt:'Text'},user.cookie)).status,503);assert.equal(used.length,count);
+  await call('/api/admin/ai','PATCH',{id:ids.text,enabled:false,priority:1},admin.cookie);const count=used.length;const supported=await call('/api/ai','POST',{prompt:'Text'},user.cookie);assert.equal(supported.status,200);assert.equal(supported.body.assisted,true);assert.equal(used.at(-1),'key-general');assert.equal(used.length,count+1);
  }finally{globalThis.fetch=original;for(const id of Object.values(ids)){db.prepare('DELETE FROM app_ai WHERE id=?').run(id);db.prepare('DELETE FROM app_ai_jobs WHERE id=?').run(id);}for(const row of existing)db.prepare('UPDATE app_ai SET enabled=? WHERE id=?').run(row.enabled,row.id);}
 });
 
@@ -260,3 +260,4 @@ test('CC track discovery accepts alternate JSON embeddings and distinguishes con
  for(const [source,code]of [['<title>Before you continue to YouTube</title>','CAPTIONS_CONSENT'],['var ytInitialPlayerResponse = '+JSON.stringify({playabilityStatus:{status:'LOGIN_REQUIRED'}}),'CAPTIONS_PLAYABILITY'],['var ytInitialPlayerResponse = '+JSON.stringify({videoDetails:{videoId:'differentID'}}),'CAPTIONS_VIDEO_MISMATCH'],['<html>Unexpected page</html>','CAPTIONS_PAGE_FORMAT']]){html=source;calls=0;const r=await call('/api/listening/captions','POST',{id:'abcdefghijk'},reader.cookie);assert.equal(r.body.available,false);assert.equal(r.body.code,code);assert.equal(calls,1);}
  }finally{globalThis.fetch=original;}
 });
+

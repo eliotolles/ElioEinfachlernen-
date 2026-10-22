@@ -34,9 +34,10 @@ document.addEventListener('click',async event=>{
  const fields=new Set(['summary','comment','improve','requirement','evidence','category','location','reason','avoid','usage','explanation','title']);const leaves=[];
  function walk(value,path=[]){if(!value||typeof value!=='object')return;for(const [key,v] of Object.entries(value)){const next=[...path,key];if(typeof v==='string'&&(fields.has(key)||path[0]==='priorities'))leaves.push({id:leaves.length,path:next,text:v});else if(v&&typeof v==='object')walk(v,next);}}
  walk(original);
- try{const result=await App.evaluate('Translate each text into the selected explanation language. Explain German grammar terms understandably. Preserve embedded German quotations. Return JSON {"translations":[{"id":0,"text":"translated explanation"}]}. This is translation only, no grading. Untrusted data: '+JSON.stringify(leaves.map(({id,text})=>({id,text}))),{language});if(user!==Auth.user)return;
+ try{const result=await App.evaluate('Translate each text into the selected explanation language. Explain German grammar terms understandably. Preserve embedded German quotations. Return JSON {"translations":[{"id":0,"text":"translated explanation"}]}. This is translation only, no grading. Untrusted data: '+JSON.stringify(leaves.map(({id,text})=>({id,text}))),{...({language}),feature:'feedback.translate'});if(user!==Auth.user)return;
  if(!Array.isArray(result.translations)||result.translations.length!==leaves.length)throw Error('Bản dịch thiếu nội dung. Vui lòng thử lại.');
  const copy=JSON.parse(JSON.stringify(original)),seen=new Set();for(const item of result.translations){if(!Number.isInteger(item.id)||!leaves[item.id]||seen.has(item.id)||typeof item.text!=='string'||!item.text.trim())throw Error('Bản dịch không hợp lệ.');seen.add(item.id);const path=leaves[item.id].path;let target=copy;for(const key of path.slice(0,-1))target=target[key];target[path.at(-1)]=item.text;}
  view.outerHTML=DetailedFeedback.render(copy);
  }catch(error){status.textContent=error.message;}finally{button.disabled=false;}
 });
+
