@@ -38,3 +38,15 @@
 #elio-diktat #ed-segment-time{font-size:13px;color:var(--muted)}
 #elio-diktat .ed-play-row{gap:10px}#elio-diktat .ed-play-row .ed-speed{margin-left:0}
 #elio-diktat button:disabled{opacity:.5}
+
+/* One cover per collection; hash navigation keeps drafts and the app shell. */
+#elio-diktat .yt-collection-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:18px}
+#elio-diktat .yt-collection-tile{display:flex;flex-direction:column;overflow:hidden;border:1px solid var(--line);border-radius:12px;color:inherit;text-decoration:none;background:var(--panel,var(--bg));padding:0 0 14px;gap:7px}
+#elio-diktat .yt-collection-tile img{width:100%;aspect-ratio:16/9;object-fit:cover}
+#elio-diktat .yt-collection-tile strong,#elio-diktat .yt-collection-tile small{padding:0 14px}
+#elio-diktat .yt-collection-tile strong{font-size:20px}#elio-diktat .yt-collection-tile small{color:var(--muted)}
+#elio-diktat .yt-collection-view{margin:22px 0}#elio-diktat .yt-collection-view h2{margin:16px 0;font-size:30px}
+#elio-diktat.yt-collection-open>.yt-library-section,#elio-diktat.yt-collection-open>.module-heading,#elio-diktat.yt-collection-open>.yt-import{display:none}
+#elio-diktat:not(.yt-video-open)>.ed-main-head,#elio-diktat:not(.yt-video-open)>.ed-layout{display:none}
+#elio-diktat .yt-collection-view [hidden]{display:none!important}
+@media(max-width:500px){#elio-diktat .yt-collection-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}#elio-diktat .yt-collection-tile strong{font-size:17px}}
