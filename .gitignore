@@ -9,3 +9,7 @@ cloudflare/
 .dev.vars
 .dev.vars.*
 !.env.cloudflare.example
+
+vercel-public/
+vercel-server/
+.vercel/

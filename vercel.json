@@ -1,0 +1,28 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "buildCommand": "npm run build:vercel",
+  "outputDirectory": "vercel-public",
+  "functions": {
+    "api/handler.js": {
+      "maxDuration": 300
+    }
+  },
+  "routes": [
+    {
+      "src": "/api(?:/.*)?",
+      "dest": "/api/handler"
+    },
+    {
+      "src": "/(?:home(?:\\.html)?|hoeren(?:\\.html)?|robots\\.txt|sitemap\\.xml)?",
+      "dest": "/api/handler"
+    },
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/([^./]+)",
+      "dest": "/$1.html"
+    }
+  ]
+}
