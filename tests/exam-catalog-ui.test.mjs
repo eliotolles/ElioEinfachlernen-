@@ -27,7 +27,7 @@ function fixture(){
  const calls=[];make('button','sim-start').onclick=()=>calls.push(Object.fromEntries(Object.entries(fields).map(([k,e])=>[k,e.value])));
  const profile={modules:[{key:'reading',name:'Lesen',parts:[{teil:1,name:'Matching'},{teil:2,name:'Text'}]},{key:'writing',name:'Schreiben',parts:[{teil:1,name:'Brief'}]}],blocks:[{name:'Lesen',minutes:65},{name:'Schreiben',minutes:60}]};
  const queue=[];
- const context={document:doc,App:{settings:()=>({language:'vi'})},examProfile:()=>profile,Event:class{constructor(type){this.type=type;}},queueMicrotask:fn=>queue.push(fn),MutationObserver:class{observe(){}}};
+ const context={Account:{project:(_name,select)=>select([])},document:doc,App:{settings:()=>({language:'vi'})},examProfile:()=>profile,Event:class{constructor(type){this.type=type;}},queueMicrotask:fn=>queue.push(fn),MutationObserver:class{observe(){}}};
  vm.runInNewContext(fs.readFileSync(new URL('../public/js/exam-catalog-ui.js',import.meta.url),'utf8'),context);
  const click=text=>{const b=descendants().find(n=>n.tag==='button'&&n.textContent===text);assert.ok(b,`Visible action: ${text}`);b.click();while(queue.length)queue.shift()();};
  const open=()=>{const head=descendants().find(n=>n.className==='exam-catalog-head');head.click();};

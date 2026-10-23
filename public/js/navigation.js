@@ -14,11 +14,12 @@ const ElioNavigation=(()=>{
    const views=new Map(),ownKey=own.pathname+own.search;let current=ownKey,overlay=null,savedOverflow='',savedScroll=0;
    history.replaceState({...history.state,elioNavigation:true},'',own.pathname+own.search+own.hash);
    const style=document.createElement('style');style.textContent='.elio-route-frame{position:fixed;inset:0;width:100%;height:100dvh;border:0;background:var(--bg,#faf7ee);z-index:10000}.elio-route-frame[hidden]{display:none!important}';document.head.append(style);
-   function show(value,push=true){const u=target(value);if(!u)return;const key=u.pathname+u.search;
+   function show(value,push=true){const u=target(value);if(!u)return;const key=u.pathname+u.search,previousHash=location.hash;
     if(push&&location.pathname+location.search+location.hash!==u.pathname+u.search+u.hash)history.pushState({elioNavigation:true},'',u.pathname+u.search+u.hash);
     // A detail route in the already active frame needs only a hash update.
     // Do not re-bootstrap its hidden import, quiz and vocabulary controls.
     if(key===current&&key!==ownKey){const activeView=views.get(key);if(activeView?.frame){try{const w=activeView.frame.contentWindow;if(w.location.hash!==u.hash){w.history.replaceState(null,'',u.pathname+u.search+u.hash);w.dispatchEvent(new w.Event('hashchange'));}activeView.title=activeView.frame.contentDocument.title;document.title=activeView.title;}catch{}return;}}
+    if(key===current&&key===ownKey){if(!push||previousHash!==u.hash)window.dispatchEvent(new Event('hashchange'));return;}
     if(key===ownKey){if(overlay)overlay.hidden=true;document.body.style.overflow=savedOverflow;window.scrollTo(0,savedScroll);if(current!==key||location.hash!==own.hash)window.dispatchEvent(new Event('hashchange'));current=key;document.dispatchEvent(new Event('elioviewresume'));document.dispatchEvent(new Event('cloudchange'));document.title=views.get(ownKey).title;return;}
     if(current===ownKey){savedOverflow=document.body.style.overflow;savedScroll=window.scrollY;}
     let view=views.get(key);

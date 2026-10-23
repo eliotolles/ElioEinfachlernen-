@@ -104,6 +104,14 @@ const Account=parentAccount||{profile:null,records:{},shared:{},config:{},pendin
  },
  own(name,fallback){const p=this.pending[name];if(p&&!p.shared)return structuredClone(p.value);const conflict=this.conflicts[name];if(conflict&&!conflict.shared)return structuredClone(conflict.value);return structuredClone(this.records[name]?.value??fallback);},
  get(name,fallback){const own=this.own(name,fallback);if(['materials','wc','vocab','listeningLibrary','listeningLibraryV2'].includes(name)){const common=this.pending['shared:'+name]?.value??this.conflicts['shared:'+name]?.value??this.shared[name]?.value??[];const seen=new Set();return [...structuredClone(common),...(Array.isArray(own)?own:[])].filter(x=>{if(!x.id)return true;if(seen.has(x.id))return false;seen.add(x.id);return true;});}return own;},
+ // Internal read projection: copy only the requested result, never expose mutable storage.
+ project(name,select,fallback=[]){
+  const personal=this.pending[name]&&!this.pending[name].shared?this.pending[name].value:this.conflicts[name]&&!this.conflicts[name].shared?this.conflicts[name].value:this.records[name]?.value??fallback;
+  if(!['materials','wc','vocab','listeningLibrary','listeningLibraryV2'].includes(name))return structuredClone(select(personal));
+  const common=this.pending['shared:'+name]?.value??this.conflicts['shared:'+name]?.value??this.shared[name]?.value??[],seen=new Set();
+  const rows=[...common,...(Array.isArray(personal)?personal:[])].filter(x=>{if(!x.id)return true;if(seen.has(x.id))return false;seen.add(x.id);return true;});
+  return structuredClone(select(rows));
+ },
  isShared(name,id){return (this.shared[name]?.value||[]).some(x=>x.id===id);},
  canEdit(name,id){return this.profile?.role==='super_admin'||!this.isShared(name,id);},
  setPersonal(name,value){if(!this.current())throw Error('Vui lòng đăng nhập.');if(!['materials','vocab'].includes(name)||!Array.isArray(value))throw Error('Dữ liệu từ cá nhân không hợp lệ.');const next=structuredClone(value).filter(x=>!this.isShared(name,x.id)).map(x=>({...x,id:x.id||crypto.randomUUID()}));const old=this.pending[name]||this.conflicts[name],existing=old?.value??this.records[name]?.value;if(JSON.stringify(existing)===JSON.stringify(next))return;this.pending[name]={name,value:next,version:old?.version??this.records[name]?.version??0,shared:false,stamp:crypto.randomUUID()};delete this.conflicts[name];this.persist();this.status('Đang lưu…');clearTimeout(this.timer);this.timer=setTimeout(()=>this.flush(),800);},
