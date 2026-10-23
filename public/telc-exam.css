@@ -1,0 +1,22 @@
+/* telc task forms only; retain the site's existing colors, fonts and shell. */
+.telc-part-tabs{display:flex;flex-wrap:wrap;gap:8px;position:sticky;top:0;z-index:3;background:var(--card);padding:10px 0;margin-bottom:16px;border-bottom:1px solid var(--line)}
+.telc-part-tabs[hidden]{display:none}
+.telc-part-tabs button{background:var(--bg);color:var(--text);border:1px solid var(--line);border-radius:12px;min-height:42px;padding:9px 14px}
+.telc-part-tabs button.active{border-color:var(--orange);box-shadow:inset 0 0 0 1px var(--orange)}
+.telc-part-tabs small{margin-left:8px;color:var(--muted);font-variant-numeric:tabular-nums}
+.telc-exam-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:start}
+.telc-source-pane,.telc-questions-pane{min-width:0;max-height:calc(100dvh - 230px);overflow:auto;overscroll-behavior:contain;scrollbar-gutter:stable;padding:2px 8px 16px 2px}
+.exam-paper .telc-source-pane .task-prompt{padding:18px;margin:0;line-height:1.8;border-radius:14px}
+.telc-source-pane .exam-image{max-width:100%;height:auto}
+.module-exams .telc-questions-pane .exam-question{margin:0 0 24px;scroll-margin-top:15px}
+.module-exams .telc-questions-pane .exam-question-title{margin:0 0 10px;font-size:calc(15px * var(--text-scale,1));line-height:1.6}
+.module-exams .telc-questions-pane .exam-answer-option{border-radius:12px;min-height:44px;padding:10px 12px}
+.module-exams .telc-questions-pane .exam-matching-options{display:flex;flex-wrap:wrap;gap:7px}
+.module-exams .telc-questions-pane .exam-matching-options .exam-answer-option{min-width:42px;padding:8px;gap:5px}
+.telc-bank{margin-top:20px}.telc-bank h4{margin:0 0 12px}
+.telc-bank-entry{display:flex;align-items:flex-start;gap:12px;border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:10px;background:var(--card)}
+.telc-bank-entry>b{flex:none;min-width:25px}.telc-bank-entry p{margin-top:0}
+.telc-texts article{margin:16px 0;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.telc-source-pane:focus-visible,.telc-questions-pane:focus-visible{outline:2px solid var(--orange);outline-offset:2px}
+@media(max-width:900px){.telc-exam-grid{grid-template-columns:1fr;gap:20px}.telc-source-pane,.telc-questions-pane{max-height:none;overflow:visible;scrollbar-gutter:auto}.module-exams .telc-questions-pane .exam-question{scroll-margin-top:120px}.telc-part-tabs{top:0}}
+@media(prefers-reduced-motion:reduce){.telc-source-pane,.telc-questions-pane{scroll-behavior:auto}}
