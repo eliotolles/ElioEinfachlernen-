@@ -1,7 +1,8 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {DatabaseSync} from 'node:sqlite';
-import worker,{initialize,session,sql} from '../vercel-server/worker.mjs';
+import worker,{initialize,session} from '../worker/index.js';
+const sql=(env,query,args=[])=>env.TEST_DB(query,args);
 import {createTransport,streamResponse} from '../vercel/transport.mjs';
 import vm from 'node:vm';import fs from 'node:fs/promises';
 const db=new DatabaseSync(':memory:');
