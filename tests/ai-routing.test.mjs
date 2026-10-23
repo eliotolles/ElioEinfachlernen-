@@ -40,3 +40,18 @@ test('client retries timed-out work with identical payload and never retries cre
 test('retry waiting stops when account changes without sending a second request',async()=>{
  const vm=await import('node:vm'),fs=await import('node:fs');let calls=0;const ctx={Auth:{user:'owner'},Account:{request:async()=>{calls++;throw Object.assign(Error('timeout'),{status:504});}},localStorage:{getItem:()=>null,setItem(){},removeItem(){}},document:{addEventListener(){},dispatchEvent(){}},CustomEvent:class{},App:{explain:()=> 'vi'},$:()=>({}),setTimeout:fn=>{ctx.Auth.user='other';fn();}};vm.createContext(ctx);vm.runInContext(fs.readFileSync('public/js/ai.js','utf8'),ctx);await assert.rejects(vm.runInContext('askJSON("work")',ctx),/thay đổi/);assert.equal(calls,1);
 });
+
+test('automatic Gemini rotation reuses only approved models and preserves continuation',async()=>{
+ reset();await config('auto-a','gemini','general',{model:'approved-a'});await config('auto-b','gemini','general',{model:'approved-b',priority:2});const calls=[];
+ await mocked(async(url,options)=>{const model=decodeURIComponent(String(url).split('/models/')[1].split(':')[0]),key=options.headers['x-goog-api-key'];calls.push([key,model]);const body=JSON.parse(options.body);assert.equal(body.contents[1].parts[0].text,'{"ok":');if(key==='test-auto-a'&&model==='approved-b')return Response.json({candidates:[{finishReason:'STOP',content:{parts:[{text:'true}'}]}}]});return Response.json({}, {status:503});},async()=>{
+  const result=await runAI(env,user,{prompt:'Continue',task:'general',continuation:'{"ok":'});assert.equal(result.model,'approved-b');assert.equal(result.automaticModel,true);assert.equal(result.text,'true}');assert.deepEqual(calls,[['test-auto-a','approved-a'],['test-auto-b','approved-b'],['test-auto-a','approved-b']]);
+ });
+});
+test('automatic rotation never retries an invalid credential against another model',async()=>{
+ reset();await config('bad-key','gemini','general',{model:'approved-a'});await config('other-key','gemini','general',{model:'approved-b',priority:2});const calls=[];
+ await mocked(async(url,options)=>{calls.push(options.headers['x-goog-api-key']);return Response.json({}, {status:options.headers['x-goog-api-key']==='test-bad-key'?401:503});},async()=>{await assert.rejects(runAI(env,user,{prompt:'Check',task:'general'}));assert.equal(calls.filter(k=>k==='test-bad-key').length,1);assert.equal(db.prepare('SELECT enabled FROM app_ai WHERE id=?').get('bad-key').enabled,0);});
+});
+test('a failed named OpenRouter model falls back to the free router with price-zero constraints',async()=>{
+ reset();await config('auto-router','openrouter','general',{model:'broken/model:free'});const bodies=[];
+ await mocked(async(url,options)=>{if(String(url).endsWith('/models'))return Response.json({data:[]});const body=JSON.parse(options.body);bodies.push(body);assert.deepEqual(body.provider.max_price,{prompt:0,completion:0,request:0,image:0});return response(url);},async()=>{const result=await runAI(env,user,{prompt:'Check',task:'general'});assert.equal(result.model,'openrouter/free');assert.equal(result.automaticModel,true);assert.equal(bodies.length,1);});
+});
