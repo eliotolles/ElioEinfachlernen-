@@ -41,8 +41,10 @@ collections with exact groupName `Bộ đề Ả Rập`, comprising 106 items. P
 EVA1 are among the confirmed names. The complete materials JSON is about 8 MB;
 an earlier full app-state request hit Cloudflare error 1102.
 
-Backup work uses `_telc_material_backup_20261023`, keyed by source version and
-material ID. Verify row count and equality against source before any mutation.
+Backup `_telc_material_backup_20261023` was verified: source version 91,
+18 collections, 106 items and 18/18 JSON values exactly equal to the live source;
+the live version was still 91. It is keyed by source version and material ID.
+Recheck the live version before any later mutation.
 Do not export account/session/provider tables. No production content repair or
 deployment is claimed by this document. Future writes must compare the latest
 materials version and preserve all unrelated material/progress records.
