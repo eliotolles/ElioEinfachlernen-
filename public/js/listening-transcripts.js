@@ -17,6 +17,7 @@ const ListeningTranscripts={
   return cues;
  },
  toSrt(cues){const time=n=>{const ms=Math.round(n*1000);return [Math.floor(ms/3600000),Math.floor(ms/60000)%60,Math.floor(ms/1000)%60].map(n=>String(n).padStart(2,'0')).join(':')+','+String(ms%1000).padStart(3,'0');};return cues.map((c,i)=>(i+1)+'\n'+time(c.start)+' --> '+time(c.end)+'\n'+c.text).join('\n\n')+'\n';},
+ toVtt(cues){const time=n=>{const ms=Math.round(n*1000);return [Math.floor(ms/3600000),Math.floor(ms/60000)%60,Math.floor(ms/1000)%60].map(n=>String(n).padStart(2,'0')).join(':')+'.'+String(ms%1000).padStart(3,'0');};return 'WEBVTT\n\n'+cues.map(c=>time(c.start)+' --> '+time(c.end)+'\n'+c.text).join('\n\n')+'\n';},
  create({videos,user,request,save,transcribe,duration,changed=()=>{},sleep=ms=>new Promise(r=>setTimeout(r,ms)),lock}){
   const pending=new Set(),states=new Map(),unsaved=new Set();let running=false,paused=false,ccUnavailable=false;
   const needs=v=>v.youtubeId&&(unsaved.has(v.id)||!(v.transcriptSource==='ai'&&v.transcriptComplete)&&(!v.cues?.length||v.transcriptSource==='ai'));
@@ -37,9 +38,10 @@ const ListeningTranscripts={
      let ccError;
      if(!v.cues?.length&&!ccUnavailable){states.set(id,'Đang lấy CC tiếng Đức…');changed();try{
       const result=await request(v.youtubeId);v=current(id);if(!v)return;if(v.cues?.length)continue;
-      if(!result.available||!Array.isArray(result.cues)||!result.cues.length||!result.cues.every(valid)){const e=Error(result.reason||'CC chưa lấy được');e.code=result.code;throw e;}
-      v.cues=result.cues;v.transcriptSource=result.source||'youtube';v.transcriptComplete=true;await saveTranscript(v,owner);states.set(id,'Đã lưu '+v.cues.length+' câu CC/SRT');done++;changed();if(pending.size&&!paused)await sleep(3500);continue;
-     }catch(e){if(unsaved.has(id))throw e;ccError=e;if(['CAPTIONS_REDIRECT_ERROR','CAPTIONS_ACCESS_REQUIRED','CAPTIONS_CONSENT'].includes(e.code))ccUnavailable=true;}}
+      if(!result.available||!Array.isArray(result.cues)||!result.cues.length||!result.cues.every(valid)){const e=Error(result.reason||'CC chưa lấy được');e.code=result.code;e.retryable=!!result.retryable;e.allowAiFallback=result.allowAiFallback;throw e;}
+      v.cues=result.cues;v.transcriptSource=result.source||'youtube';v.transcriptVia=result.via||'';v.transcriptLanguage=result.language||'de';v.transcriptComplete=true;await saveTranscript(v,owner);states.set(id,'Đã lưu '+v.cues.length+' câu CC/SRT');done++;changed();if(pending.size&&!paused)await sleep(3500);continue;
+     }catch(e){if(unsaved.has(id))throw e;ccError=e;if(e.allowAiFallback!==false&&['CAPTIONS_REDIRECT_ERROR','CAPTIONS_ACCESS_REQUIRED','CAPTIONS_CONSENT'].includes(e.code))ccUnavailable=true;}}
+     if(ccError?.allowAiFallback===false)throw ccError;
      if(!transcribe||!duration)throw ccError||Error('Chưa lấy được CC từ máy chủ.');
      v=current(id);if(!v)return;if(v.cues?.length&&v.transcriptSource!=='ai')continue;
      states.set(id,'CC chưa lấy được · chuẩn bị AI nghe video…');changed();
@@ -61,7 +63,7 @@ const ListeningTranscripts={
      }
      if(paused){pending.add(id);states.set(id,'Đã tạm dừng · giữ tới giây '+Math.floor(start));}
      else if(v.transcriptComplete){states.set(id,'Hoàn tất bản chép AI · '+v.cues.length+' câu · cần kiểm tra độ chính xác');done++;}
-    }catch(e){if(user()!==owner)return;states.set(id,'Chưa hoàn tất: '+e.message);if(paused){pending.add(id);}else failed++;if(transcribe&&(e.status===429||e.data?.retryable||/chưa cấu hình AI|cấu hình AI phù hợp/i.test(e.message))){paused=true;pending.add(id);}
+    }catch(e){if(user()!==owner)return;states.set(id,'Chưa hoàn tất: '+e.message);if(paused){pending.add(id);}else failed++;if(e.retryable||transcribe&&(e.status===429||e.data?.retryable||/chưa cấu hình AI|cấu hình AI phù hợp/i.test(e.message))){paused=true;pending.add(id);}
      if(!transcribe&&ccUnavailable){paused=true;for(const next of pending)states.set(next,'Tạm dừng: máy chủ chưa truy cập được YouTube. Không kết luận video thiếu CC.');}
     }
     changed();if(pending.size&&!paused)await sleep(3500);

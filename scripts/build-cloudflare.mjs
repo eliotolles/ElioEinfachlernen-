@@ -7,3 +7,5 @@ const assets={};for(const file of await walk('public'))assets['/'+file.slice(7)]
 const extracted=extractInlineImages(assets),versioned=versionAssets(extracted.assets);
 await fs.mkdir('cloudflare',{recursive:true});await fs.writeFile('cloudflare/worker.mjs','const IMAGE_ASSETS='+JSON.stringify(extracted.images)+';\nconst ASSETS='+JSON.stringify(versioned.assets)+';\n'+await fs.readFile('worker/index.js','utf8'));
 console.log('Cloudflare Worker built with '+Object.keys(assets).length+' text assets and '+Object.keys(extracted.images).length+' separate cached images.');
+
+await fs.copyFile('worker/transcript-backend.mjs','cloudflare/transcript-backend.mjs');

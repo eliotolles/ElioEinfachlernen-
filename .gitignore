@@ -13,3 +13,6 @@ cloudflare/
 vercel-public/
 vercel-server/
 .vercel/
+__pycache__/
+*.pyc
+services/transcript/data/
