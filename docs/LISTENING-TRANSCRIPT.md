@@ -4,7 +4,11 @@
 
 Nghe → YouTube → thêm video → lấy phụ đề tiếng Đức → xem lời / chép chính tả / shadowing / quiz.
 
-Không tạo kho phụ đề thứ hai. Bản thành công được hàng đợi hiện có lưu vào listeningV2 hoặc listeningLibraryV2 tùy quyền, cùng tiến độ và phạm vi cá nhân/chung hiện tại. Mốc thời gian tính bằng giây. Tải SRT/VTT dùng chính bản lời của video đang mở.
+Bản thành công được hàng đợi hiện có lưu vào listeningV2 hoặc listeningLibraryV2 tùy quyền, cùng tiến độ và phạm vi cá nhân/chung hiện tại. Mốc thời gian tính bằng giây. Tải SRT/VTT dùng chính bản lời của video đang mở.
+
+Nguồn mặc định là FreeTranscriptAPI, lấy tiếng Đức và kiểm tra mọi mốc thời gian trước khi chấp nhận. Nếu dịch vụ không trả kết quả hợp lệ, thử Python/yt-dlp. Dịch vụ có hạn mức riêng; không đăng ký gói hoặc mua credit tự động. Khóa tùy chọn được giữ mã hóa phía máy chủ. Chuyển hướng HTTP không được tự động theo.
+
+Phụ đề công khai thành công được lưu đệm 30 ngày trong app_config với tiền tố listening-transcript:v1:de:{videoId}, dùng chung cho các tài khoản đã đăng nhập và tồn tại qua cold start Vercel. Chỉ cache thành công; không lưu lỗi thay thế bản lời. Cache này không sửa video, quyền sở hữu hoặc tiến độ học. Công cụ thử của Admin dùng đúng luồng của import; nó có thể tạo cache nhưng không thêm video vào kho.
 
 - Nếu không đọc được tên video từ metadata, vẫn có thể thêm video bằng mã; lỗi metadata không chặn bước lấy phụ đề.
 - Nếu nguồn Python báo lỗi, không ghi bản rỗng và không tự chuyển sang AI. Người học có thể thử lại hoặc nhập SRT/VTT.
@@ -13,7 +17,7 @@ Không tạo kho phụ đề thứ hai. Bản thành công được hàng đợi
 
 ## Vercel mặc định: không cần host Python riêng
 
-api/handler.js giữ xác thực tài khoản và giới hạn lượt gọi của Worker. Khi xử lý /api/listening/captions, nó gọi Python tại /api/transcript qua callback nội bộ. Payload có chữ ký HMAC với thời hạn 90 giây, dùng khóa ứng dụng hiện có AI_ENCRYPTION_KEY; khóa không đưa ra trình duyệt.
+api/handler.js giữ xác thực tài khoản và giới hạn lượt gọi của Worker. Nếu cache và nguồn API chưa có phụ đề, nó gọi Python tại /api/transcript qua callback nội bộ. Payload có chữ ký HMAC với thời hạn 90 giây, dùng khóa ứng dụng hiện có AI_ENCRYPTION_KEY; khóa không đưa ra trình duyệt.
 
 api/transcript.py chỉ chạy bộ lấy phụ đề sau khi xác minh chữ ký và payload. Không truy cập database học tập. Cache SQLite đặt trong /tmp, không coi là lưu trữ bền vững. Dữ liệu học thật vẫn do Worker/Turso lưu theo cơ chế đang có.
 

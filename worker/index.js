@@ -310,7 +310,7 @@ async function serviceGermanCaptions(env,id){
  const cached=transcriptServiceCache.get(id);if(cached&&cached.until>Date.now())return cached.value;
  try{
   const configured=(await sql(env,"SELECT value FROM app_config WHERE name='transcriptSecret'")).rows[0];const key=configured?await decrypt(env,configured.value):env.TRANSCRIPT_API_KEY;
-  const response=await fetch('https://api.freetranscriptapi.com/v1/transcript?'+new URLSearchParams({video_url:id,lang:'de'}),{headers:key?{Authorization:'Bearer '+key}:{},redirect:'error',signal:AbortSignal.timeout(15000)});
+  const response=await fetch('https://api.freetranscriptapi.com/v1/transcript?'+new URLSearchParams({video_url:id,lang:'de'}),{headers:key?{Authorization:'Bearer '+key}:{},redirect:'manual',signal:AbortSignal.timeout(45000)});
   if(response.status===429){const raw=response.headers.get('Retry-After'),seconds=Number(raw);transcriptServiceWaitUntil=Date.now()+Math.min(86400,Math.max(60,Number.isFinite(seconds)&&seconds>0?seconds:3600))*1000;return null;}
   if(!response.ok)return null;const raw=await response.text();if(raw.length>3000000)return null;const data=JSON.parse(raw);
   if(!/^de(?:[-_]|$)/i.test(data.language||'')||!Array.isArray(data.transcript)||!data.transcript.length||data.transcript.length>1500)return null;
@@ -321,9 +321,22 @@ async function serviceGermanCaptions(env,id){
  }catch{return null;}
 }
 async function publicGermanCaptions(env,id){
- if(env.TRANSCRIPT_NATIVE_FETCH||env.TRANSCRIPT_BACKEND_URL||env.TRANSCRIPT_BACKEND_TOKEN)return fetchElioTranscript(env,id,['de']);
  if(!/^[A-Za-z0-9_-]{11}$/.test(id||''))throw error(400,'Mã video không hợp lệ.');
- const service=await serviceGermanCaptions(env,id);if(service)return service;const unavailable=(reason,code='CAPTIONS_UNAVAILABLE')=>({available:false,reason,code,cues:[]});let stage='trang video';
+ const name='listening-transcript:v1:de:'+id;
+ // Successful public captions survive serverless cold starts and are shared by
+ // signed-in learners. Failed lookups never replace a usable transcript.
+ try{const row=(await sql(env,'SELECT value FROM app_config WHERE name=?',[name])).rows[0];if(row){const saved=JSON.parse(row.value);if(saved.savedAt>Date.now()-30*DAY&&saved.result?.available&&saved.result.videoId===id)return {...saved.result,cached:true};}}catch{}
+ const result=await uncachedGermanCaptions(env,id);
+ if(result.available){result.videoId=id;try{await sql(env,'INSERT INTO app_config(name,value) VALUES(?,?) ON CONFLICT(name) DO UPDATE SET value=excluded.value',[name,JSON.stringify({savedAt:Date.now(),result})]);}catch{}}
+ return result;
+}
+async function uncachedGermanCaptions(env,id){
+ if(!/^[A-Za-z0-9_-]{11}$/.test(id||''))throw error(400,'Mã video không hợp lệ.');
+ // Hosted transcript API first: direct YouTube requests from Vercel often fail
+ // even when the same extractor works on a desktop. Keep Python as fallback.
+ const service=await serviceGermanCaptions(env,id);if(service)return service;
+ if(env.TRANSCRIPT_NATIVE_FETCH||env.TRANSCRIPT_BACKEND_URL||env.TRANSCRIPT_BACKEND_TOKEN)return fetchElioTranscript(env,id,['de']);
+ const unavailable=(reason,code='CAPTIONS_UNAVAILABLE')=>({available:false,reason,code,cues:[]});let stage='trang video';
  try{const response=await fetchCaptionResource('https://www.youtube.com/watch?v='+id+'&hl=de');if(!response.ok)return unavailable('YouTube chưa cho máy chủ đọc trang video (HTTP '+response.status+').');const html=await response.text();if(html.length>6000000)return unavailable('Trang video quá lớn để đọc phụ đề.');const page=youtubeCaptionPage(html,id);if(!page.tracks)return unavailable(page.reason,page.code);const tracks=page.tracks;const candidates=tracks.filter(t=>/^de(?:[-_]|$)/i.test(t.languageCode||'')).sort((a,b)=>Number(a.kind==='asr')-Number(b.kind==='asr'));if(!candidates.length)return unavailable('Không tìm được phụ đề tiếng Đức gốc có thể tải. Không dùng phụ đề ngôn ngữ khác làm đáp án.');let track,data,lastReason='YouTube trả tệp phụ đề trống.',lastCode='CAPTIONS_EMPTY';
  stage='tệp phụ đề';
  for(const candidate of candidates.slice(0,3)){
@@ -447,7 +460,7 @@ if(path==='/api/admin/listening/transcript-backend'){
  if(request.method!=='POST')throw error(405,'Method not allowed');
  await limit(env,'transcript-check:'+u.id,5,60000);
  const d=await body(request,500);
- if(d.id!==undefined){if(!/^[A-Za-z0-9_-]{11}$/.test(d.id||''))throw error(400,'Mã video không hợp lệ.');return json(await fetchElioTranscript(env,d.id,['de']));}
+ if(d.id!==undefined){if(!/^[A-Za-z0-9_-]{11}$/.test(d.id||''))throw error(400,'Mã video không hợp lệ.');return json(await publicGermanCaptions(env,d.id));}
  return json(await checkTranscriptBackend(env));
 }
 if(path==='/api/admin/listening/transcript-key'){admin(u);if(request.method==='PUT'){const d=await body(request,2000);if(typeof d.key!=='string'||!/^[A-Za-z0-9_\-]{16,300}$/.test(d.key))throw error(400,'API key không hợp lệ.');await sql(env,"INSERT INTO app_config(name,value) VALUES('transcriptSecret',?) ON CONFLICT(name) DO UPDATE SET value=excluded.value",[await encrypt(env,d.key)]);transcriptServiceWaitUntil=0;return json({ok:true});}if(request.method==='GET')return json({configured:!!(await sql(env,"SELECT name FROM app_config WHERE name='transcriptSecret'")).rows.length});if(request.method==='DELETE'){await sql(env,"DELETE FROM app_config WHERE name='transcriptSecret'");return json({ok:true});}throw error(405,'Method not allowed');}

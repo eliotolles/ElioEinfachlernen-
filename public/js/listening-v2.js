@@ -112,17 +112,17 @@
     if(!safe()||!d.isConnected)return;
     if(withVideo){
      if(!r.available){note.textContent=r.reason||'Chưa lấy được phụ đề.';return;}
-     note.textContent='Đã lấy '+r.cues.length+' câu tiếng Đức · '+(r.via||'YouTube')+(r.cached?' · từ cache':' · lấy trực tiếp')+'. Chưa thêm video hoặc lưu phụ đề vào kho.';
+     note.textContent='Đã lấy '+r.cues.length+' câu tiếng Đức · '+(r.via||'YouTube')+(r.cached?' · từ cache':' · lấy trực tiếp')+'. Chưa thêm video vào kho; kết quả đã được lưu đệm.';
      preview.append(N('p',r.cues.slice(0,3).map(c=>C.clock(c.start)+' '+c.text).join(' / ')));
     }else note.textContent=r.reason;
    }catch(e){note.textContent=e.message;}finally{health.disabled=false;probe.disabled=false;}
   }
-  d.append(N('p','Nguồn phụ đề dùng youtube-transcript-api và yt-dlp. Video thêm trong phần Nghe dùng chung nguồn này.','li-muted'),note,health,video.label,probe,preview);
+  d.append(N('p','Video thêm trong phần Nghe lấy phụ đề qua FreeTranscriptAPI, dự phòng bằng Python. Kết quả thành công được lưu dùng chung để hạn chế gọi lại.','li-muted'),note,health,video.label,probe,preview);
   Account.request('/api/admin/listening/transcript-backend').then(r=>{
    if(!safe()||!d.isConnected)return;
-   note.textContent=r.configured?'Đã kết nối nguồn Python. Kiểm tra kết nối và thử video bên dưới.':r.mode==='python'?'Cấu hình backend chưa đủ: cần cả URL và token trong Worker.':'Chưa kết nối backend Python; web đang dùng nguồn cũ. Bản demo trên máy chưa phải backend online.';
+   note.textContent=r.configured?'Đã bật nguồn phụ đề trực tuyến và Python dự phòng. Thử video bên dưới để kiểm tra thực tế.':r.mode==='python'?'Cấu hình backend chưa đủ: cần cả URL và token trong Worker.':'Chưa kết nối backend Python; web đang dùng nguồn cũ. Bản demo trên máy chưa phải backend online.';
   }).catch(e=>{note.textContent=e.message;});
-  d.append(N('p','Vercel dùng Python tích hợp cùng website; không cần máy chủ riêng. Chỉ cấu hình TRANSCRIPT_BACKEND_URL và TRANSCRIPT_BACKEND_TOKEN nếu muốn dùng backend bên ngoài. Khóa không đưa vào trình duyệt.','li-muted'),B('Nguồn cũ (FreeTranscriptAPI)',legacyTranscriptSettings,'li-button'));
+  d.append(N('p','Vercel dùng Python tích hợp cùng website; không cần máy chủ riêng. Chỉ cấu hình TRANSCRIPT_BACKEND_URL và TRANSCRIPT_BACKEND_TOKEN nếu muốn dùng backend bên ngoài. Khóa không đưa vào trình duyệt.','li-muted'),B('API key FreeTranscriptAPI (tùy chọn)',legacyTranscriptSettings,'li-button'));
  }
  function legacyTranscriptSettings(){const d=dialog('Nguồn transcript'),f=field('FreeTranscriptAPI key (không bắt buộc)','password'),note=N('p',undefined,'li-status');f.input.autocomplete='off';d.append(N('p','Không có key: dùng hạn mức công khai của dịch vụ. Có key: dùng credit trong tài khoản của bạn. App không đăng ký hoặc bật gói trả phí.'),f.label,B('Lưu key trên máy chủ',async()=>{try{await Account.request('/api/admin/listening/transcript-key','PUT',{key:f.input.value.trim()});f.input.value='';note.textContent='Đã lưu key mã hóa trên máy chủ.';}catch(e){note.textContent=e.message;}},'li-button'),note);}
  function render(){if(!safe())return;cleanupPlayer();active=null;root.replaceChildren();applyStyle();const r=routeState();if(r.view==='video'&&r.video){const v=all().find(v=>v.id===r.video);if(v){study(v,r);return;}root.append(N('p','Video đã bị xóa hoặc bạn không có quyền truy cập.'));root.append(A('← Tổng quan','#'));return;}if(r.view==='library')libraryView(r);else home();}
