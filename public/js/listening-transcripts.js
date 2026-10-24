@@ -19,12 +19,12 @@ const ListeningTranscripts={
  toSrt(cues){const time=n=>{const ms=Math.round(n*1000);return [Math.floor(ms/3600000),Math.floor(ms/60000)%60,Math.floor(ms/1000)%60].map(n=>String(n).padStart(2,'0')).join(':')+','+String(ms%1000).padStart(3,'0');};return cues.map((c,i)=>(i+1)+'\n'+time(c.start)+' --> '+time(c.end)+'\n'+c.text).join('\n\n')+'\n';},
  toVtt(cues){const time=n=>{const ms=Math.round(n*1000);return [Math.floor(ms/3600000),Math.floor(ms/60000)%60,Math.floor(ms/1000)%60].map(n=>String(n).padStart(2,'0')).join(':')+'.'+String(ms%1000).padStart(3,'0');};return 'WEBVTT\n\n'+cues.map(c=>time(c.start)+' --> '+time(c.end)+'\n'+c.text).join('\n\n')+'\n';},
  create({videos,user,request,save,transcribe,duration,changed=()=>{},sleep=ms=>new Promise(r=>setTimeout(r,ms)),lock}){
-  const pending=new Set(),states=new Map(),unsaved=new Set();let running=false,paused=false,ccUnavailable=false;
+  const pending=new Set(),states=new Map(),unsaved=new Set(),captionsOnly=new Set();let running=false,paused=false,ccUnavailable=false;
   const needs=v=>v.youtubeId&&(unsaved.has(v.id)||!(v.transcriptSource==='ai'&&v.transcriptComplete)&&(!v.cues?.length||v.transcriptSource==='ai'));
   const label=v=>states.get(v?.id)||(v?.cues?.length?(v.transcriptSource==='ai'?(v.transcriptComplete?'Bản chép AI đã hoàn tất':'Bản chép AI còn dở'):'CC/SRT đã có')+' · '+v.cues.length+' câu':'Chưa có phụ đề');
   const valid=c=>Number.isFinite(c.start)&&Number.isFinite(c.end)&&c.start>=0&&c.end>c.start&&typeof c.text==='string'&&c.text.trim();
   async function saveTranscript(v,owner){unsaved.add(v.id);await save(v,owner);unsaved.delete(v.id);}
-  function enqueue(rows){for(const v of rows)if(needs(v)){pending.add(v.id);if(!states.has(v.id))states.set(v.id,'Chờ tạo bản chép lời');}changed();}
+  function enqueue(rows,options={}){for(const v of rows)if(needs(v)){pending.add(v.id);if(options.captionsOnly)captionsOnly.add(v.id);if(!states.has(v.id))states.set(v.id,'Chờ tạo bản chép lời');}changed();}
   async function drain(){const owner=user();paused=false;let done=0,failed=0;
    const current=id=>user()===owner&&videos().find(v=>v.id===id);
    try{while(pending.size&&!paused&&user()===owner){const id=pending.values().next().value;pending.delete(id);let v=current(id);if(!v||!needs(v))continue;
@@ -36,12 +36,12 @@ const ListeningTranscripts={
       if(!needs(v)){states.set(id,'Đã đồng bộ '+v.cues.length+' câu');done++;changed();continue;}
      }
      let ccError;
-     if(!v.cues?.length&&!ccUnavailable){states.set(id,'Đang lấy CC tiếng Đức…');changed();try{
-      const result=await request(v.youtubeId);v=current(id);if(!v)return;if(v.cues?.length)continue;
+     if((!v.cues?.length||captionsOnly.has(id))&&!ccUnavailable){states.set(id,'Đang lấy CC tiếng Đức…');changed();try{
+      const result=await request(v.youtubeId);v=current(id);if(!v)return;if(v.cues?.length&&v.transcriptSource!=='ai')continue;
       if(!result.available||!Array.isArray(result.cues)||!result.cues.length||!result.cues.every(valid)){const e=Error(result.reason||'CC chưa lấy được');e.code=result.code;e.retryable=!!result.retryable;e.allowAiFallback=result.allowAiFallback;throw e;}
       v.cues=result.cues;v.transcriptSource=result.source||'youtube';v.transcriptVia=result.via||'';v.transcriptLanguage=result.language||'de';v.transcriptComplete=true;await saveTranscript(v,owner);states.set(id,'Đã lưu '+v.cues.length+' câu CC/SRT');done++;changed();if(pending.size&&!paused)await sleep(3500);continue;
      }catch(e){if(unsaved.has(id))throw e;ccError=e;if(e.allowAiFallback!==false&&['CAPTIONS_REDIRECT_ERROR','CAPTIONS_ACCESS_REQUIRED','CAPTIONS_CONSENT'].includes(e.code))ccUnavailable=true;}}
-     if(ccError?.allowAiFallback===false)throw ccError;
+     if(ccError?.allowAiFallback===false||captionsOnly.has(id))throw ccError||Error('Chưa lấy được phụ đề; bản cũ được giữ nguyên.');
      if(!transcribe||!duration)throw ccError||Error('Chưa lấy được CC từ máy chủ.');
      v=current(id);if(!v)return;if(v.cues?.length&&v.transcriptSource!=='ai')continue;
      states.set(id,'CC chưa lấy được · chuẩn bị AI nghe video…');changed();
