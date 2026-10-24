@@ -113,7 +113,15 @@ const TelcExam={
   if(Array.isArray(t.texts))html+='<div class="telc-texts">'+t.texts.map((v,i)=>'<article><strong>'+esc(v.label||v.number||i+1)+'</strong>'+LearningContent.render(v.text||v.content||'')+'</article>').join('')+'</div>';
   if(bank.length)html+='<section class="telc-bank"><h4>'+({headings:'Überschriften',advertisements:'Anzeigen','word-bank':'Ergänzungswörter'}[kind]||'Auswahl')+'</h4>'+bank.map(v=>'<article class="telc-bank-entry"><b>'+esc(v.label)+'</b><div>'+LearningContent.render(v.text)+'</div></article>').join('')+'</section>';
   for(const url of t.sourceImages||[])if(url!==t.imageUrl&&this.imageURL(url))html+='<img class="exam-image" loading="lazy" src="'+esc(url)+'" alt="'+esc(t.title||'Quellenseite')+'">';
+  if(t.skill==='listening')html+=this.listeningSourcesHTML(t);
   return html;
+ },
+ listeningSourcesHTML(task){
+  const links=[],video=task.listeningReferenceVideo;
+  // Reference videos cover the full test. They do not satisfy per-Teil audio checks.
+  if(video&&/^[A-Za-z0-9_-]{11}$/.test(video.id||''))links.push('<a class="button secondary" href="https://www.youtube.com/watch?v='+video.id+'" target="_blank" rel="noopener noreferrer">Mở video cùng tên đề · Teil 1–3 ↗</a><p class="help-text">Video được ghép theo tên đề; hãy đối chiếu câu hỏi/phiên bản trước khi nghe. Đây là video trọn bài, chưa chia mốc từng Teil.</p>');
+  try{const u=new URL(task.listeningPlaylistUrl);if(u.protocol==='https:'&&['youtube.com','www.youtube.com'].includes(u.hostname)&&u.pathname==='/playlist'&&/^[A-Za-z0-9_-]+$/.test(u.searchParams.get('list')||''))links.push('<a class="button secondary" href="https://www.youtube.com/playlist?list='+esc(u.searchParams.get('list'))+'" target="_blank" rel="noopener noreferrer">Mở playlist nghe của bộ đề ↗</a>');}catch{}
+  return links.length?'<section class="exam-listening-sources" aria-label="Nguồn nghe">'+links.join('')+'</section>':'';
  },
  imageURL(url){return typeof url==='string'&&(/^https:\/\//i.test(url)||(url.length<2500000&&/^data:image\/(?:png|jpeg|webp);base64,[A-Za-z0-9+/]+={0,2}$/.test(url)));},
  // This schema is shared by every exam import entry point.

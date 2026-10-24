@@ -64,3 +64,10 @@ test('full option text uses the source question number, escapes HTML and retains
  const html=c.renderQuestion({id:'q6',sourceNumber:6,prompt:'Original question',options:['A','B','C'],optionTexts:{A:'<script>',B:'Second',C:'Third'}},1,0,{q6:'B'});
  assert(html.includes('6. Original question'));assert(html.includes('value="B" checked'));assert(html.includes('&lt;script&gt;'));assert(!html.includes('exam-matching-options'));
 });
+test('listening source links allow only YouTube references and never pretend to be per-Teil audio',()=>{
+ const c=fixture({URL});
+ const task={skill:'listening',listeningPlaylistUrl:'https://www.youtube.com/playlist?list=PLtest_123',listeningReferenceVideo:{id:'YB6k0ibd3Bc'}};
+ const html=c.form.listeningSourcesHTML(task);assert(html.includes('watch?v=YB6k0ibd3Bc'));assert(html.includes('playlist?list=PLtest_123'));assert(html.includes('chưa chia mốc'));assert(!html.includes('<iframe'));assert(!html.includes('<audio'));assert.equal(task.audioUrl,undefined);
+ for(const url of ['javascript:alert(1)','https://youtube.com.evil.test/playlist?list=PLtest','https://evil.test/playlist?list=PLtest','https://youtube.com/playlist?list=%22%3E'])assert.equal(c.form.listeningSourcesHTML({listeningPlaylistUrl:url}), '');
+ assert.equal(c.form.listeningSourcesHTML({listeningReferenceVideo:{id:'"><script>'}}),'');
+});
