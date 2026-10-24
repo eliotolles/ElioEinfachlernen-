@@ -27,7 +27,7 @@ test('timestamped service, direct fallback, cache, malformed data and quota stay
  await t.test('German timestamps are preserved and cached without calling YouTube or AI',async()=>{
   const id='service0001';let calls=0;
   await withTransport(async(url,options)=>{
-   calls++;assert.equal(new URL(url).hostname,transcriptHost);assert.equal(new URL(url).searchParams.get('lang'),'de');assert.equal(new URL(url).searchParams.get('video_url'),id);assert.equal(options.redirect,'error');
+   calls++;assert.equal(new URL(url).hostname,transcriptHost);assert.equal(new URL(url).searchParams.get('lang'),'de');assert.equal(new URL(url).searchParams.get('video_url'),id);assert.equal(options.redirect,'manual');
    return Response.json({language:'de',transcript:[{start:44,duration:2,text:'Guten Morgen!'}]});
   },async()=>{
    for(let i=0;i<2;i++){const result=await request('/api/listening/captions',{id});assert.equal(result.status,200);assert.equal(result.data.via,'freetranscriptapi');assert.deepEqual(result.data.cues,[{start:44,end:46,text:'Guten Morgen!'}]);}

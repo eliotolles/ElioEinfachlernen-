@@ -4,6 +4,9 @@ async function call(path,method='GET',data=null,cookie=''){const req=new Request
 // Direct YouTube parser tests isolate the optional transcript service. Its own
 // transport and fallback contract is exercised separately below.
 async function directCaptions(method,data,cookie){
+ // Each parser scenario deliberately supplies a different upstream response for
+ // the same video. Invalidate durable results so it exercises that response.
+ db.prepare("DELETE FROM app_config WHERE name LIKE 'listening-transcript:%'").run();
  const transport=globalThis.fetch;
  globalThis.fetch=(url,options)=>new URL(url).hostname==='api.freetranscriptapi.com'
   ?Promise.resolve(new Response(null,{status:503})):transport(url,options);
