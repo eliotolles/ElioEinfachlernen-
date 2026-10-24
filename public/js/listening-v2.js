@@ -65,7 +65,7 @@
    }
    const loose=rows.filter(v=>!groups.some(c=>c.id===v.collectionId));if(!r.group&&loose.length)buckets.push({title:'Video chưa xếp bộ',rows:loose,names:[],target:{...base,group:'ungrouped'}});
    const visible=buckets.filter(b=>!query||[b.title,...b.names,...b.rows.map(v=>v.title+' '+v.youtubeId)].join(' ').toLocaleLowerCase().includes(query));grid.replaceChildren();count.textContent=visible.length+' bộ · '+visible.reduce((n,b)=>n+b.rows.length,0)+' video';
-   for(const b of visible){const levels=[...new Set(b.rows.map(v=>v.level).filter(Boolean))].sort().join(' · ');grid.append(card(b.title,b.rows.length+' video'+(levels?' · '+levels:'')+(b.scope?' · '+b.scope:''),b.target,'▤','https://i.ytimg.com/vi/'+b.rows[0].youtubeId+'/hqdefault.jpg'));}
+   for(const b of visible){const levels=[...new Set(b.rows.map(v=>v.level).filter(Boolean))].sort().join(' · ');grid.append(card(b.title,b.rows.length+' video'+(levels?' · '+levels:'')+(b.scope?' · '+b.scope:''),b.target,'▤'));}
    if(!visible.length)grid.append(N('p',query?'Không tìm thấy bộ phù hợp.':'Chưa có bộ nghe. Thêm video hoặc playlist bên dưới.','li-empty'));
   }
   search.input.oninput=draw;draw();root.append(importForm());
