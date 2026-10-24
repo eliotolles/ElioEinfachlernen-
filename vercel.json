@@ -6,9 +6,17 @@
   "functions": {
     "api/handler.js": {
       "maxDuration": 300
+    },
+    "api/transcript.py": {
+      "maxDuration": 120,
+      "excludeFiles": "{public/**,vercel-public/**,artwork/**,tests/**,services/transcript/tests/**,.git/**}"
     }
   },
   "routes": [
+    {
+      "src": "/api/transcript/?",
+      "dest": "/api/transcript"
+    },
     {
       "src": "/api(?:/.*)?",
       "dest": "/api/handler"

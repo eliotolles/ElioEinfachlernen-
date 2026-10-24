@@ -18,3 +18,5 @@ for(const [name,img] of Object.entries(extracted.images)){const file=path.join('
 await fs.mkdir('vercel-server',{recursive:true});
 await fs.writeFile('vercel-server/worker.mjs','const ASSETS='+JSON.stringify(dynamic)+';\n'+await fs.readFile('worker/index.js','utf8')+'\nexport {sql};\n');
 console.log(`Vercel build: ${Object.keys(assets).length} assets, ${Object.keys(extracted.images).length} images; authenticated listening page retained.`);
+
+await fs.copyFile('worker/transcript-backend.mjs','vercel-server/transcript-backend.mjs');

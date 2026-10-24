@@ -29,6 +29,7 @@ SCHEMA.push(
  END`
 );
 const encoder=new TextEncoder();const hex=b=>Array.from(new Uint8Array(b),x=>x.toString(16).padStart(2,'0')).join('');const random=()=>hex(crypto.getRandomValues(new Uint8Array(32)));
+import {fetchElioTranscript,transcriptBackendStatus,checkTranscriptBackend} from './transcript-backend.mjs';
 async function digest(text){return hex(await crypto.subtle.digest('SHA-256',encoder.encode(text)));}
 function error(status,message,extra={}){const e=new Error(message);e.status=status;e.extra=extra;return e;}
 function json(data,status=200,headers={}){return new Response(JSON.stringify(data),{status,headers:{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff',...headers}});}
@@ -320,6 +321,7 @@ async function serviceGermanCaptions(env,id){
  }catch{return null;}
 }
 async function publicGermanCaptions(env,id){
+ if(env.TRANSCRIPT_NATIVE_FETCH||env.TRANSCRIPT_BACKEND_URL||env.TRANSCRIPT_BACKEND_TOKEN)return fetchElioTranscript(env,id,['de']);
  if(!/^[A-Za-z0-9_-]{11}$/.test(id||''))throw error(400,'Mã video không hợp lệ.');
  const service=await serviceGermanCaptions(env,id);if(service)return service;const unavailable=(reason,code='CAPTIONS_UNAVAILABLE')=>({available:false,reason,code,cues:[]});let stage='trang video';
  try{const response=await fetchCaptionResource('https://www.youtube.com/watch?v='+id+'&hl=de');if(!response.ok)return unavailable('YouTube chưa cho máy chủ đọc trang video (HTTP '+response.status+').');const html=await response.text();if(html.length>6000000)return unavailable('Trang video quá lớn để đọc phụ đề.');const page=youtubeCaptionPage(html,id);if(!page.tracks)return unavailable(page.reason,page.code);const tracks=page.tracks;const candidates=tracks.filter(t=>/^de(?:[-_]|$)/i.test(t.languageCode||'')).sort((a,b)=>Number(a.kind==='asr')-Number(b.kind==='asr'));if(!candidates.length)return unavailable('Không tìm được phụ đề tiếng Đức gốc có thể tải. Không dùng phụ đề ngôn ngữ khác làm đáp án.');let track,data,lastReason='YouTube trả tệp phụ đề trống.',lastCode='CAPTIONS_EMPTY';
@@ -439,6 +441,15 @@ if(path==='/api/admin/listening/reset-legacy'&&request.method==='POST'){
 if(path==='/api/admin/listening/legacy-archives'&&request.method==='GET'){admin(u);const rows=(await sql(env,"SELECT name AS id,json_extract(value,'$.createdAt') AS createdAt,json_array_length(value,'$.private') AS privateRecords,json_array_length(value,'$.shared') AS sharedRecords FROM app_config WHERE name GLOB 'listening-archive:*' ORDER BY createdAt DESC LIMIT 20")).rows;return json({archives:rows});}
 if(path==='/api/admin/listening/legacy-backup'&&request.method==='GET'){admin(u);const id=url.searchParams.get('id')||'';if(!/^listening-archive:[a-f0-9-]{36}$/.test(id))throw error(400,'Mã sao lưu không hợp lệ.');const row=(await sql(env,'SELECT value FROM app_config WHERE name=?',[id])).rows[0];if(!row)throw error(404,'Không tìm được bản sao lưu.');return json(JSON.parse(row.value));}
 if(path==='/api/admin/listening/restore-legacy'&&request.method==='POST'){admin(u);const d=await body(request,1000);if(!/^listening-archive:[a-f0-9-]{36}$/.test(d.id||''))throw error(400,'Mã sao lưu không hợp lệ.');if(!(await sql(env,'SELECT name FROM app_config WHERE name=?',[d.id])).rows.length)throw error(404,'Không tìm thấy bản sao lưu.');if((await sql(env,"SELECT 1 FROM app_records WHERE name IN ('listening','listeningLibrary') UNION ALL SELECT 1 FROM app_shared WHERE name='listeningLibrary' LIMIT 1")).rows.length)throw error(409,'Kho cũ đã có dữ liệu; không ghi đè.');await sql(env,'INSERT INTO app_config(name,value) VALUES(?,?)',['listening-restore:'+crypto.randomUUID(),JSON.stringify({archive:d.id})]);return json({ok:true});}
+if(path==='/api/admin/listening/transcript-backend'){
+ admin(u);
+ if(request.method==='GET')return json(transcriptBackendStatus(env));
+ if(request.method!=='POST')throw error(405,'Method not allowed');
+ await limit(env,'transcript-check:'+u.id,5,60000);
+ const d=await body(request,500);
+ if(d.id!==undefined){if(!/^[A-Za-z0-9_-]{11}$/.test(d.id||''))throw error(400,'Mã video không hợp lệ.');return json(await fetchElioTranscript(env,d.id,['de']));}
+ return json(await checkTranscriptBackend(env));
+}
 if(path==='/api/admin/listening/transcript-key'){admin(u);if(request.method==='PUT'){const d=await body(request,2000);if(typeof d.key!=='string'||!/^[A-Za-z0-9_\-]{16,300}$/.test(d.key))throw error(400,'API key không hợp lệ.');await sql(env,"INSERT INTO app_config(name,value) VALUES('transcriptSecret',?) ON CONFLICT(name) DO UPDATE SET value=excluded.value",[await encrypt(env,d.key)]);transcriptServiceWaitUntil=0;return json({ok:true});}if(request.method==='GET')return json({configured:!!(await sql(env,"SELECT name FROM app_config WHERE name='transcriptSecret'")).rows.length});if(request.method==='DELETE'){await sql(env,"DELETE FROM app_config WHERE name='transcriptSecret'");return json({ok:true});}throw error(405,'Method not allowed');}
 if(path==='/api/listening/shadow'&&request.method==='POST'){
  const d=await body(request,5700000);if(typeof d.expected!=='string'||!d.expected.trim()||d.expected.length>2000||!['audio/webm','audio/ogg','audio/mp4','audio/wav'].includes(d.mimeType)||typeof d.data!=='string'||d.data.length>5400000||!/^[-A-Za-z0-9+/=]+$/.test(d.data))throw error(400,'Bản ghi không hợp lệ hoặc vượt 4 MB.');await limit(env,'shadow:'+u.id,10,60000);

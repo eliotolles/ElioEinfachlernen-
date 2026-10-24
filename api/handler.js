@@ -1,4 +1,5 @@
 import worker,{initialize,session,sql} from '../vercel-server/worker.mjs';
+import {withNativeTranscript} from '../vercel/transcript.mjs';
 import {createTransport,streamResponse} from '../vercel/transport.mjs';
 const handle=createTransport({worker,initialize,session,sql});
-export default {async fetch(request){return streamResponse(await handle(request,process.env));}};
+export default {async fetch(request){return streamResponse(await handle(request,withNativeTranscript(request,process.env)));}};
