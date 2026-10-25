@@ -109,7 +109,8 @@ function mountGrammarLessonTabs(){
  const host=$('#lesson-panel'),header=host.querySelector('.lesson-reader-header'),grid=host.querySelector('.lesson-reader-grid'),exercise=$('#grammar-exercise');if(!grid||!exercise)return;
  const practice=document.createElement('section');practice.className='grammar-practice-panel';exercise.before(practice);practice.append(exercise);host.append(practice);
  if(!visibleGrammarExercises(currentLesson).length){const p=document.createElement('p');p.textContent={vi:'Bài học này chưa có bài tập.',de:'Für diese Lektion gibt es noch keine Übungen.',en:'This lesson has no exercises yet.'}[App.settings().language]||'Bài học này chưa có bài tập.';practice.append(p);}
- const nav=grammarTabs(host,[grid,practice],grammarTabLabels(),'grammar-lesson-tabs');if(header)header.after(nav);
+ const mindmap=document.createElement('section');host.append(mindmap);GrammarMindmap.mount(mindmap,currentLesson,lessonText(currentLesson.content),currentLesson.examples?lessonText(currentLesson.examples):'');
+ const labels=grammarTabLabels();const nav=grammarTabs(host,[grid,mindmap,practice],[labels[0],GrammarMindmap.copy(App.settings().language).tab,labels[1]],'grammar-lesson-tabs');if(header)header.after(nav);
 }
 function mountGrammarEditorTabs(){
  const form=$('#grammar-edit-form'),content=$('#grammar-edit-content')?.closest('label'),exercise=$('#grammar-edit-exercises')?.closest('label');if(!form||!content||!exercise)return;
