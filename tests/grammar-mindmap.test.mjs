@@ -8,3 +8,8 @@ test('mind map organizes real lesson sections and preserves German, Vietnamese a
 test('unstructured imports remain intact, empty lessons do not get invented rules',()=>{
  const m=ctx.map.model({title:'Import'},'Raw imported text\nAnother line','');assert.equal(m.groups[4][0].body,'Raw imported text\nAnother line');assert(ctx.map.model({},'', '').groups.every(g=>!g.length));
 });
+
+test('legacy bold and emoji headings produce separate branches',()=>{
+ const m=ctx.map.model({},'Giới thiệu.\n\n**Ví dụ**\nDer Student lernt.\n\n🔹 Quy tắc chia đuôi\nThêm -en.\n\nLưu ý\nNgoại lệ.','');
+ assert.equal(m.groups[2][0].body,'Der Student lernt.');assert.equal(m.groups[1][0].body,'Thêm -en.');assert.equal(m.groups[3][0].body,'Ngoại lệ.');assert.equal(m.groups[4][0].body,'Giới thiệu.');
+});

@@ -4,13 +4,13 @@ const GrammarMindmap={
  copy(lang){return ({vi:{tab:'Sơ đồ tư duy',hint:'Đi từ chủ điểm ở giữa đến từng nhánh. Bấm tên nhánh để mở hoặc thu gọn.',all:'Mở tất cả',close:'Thu gọn',size:'Cỡ chữ sơ đồ',empty:'Bài này chưa có nội dung để tạo sơ đồ.',source:'Sơ đồ được sắp xếp từ bài học hiện tại; không bổ sung quy tắc chưa có trong tài liệu.',groups:['Cách dùng','Công thức & vị trí từ','Ví dụ Đức–Việt','Lỗi & điểm cần nhớ','Nội dung khác']},de:{tab:'Mindmap',hint:'Vom Thema zu den einzelnen Zweigen. Überschriften öffnen oder schließen die Zweige.',all:'Alle öffnen',close:'Alle schließen',size:'Schriftgröße der Mindmap',empty:'Diese Lektion enthält noch keinen Lerninhalt.',source:'Aus dem aktuellen Lerninhalt gegliedert; ohne ergänzte Regeln.',groups:['Verwendung','Struktur & Wortstellung','Beispiele Deutsch–Vietnamesisch','Fehler & Merkhilfen','Weitere Inhalte']},en:{tab:'Mind map',hint:'Follow the topic into each branch. Select a heading to expand or collapse it.',all:'Expand all',close:'Collapse all',size:'Mind map text size',empty:'This lesson has no learning content yet.',source:'Organized from the current lesson without adding rules absent from the source.',groups:['Usage','Structure & word order','German–Vietnamese examples','Mistakes & reminders','Other content']}})[lang]||this.copy('vi');},
  sections(text){
   const out=[];let title='',lines=[];const flush=()=>{const body=lines.join('\n').trim();if(body)out.push({title,body});lines=[];};
-  for(const line of String(text||'').split('\n')){const heading=line.match(/^\s*#{1,4}\s+(.+?)\s*$/);if(heading){flush();title=heading[1].replace(/\*\*/g,'');}else lines.push(line);}flush();return out;
+  for(const line of String(text||'').split('\n')){const heading=line.match(/^\s*#{1,6}\s+(.+?)\s*$/)||line.match(/^\s*\*\*(.+?)\*\*\s*$/)||line.match(/^\s*((?:🔹|🎯) .{1,160}|(?:Ví dụ|Lưu ý|Ghi nhớ|Beispiele|Examples))\s*:?\s*$/i);if(heading){flush();title=heading[1].replace(/\*\*/g,'');}else lines.push(line);}flush();return out;
  },
  group(title){
   if(/ví dụ|beispiel|example/i.test(title))return 2;
   if(/lỗi|sai|chú ý|lưu ý|ghi nhớ|fehler|achtung|merkhilfe|mistake|remember/i.test(title))return 3;
-  if(/công thức|cấu trúc|vị trí|trật tự|bildung|struktur|wortstellung|satzbau|formel|structure|word order|bảng|tabelle/i.test(title))return 1;
-  if(/cách dùng|khi nào|ý nghĩa|verwendung|gebrauch|bedeutung|usage|meaning/i.test(title))return 0;
+  if(/quy tắc|công thức|cấu trúc|vị trí|trật tự|bildung|struktur|wortstellung|satzbau|formel|structure|word order|bảng|tabelle/i.test(title))return 1;
+  if(/cách nhận biết|cách dùng|khi nào|ý nghĩa|verwendung|gebrauch|bedeutung|usage|meaning/i.test(title))return 0;
   return 4;
  },
  model(lesson,text,examples){const groups=Array.from({length:5},()=>[]);for(const section of this.sections(text))groups[this.group(section.title)].push(section);if(examples)groups[2].push({title:'',body:String(examples)});return {title:String(lesson.title||'Grammatik'),level:String(lesson.level||''),groups};},
