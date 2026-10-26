@@ -109,7 +109,7 @@ def resolve(payload):
                 attempts.append({'engine': chosen, 'code': 'CAPTIONS_UPSTREAM_ERROR'})
         # Report access/transport failures before concluding that captions are absent.
         codes = {a['code'] for a in attempts}
-        messages = [('CAPTIONS_RATE_LIMIT', 'YouTube giới hạn lượt gọi. Hãy thử lại sau.'),
+        messages = [('CAPTIONS_RATE_LIMIT', 'YouTube đang giới hạn yêu cầu từ IP máy chủ lấy phụ đề (HTTP 429). Đây không phải số lượt bạn đã dùng trong ngày. Hãy thử lại sau.'),
                     ('CAPTIONS_BLOCKED', 'YouTube yêu cầu xác minh hoặc chặn IP máy chủ.'),
                     ('CAPTIONS_ACCESS_REQUIRED', 'Video yêu cầu quyền truy cập hoặc xác minh độ tuổi.'),
                     ('CAPTIONS_TIMEOUT', 'Hết thời gian lấy phụ đề từ các nguồn.'),

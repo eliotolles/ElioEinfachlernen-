@@ -322,12 +322,13 @@ async function serviceGermanCaptions(env,id){
  try{
   const configured=(await sql(env,"SELECT value FROM app_config WHERE name='transcriptSecret'")).rows[0];const key=configured?await decrypt(env,configured.value):env.TRANSCRIPT_API_KEY;
   const response=await fetch('https://api.freetranscriptapi.com/v1/transcript?'+new URLSearchParams({video_url:id,lang:'de'}),{headers:key?{Authorization:'Bearer '+key}:{},redirect:'manual',signal:AbortSignal.timeout(45000)});
-  if([401,402,429].includes(response.status)){
+  if([401,402,404,429].includes(response.status)){
    let detail;try{detail=await response.json();}catch{}
    const code=detail?.error?.code;
-   const reasons={anonymous_daily_cap_exceeded:'FreeTranscriptAPI đã hết hạn mức miễn phí dùng chung toàn dịch vụ trong ngày UTC; đây không phải lượt sử dụng riêng của bạn.',rate_limit_exceeded:'FreeTranscriptAPI đang giới hạn theo IP máy chủ dùng chung; đây không phải hạn mức ngày của bạn.',insufficient_credits:'Tài khoản FreeTranscriptAPI đã hết credit; credit không tự cấp lại mỗi ngày.',unauthorized:'FreeTranscriptAPI từ chối API key đã cấu hình.'};
+   const reasons={video_not_found:'FreeTranscriptAPI báo chưa có bản chép lời cho video này.',anonymous_daily_cap_exceeded:'FreeTranscriptAPI đã hết hạn mức miễn phí dùng chung toàn dịch vụ trong ngày UTC; đây không phải lượt sử dụng riêng của bạn.',rate_limit_exceeded:'FreeTranscriptAPI đang giới hạn theo IP máy chủ dùng chung; đây không phải hạn mức ngày của bạn.',insufficient_credits:'Tài khoản FreeTranscriptAPI đã hết credit; credit không tự cấp lại mỗi ngày.',unauthorized:'FreeTranscriptAPI từ chối API key đã cấu hình.'};
    const raw=response.headers.get('Retry-After'),seconds=Number(raw),reset=Number(response.headers.get('X-RateLimit-Reset'));
    const wait=Number.isFinite(seconds)&&seconds>0?seconds:reset>Date.now()/1000?reset-Date.now()/1000:60;
+   if(response.status===404)return {available:false,code:'CAPTIONS_SERVICE_404',reason:reasons.video_not_found,retryable:false,cues:[]};
    transcriptServiceWaitUntil=Date.now()+Math.min(86400,Math.max(60,wait))*1000;
    return transcriptServiceFailure={available:false,code:'CAPTIONS_SERVICE_'+response.status,reason:reasons[code]||'FreeTranscriptAPI từ chối yêu cầu (HTTP '+response.status+'); chưa xác định được loại hạn mức.',retryable:response.status===429,retryAfter:Math.ceil((transcriptServiceWaitUntil-Date.now())/1000),cues:[]};
   }

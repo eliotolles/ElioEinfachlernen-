@@ -66,7 +66,7 @@ test('timestamped service, direct fallback, cache, malformed data and quota stay
   const realNow=Date.now;let clock=realNow()+2*86400000;Date.now=()=>clock;
   env.TRANSCRIPT_NATIVE_FETCH=async()=>Response.json({available:false,code:'CAPTIONS_RATE_LIMIT',reason:'Python: YouTube HTTP 429',retryable:true});
   try{
-   for(const [status,code,expected] of [[429,'anonymous_daily_cap_exceeded','dùng chung toàn dịch vụ'],[429,'rate_limit_exceeded','IP máy chủ dùng chung'],[402,'insufficient_credits','không tự cấp lại mỗi ngày'],[401,'unauthorized','API key']]){
+   for(const [status,code,expected] of [[429,'anonymous_daily_cap_exceeded','dùng chung toàn dịch vụ'],[429,'rate_limit_exceeded','IP máy chủ dùng chung'],[402,'insufficient_credits','không tự cấp lại mỗi ngày'],[401,'unauthorized','API key'],[404,'video_not_found','chưa có bản chép lời']]){
     clock+=2*86400000;
     await withTransport(async()=>Response.json({error:{code,message:'untrusted provider detail'}},{status}),async()=>{
      const result=await request('/api/listening/captions',{id:'failure0001'});
