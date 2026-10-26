@@ -9,9 +9,15 @@ const ElioNavigation=(()=>{
   let child=false;try{child=window.parent!==window&&window.parent.ElioNavigationHost===true;}catch{}
   if(!child)window.ElioNavigationHost=true;
   const own=target(location.href);if(!own)return;
-  if(child){go=value=>{const u=target(value);if(u)window.parent.postMessage({type:'elio:navigate',url:u.pathname+u.search+u.hash},location.origin);};}
+  if(child){go=value=>{const u=target(value);if(u)window.parent.postMessage({type:'elio:navigate',url:u.pathname+u.search+u.hash},location.origin);};
+   // Module-owned detail hashes (video, collection, lesson category) must also
+   // reach the address bar, without remounting the module or losing its draft.
+   window.addEventListener('hashchange',()=>{const u=target(location.href);if(u)window.parent.postMessage({type:'elio:location',url:u.pathname+u.search+u.hash},location.origin);});
+  }
   else{
    const views=new Map(),ownKey=own.pathname+own.search;let current=ownKey,overlay=null,savedOverflow='',savedScroll=0;
+   const hostInert=new Map();
+   function hostAccessible(visible){for(const node of Array.from(document.body.children||[])){if(node.classList?.contains('elio-route-frame')||['SCRIPT','STYLE'].includes(node.tagName))continue;if(!visible){if(!hostInert.has(node))hostInert.set(node,!!node.inert);node.inert=true;}else if(hostInert.has(node)){node.inert=hostInert.get(node);hostInert.delete(node);}}}
    history.replaceState({...history.state,elioNavigation:true},'',own.pathname+own.search+own.hash);
    const style=document.createElement('style');style.textContent='.elio-route-frame{position:fixed;inset:0;width:100%;height:100dvh;border:0;background:var(--bg,#faf7ee);z-index:10000}.elio-route-frame[hidden]{display:none!important}';document.head.append(style);
    function show(value,push=true){const u=target(value);if(!u)return;const key=u.pathname+u.search,previousHash=location.hash;
@@ -20,15 +26,15 @@ const ElioNavigation=(()=>{
     // Do not re-bootstrap its hidden import, quiz and vocabulary controls.
     if(key===current&&key!==ownKey){const activeView=views.get(key);if(activeView?.frame){try{const w=activeView.frame.contentWindow;if(w.location.hash!==u.hash){w.history.replaceState(null,'',u.pathname+u.search+u.hash);w.dispatchEvent(new w.Event('hashchange'));}activeView.title=activeView.frame.contentDocument.title;document.title=activeView.title;}catch{}return;}}
     if(key===current&&key===ownKey){if(!push||previousHash!==u.hash)window.dispatchEvent(new Event('hashchange'));return;}
-    if(key===ownKey){if(overlay)overlay.hidden=true;document.body.style.overflow=savedOverflow;window.scrollTo(0,savedScroll);if(current!==key||location.hash!==own.hash)window.dispatchEvent(new Event('hashchange'));current=key;document.dispatchEvent(new Event('elioviewresume'));document.dispatchEvent(new Event('cloudchange'));document.title=views.get(ownKey).title;return;}
+    if(key===ownKey){if(overlay)overlay.hidden=true;hostAccessible(true);document.body.style.overflow=savedOverflow;window.scrollTo(0,savedScroll);if(current!==key||location.hash!==own.hash)window.dispatchEvent(new Event('hashchange'));current=key;document.dispatchEvent(new Event('elioviewresume'));document.dispatchEvent(new Event('cloudchange'));document.title=views.get(ownKey).title;return;}
     if(current===ownKey){savedOverflow=document.body.style.overflow;savedScroll=window.scrollY;}
     let view=views.get(key);
     if(!view){const frame=document.createElement('iframe');frame.className='elio-route-frame';frame.title='Elio Einfach';frame.src=u.pathname+u.search+u.hash;frame.referrerPolicy='same-origin';view={frame,title:'Elio Einfach',ready:false};views.set(key,view);frame.addEventListener('load',()=>{try{view.title=frame.contentDocument.title;if(current===key)document.title=view.title;}catch{}});document.body.append(frame);}
     else{try{view.frame.contentDocument.dispatchEvent(new view.frame.contentWindow.Event('elioviewresume'));if(view.frame.contentWindow.location.hash!==u.hash){view.frame.contentWindow.history.replaceState(null,'',u.pathname+u.search+u.hash);view.frame.contentWindow.dispatchEvent(new view.frame.contentWindow.Event('hashchange'));}view.frame.contentDocument.dispatchEvent(new view.frame.contentWindow.Event('cloudchange'));view.frame.contentDocument.dispatchEvent(new view.frame.contentWindow.Event('languagechange'));}catch{}}
-    if(overlay&&overlay!==view.frame)overlay.hidden=true;overlay=view.frame;overlay.hidden=false;document.body.style.overflow='hidden';current=key;document.title=view.title;
+    if(overlay&&overlay!==view.frame)overlay.hidden=true;overlay=view.frame;overlay.hidden=false;hostAccessible(false);document.body.style.overflow='hidden';current=key;document.title=view.title;
    }
    views.set(ownKey,{title:document.title});go=show;
-   window.addEventListener('message',event=>{if(event.origin!==location.origin)return;const view=[...views.values()].find(v=>v.frame?.contentWindow===event.source);if(!view)return;if(event.data?.type==='elio:navigate')show(event.data.url);});
+   window.addEventListener('message',event=>{if(event.origin!==location.origin)return;const view=[...views.values()].find(v=>v.frame?.contentWindow===event.source);if(!view)return;if(event.data?.type==='elio:navigate')show(event.data.url);else if(event.data?.type==='elio:location'&&view.frame===overlay&&!view.frame.hidden){const u=target(event.data.url);if(u&&u.pathname+u.search===current&&location.pathname+location.search+location.hash!==u.pathname+u.search+u.hash)history.pushState({elioNavigation:true},'',u.pathname+u.search+u.hash);}});
    window.addEventListener('popstate',()=>show(location.href,false));
    document.addEventListener('cloudchange',()=>{for(const view of views.values())if(view.frame?.contentDocument)try{view.frame.contentDocument.dispatchEvent(new view.frame.contentWindow.Event('cloudchange'));}catch{}});
   }

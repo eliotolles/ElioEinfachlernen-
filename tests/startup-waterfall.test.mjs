@@ -20,11 +20,11 @@ test('built app starts session independently of CSS and defers home artwork with
  assert(assets['/login.html'].indexOf('src="js/session.js?')<assets['/login.html'].indexOf('src="js/account-page.js?'));
 });
 test('all module downloads start together after authentication, execute in dependency order and reveal only after the final adapter',async()=>{
- let resolveSession,resolveAuth;const queue=[],removed=[];
- const ctx={window:{ElioSessionLoaded:new Promise(r=>resolveSession=r)},Account:{ready:new Promise(r=>resolveAuth=r),current:()=>true,profile:{}},document:{querySelector:()=>null,currentScript:{dataset:{scripts:'["js/auth.js","js/core.js","js/module.js"]'}},head:{append(){}},body:{append:s=>queue.push(s)},createElement:()=>({}),documentElement:{classList:{remove:c=>removed.push(c)}}}};
+ let resolveSession,resolveAuth;const queue=[],removed=[],styles=[];
+ const ctx={window:{ElioSessionLoaded:new Promise(r=>resolveSession=r)},Account:{ready:new Promise(r=>resolveAuth=r),current:()=>true,profile:{}},document:{querySelector:()=>null,currentScript:{dataset:{scripts:'["js/auth.js","js/core.js","js/module.js"]'}},head:{append:node=>{if(node.rel==='stylesheet')styles.push(node);}},body:{append:s=>queue.push(s)},createElement:()=>({}),documentElement:{classList:{remove:c=>removed.push(c)}}}};
  vm.runInNewContext(fs.readFileSync('public/js/loader.js','utf8'),ctx);const tick=async()=>{for(let i=0;i<8;i++)await Promise.resolve();};
  await tick();assert.equal(queue.length,0);resolveSession();await tick();assert.equal(queue.length,0);resolveAuth();await tick();
- assert.deepEqual(queue.map(s=>s.src),['js/auth.js','js/core.js','js/module.js','js/pdf-tools.js','js/cloud-ui.js','js/navigation.js','js/book-ui.js']);assert(queue.every(s=>s.async===false));
+ assert.deepEqual(queue.map(s=>s.src),['js/auth.js','js/core.js','js/module.js','js/pdf-tools.js','js/cloud-ui.js','js/navigation.js','js/book-ui.js','js/book-atlas.js']);assert(queue.every(s=>s.async===false));
  for(const script of queue.slice(0,-1))script.onload();await tick();assert.equal(removed.length,0);
- ctx.window.ElioBookReady=true;queue.at(-1).onload();await tick();assert.deepEqual(removed,['auth-pending']);
+ ctx.window.ElioBookReady=true;queue.at(-1).onload();await tick();assert.deepEqual(removed,[]);styles[0].onload();await tick();assert.deepEqual(removed,['auth-pending']);
 });
