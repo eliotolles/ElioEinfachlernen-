@@ -5,7 +5,7 @@ body.book-app.book-atlas .book-shell>main{padding-top:22px!important}
 body.book-app.book-atlas .atlas-search-toggle{border:1px solid var(--line);background:transparent;color:var(--text);padding:9px 13px;border-radius:3px;font-size:.85rem;white-space:nowrap;min-height:42px}
 body.book-app.book-atlas a:focus-visible,body.book-app.book-atlas button:focus-visible,body.book-app.book-atlas input:focus-visible{outline:2px solid var(--accent,#276044);outline-offset:4px}
 body.book-app.book-atlas .book-contents{padding:36px clamp(18px,4vw,68px);border:1px solid var(--line);box-shadow:inset 7px 0 12px -11px var(--text),0 10px 30px #00000005;border-radius:2px 16px 16px 2px;overflow:visible}
-body.book-app.book-atlas .book-contents:before{inset:0;background-image:linear-gradient(90deg,transparent 49.8%,var(--line) 50%,transparent 50.2%);opacity:.2;mask-image:none;-webkit-mask-image:none;border-radius:inherit}
+body.book-app.book-atlas .book-contents:before{inset:0;background-image:var(--book-contents-art);background-size:cover;background-position:center;opacity:.18;mask-image:none;-webkit-mask-image:none;border-radius:inherit}
 body.book-app.book-atlas .book-contents:after{display:none}
 body.book-app.book-atlas .book-contents>h1{margin:5px 0 12px;font-size:clamp(2.6rem,5vw,4.2rem);letter-spacing:-.025em}
 body.book-app.book-atlas .atlas-toc-intro{max-width:650px;color:var(--muted);line-height:1.7;margin:0 0 26px}
@@ -74,7 +74,7 @@ body.book-app.book-atlas :is(#feedback,#sim-feedback,#speaking-analysis):not(:em
  body.book-app.book-atlas .atlas-search-toggle{font-size:0;width:38px;padding:8px;flex:none;border:0}
  body.book-app.book-atlas .atlas-search-toggle:before{content:'⌕';font:26px/1 Georgia,serif}
  body.book-app.book-atlas .book-contents{padding:24px 16px;border-radius:2px 10px 10px 2px;overflow:visible}
- body.book-app.book-atlas .book-contents:before{display:none}
+ body.book-app.book-atlas .book-contents:before{display:block;position:absolute;inset:0;width:auto;aspect-ratio:auto;margin:0;z-index:-1;opacity:.14}
  body.book-app.book-atlas .book-contents .atlas-toc{grid-template-columns:minmax(0,1fr);gap:26px}
  body.book-app.book-atlas .atlas-toc-intro{font-size:.9rem;margin-bottom:20px}
  body.book-app.book-atlas .atlas-toc-tools{grid-template-columns:minmax(0,1fr);gap:8px}
@@ -103,3 +103,10 @@ body.book-app.book-atlas :is(#feedback,#sim-feedback,#speaking-analysis):not(:em
 @media(max-width:380px){body.book-app.book-atlas .studio-module-grid{grid-template-columns:minmax(0,1fr)}}
 
 body.book-app.book-atlas .atlas-chapter-index button{background:transparent;border:0;border-bottom:1px solid transparent;font:inherit;text-align:left;cursor:pointer}
+
+/* The grouped catalogue is one menu row, never one of the old two columns. */
+body.book-app.book-atlas .book-footer .book-programs:not([hidden]){display:block!important;width:min(680px,calc(100vw - 36px));max-width:calc(100vw - 36px);max-height:70dvh;overflow:auto;box-sizing:border-box}
+body.book-app.book-atlas .book-programs[hidden]{display:none!important}
+body.book-app.book-atlas .book-programs .book-menu-title{display:flex;justify-content:space-between;align-items:center}
+body.book-app.book-atlas .book-programs .atlas-program-links{width:100%;box-sizing:border-box}
+@media(max-width:700px){body.book-app.book-atlas .book-footer .book-programs:not([hidden]){width:min(380px,calc(100vw - 36px));max-height:65dvh}body.book-app.book-atlas .atlas-program-links{grid-template-columns:minmax(0,1fr);gap:18px;padding:8px}body.book-app.book-atlas .book-programs .atlas-chapter h2{font-size:1.45rem}}
