@@ -110,6 +110,7 @@ function mountGrammarLessonTabs(){
  const practice=document.createElement('section');practice.className='grammar-practice-panel';exercise.before(practice);practice.append(exercise);host.append(practice);
  if(!visibleGrammarExercises(currentLesson).length){const p=document.createElement('p');p.textContent={vi:'Bài học này chưa có bài tập.',de:'Für diese Lektion gibt es noch keine Übungen.',en:'This lesson has no exercises yet.'}[App.settings().language]||'Bài học này chưa có bài tập.';practice.append(p);}
  const mindmap=document.createElement('section');host.append(mindmap);GrammarMindmap.mount(mindmap,currentLesson,lessonText(currentLesson.content),currentLesson.examples?lessonText(currentLesson.examples):'');
+ LearningContextAI.mount(host,{title:currentLesson.title,level:currentLesson.level,text:lessonText(currentLesson.content)});
  const labels=grammarTabLabels();const nav=grammarTabs(host,[grid,mindmap,practice],[labels[0],GrammarMindmap.copy(App.settings().language).tab,labels[1]],'grammar-lesson-tabs');if(header)header.after(nav);
 }
 function mountGrammarEditorTabs(){

@@ -432,3 +432,5 @@ body.book-app .studio-module-tools>summary{display:none}
 @media(max-width:700px){
  body.elio-app.book-app :is(.studio-greeting>h1,.studio-resume-copy>h2,.studio-section-title>h2,.studio-today h2){font-weight:500!important}
 }
+
+.book-menu-group{font-size:.7rem;letter-spacing:.1em;color:var(--muted);margin:16px 12px 6px;line-height:1.5}

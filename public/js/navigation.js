@@ -1,7 +1,7 @@
 'use strict';
 // Keep each opened module document alive: its handlers, draft and timer stay intact.
 const ElioNavigation=(()=>{
- const allowed=new Set(['index','grammatik','wortschatz','quiz','schreiben','sprechen','pruefung','hoeren','tutor','settings','history','admin']);
+ const allowed=new Set(['index','lernen','grammatik','wortschatz','quiz','schreiben','sprechen','pruefung','hoeren','tutor','settings','history','admin']);
  let installed=false,go;
  function target(value){try{const u=new URL(value,location.href),name=u.pathname.split('/').filter(Boolean).pop()||'index.html',base=name.replace(/\.html$/,'');if(u.origin!==location.origin||!allowed.has(base))return null;u.pathname='/'+base+'.html';return u;}catch{return null;}}
  function install(){
