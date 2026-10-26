@@ -24,7 +24,7 @@ export async function fetchElioTranscript(env, id, languages = ['de']) {
     // Do not accept the wrong video, translated language, milliseconds, or partial data.
     if(data.videoId!==id||data.timeUnit!=='seconds'||!languages.some(lang=>data.language===lang||data.language?.startsWith(lang+'-')))
       return fail('CAPTIONS_DATA_MISMATCH','Backend trả sai video, ngôn ngữ hoặc đơn vị thời gian.');
-    if(!Array.isArray(data.cues)||!data.cues.length||data.cues.length>1500||!data.cues.every((c,i,a)=>
+    if(!Array.isArray(data.cues)||!data.cues.length||data.cues.length>10000||!data.cues.every((c,i,a)=>
       typeof c.text==='string'&&c.text.trim()&&c.text.length<=1500&&Number.isFinite(c.start)&&Number.isFinite(c.end)&&c.start>=0&&c.end>c.start&&(!i||c.start>=a[i-1].start)))
       return fail('CAPTIONS_INVALID_DATA','Backend trả phụ đề không hợp lệ; chưa lưu dữ liệu.');
     return {available:true,videoId:id,language:data.language,source:data.source==='youtube-auto'?'youtube-auto':'youtube',

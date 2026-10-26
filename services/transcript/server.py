@@ -113,7 +113,7 @@ def resolve(payload):
                     ('CAPTIONS_BLOCKED', 'YouTube yêu cầu xác minh hoặc chặn IP máy chủ.'),
                     ('CAPTIONS_ACCESS_REQUIRED', 'Video yêu cầu quyền truy cập hoặc xác minh độ tuổi.'),
                     ('CAPTIONS_TIMEOUT', 'Hết thời gian lấy phụ đề từ các nguồn.'),
-                    ('CAPTIONS_TOO_LARGE', 'Phụ đề vượt giới hạn 1500 đoạn hoặc 3 MB của Elio.'),
+                    ('CAPTIONS_TOO_LARGE', 'Phụ đề vượt giới hạn 10000 đoạn hoặc 3 MB của Elio.'),
                     ('CAPTIONS_VIDEO_UNAVAILABLE', 'Video không khả dụng.'),
                     ('CAPTIONS_UPSTREAM_ERROR', 'Nguồn phụ đề chưa truy cập được. Không kết luận video thiếu phụ đề.'),
                     ('CAPTIONS_NOT_FOUND', 'Không tìm thấy phụ đề trong ngôn ngữ đã chọn.'),

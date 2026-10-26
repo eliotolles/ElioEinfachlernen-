@@ -34,6 +34,12 @@ test('timestamped service, direct fallback, cache, malformed data and quota stay
    assert.equal(calls,1);
   });
  });
+ await t.test('long captions keep every cue and never fall back to Python',async()=>{
+  const transcript=Array.from({length:2900},(_,i)=>({start:i*2,duration:2,text:'Satz '+i}));
+  await withTransport(async url=>{assert.equal(new URL(url).hostname,transcriptHost);return Response.json({language:'de',transcript});},async()=>{
+   const result=await request('/api/listening/captions',{id:'longvideo01'});assert.equal(result.data.available,true);assert.equal(result.data.cues.length,2900);assert.equal(result.data.cues.at(-1).text,'Satz 2899');
+  });
+ });
  await t.test('foreign, malformed, oversized, unavailable and failed service responses fall back to original German CC',async()=>{
   const failures=[
    ()=>Response.json({language:'en',transcript:[{start:0,duration:1,text:'Hello'}]}),

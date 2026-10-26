@@ -7,7 +7,7 @@ import re
 import sys
 from urllib.parse import urlparse
 
-MAX_CUES = 1500
+MAX_CUES = 10000
 MAX_BYTES = 3_000_000
 
 
@@ -38,7 +38,7 @@ def normalize(rows):
             continue
     cues.sort(key=lambda c: c['start'])
     if len(cues) > MAX_CUES:
-        raise CaptionError('CAPTIONS_TOO_LARGE', 'Vượt 1500 đoạn, giới hạn của module nghe Elio hiện tại.')
+        raise CaptionError('CAPTIONS_TOO_LARGE', 'Vượt 10000 đoạn, giới hạn của module nghe Elio hiện tại.')
     if not cues:
         raise CaptionError('CAPTIONS_EMPTY', 'Nguồn phụ đề không trả nội dung đọc được.')
     return cues

@@ -12,7 +12,7 @@ const ListeningTranscripts={
    for(const line of text.split('\n').map(l=>l.trim()).filter(Boolean)){const m=line.match(/^(\d{1,3}:\d{2}(?::\d{2})?)(?:\s+(.+))?$/);if(m){current={start:time(m[1]),text:m[2]||''};cues.push(current);}else if(current)current.text+=(current.text?' ':'')+line;else throw Error('Bản chép lời cần có mốc như 0:10 trước mỗi đoạn.');}
    for(let i=0;i<cues.length;i++)cues[i].end=cues[i+1]?.start??Number(duration);
   }
-  if(!cues.length||cues.length>1500)throw Error('Cần từ 1 đến 1500 đoạn phụ đề.');
+  if(!cues.length||cues.length>10000)throw Error('Cần từ 1 đến 10000 đoạn phụ đề.');
   if(cues.some((c,i)=>!c.text||!Number.isFinite(c.start)||!Number.isFinite(c.end)||c.start<0||c.end<=c.start||(i&&c.start<cues[i-1].start)))throw Error('Kiểm tra thứ tự mốc, nội dung và thời điểm kết thúc video; chưa thay phụ đề cũ.');
   return cues;
  },
@@ -55,7 +55,7 @@ const ListeningTranscripts={
       let result;for(let attempt=0;attempt<3;attempt++){try{result=await transcribe(v.youtubeId,start,end);break;}catch(e){if(!(e.status===429||e.data?.retryable)||attempt===2)throw e;for(let remaining=30;remaining>0;remaining--){if(paused||!current(id))throw Error('Đã tạm dừng.');states.set(id,'AI tạm bận · tự thử tiếp sau '+remaining+' giây · giữ tới giây '+start);changed();await sleep(1000);}}}v=current(id);if(!v)return;if(v.cues?.length&&v.transcriptSource!=='ai')break;
       if(result.start!==start||result.end!==end||!Array.isArray(result.cues)||!result.cues.every(c=>valid(c)&&c.start>=start&&c.end<=end)||(!result.cues.length&&result.status!=='no_speech'))throw Error('AI chưa trả đoạn hợp lệ; giữ tiến độ để thử tiếp.');
       const merged=[...(v.cues||[]),...result.cues].sort((a,b)=>a.start-b.start).filter((c,i,a)=>!i||c.start!==a[i-1].start||c.text!==a[i-1].text);
-      if(merged.length>1500)throw Error('Vượt 1500 câu; bản đã lưu được giữ nguyên.');
+      if(merged.length>10000)throw Error('Vượt 10000 câu; bản đã lưu được giữ nguyên.');
       v.cues=merged;v.transcriptSource='ai';v.processedUntil=end;v.transcriptComplete=end>=total;
       await saveTranscript(v,owner);if(!current(id))return;start=end;
       states.set(id,'Đã lưu '+Math.ceil(end)+' / '+Math.ceil(total)+' giây · '+v.cues.length+' câu AI');changed();
