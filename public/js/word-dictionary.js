@@ -27,7 +27,7 @@ const WordDictionary={
    if(word.surface&&PersonalVocabulary.key(word.surface)!==PersonalVocabulary.key(word.de))body.append(el('small','Trong câu: '+word.surface));
    body.append(el('p',word.vi));if(word.type)body.append(el('small',word.type));if(word.forms){const forms=el('details');forms.append(el('summary','Dạng từ'),el('p',word.forms));body.append(forms);}
    const read=el('button','🔊 Nghe từ');read.type='button';read.onclick=()=>GermanSpeech.read(word.de);body.append(read);
-   if(context.sentence){body.append(el('h4','Câu trong video'),el('p',context.sentence));}
+   if(context.sentence){body.append(el('h4',context.sourceLabel||'Câu trong video'),el('p',context.sentence));}
    if(word.example){body.append(el('h4','Ví dụ'),el('p',word.example));if(word.exampleVi)body.append(el('small',word.exampleVi));}
    for(const [key,label]of [['synonyms','Từ liên quan'],['phrases','Cụm từ']]){if(!Array.isArray(word[key])||!word[key].length)continue;body.append(el('h4',label));for(const item of word[key])if(PersonalVocabulary.key(item.de)!==PersonalVocabulary.key(word.de))body.append(el('p',item.de+' — '+(item.vi||'')));}
    if(stored){const link=el('a','Mở bộ từ trong Wortschatz →');link.href='wortschatz.html#'+new URLSearchParams({catalog:'mine',deck:stored.deckId||''});body.append(link);return;}

@@ -1,0 +1,304 @@
+{
+  "items": [
+    {
+      "question": "Können Sie sich bitte kurz vorstellen?",
+      "de": "Guten Tag. Ich komme aus Vietnam und habe bereits erste Erfahrungen im Hotel gesammelt. Ich arbeite sorgfältig und lerne gern dazu.",
+      "vi": "Xin chào. Tôi đến từ Việt Nam và đã có kinh nghiệm ban đầu tại khách sạn. Tôi làm việc cẩn thận và thích học hỏi."
+    },
+    {
+      "question": "Wie heißen Sie?",
+      "de": "Mein Name ist [Name]. Sie können mich gern [Rufname] nennen.",
+      "vi": "Tên tôi là [tên]. Anh/chị có thể gọi tôi là [tên gọi]."
+    },
+    {
+      "question": "Wie alt sind Sie?",
+      "de": "Ich bin [Alter] Jahre alt.",
+      "vi": "Tôi [tuổi] tuổi."
+    },
+    {
+      "question": "Woher kommen Sie?",
+      "de": "Ich komme aus Vietnam. Dort habe ich auch studiert.",
+      "vi": "Tôi đến từ Việt Nam. Tôi cũng đã học đại học ở đó."
+    },
+    {
+      "question": "Was haben Sie studiert?",
+      "de": "Ich habe [Studienfach] studiert. Dabei habe ich gelernt, genau und systematisch zu arbeiten.",
+      "vi": "Tôi đã học [ngành học]. Qua đó, tôi học được cách làm việc chính xác và có hệ thống."
+    },
+    {
+      "question": "Warum möchten Sie im Housekeeping arbeiten?",
+      "de": "Mir gefällt praktische Arbeit. Ich finde es schön, wenn Gäste ein sauberes und ordentliches Zimmer bekommen.",
+      "vi": "Tôi thích công việc thực hành. Tôi thấy vui khi khách nhận được một căn phòng sạch sẽ và gọn gàng."
+    },
+    {
+      "question": "Warum möchten Sie in Deutschland arbeiten?",
+      "de": "Ich möchte mich beruflich weiterentwickeln und die deutsche Sprache im Alltag besser lernen.",
+      "vi": "Tôi muốn phát triển nghề nghiệp và học tiếng Đức tốt hơn trong cuộc sống hằng ngày."
+    },
+    {
+      "question": "Haben Sie schon in einem Hotel gearbeitet?",
+      "de": "Ja, ich habe während meines Studiums in einem Hotel mitgeholfen. Dort habe ich die Arbeit im Housekeeping kennengelernt.",
+      "vi": "Có, tôi đã phụ việc tại một khách sạn khi học đại học. Ở đó, tôi đã làm quen với công việc buồng phòng."
+    },
+    {
+      "question": "Wie lange haben Sie im Hotel gearbeitet?",
+      "de": "Ich habe ungefähr [Dauer] dort gearbeitet. In dieser Zeit habe ich erste praktische Erfahrungen gesammelt.",
+      "vi": "Tôi đã làm ở đó khoảng [thời gian]. Trong khoảng thời gian ấy, tôi đã tích lũy kinh nghiệm thực tế ban đầu."
+    },
+    {
+      "question": "Welche Aufgaben hatten Sie im Hotel?",
+      "de": "Zu meinen Aufgaben gehörten das Reinigen der Zimmer und die Vorbereitung für die nächsten Gäste.",
+      "vi": "Nhiệm vụ của tôi gồm dọn phòng và chuẩn bị phòng cho những vị khách tiếp theo."
+    },
+    {
+      "question": "Was gehört Ihrer Meinung nach zur Arbeit im Housekeeping?",
+      "de": "Dazu gehören saubere Zimmer und Badezimmer, frische Wäsche und eine sorgfältige Abschlusskontrolle.",
+      "vi": "Công việc gồm phòng ngủ và phòng tắm sạch sẽ, đồ vải sạch và kiểm tra kỹ khi hoàn thành."
+    },
+    {
+      "question": "Warum haben Sie sich bei unserem Hotel beworben?",
+      "de": "Die Stelle passt zu meinen bisherigen Erfahrungen. Ich möchte Ihr Team unterstützen und Ihre Arbeitsabläufe kennenlernen.",
+      "vi": "Vị trí này phù hợp với kinh nghiệm trước đây của tôi. Tôi muốn hỗ trợ đội ngũ và tìm hiểu quy trình làm việc của khách sạn."
+    },
+    {
+      "question": "Was wissen Sie über unser Hotel?",
+      "de": "Ich habe mich auf Ihrer Website informiert. Besonders interessant finde ich [konkrete Information]. Darüber würde ich gern mehr erfahren.",
+      "vi": "Tôi đã tìm hiểu trên website của khách sạn. Tôi đặc biệt thấy [thông tin cụ thể] thú vị. Tôi muốn tìm hiểu thêm về điều đó."
+    },
+    {
+      "question": "Warum sollten wir Sie einstellen?",
+      "de": "Ich arbeite gewissenhaft, halte mich an Absprachen und bin bereit, mich gründlich einarbeiten zu lassen.",
+      "vi": "Tôi làm việc có trách nhiệm, tuân thủ thỏa thuận và sẵn sàng được hướng dẫn công việc kỹ lưỡng."
+    },
+    {
+      "question": "Was sind Ihre Stärken?",
+      "de": "Ich bin pünktlich und achte auf Details. Wenn ich eine Aufgabe übernehme, erledige ich sie zuverlässig.",
+      "vi": "Tôi đúng giờ và chú ý chi tiết. Khi nhận một nhiệm vụ, tôi hoàn thành một cách đáng tin cậy."
+    },
+    {
+      "question": "Was sind Ihre Schwächen?",
+      "de": "Bei neuen Aufgaben bin ich anfangs manchmal etwas unsicher. Ich frage dann nach und werde mit der Übung sicherer.",
+      "vi": "Với nhiệm vụ mới, lúc đầu đôi khi tôi hơi thiếu tự tin. Khi đó tôi hỏi lại và dần tự tin hơn qua luyện tập."
+    },
+    {
+      "question": "Arbeiten Sie lieber allein oder im Team?",
+      "de": "Beides ist für mich in Ordnung. Ich kann Aufgaben allein erledigen und spreche mich bei Bedarf mit dem Team ab.",
+      "vi": "Cả hai đều phù hợp với tôi. Tôi có thể tự làm việc và trao đổi với nhóm khi cần."
+    },
+    {
+      "question": "Wie gehen Sie mit Stress um?",
+      "de": "Ich ordne zuerst meine Aufgaben und konzentriere mich auf das Wesentliche. Bei Zeitproblemen spreche ich früh mit der Teamleitung.",
+      "vi": "Trước tiên tôi sắp xếp các nhiệm vụ và tập trung vào việc chính. Nếu gặp khó khăn về thời gian, tôi trao đổi sớm với trưởng nhóm."
+    },
+    {
+      "question": "Können Sie schnell arbeiten?",
+      "de": "Ich arbeite zügig und mit einem festen Ablauf. Dabei möchte ich die Qualitätsstandards immer einhalten.",
+      "vi": "Tôi làm việc nhanh gọn theo quy trình cố định. Đồng thời tôi luôn muốn giữ đúng tiêu chuẩn chất lượng."
+    },
+    {
+      "question": "Was machen Sie, wenn Sie eine Aufgabe nicht verstehen?",
+      "de": "Ich bitte darum, mir die Aufgabe noch einmal zu zeigen. Danach wiederhole ich kurz, was ich verstanden habe.",
+      "vi": "Tôi xin được chỉ lại nhiệm vụ một lần nữa. Sau đó tôi nhắc ngắn gọn điều mình đã hiểu."
+    },
+    {
+      "question": "Was machen Sie, wenn ein Gast sich über die Sauberkeit beschwert?",
+      "de": "Ich nehme die Beschwerde ernst und frage nach, was genau nicht sauber ist. Dann informiere ich die zuständige Person und helfe bei der Lösung.",
+      "vi": "Tôi coi trọng lời phàn nàn và hỏi cụ thể chỗ nào chưa sạch. Sau đó tôi báo người phụ trách và hỗ trợ giải quyết."
+    },
+    {
+      "question": "Was machen Sie, wenn Sie Geld oder Wertsachen im Zimmer finden?",
+      "de": "Ich dokumentiere den Fund nach den Hotelregeln und übergebe ihn der zuständigen Person. Ich behalte nichts für mich.",
+      "vi": "Tôi ghi nhận đồ tìm thấy theo quy định khách sạn và giao cho người phụ trách. Tôi không giữ gì cho riêng mình."
+    },
+    {
+      "question": "Was machen Sie, wenn Sie etwas im Zimmer beschädigen?",
+      "de": "Ich sage sofort Bescheid und versuche nicht, den Schaden zu verbergen. Gemeinsam klären wir die nächsten Schritte.",
+      "vi": "Tôi báo ngay và không cố che giấu thiệt hại. Chúng tôi cùng làm rõ các bước tiếp theo."
+    },
+    {
+      "question": "Was machen Sie, wenn der Gast noch im Zimmer ist?",
+      "de": "Ich frage höflich, wann die Reinigung für den Gast passt. Ohne Erlaubnis gehe ich nicht einfach ins Zimmer.",
+      "vi": "Tôi lịch sự hỏi lúc nào dọn phòng thì thuận tiện cho khách. Tôi không tự ý vào phòng khi chưa được phép."
+    },
+    {
+      "question": "Was machen Sie, wenn Sie viele Zimmer reinigen müssen?",
+      "de": "Ich halte mich an den Reinigungsplan und prüfe, welche Zimmer zuerst gebraucht werden. Wenn die Zeit nicht reicht, melde ich das rechtzeitig.",
+      "vi": "Tôi làm theo kế hoạch dọn phòng và kiểm tra phòng nào cần trước. Nếu không đủ thời gian, tôi báo kịp thời."
+    },
+    {
+      "question": "Ist körperliche Arbeit für Sie in Ordnung?",
+      "de": "Ja, grundsätzlich schon. Mir ist wichtig, die richtigen Arbeitstechniken zu lernen und auf meine Gesundheit zu achten.",
+      "vi": "Có, về cơ bản là được. Điều quan trọng với tôi là học đúng kỹ thuật làm việc và chú ý sức khỏe."
+    },
+    {
+      "question": "Können Sie den ganzen Tag auf den Beinen sein?",
+      "de": "Ich bin bereit, viel zu stehen und zu laufen. Ich möchte mich an die Abläufe gewöhnen und die vorgesehenen Pausen nutzen.",
+      "vi": "Tôi sẵn sàng đứng và đi lại nhiều. Tôi muốn làm quen với quy trình và sử dụng các giờ nghỉ được quy định."
+    },
+    {
+      "question": "Können Sie auch am Wochenende arbeiten?",
+      "de": "Wochenendarbeit ist für mich grundsätzlich möglich. Mir hilft ein rechtzeitig geplanter Dienstplan.",
+      "vi": "Về cơ bản tôi có thể làm cuối tuần. Lịch làm việc được lên trước sẽ giúp ích cho tôi."
+    },
+    {
+      "question": "Können Sie im Schichtdienst arbeiten?",
+      "de": "Schichtarbeit kann ich mir vorstellen. Welche Schichten gibt es bei Ihnen, und wie früh wird der Dienstplan bekannt gegeben?",
+      "vi": "Tôi có thể cân nhắc làm theo ca. Khách sạn có những ca nào và lịch làm việc được thông báo trước bao lâu?"
+    },
+    {
+      "question": "Wie wichtig ist Sauberkeit für Sie?",
+      "de": "Ein sauberes Zimmer ist für mich die Grundlage für einen angenehmen Aufenthalt. Deshalb achte ich auch auf kleine Details.",
+      "vi": "Với tôi, phòng sạch là nền tảng cho một kỳ lưu trú dễ chịu. Vì vậy tôi chú ý cả các chi tiết nhỏ."
+    },
+    {
+      "question": "Wie kontrollieren Sie, ob ein Zimmer sauber ist?",
+      "de": "Ich gehe eine Checkliste durch und schaue auch auf leicht übersehene Stellen, zum Beispiel unter dem Bett oder hinter der Tür.",
+      "vi": "Tôi kiểm tra theo danh sách và xem cả các chỗ dễ bỏ sót, chẳng hạn dưới giường hoặc sau cửa."
+    },
+    {
+      "question": "Was ist wichtiger: schnell oder sorgfältig arbeiten?",
+      "de": "Die Qualität muss stimmen. Mit einer guten Reihenfolge kann man sorgfältig und trotzdem effizient arbeiten.",
+      "vi": "Chất lượng phải được bảo đảm. Với trình tự hợp lý, người ta có thể làm cẩn thận mà vẫn hiệu quả."
+    },
+    {
+      "question": "Wie reagieren Sie auf Kritik?",
+      "de": "Ich frage nach, was ich konkret verbessern kann, und setze den Hinweis bei der nächsten Aufgabe um.",
+      "vi": "Tôi hỏi cụ thể mình có thể cải thiện điều gì và áp dụng góp ý vào nhiệm vụ tiếp theo."
+    },
+    {
+      "question": "Was bedeutet guter Service für Sie?",
+      "de": "Für mich bedeutet guter Service, aufmerksam zu sein und freundlich zu helfen. Auch Diskretion ist im Hotel sehr wichtig.",
+      "vi": "Với tôi, dịch vụ tốt là chu đáo và giúp đỡ thân thiện. Sự kín đáo cũng rất quan trọng trong khách sạn."
+    },
+    {
+      "question": "Wie gehen Sie mit schwierigen Gästen um?",
+      "de": "Ich höre zu und diskutiere nicht mit dem Gast. Wenn nötig, hole ich Unterstützung von der zuständigen Person.",
+      "vi": "Tôi lắng nghe và không tranh cãi với khách. Nếu cần, tôi nhờ người phụ trách hỗ trợ."
+    },
+    {
+      "question": "Können Sie Anweisungen befolgen?",
+      "de": "Ja. Wenn mehrere Schritte nötig sind, mache ich mir kurze Notizen. Bei Unklarheiten frage ich zuerst nach.",
+      "vi": "Có. Nếu cần nhiều bước, tôi ghi chú ngắn. Khi chưa rõ, tôi hỏi lại trước."
+    },
+    {
+      "question": "Wie lernen Sie neue Aufgaben?",
+      "de": "Ich lasse mir die Aufgabe zeigen und mache sie anschließend selbst. Danach bitte ich um eine kurze Rückmeldung.",
+      "vi": "Tôi xin được chỉ cách làm rồi tự thực hiện. Sau đó tôi xin góp ý ngắn."
+    },
+    {
+      "question": "Wie gut sprechen Sie Deutsch?",
+      "de": "Ich kann mich über vertraute Themen verständigen. Bei schwierigen Fragen bitte ich manchmal um eine Wiederholung.",
+      "vi": "Tôi có thể giao tiếp về các chủ đề quen thuộc. Với câu hỏi khó, đôi khi tôi xin nhắc lại."
+    },
+    {
+      "question": "Können Sie deutsche Arbeitsanweisungen verstehen?",
+      "de": "Kurze und klare Anweisungen verstehe ich meistens. Neue Fachwörter schreibe ich auf und lerne sie.",
+      "vi": "Tôi thường hiểu các chỉ dẫn ngắn và rõ ràng. Tôi ghi lại các từ chuyên môn mới để học."
+    },
+    {
+      "question": "Was tun Sie, wenn Sie einen Kollegen nicht verstehen?",
+      "de": "Ich sage freundlich: Könntest du das bitte noch einmal erklären? So vermeiden wir Missverständnisse.",
+      "vi": "Tôi lịch sự nói: Bạn có thể giải thích lại một lần nữa không? Như vậy chúng tôi tránh hiểu nhầm."
+    },
+    {
+      "question": "Was machen Sie in Ihrer Freizeit?",
+      "de": "In meiner Freizeit beschäftige ich mich gern mit [Hobby]. Dabei kann ich gut abschalten.",
+      "vi": "Lúc rảnh tôi thích [sở thích]. Khi làm việc đó tôi có thể thư giãn tốt."
+    },
+    {
+      "question": "Welche Hobbys haben Sie?",
+      "de": "Ich interessiere mich für [Hobby eins] und [Hobby zwei]. Das ist für mich ein guter Ausgleich zur Arbeit.",
+      "vi": "Tôi thích [sở thích thứ nhất] và [sở thích thứ hai]. Đó là cách cân bằng tốt với công việc đối với tôi."
+    },
+    {
+      "question": "Was haben Sie während Ihres Studiums gemacht?",
+      "de": "Neben dem Studium habe ich praktische Erfahrungen gesammelt, zum Beispiel bei meiner Arbeit im Hotel.",
+      "vi": "Ngoài việc học, tôi đã tích lũy kinh nghiệm thực tế, chẳng hạn qua công việc tại khách sạn."
+    },
+    {
+      "question": "Warum arbeiten Sie nicht in Ihrem Studienfach?",
+      "de": "Durch meine Arbeit im Hotel habe ich Interesse an diesem Bereich entwickelt. Ich möchte diese Erfahrung jetzt weiter ausbauen.",
+      "vi": "Qua công việc ở khách sạn, tôi đã thấy hứng thú với lĩnh vực này. Bây giờ tôi muốn phát triển thêm kinh nghiệm đó."
+    },
+    {
+      "question": "Was erwarten Sie von dieser Stelle?",
+      "de": "Ich wünsche mir eine klare Einarbeitung und eine gute Zusammenarbeit. Dafür möchte ich mich engagiert ins Team einbringen.",
+      "vi": "Tôi mong được hướng dẫn công việc rõ ràng và hợp tác tốt. Đổi lại, tôi muốn đóng góp tích cực cho đội ngũ."
+    },
+    {
+      "question": "Wie lange möchten Sie bei uns arbeiten?",
+      "de": "Ich wünsche mir eine langfristige Zusammenarbeit, wenn die Aufgaben und die Bedingungen für beide Seiten passen.",
+      "vi": "Tôi mong được hợp tác lâu dài nếu nhiệm vụ và điều kiện phù hợp với cả hai bên."
+    },
+    {
+      "question": "Wie stellen Sie sich das Leben in Deutschland vor?",
+      "de": "Ich rechne damit, dass ich mich an vieles gewöhnen muss. Ich möchte offen bleiben, Deutsch üben und mir Schritt für Schritt einen Alltag aufbauen.",
+      "vi": "Tôi nghĩ mình sẽ phải làm quen với nhiều điều. Tôi muốn giữ thái độ cởi mở, luyện tiếng Đức và từng bước xây dựng cuộc sống hằng ngày."
+    },
+    {
+      "question": "Was machen Sie, wenn Sie Heimweh haben?",
+      "de": "Ich würde regelmäßig mit meiner Familie telefonieren und vor Ort neue Kontakte knüpfen. Ein geregelter Alltag würde mir auch helfen.",
+      "vi": "Tôi sẽ thường xuyên gọi điện cho gia đình và làm quen với người mới tại nơi sống. Một nếp sống đều đặn cũng sẽ giúp tôi."
+    },
+    {
+      "question": "Sind Sie bereit, neue Dinge zu lernen?",
+      "de": "Ja, gern. Ich nehme Hinweise an und übe neue Abläufe, bis ich sie sicher beherrsche.",
+      "vi": "Có, tôi rất sẵn lòng. Tôi tiếp thu hướng dẫn và luyện quy trình mới cho đến khi làm vững."
+    },
+    {
+      "question": "Was möchten Sie in fünf Jahren erreichen?",
+      "de": "Ich möchte sicher Deutsch sprechen und mehr Verantwortung übernehmen können. Zuerst möchte ich meine Aufgaben gut beherrschen.",
+      "vi": "Tôi muốn nói tiếng Đức tự tin và có thể đảm nhận thêm trách nhiệm. Trước hết, tôi muốn thành thạo công việc của mình."
+    },
+    {
+      "question": "Haben Sie einen Führerschein?",
+      "de": "Zurzeit habe ich keinen Führerschein. Ist ein Führerschein für diese Stelle notwendig?",
+      "vi": "Hiện tại tôi chưa có bằng lái xe. Vị trí này có cần bằng lái xe không?"
+    },
+    {
+      "question": "Wann können Sie anfangen?",
+      "de": "Ich könnte voraussichtlich ab [Datum] anfangen. Den Termin möchte ich nach Klärung aller Voraussetzungen bestätigen.",
+      "vi": "Dự kiến tôi có thể bắt đầu từ [ngày]. Tôi muốn xác nhận thời điểm sau khi làm rõ mọi điều kiện cần thiết."
+    },
+    {
+      "question": "Haben Sie Fragen an uns?",
+      "de": "Ja, gern. Was ist Ihnen bei neuen Mitarbeitern besonders wichtig, und wie läuft die erste Arbeitswoche ab?",
+      "vi": "Có, tôi muốn hỏi. Khách sạn đặc biệt coi trọng điều gì ở nhân viên mới và tuần làm việc đầu tiên diễn ra như thế nào?"
+    },
+    {
+      "question": "Gibt es Unterstützung bei der Unterkunft?",
+      "de": "Bieten Sie Personalzimmer an? Falls ja: Wie hoch ist die Miete, und welche Kosten kommen noch dazu?",
+      "vi": "Khách sạn có phòng ở cho nhân viên không? Nếu có, tiền thuê bao nhiêu và còn những chi phí nào khác?"
+    },
+    {
+      "question": "Wie viele Zimmer muss man pro Schicht reinigen?",
+      "de": "Wie viele Abreisezimmer und Bleibezimmer sind pro Schicht üblich? Wird die Arbeitsmenge an die Zimmergröße angepasst?",
+      "vi": "Thông thường mỗi ca có bao nhiêu phòng khách trả và phòng khách đang ở? Khối lượng công việc có được điều chỉnh theo diện tích phòng không?"
+    },
+    {
+      "question": "Wie sieht die Einarbeitung aus?",
+      "de": "Bekomme ich am Anfang eine feste Ansprechperson? Und gibt es eine Checkliste für die Reinigung?",
+      "vi": "Lúc đầu tôi có một người phụ trách hướng dẫn cố định không? Có danh sách kiểm tra việc dọn phòng không?"
+    },
+    {
+      "question": "Wie sind die Arbeitszeiten und Pausen geregelt?",
+      "de": "Wann beginnt die Frühschicht normalerweise? Wie werden Pausen und freie Tage geplant?",
+      "vi": "Ca sáng thường bắt đầu lúc nào? Giờ nghỉ và ngày nghỉ được sắp xếp ra sao?"
+    },
+    {
+      "question": "Wie hoch ist das Gehalt?",
+      "de": "Welches monatliche Bruttogehalt ist für die Stelle vorgesehen? Wie werden Überstunden erfasst und ausgeglichen?",
+      "vi": "Mức lương tháng trước thuế dự kiến cho vị trí này là bao nhiêu? Giờ làm thêm được ghi nhận và bù như thế nào?"
+    },
+    {
+      "question": "Was passiert, wenn ich krank bin?",
+      "de": "Wie läuft die Krankmeldung bei Ihnen ab? Bis wann muss ich mich melden, und bei wem?",
+      "vi": "Quy trình báo ốm ở khách sạn như thế nào? Tôi phải báo trước thời điểm nào và báo cho ai?"
+    },
+    {
+      "question": "Haben Sie noch etwas hinzuzufügen?",
+      "de": "Ich möchte noch sagen, dass ich motiviert bin und gern dazulerne. Vielen Dank für Ihre Zeit. Ich freue mich auf Ihre Rückmeldung.",
+      "vi": "Tôi muốn nói thêm rằng tôi có động lực và thích học hỏi. Cảm ơn anh/chị đã dành thời gian. Tôi mong nhận được phản hồi."
+    }
+  ]
+}

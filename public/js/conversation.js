@@ -48,12 +48,12 @@ function renderTutorCollections(){
  renderTutorReference();
 }
 function renderTutorReference(){
- const box=$('#tutor-reference');if(!box)return;const c=tutorCollection();box.hidden=!c;$('#tutor-topic').disabled=!!c;
- box.innerHTML=c?'<summary>Xem câu hỏi và đáp án Đức–Việt</summary><p class="help-text">Câu trả lời là mẫu. Hãy dùng thông tin đúng với bạn.</p>'+c.items.map(q=>`<details><summary>${esc(q.number+'. '+q.question)}</summary><p>${esc(q.answerDe)}</p><p>${esc(q.answerVi)}</p></details>`).join('')+`<details><summary>Toàn bộ tài liệu và câu cứu nguy</summary><pre style="white-space:pre-wrap">${esc(c.source)}</pre></details>`:'';
+ $('#tutor-topic').disabled=!!tutorCollection();
+ if(typeof TutorLibrary!=='undefined')TutorLibrary.render();
 }
 function setupTutorCollections(){
  if(isSpeaking)return;
- const panel=document.createElement('div');panel.innerHTML='<label>Bộ luyện phỏng vấn<select id="tutor-collection"></select></label><details><summary>Thêm bộ phỏng vấn từ TXT</summary><label>Tên bộ<input id="tutor-collection-name" maxlength="100" value="Phỏng vấn buồng phòng"></label><label>File câu hỏi Đức–Việt<input id="tutor-collection-file" type="file" accept=".txt,text/plain"></label><p class="help-text">Lưu riêng trong tài khoản. File cần các mục đánh số, Trả lời và Nghĩa.</p><p id="tutor-import-status" role="status"></p></details><details id="tutor-reference" hidden></details>';
+ const panel=document.createElement('div');panel.id='tutor-import-panel';panel.innerHTML='<label>Bộ luyện phỏng vấn<select id="tutor-collection"></select></label><details><summary>Thêm bộ phỏng vấn từ TXT</summary><label>Tên bộ<input id="tutor-collection-name" maxlength="100" value="Phỏng vấn buồng phòng"></label><label>File câu hỏi Đức–Việt<input id="tutor-collection-file" type="file" accept=".txt,text/plain"></label><p class="help-text">Lưu riêng trong tài khoản. File cần các mục đánh số, Trả lời và Nghĩa.</p><p id="tutor-import-status" role="status"></p></details><details id="tutor-reference" hidden></details>';
  $('#new-conversation').before(panel);renderTutorCollections();
  $('#tutor-collection').onchange=()=>{renderTutorReference();loadConversation();};
  $('#tutor-collection-file').onchange=async e=>{
@@ -74,6 +74,7 @@ function setupTutorCollections(){
  };
 }
 setupTutorCollections();
+if(!isSpeaking&&typeof TutorLibrary!=='undefined')TutorLibrary.mount();
 
 document.addEventListener('authchange',()=>{renderTutorCollections();if(isSpeaking){speakingFolders();renderSpeakingExams();speakingOptions();}loadConversation();});document.addEventListener('languagechange',()=>{if(isSpeaking){renderSpeakingExams();speakingOptions();}renderChat();});loadConversation();
 
