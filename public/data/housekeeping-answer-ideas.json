@@ -12,8 +12,8 @@
     },
     {
       "question": "Wie alt sind Sie?",
-      "de": "Ich bin [Alter] Jahre alt.",
-      "vi": "Tôi [tuổi] tuổi."
+      "de": "Ich bin [Alter] und habe im [Monat] Geburtstag.",
+      "vi": "Tôi [tuổi] và sinh nhật của tôi vào tháng [tháng]."
     },
     {
       "question": "Woher kommen Sie?",

@@ -12,9 +12,9 @@ const TutorLibrary={
   $('#tutor-search').oninput=e=>{this.query=e.target.value;this.page=0;this.renderItems();};
   $('#tutor-prev').onclick=()=>{this.page=Math.max(0,this.page-1);this.renderItems();};$('#tutor-next').onclick=()=>{this.page++;this.renderItems();};
   if(!tutorCollection()&&tutorCollections().length)$('#tutor-collection').value=tutorCollections()[0].id;
-  this.render();
+  $('#tutor-topic').disabled=!!tutorCollection();this.render();
  },
- mode(chat){document.querySelector('.workspace').hidden=!chat;$('#tutor-reading').hidden=chat;$('#tutor-read-mode').setAttribute('aria-pressed',String(!chat));$('#tutor-chat-mode').setAttribute('aria-pressed',String(chat));},
+ mode(chat){$('#tutor-collection').closest('label').hidden=!chat;document.querySelector('.workspace').hidden=!chat;$('#tutor-reading').hidden=chat;$('#tutor-read-mode').setAttribute('aria-pressed',String(!chat));$('#tutor-chat-mode').setAttribute('aria-pressed',String(chat));},
  render(){
   if(!this.ready)return;
   const sets=$('#tutor-library-sets');sets.replaceChildren();
