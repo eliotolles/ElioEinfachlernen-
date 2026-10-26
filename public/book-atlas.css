@@ -1,0 +1,105 @@
+/* A working book, using Elio's existing palette, typefaces and artwork. */
+body.book-app.book-atlas{--atlas-rule:var(--line);--atlas-ink:var(--text)}
+body.book-app.book-atlas .book-shell{position:relative}
+body.book-app.book-atlas .book-shell>main{padding-top:22px!important}
+body.book-app.book-atlas .atlas-search-toggle{border:1px solid var(--line);background:transparent;color:var(--text);padding:9px 13px;border-radius:3px;font-size:.85rem;white-space:nowrap;min-height:42px}
+body.book-app.book-atlas a:focus-visible,body.book-app.book-atlas button:focus-visible,body.book-app.book-atlas input:focus-visible{outline:2px solid var(--accent,#276044);outline-offset:4px}
+body.book-app.book-atlas .book-contents{padding:36px clamp(18px,4vw,68px);border:1px solid var(--line);box-shadow:inset 7px 0 12px -11px var(--text),0 10px 30px #00000005;border-radius:2px 16px 16px 2px;overflow:visible}
+body.book-app.book-atlas .book-contents:before{inset:0;background-image:linear-gradient(90deg,transparent 49.8%,var(--line) 50%,transparent 50.2%);opacity:.2;mask-image:none;-webkit-mask-image:none;border-radius:inherit}
+body.book-app.book-atlas .book-contents:after{display:none}
+body.book-app.book-atlas .book-contents>h1{margin:5px 0 12px;font-size:clamp(2.6rem,5vw,4.2rem);letter-spacing:-.025em}
+body.book-app.book-atlas .atlas-toc-intro{max-width:650px;color:var(--muted);line-height:1.7;margin:0 0 26px}
+body.book-app.book-atlas .atlas-bookmark{display:flex;flex-wrap:wrap;gap:12px 22px;align-items:center;border-inline-start:3px solid var(--book-gold);padding:12px 18px;margin:0 0 24px;background:var(--soft);font-size:.85rem}
+body.book-app.book-atlas .atlas-bookmark[hidden]{display:none}
+body.book-app.book-atlas .atlas-bookmark>span{color:var(--muted);font-style:italic}
+body.book-app.book-atlas .atlas-bookmark a{color:var(--text);text-underline-offset:4px}
+body.book-app.book-atlas .atlas-toc-tools{display:grid;grid-template-columns:auto minmax(180px,480px);gap:8px 20px;align-items:center;padding:16px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+body.book-app.book-atlas .atlas-toc-tools label{font-size:.9rem;font-weight:500}
+body.book-app.book-atlas .atlas-toc-tools input,body.book-app.book-atlas .atlas-dialog input{width:100%;min-height:46px;border:1px solid var(--line);background:var(--card,var(--bg));color:var(--text);border-radius:3px;padding:10px 14px;font:inherit}
+body.book-app.book-atlas .atlas-toc-tools [role=status]{margin:0;grid-column:1/-1;color:var(--muted)}
+body.book-app.book-atlas .atlas-toc-tools [role=status]:empty{display:none}
+body.book-app.book-atlas .atlas-chapter-index{display:flex;flex-wrap:wrap;gap:10px 24px;padding:20px 0}
+body.book-app.book-atlas .atlas-chapter-index button{display:flex;gap:8px;align-items:center;font-size:.85rem;color:var(--muted);text-decoration:none;padding:6px 0;border-bottom:1px solid transparent}
+body.book-app.book-atlas .atlas-chapter-index button:hover{color:var(--text);border-color:var(--book-gold)}
+body.book-app.book-atlas .atlas-chapter-index span{color:var(--book-gold);font:italic 1.25rem Georgia,serif}
+body.book-app.book-atlas .book-contents .atlas-toc{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:30px clamp(28px,5vw,80px);width:100%;padding:0 0 20px}
+body.book-app.book-atlas .atlas-chapter{min-width:0;scroll-margin-top:22px}
+body.book-app.book-atlas .atlas-chapter>header{display:flex;align-items:flex-start;gap:15px;border-top:2px solid var(--book-gold,var(--line));padding:18px 0 15px}
+body.book-app.book-atlas .atlas-chapter>header>span{font:italic 2.3rem/1 Georgia,serif;color:var(--book-gold);padding-top:3px;min-width:35px}
+body.book-app.book-atlas .atlas-chapter h2{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(1.65rem,2.4vw,2.25rem);line-height:1.1;margin:0 0 8px!important;color:var(--text)}
+body.book-app.book-atlas .atlas-chapter header p{font-size:.85rem;color:var(--muted);line-height:1.5;margin:0}
+body.book-app.book-atlas .atlas-entry{display:flex;align-items:center;gap:15px;justify-content:space-between;padding:17px 0;color:var(--text);text-decoration:none;border-bottom:1px solid var(--line);min-height:78px;border-radius:0;background:transparent}
+body.book-app.book-atlas .atlas-entry-copy{min-width:0}
+body.book-app.book-atlas .atlas-entry strong{display:block;font-size:1.05rem;font-weight:600;line-height:1.5;overflow-wrap:anywhere}
+body.book-app.book-atlas .atlas-entry small{display:block;font-size:.85rem;color:var(--muted);line-height:1.65;margin-top:4px}
+body.book-app.book-atlas .atlas-entry-arrow{color:var(--book-gold);font-size:1.25rem;flex:none}
+body.book-app.book-atlas .atlas-entry:hover{background:var(--soft);box-shadow:8px 0 var(--soft),-8px 0 var(--soft)}
+body.book-app.book-atlas .atlas-entry[aria-current=page]{border-inline-start:3px solid var(--book-gold);padding-inline-start:12px}
+body.book-app.book-atlas .book-home-grid,body.book-app.book-atlas .studio-module-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 30px}
+body.book-app.book-atlas .book-home-grid .atlas-entry{min-height:112px}
+body.book-app.book-atlas .atlas-leaf-nav{border-bottom:1px solid var(--line);padding:0 0 16px;margin:0 0 26px}
+body.book-app.book-atlas .atlas-crumb{display:flex;flex-wrap:wrap;gap:7px 12px;align-items:baseline;font-size:.85rem;line-height:1.6;color:var(--muted)}
+body.book-app.book-atlas .atlas-crumb a{color:var(--text);text-underline-offset:4px}
+body.book-app.book-atlas .atlas-crumb strong{font-weight:500;color:var(--text)}
+body.book-app.book-atlas .atlas-leaf-tools{display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px;margin-top:14px;font-size:.8rem}
+body.book-app.book-atlas .atlas-leaf-tools>span{color:var(--muted);font-style:italic}
+body.book-app.book-atlas .atlas-leaf-tools a{color:var(--text);text-decoration:none;border-bottom:1px solid var(--line);padding:4px 0}
+body.book-app.book-atlas .atlas-leaf-tools button{margin-left:auto;border:0;background:transparent;color:var(--muted);padding:7px 0;font:inherit}
+body.book-app.book-atlas kbd{font:inherit;border:1px solid var(--line);padding:1px 7px;margin-left:7px;border-radius:2px}
+body.book-app.book-atlas .book-programs:not([hidden]){width:min(780px,calc(100vw - 32px));max-height:min(78dvh,780px);overflow:auto}
+body.book-app.book-atlas .atlas-program-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 30px;padding:12px 8px}
+body.book-app.book-atlas .atlas-program-links .atlas-entry{padding:10px 0;min-height:50px}
+body.book-app.book-atlas .atlas-program-links .atlas-entry small{display:none}
+body.book-app.book-atlas .atlas-program-links .atlas-chapter>header{gap:10px;padding:12px 0}
+body.book-app.book-atlas .atlas-program-links .atlas-chapter>header>span{font-size:1.5rem;min-width:24px}
+body.book-app.book-atlas .atlas-program-links h2{font-size:1.5rem}
+body.book-app.book-atlas .atlas-program-links header p{display:none}
+body.book-app.book-atlas .atlas-dialog{width:min(680px,calc(100vw - 32px));max-height:85dvh;padding:28px;border:1px solid var(--line);border-radius:3px 15px 15px 3px;background:var(--bg);color:var(--text);box-shadow:0 24px 80px #0004;overflow:auto}
+body.book-app.book-atlas .atlas-dialog::backdrop{background:#111a15a8;backdrop-filter:blur(3px)}
+body.book-app.book-atlas .atlas-dialog>header{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:20px}
+body.book-app.book-atlas .atlas-dialog h2{font:600 2rem/1.2 'Cormorant Garamond',Georgia,serif;margin:0}
+body.book-app.book-atlas .atlas-dialog [data-atlas-close]{border:0;background:transparent;color:var(--muted);padding:8px;font:inherit}
+body.book-app.book-atlas .atlas-dialog>label{display:block;font-size:.85rem;margin-bottom:8px}
+body.book-app.book-atlas .atlas-search-help,body.book-app.book-atlas .atlas-search-count{font-size:.8rem;line-height:1.65;color:var(--muted)}
+body.book-app.book-atlas .atlas-search-results{display:block}
+/* Chapter workspaces: original controls, editors and feedback stay mounted. */
+body.book-app.book-atlas main .workspace{gap:clamp(18px,2.4vw,36px);align-items:start}
+body.book-app.book-atlas .workspace>.studio-module-tools{position:sticky;top:16px;max-height:calc(100dvh - 36px);overflow:auto;border:1px solid var(--line);border-radius:2px;background:var(--card,var(--bg))}
+body.book-app.book-atlas .workspace>.studio-module-tools>summary{padding:14px 16px;font-size:.85rem;color:var(--muted);cursor:pointer;border-bottom:1px solid var(--line)}
+body.book-app.book-atlas .workspace>.studio-module-tools>aside{border:0;box-shadow:none;background:transparent}
+body.book-app.book-atlas :is(.lesson-panel,.exam-paper,.workspace>.panel,.workspace>div>.editor){border:1px solid var(--line);border-radius:2px 12px 12px 2px;box-shadow:inset 5px 0 9px -10px var(--text)}
+body.book-app.book-atlas :is(#feedback,#sim-feedback,#speaking-analysis):not(:empty){scroll-margin-top:24px;border-top:3px double var(--book-gold);padding-top:24px;margin-top:28px}
+@media(max-width:900px){body.book-app.book-atlas .book-home-grid,body.book-app.book-atlas .studio-module-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:700px){
+ body.book-app.book-atlas .atlas-search-toggle{font-size:0;width:38px;padding:8px;flex:none;border:0}
+ body.book-app.book-atlas .atlas-search-toggle:before{content:'⌕';font:26px/1 Georgia,serif}
+ body.book-app.book-atlas .book-contents{padding:24px 16px;border-radius:2px 10px 10px 2px;overflow:visible}
+ body.book-app.book-atlas .book-contents:before{display:none}
+ body.book-app.book-atlas .book-contents .atlas-toc{grid-template-columns:minmax(0,1fr);gap:26px}
+ body.book-app.book-atlas .atlas-toc-intro{font-size:.9rem;margin-bottom:20px}
+ body.book-app.book-atlas .atlas-toc-tools{grid-template-columns:minmax(0,1fr);gap:8px}
+ body.book-app.book-atlas .atlas-chapter-index{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 14px}
+ body.book-app.book-atlas .atlas-chapter-index button{font-size:.8rem;align-items:baseline}
+ body.book-app.book-atlas .atlas-chapter h2{font-size:1.85rem}
+ body.book-app.book-atlas .atlas-entry strong{font-size:1rem}
+ body.book-app.book-atlas .atlas-entry small{font-size:.85rem}
+ body.book-app.book-atlas .atlas-leaf-tools{gap:8px 14px}
+ body.book-app.book-atlas .atlas-leaf-tools>span{width:100%}
+ body.book-app.book-atlas .atlas-leaf-tools button{margin-left:0}
+ body.book-app.book-atlas .atlas-crumb{font-size:.8rem}
+ body.book-app.book-atlas .atlas-mobile-links{display:grid;grid-template-columns:minmax(0,1fr);gap:20px;padding:12px 4px}
+ body.book-app.book-atlas .atlas-mobile-links .atlas-chapter h2{font-size:1.6rem}
+ body.book-app.book-atlas .atlas-mobile-links .atlas-chapter header p{display:none}
+ body.book-app.book-atlas .atlas-mobile-links .atlas-entry{padding:11px 0;min-height:52px}
+ body.book-app.book-atlas .atlas-mobile-links .atlas-entry small{display:none}
+ body.book-app.book-atlas .atlas-mobile-links .atlas-chapter>header{padding:10px 0}
+ body.book-app.book-atlas .atlas-mobile-links .atlas-chapter>header>span{font-size:1.7rem}
+ body.book-app.book-atlas .studio-module-grid{gap:0 18px}
+ body.book-app.book-atlas .studio-module-grid .atlas-entry{min-height:110px}
+ body.book-app.book-atlas .studio-module-grid .atlas-entry strong{font-size:.95rem}
+ body.book-app.book-atlas .atlas-dialog{padding:20px}
+ body.book-app.book-atlas .workspace>.studio-module-tools{position:static;max-height:none;overflow:visible}
+}
+@media(max-width:380px){body.book-app.book-atlas .studio-module-grid{grid-template-columns:minmax(0,1fr)}}
+
+body.book-app.book-atlas .atlas-chapter-index button{background:transparent;border:0;border-bottom:1px solid transparent;font:inherit;text-align:left;cursor:pointer}
