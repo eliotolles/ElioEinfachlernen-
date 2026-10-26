@@ -55,3 +55,12 @@ test('a failed named OpenRouter model falls back to the free router with price-z
  reset();await config('auto-router','openrouter','general',{model:'broken/model:free'});const bodies=[];
  await mocked(async(url,options)=>{if(String(url).endsWith('/models'))return Response.json({data:[]});const body=JSON.parse(options.body);bodies.push(body);assert.deepEqual(body.provider.max_price,{prompt:0,completion:0,request:0,image:0});return response(url);},async()=>{const result=await runAI(env,user,{prompt:'Check',task:'general'});assert.equal(result.model,'openrouter/free');assert.equal(result.automaticModel,true);assert.equal(bodies.length,1);});
 });
+
+test('quick dictionary caps output while long writing keeps its full budget',async()=>{
+ reset();await config('text','groq','text');await mocked(async(url,options)=>{const body=JSON.parse(options.body);assert.equal(body.max_tokens,2000);return response(url);},()=>runAI(env,user,{prompt:'short entry',feature:'dictionary.lookup'}));
+ await mocked(async(url,options)=>{assert.equal(JSON.parse(options.body).max_tokens,8000);return response(url);},()=>runAI(env,user,{prompt:'long feedback',feature:'writing.feedback'}));
+});
+test('quick dictionary starts compatible support after five seconds',async t=>{
+ reset();await config('main','groq','text');await config('helper','openrouter','general');t.mock.timers.enable({apis:['setTimeout']});let entered;const started=new Promise(r=>entered=r);let calls=0;
+ try{await mocked(async(url,options)=>{calls++;if(String(url).includes('groq')){entered();return new Promise((resolve,reject)=>options.signal.addEventListener('abort',()=>reject(new DOMException('cancel','AbortError')),{once:true}));}return response(url);},async()=>{const pending=runAI(env,user,{prompt:'short entry',feature:'dictionary.lookup'});await started;t.mock.timers.tick(4999);assert.equal(calls,1);t.mock.timers.tick(1);assert.equal((await pending).assisted,true);assert.equal(calls,2);});}finally{t.mock.timers.reset();}
+});

@@ -18,4 +18,22 @@ test('IPA uses saved values, extracts German source, caches and rejects a change
  c.Auth.user='bob';await assert.rejects(c.dict.pronunciation({de:'anderes'},'alice'),/Tài khoản/);
 });
 
-test('fresh dictionary entries retain IPA when saved into personal vocabulary',async()=>{let prompt;const c=fixture();c.Auth.get=()=>[];c.App={evaluate:async text=>{prompt=text;return {de:'lernen',vi:'học',ipa:'/ˈlɛʁnən/'};}};vm.runInContext(fs.readFileSync('public/js/word-dictionary.js','utf8')+';globalThis.dict=WordDictionary;',c);const word=await c.dict.lookup('lerne',{sentence:'Ich lerne Deutsch.'},'alice');assert.match(prompt,/"ipa"/);assert.equal(word.ipa,'/ˈlɛʁnən/');const result=c.pv.save(word,{folder:'Giao tiếp',level:'A1'});assert.equal(result.word.ipa,word.ipa);});
+test('fresh dictionary entries retain IPA when saved into personal vocabulary',async()=>{let prompt;const c=fixture();c.Auth.get=()=>[];c.App={evaluate:async text=>{prompt=text;return {de:'lernen',vi:'học',ipa:'/ˈlɛʁnən/'};}};vm.runInContext(fs.readFileSync('public/js/word-dictionary.js','utf8')+';globalThis.dict=WordDictionary;',c);const word=await c.dict.lookup('lerne',{sentence:'Ich lerne Deutsch.'},'alice');assert.doesNotMatch(prompt,/standard German IPA/);assert.equal(word.ipa,'/ˈlɛʁnən/');const result=c.pv.save(word,{folder:'Giao tiếp',level:'A1'});assert.equal(result.word.ipa,word.ipa);});
+
+function speedFixture(store=new Map()){
+ let calls=0;const prompts=[];const c={structuredClone,Auth:{user:'alice',get:()=>[]},PersonalVocabulary:{key:s=>s.toLowerCase()},AccountCache:{read:async(k,f)=>structuredClone(store.get(k)??f),write:async(k,v)=>store.set(k,structuredClone(v))},App:{evaluate:async(p,o)=>{calls++;prompts.push({p,o});await Promise.resolve();return {de:'lernen',vi:'học',type:'Verb'};}},document:{addEventListener(){}}};vm.createContext(c);vm.runInContext(fs.readFileSync('public/js/word-dictionary.js','utf8')+';globalThis.dict=WordDictionary;',c);return {c,store,prompts,calls:()=>calls};
+}
+test('dictionary coalesces clicks, survives reload and keeps contexts and accounts separate',async()=>{
+ const f=speedFixture(),ctx={sentence:'Ich lerne.'};const [a,b]=await Promise.all([f.c.dict.lookup('lerne',ctx,'alice'),f.c.dict.lookup('lerne',ctx,'alice')]);assert.equal(f.calls(),1);a.vi='changed';assert.equal(b.vi,'học');assert.equal((await f.c.dict.lookup('lerne',ctx,'alice')).vi,'học');
+ const reloaded=speedFixture(f.store);assert.equal((await reloaded.c.dict.lookup('lerne',ctx,'alice')).vi,'học');assert.equal(reloaded.calls(),0);
+ await reloaded.c.dict.lookup('lerne',{sentence:'Ich lerne heute.'},'alice');assert.equal(reloaded.calls(),1);
+ reloaded.c.Auth.user='bob';await reloaded.c.dict.lookup('lerne',ctx,'bob');assert.equal(reloaded.calls(),2);await assert.rejects(reloaded.c.dict.lookup('lerne',ctx,'alice'),/Tài khoản/);
+});
+test('dictionary cached hits expire, different simultaneous words both persist, details are explicit',async()=>{
+ const f=speedFixture();await Promise.all(['lerne','lernen'].map(t=>f.c.dict.lookup(t,{sentence:'Ich lerne.'},'alice')));assert.equal(f.store.get('elio:alice:dictionary-v2').length,2);
+ await f.c.dict.lookup('lerne',{sentence:'Ich lerne.',details:true},'alice');assert.equal(f.calls(),3);assert.equal(f.prompts[0].o.feature,'dictionary.lookup');assert.equal(f.prompts[2].o.feature,'vocabulary.enrich');
+ const rows=f.store.get('elio:alice:dictionary-v2');rows.forEach(r=>r.until=0);const again=speedFixture(f.store);await again.c.dict.lookup('lerne',{sentence:'Ich lerne.'},'alice');assert.equal(again.calls(),1);
+});
+test('dictionary failed responses are never cached and can be retried',async()=>{
+ const f=speedFixture();f.c.App.evaluate=async()=>{throw Error('offline')};await assert.rejects(f.c.dict.lookup('lerne',{},'alice'),/offline/);assert.equal(f.c.dict.pending.size,0);assert.equal(f.store.size,0);f.c.App.evaluate=async()=>({de:'lernen',vi:'học'});assert.equal((await f.c.dict.lookup('lerne',{},'alice')).vi,'học');
+});
