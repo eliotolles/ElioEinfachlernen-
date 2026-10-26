@@ -315,14 +315,22 @@ function youtubeCaptionPage(html,id){
  if(!player&&/(?:<form[^>]+action=["'][^"']*consent\.|<title>\s*Before you continue|<title>\s*Bevor Sie)/i.test(html))return {code:'CAPTIONS_CONSENT',reason:'YouTube trả trang xác nhận quyền riêng tư thay vì trang video. Máy chủ không tự vượt bước xác nhận.'};
  return {code:player?'CAPTIONS_TRACKS_MISSING':'CAPTIONS_PAGE_FORMAT',reason:player?'Dữ liệu video YouTube không chứa danh sách CC có thể tải. CC trong trình phát vẫn có thể hoạt động.':'Không nhận diện được dữ liệu video trong trang YouTube trả về. Chưa thể kết luận video không có CC.'};
 }
-const transcriptServiceCache=new Map();let transcriptServiceWaitUntil=0;
+const transcriptServiceCache=new Map();let transcriptServiceWaitUntil=0,transcriptServiceFailure=null;
 async function serviceGermanCaptions(env,id){
- if(transcriptServiceWaitUntil>Date.now())return null;
  const cached=transcriptServiceCache.get(id);if(cached&&cached.until>Date.now())return cached.value;
+ if(transcriptServiceWaitUntil>Date.now())return transcriptServiceFailure;
  try{
   const configured=(await sql(env,"SELECT value FROM app_config WHERE name='transcriptSecret'")).rows[0];const key=configured?await decrypt(env,configured.value):env.TRANSCRIPT_API_KEY;
   const response=await fetch('https://api.freetranscriptapi.com/v1/transcript?'+new URLSearchParams({video_url:id,lang:'de'}),{headers:key?{Authorization:'Bearer '+key}:{},redirect:'manual',signal:AbortSignal.timeout(45000)});
-  if(response.status===429){const raw=response.headers.get('Retry-After'),seconds=Number(raw);transcriptServiceWaitUntil=Date.now()+Math.min(86400,Math.max(60,Number.isFinite(seconds)&&seconds>0?seconds:3600))*1000;return null;}
+  if([401,402,429].includes(response.status)){
+   let detail;try{detail=await response.json();}catch{}
+   const code=detail?.error?.code;
+   const reasons={anonymous_daily_cap_exceeded:'FreeTranscriptAPI đã hết hạn mức miễn phí dùng chung toàn dịch vụ trong ngày UTC; đây không phải lượt sử dụng riêng của bạn.',rate_limit_exceeded:'FreeTranscriptAPI đang giới hạn theo IP máy chủ dùng chung; đây không phải hạn mức ngày của bạn.',insufficient_credits:'Tài khoản FreeTranscriptAPI đã hết credit; credit không tự cấp lại mỗi ngày.',unauthorized:'FreeTranscriptAPI từ chối API key đã cấu hình.'};
+   const raw=response.headers.get('Retry-After'),seconds=Number(raw),reset=Number(response.headers.get('X-RateLimit-Reset'));
+   const wait=Number.isFinite(seconds)&&seconds>0?seconds:reset>Date.now()/1000?reset-Date.now()/1000:60;
+   transcriptServiceWaitUntil=Date.now()+Math.min(86400,Math.max(60,wait))*1000;
+   return transcriptServiceFailure={available:false,code:'CAPTIONS_SERVICE_'+response.status,reason:reasons[code]||'FreeTranscriptAPI từ chối yêu cầu (HTTP '+response.status+'); chưa xác định được loại hạn mức.',retryable:response.status===429,retryAfter:Math.ceil((transcriptServiceWaitUntil-Date.now())/1000),cues:[]};
+  }
   if(!response.ok)return null;const raw=await response.text();if(raw.length>3000000)return null;const data=JSON.parse(raw);
   if(!/^de(?:[-_]|$)/i.test(data.language||'')||!Array.isArray(data.transcript)||!data.transcript.length||data.transcript.length>1500)return null;
   if(!data.transcript.every(c=>typeof c?.text==='string'&&c.text.trim()&&c.text.length<=1500&&Number.isFinite(c.start)&&c.start>=0&&Number.isFinite(c.duration)&&c.duration>0))return null;
@@ -345,8 +353,12 @@ async function uncachedGermanCaptions(env,id){
  if(!/^[A-Za-z0-9_-]{11}$/.test(id||''))throw error(400,'Mã video không hợp lệ.');
  // Hosted transcript API first: direct YouTube requests from Vercel often fail
  // even when the same extractor works on a desktop. Keep Python as fallback.
- const service=await serviceGermanCaptions(env,id);if(service)return service;
- if(env.TRANSCRIPT_NATIVE_FETCH||env.TRANSCRIPT_BACKEND_URL||env.TRANSCRIPT_BACKEND_TOKEN)return fetchElioTranscript(env,id,['de']);
+ const service=await serviceGermanCaptions(env,id);if(service?.available)return service;
+ const fallback=env.TRANSCRIPT_NATIVE_FETCH||env.TRANSCRIPT_BACKEND_URL||env.TRANSCRIPT_BACKEND_TOKEN?await fetchElioTranscript(env,id,['de']):await directGermanCaptions(env,id);
+ if(fallback.available||!service)return fallback;
+ return {...fallback,code:service.code,reason:service.reason+' Nguồn dự phòng: '+fallback.reason,retryable:service.retryable||fallback.retryable,retryAfter:service.retryAfter};
+}
+async function directGermanCaptions(env,id){
  const unavailable=(reason,code='CAPTIONS_UNAVAILABLE')=>({available:false,reason,code,cues:[]});let stage='trang video';
  try{const response=await fetchCaptionResource('https://www.youtube.com/watch?v='+id+'&hl=de');if(!response.ok)return unavailable('YouTube chưa cho máy chủ đọc trang video (HTTP '+response.status+').');const html=await response.text();if(html.length>6000000)return unavailable('Trang video quá lớn để đọc phụ đề.');const page=youtubeCaptionPage(html,id);if(!page.tracks)return unavailable(page.reason,page.code);const tracks=page.tracks;const candidates=tracks.filter(t=>/^de(?:[-_]|$)/i.test(t.languageCode||'')).sort((a,b)=>Number(a.kind==='asr')-Number(b.kind==='asr'));if(!candidates.length)return unavailable('Không tìm được phụ đề tiếng Đức gốc có thể tải. Không dùng phụ đề ngôn ngữ khác làm đáp án.');let track,data,lastReason='YouTube trả tệp phụ đề trống.',lastCode='CAPTIONS_EMPTY';
  stage='tệp phụ đề';

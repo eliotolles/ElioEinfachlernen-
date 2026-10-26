@@ -61,5 +61,21 @@ test('timestamped service, direct fallback, cache, malformed data and quota stay
    return u.pathname==='/watch'?new Response(watchPage(u.searchParams.get('v'))):Response.json({events:[{tStartMs:1000,dDurationMs:2000,segs:[{utf8:'Hallo!'}]}]});
   },async()=>{for(const id of ['quotatest01','quotatest02']){const result=await request('/api/listening/captions',{id});assert.equal(result.data.available,true);}assert.equal(serviceCalls,1);});
  });
+ await t.test('reports provider global cap, shared IP limit and credits separately from Python failure',async()=>{
+  db.prepare('UPDATE app_sessions SET expires=?').run(Date.now()+365*86400000);
+  const realNow=Date.now;let clock=realNow()+2*86400000;Date.now=()=>clock;
+  env.TRANSCRIPT_NATIVE_FETCH=async()=>Response.json({available:false,code:'CAPTIONS_RATE_LIMIT',reason:'Python: YouTube HTTP 429',retryable:true});
+  try{
+   for(const [status,code,expected] of [[429,'anonymous_daily_cap_exceeded','dùng chung toàn dịch vụ'],[429,'rate_limit_exceeded','IP máy chủ dùng chung'],[402,'insufficient_credits','không tự cấp lại mỗi ngày'],[401,'unauthorized','API key']]){
+    clock+=2*86400000;
+    await withTransport(async()=>Response.json({error:{code,message:'untrusted provider detail'}},{status}),async()=>{
+     const result=await request('/api/listening/captions',{id:'failure0001'});
+     assert.equal(result.data.available,false);assert.equal(result.data.code,'CAPTIONS_SERVICE_'+status);
+     assert.ok(result.data.reason.includes(expected));assert.ok(result.data.reason.includes('Python: YouTube HTTP 429'));
+     assert.ok(!result.data.reason.includes('untrusted provider detail'));
+    });
+   }
+  }finally{Date.now=realNow;delete env.TRANSCRIPT_NATIVE_FETCH;}
+ });
  db.close();
 });

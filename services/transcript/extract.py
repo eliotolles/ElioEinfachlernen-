@@ -78,7 +78,7 @@ def map_error(error):
     if isinstance(error, CaptionError):
         return error
     if '429' in text or 'too many requests' in text:
-        return CaptionError('CAPTIONS_RATE_LIMIT', 'YouTube giới hạn lượt gọi (429). Hãy thử lại sau.')
+        return CaptionError('CAPTIONS_RATE_LIMIT', 'YouTube đang giới hạn yêu cầu từ IP máy chủ lấy phụ đề (HTTP 429). Đây không phải số lượt bạn đã dùng trong ngày. Hãy thử lại sau.')
     if name in ('RequestBlocked', 'IpBlocked', 'PoTokenRequired') or 'not a bot' in text:
         return CaptionError('CAPTIONS_BLOCKED', 'YouTube chặn yêu cầu hoặc yêu cầu xác minh máy chủ.')
     if name in ('AgeRestricted', 'VideoUnplayable') or any(s in text for s in ('private video', 'sign in', 'age-restricted')):
