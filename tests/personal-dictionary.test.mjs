@@ -8,6 +8,14 @@ test('dictionary accepts both a single entry and the provider word-list envelope
 
 test('ordinary account refresh keeps the dictionary open; changing user closes it and clears cached meanings',()=>{let changed;const c={Auth:{user:'alice'},document:{addEventListener:(name,fn)=>changed=fn}};vm.createContext(c);vm.runInContext(fs.readFileSync('public/js/word-dictionary.js','utf8')+';globalThis.dict=WordDictionary;',c);let closed=0;c.dict.close=()=>closed++;c.dict.cache.set('entry',{});changed();assert.equal(closed,0);assert.equal(c.dict.cache.size,1);c.Auth.user='bob';changed();assert.equal(closed,1);assert.equal(c.dict.cache.size,0);});
 
-test('IPA uses saved pronunciation, caches enrichment and rejects a changed account',async()=>{let calls=0;const c={Auth:{user:'alice'},App:{evaluate:async()=>{calls++;return {ipa:'/ˈleːʁən/'};}},document:{addEventListener(){}}};vm.createContext(c);vm.runInContext(fs.readFileSync('public/js/word-dictionary.js','utf8')+';globalThis.dict=WordDictionary;',c);assert.equal(await c.dict.pronunciation({de:'lernen',ipa:'/ˈlɛʁnən/'},'alice'),'/ˈlɛʁnən/');assert.equal(calls,0);assert.equal(await c.dict.pronunciation({de:'lehren'},'alice'),'/ˈleːʁən/');await c.dict.pronunciation({de:'lehren'},'alice');assert.equal(calls,1);c.Auth.user='bob';await assert.rejects(c.dict.pronunciation({de:'anderes'},'alice'),/Tài khoản/);});
+test('IPA uses saved values, extracts German source, caches and rejects a changed account',async()=>{
+ let calls=0;const wiki='== lehren ({{Sprache|Deutsch}}) ==\n:{{IPA}} {{Lautschrift|ˈleːʁən}}\n== test ({{Sprache|Englisch}}) ==\n{{Lautschrift|wrong}}';
+ const c={Auth:{user:'alice'},URLSearchParams,AbortSignal,fetch:async()=>{calls++;return {ok:true,json:async()=>({query:{pages:{1:{revisions:[{slots:{main:{'*':wiki}}}]}}}})};},document:{addEventListener(){}}};vm.createContext(c);vm.runInContext(fs.readFileSync('public/js/word-dictionary.js','utf8')+';globalThis.dict=WordDictionary;',c);
+ assert.equal(await c.dict.pronunciation({de:'lernen',ipa:'/ˈlɛʁnən/'},'alice'),'/ˈlɛʁnən/');assert.equal(calls,0);
+ assert.equal(await c.dict.pronunciation({de:'lehren'},'alice'),'[ˈleːʁən]');await c.dict.pronunciation({de:'lehren'},'alice');assert.equal(calls,1);
+ assert.equal(c.dict.ipaFromWikitext('== word ({{Sprache|Englisch}}) ==\n{{Lautschrift|wrong}}'),'');
+ assert.equal(await c.dict.pronunciation({de:'zuverlässig',ipa:'bad',aiGenerated:['dictionary']},'alice'),'[ˈt͡suːfɛɐ̯ˌlɛsɪç]');
+ c.Auth.user='bob';await assert.rejects(c.dict.pronunciation({de:'anderes'},'alice'),/Tài khoản/);
+});
 
 test('fresh dictionary entries retain IPA when saved into personal vocabulary',async()=>{let prompt;const c=fixture();c.Auth.get=()=>[];c.App={evaluate:async text=>{prompt=text;return {de:'lernen',vi:'học',ipa:'/ˈlɛʁnən/'};}};vm.runInContext(fs.readFileSync('public/js/word-dictionary.js','utf8')+';globalThis.dict=WordDictionary;',c);const word=await c.dict.lookup('lerne',{sentence:'Ich lerne Deutsch.'},'alice');assert.match(prompt,/"ipa"/);assert.equal(word.ipa,'/ˈlɛʁnən/');const result=c.pv.save(word,{folder:'Giao tiếp',level:'A1'});assert.equal(result.word.ipa,word.ipa);});

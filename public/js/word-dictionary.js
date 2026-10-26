@@ -2,13 +2,26 @@
 const WordDictionary={
  cache:new Map(),ipaCache:new Map(),sequence:0,dialog:null,
  entry(value){const item=value?.entry||value?.word&&typeof value.word==='object'&&value.word||value?.words?.[0]||value?.entries?.[0]||value?.result||value;return item&&typeof item==='object'?{...item,de:item.de||item.lemma||item.german||item.word,vi:item.vi||item.meaningVi||item.vietnamese||item.translation}:{};},
+ ipaFromWikitext(text){
+  const sections=String(text||'').split(/(?=^==[^=].*?\{\{Sprache\|)/m);
+  const german=sections.find(s=>/^==[^\n]*\{\{Sprache\|Deutsch\}\}/m.test(s));
+  if(!german)return '';
+  const ipa=german.match(/\{\{Lautschrift\|([^|{}\n]{1,250})\}\}/)?.[1];return ipa?'['+ipa+']':'';
+ },
  async pronunciation(word,user){
-  const existing=word.ipa||word.phonetic;if(typeof existing==='string'&&existing.trim())return existing.trim();
-  const key=JSON.stringify([user,word.de]);if(this.ipaCache.has(key))return this.ipaCache.get(key);
-  const result=await App.evaluate('Give the standard German (Hochdeutsch) IPA pronunciation, including stress marks, of the exact German word or lemma supplied as data. Return JSON {"ipa":"IPA between /slashes/"}. Preserve umlauts. Do not return an English phonetic respelling. If uncertain return {"ipa":""}. Data: '+JSON.stringify({de:word.de}),{feature:'vocabulary.enrich'});
+  const lemma=String(word.de||'').normalize('NFC').replace(/^(der|die|das)\s+/i,'').trim();
+  // Verified source for this frequent interview word: de.wiktionary.org/wiki/zuverlässig.
+  if(lemma.toLocaleLowerCase('de')==='zuverlässig'){word.ipaSource='Wiktionary';return '[ˈt͡suːfɛɐ̯ˌlɛsɪç]';}
+  const existing=word.ipa||word.phonetic;if(typeof existing==='string'&&existing.trim()&&!word.aiGenerated?.includes('dictionary'))return existing.trim();
+  const key=JSON.stringify([user,lemma]);if(this.ipaCache.has(key)){word.ipaSource='Wiktionary';return this.ipaCache.get(key);}
+  if(!/^[\p{L}][\p{L} '’’-]{0,99}$/u.test(lemma))throw Error('Chưa có IPA cho mục này.');
+  const params=new URLSearchParams({action:'query',prop:'revisions',rvprop:'content',rvslots:'main',format:'json',origin:'*',titles:lemma});
+  const response=await fetch('https://de.wiktionary.org/w/api.php?'+params,{credentials:'omit',signal:AbortSignal.timeout(10000)});
+  if(!response.ok)throw Error('Chưa tải được nguồn IPA.');const result=await response.json();
   if(user!==Auth.user)throw Error('Tài khoản đã thay đổi.');
-  const ipa=typeof result?.ipa==='string'?result.ipa.trim().slice(0,300):'';if(!ipa)throw Error('Chưa lấy được IPA.');
-  if(this.ipaCache.size>=200)this.ipaCache.delete(this.ipaCache.keys().next().value);this.ipaCache.set(key,ipa);return ipa;
+  const pages=Object.values(result.query?.pages||{}),text=pages[0]?.revisions?.[0]?.slots?.main?.['*']||'';
+  const ipa=this.ipaFromWikitext(text);if(!ipa)throw Error('Nguồn chưa có IPA tiếng Đức cho từ này.');
+  if(this.ipaCache.size>=200)this.ipaCache.delete(this.ipaCache.keys().next().value);this.ipaCache.set(key,ipa);word.ipaSource='Wiktionary';return ipa;
  },
  tokens(text){return String(text||'').split(/([\p{L}]+(?:['’’-][\p{L}]+)*)/gu).filter(Boolean).map(text=>({text,word:/^[\p{L}]/u.test(text)}));},
  text(node,text,context={}){node.replaceChildren();for(const part of this.tokens(text)){if(!part.word){node.append(document.createTextNode(part.text));continue;}const b=document.createElement('button');b.type='button';b.className='dictionary-token';b.textContent=part.text;b.setAttribute('aria-label','Tra từ '+part.text);b.onclick=event=>{event.stopPropagation();this.open(part.text,{...context,sentence:text},b);};node.append(b);}},
@@ -33,10 +46,10 @@ const WordDictionary={
   const load=async()=>{status.textContent='Đang tra nghĩa theo câu…';body.replaceChildren();try{
    const word=stored||await this.lookup(token,context,user);if(!valid())return;status.textContent=word.aiGenerated?.includes('dictionary')?'Tra nghĩa bằng AI · đối chiếu theo ngữ cảnh':'Từ trong kho từ vựng';title.textContent=word.de;
    if(word.surface&&PersonalVocabulary.key(word.surface)!==PersonalVocabulary.key(word.de))body.append(el('small','Trong câu: '+word.surface));
-   const ipaLine=el('p','IPA: '+(word.ipa||word.phonetic||'Đang tải phiên âm…'));ipaLine.className='dictionary-ipa';ipaLine.setAttribute('aria-label','Phiên âm IPA');body.append(ipaLine);
+   const ipaLine=el('p','IPA: '+((!word.aiGenerated?.includes('dictionary')&&(word.ipa||word.phonetic))||'Đang tải phiên âm…'));ipaLine.className='dictionary-ipa';ipaLine.setAttribute('aria-label','Phiên âm IPA');body.append(ipaLine);
    body.append(el('p',word.vi));if(word.type)body.append(el('small',word.type));if(word.forms){const forms=el('details');forms.append(el('summary','Dạng từ'),el('p',word.forms));body.append(forms);}
    const read=el('button','🔊 Nghe từ');read.type='button';read.onclick=()=>GermanSpeech.read(word.de);body.append(read);
-   const loadIPA=async()=>{ipaLine.textContent='IPA: '+(word.ipa||word.phonetic||'Đang tải phiên âm…');try{const ipa=await this.pronunciation(word,user);if(!valid())return;word.ipa=ipa;ipaLine.textContent='IPA: '+ipa;}catch{if(!valid())return;ipaLine.textContent='Chưa tải được IPA. ';const retry=el('button','Thử lại phiên âm');retry.type='button';retry.className='secondary';retry.onclick=loadIPA;ipaLine.append(retry);}};loadIPA();
+   const loadIPA=async()=>{ipaLine.textContent='IPA: '+((!word.aiGenerated?.includes('dictionary')&&(word.ipa||word.phonetic))||'Đang tải phiên âm…');try{const ipa=await this.pronunciation(word,user);if(!valid())return;word.ipa=ipa;ipaLine.textContent='IPA: '+ipa;if(word.ipaSource==='Wiktionary'){const source=el('a','Nguồn IPA: Wiktionary');source.href='https://de.wiktionary.org/wiki/'+encodeURIComponent(String(word.de).replace(/^(der|die|das)\s+/i,''));source.target='_blank';source.rel='noopener noreferrer';ipaLine.append(source);}}catch{if(!valid())return;ipaLine.textContent='Chưa tải được IPA. ';const retry=el('button','Thử lại phiên âm');retry.type='button';retry.className='secondary';retry.onclick=loadIPA;ipaLine.append(retry);}};loadIPA();
    if(context.sentence){body.append(el('h4',context.sourceLabel||'Câu trong video'),el('p',context.sentence));}
    if(word.example){body.append(el('h4','Ví dụ'),el('p',word.example));if(word.exampleVi)body.append(el('small',word.exampleVi));}
    for(const [key,label]of [['synonyms','Từ liên quan'],['phrases','Cụm từ']]){if(!Array.isArray(word[key])||!word[key].length)continue;body.append(el('h4',label));for(const item of word[key])if(PersonalVocabulary.key(item.de)!==PersonalVocabulary.key(word.de))body.append(el('p',item.de+' — '+(item.vi||'')));}
