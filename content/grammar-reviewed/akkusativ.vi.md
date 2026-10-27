@@ -9,6 +9,18 @@ Trong tiếng Đức, một người hoặc một vật có thể đổi dạng 
 
 Với tân ngữ Akkusativ, có thể đặt câu hỏi **wen?** cho người, **was?** cho sự vật. Nhưng câu hỏi là bước **kiểm tra sau khi đã hiểu cấu trúc**, không thay thế việc học động từ: **jemanden untersuchen**, **jemanden anrufen**, **etwas bestellen**.
 
+### Cấu tạo câu: chọn mẫu trước khi điền từ
+Ký hiệu **S** là chủ ngữ ở Nominativ; **V** là động từ đã chia; **O Akk** là tân ngữ Akkusativ. Trong câu kể chính, V đứng ở vị trí thành phần thứ hai, không nhất thiết là từ thứ hai.
+
+| Mẫu cấu tạo | Câu Đức | Nghĩa và phân tích |
+| --- | --- | --- |
+| S + V + O Akk | Ich brauche einen Stift. | Tôi cần một cây bút: brauchen + Akkusativ, der Stift → einen Stift. |
+| Trạng ngữ + V + S + O Akk | Heute kaufe ich den Mantel. | Hôm nay tôi mua chiếc áo khoác: Heute chiếm vị trí đầu, kaufe ở vị trí hai, ich theo sau. |
+| S + động từ tình thái + O Akk + động từ nguyên mẫu | Ich möchte den Mantel kaufen. | Tôi muốn mua chiếc áo khoác: möchte được chia; kaufen ở cuối, vẫn chi phối den Mantel. |
+| S + V + cụm giới từ Akk | Das Geschenk ist für meinen Vater. | Món quà dành cho bố tôi: für chi phối meinen Vater; đây là cụm giới từ, không phải tân ngữ của ist. |
+
+Với câu hỏi có/không, động từ chia lên đầu: **Brauchst du einen Stift?** → Bạn có cần một cây bút không? Với câu hỏi bổ ngữ: **Was brauchst du?** → Bạn cần gì? **Wen rufst du an?** → Bạn gọi cho ai?
+
 ### Bảng mạo từ: đừng chỉ học mỗi den
 | Nhóm | Dạng từ điển/Nominativ | Akkusativ xác định | Akkusativ không xác định | Với kein |
 | --- | --- | --- | --- | --- |
@@ -84,3 +96,17 @@ Danh từ cũng có ngoại lệ: **der Patient → den Patienten**, **der Kolle
 3. Tra giống, số và nhóm danh từ yếu nếu có.
 4. Kiểm tra mạo từ, từ sở hữu, tính từ và danh từ như **một cụm thống nhất**.
 5. Đọc lại nghĩa: mình đang nói vị trí, đích đến, người được gọi hay người được giúp?
+
+### Hướng dẫn đặt câu: từ ý muốn nói đến câu hoàn chỉnh
+1. **Chọn ý:** “Tối nay tôi gọi cho anh/em trai.” Chọn động từ **anrufen**, không dịch từng từ “gọi cho” thành một giới từ bất kỳ.
+2. **Lập khung:** jemand ruft jemanden an → **S + rufe + O Akk + an** khi chủ ngữ là ich.
+3. **Tạo cụm danh từ:** der Bruder → mein Bruder → **meinen Bruder**, vì giống đực số ít ở Akkusativ.
+4. **Thêm thời gian và ráp câu:** **Ich rufe meinen Bruder heute Abend an.** → Tối nay tôi gọi cho anh/em trai.
+5. **Biến đổi có kiểm soát:** **Heute Abend rufe ich meinen Bruder an.** Giữ rufe ở vị trí hai. Thay người bằng đại từ: **Ich rufe ihn heute Abend an.**
+
+Tự luyện: viết một câu với **kaufen + das Buch**, một câu với **besuchen + die Freundin**, một câu với **für + der Vater**. Câu tham khảo: **Ich kaufe das Buch.** → Tôi mua cuốn sách. **Ich besuche meine Freundin.** → Tôi đến thăm bạn gái/người bạn nữ của mình. **Das ist für meinen Vater.** → Cái này dành cho bố tôi. Có thể thay thời gian và người, nhưng phải kiểm tra lại giống, cách và động từ.
+
+### Chú ý và phạm vi bài học
+- **Akkusativ là cách, không phải thì.** Trong **Ich habe den Mantel gekauft** (Tôi đã mua chiếc áo khoác), den Mantel vẫn là Akkusativ dù câu ở Perfekt.
+- Bảng trên tập trung vào tân ngữ và giới từ. Akkusativ còn có thể chỉ khoảng thời gian: **Ich warte einen Moment.** → Tôi đợi một lát. Einen Moment ở đây không phải vật bị tác động.
+- Ở A1–A2, ưu tiên mạo từ, đại từ và mẫu động từ thông dụng; từ B1 trở lên, chú ý biến cách cả cụm, danh từ yếu và phân biệt bổ ngữ với trạng ngữ. Không coi bài tổng quan này là toàn bộ kiến thức Akkusativ ở C1.

@@ -28,3 +28,6 @@ No account materials, learning history, completions, ownership or private state
 are deleted or migrated. Imported earlier material keeps the original IDs and
 remains reachable in its source filter. Only the shipped rejected catalogue is
 removed. Reader UX and existing grading/sync behavior are retained.
+
+## Review 2026-10-27: complete lesson structure
+Both reviewed replacements (Akkusativ, Dativ) now explicitly contain: concept/rule, usage, sentence construction tables, German examples with Vietnamese explanations, step-by-step sentence writing, common errors and cautions, article/pronoun tables, and 12 explained exercises each. Added modal/question/fronted-adverb examples and Dativ mixed pronoun/noun ordering. Review scope is these two static chapters only; account imports have not been audited or rewritten. The full requested A1–C1 taxonomy is still pending. Do not describe two overview chapters as a complete C1 course.

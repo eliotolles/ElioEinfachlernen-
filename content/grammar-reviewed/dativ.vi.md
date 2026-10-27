@@ -9,6 +9,18 @@ Dativ thường được học qua người nhận: ai nhận thứ gì, ai đư
 
 Với bổ ngữ Dativ có thể hỏi **wem?**. Câu **Wem gibt sie die Karte?** nhận đáp án **dem Gast**. Hãy học **jemandem etwas geben** như một mẫu hoàn chỉnh; **jemandem** chỉ người ở Dativ và **etwas** chỉ vật ở Akkusativ.
 
+### Cấu tạo câu: một hoặc hai bổ ngữ
+Ký hiệu **S** là chủ ngữ Nominativ, **V** là động từ chia, **O Dat** là bổ ngữ Dativ, **O Akk** là bổ ngữ Akkusativ. Cách của mỗi bổ ngữ phụ thuộc cấu trúc động từ; vị trí đứng không tự quyết định cách.
+
+| Mẫu cấu tạo | Câu Đức | Nghĩa và phân tích |
+| --- | --- | --- |
+| S + V + O Dat | Ich helfe meiner Nachbarin. | Tôi giúp cô hàng xóm: helfen + Dativ; meine Nachbarin → meiner Nachbarin. |
+| S + V + O Dat + O Akk | Ich zeige dem Gast das Zimmer. | Tôi chỉ phòng cho khách: dem Gast là người được chỉ; das Zimmer là thứ được chỉ. |
+| S + V + cụm giới từ Dat | Ich fahre mit dem Zug. | Tôi đi bằng tàu: mit chi phối dem Zug; không phải fahren luôn lấy tân ngữ Dativ. |
+| S + động từ tình thái + O Dat + nguyên mẫu | Ich kann dir helfen. | Tôi có thể giúp bạn: kann được chia, helfen ở cuối vẫn yêu cầu dir. |
+
+Đổi sang câu hỏi: **Hilfst du deiner Nachbarin?** → Bạn có giúp cô hàng xóm không? Hỏi người được giúp: **Wem hilfst du?** → Bạn giúp ai? Nếu đưa thời gian lên đầu: **Heute helfe ich meiner Nachbarin.** → Hôm nay tôi giúp cô hàng xóm. Heute ở đầu nên helfe đứng vị trí hai, ich đứng sau động từ.
+
 ### Bảng mạo từ: Dativ thay đổi cả bốn nhóm
 | Nhóm | Xác định | Không xác định | Từ sở hữu mein- |
 | --- | --- | --- | --- |
@@ -88,3 +100,19 @@ Với hai danh ngữ, **Dativ trước Akkusativ** thường là thứ tự trun
 
 ### Mở rộng B1–C1: Dativ không tự thành chủ ngữ bị động
 **Man hilft den neuen Mitarbeitern → Den neuen Mitarbeitern wird geholfen.** Nhóm nhân viên vẫn Dativ. Câu bị động này không có chủ ngữ Nominativ, nên dùng **wird** số ít. Dativ còn xuất hiện ở những cấu trúc khác: **Mir ist kalt**, **Sie wäscht sich die Hände**; đừng ép tất cả vào định nghĩa “người nhận một đồ vật”.
+
+### Hướng dẫn đặt câu: xác định riêng từng thành phần
+1. **Chọn ý:** “Tôi đưa chìa khóa cho cô đồng nghiệp.” Chọn **geben** và học khung **jemandem etwas geben**.
+2. **Xác định chủ ngữ:** tôi → **ich**, chia geben → **gebe**.
+3. **Xác định người nhận:** die Kollegin → **der Kollegin** ở Dativ. Không dùng die Kollegin trong vai trò người nhận của mẫu này.
+4. **Xác định thứ được đưa:** der Schlüssel → **den Schlüssel** ở Akkusativ.
+5. **Ráp và đọc lại:** **Ich gebe der Kollegin den Schlüssel.** → Tôi đưa chìa khóa cho cô đồng nghiệp. Thêm thời gian: **Heute gebe ich der Kollegin den Schlüssel.** → Hôm nay tôi đưa chìa khóa cho cô đồng nghiệp.
+6. **Thay bằng đại từ đúng cách:** chỉ thay người nhận → **Ich gebe ihr den Schlüssel.** Chỉ thay vật → **Ich gebe ihn der Kollegin.** Thay cả hai → **Ich gebe ihn ihr.** Khi có một đại từ không nhấn và một danh ngữ, đại từ thường đứng trước; khi cả hai là đại từ không nhấn, Akkusativ thường đứng trước Dativ.
+
+Tự luyện: đặt câu với **helfen + mein Vater**, **mit + meine Freunde**, **zeigen + das Kind + das Bild**. Câu tham khảo: **Ich helfe meinem Vater.** → Tôi giúp bố. **Ich lerne mit meinen Freunden.** → Tôi học cùng bạn bè. **Ich zeige dem Kind das Bild.** → Tôi cho đứa trẻ xem bức tranh. Ở câu hai, Freunde đổi thành Freunden vì Dativ số nhiều; ở câu ba, dem Kind và das Bild có hai vai trò khác nhau.
+
+### Chú ý và phạm vi bài học
+- **Dativ là cách, không phải một kiểu câu duy nhất.** Nó có thể do động từ, giới từ hoặc cấu trúc diễn đạt trạng thái yêu cầu. Trong **Mir ist kalt**, mir chỉ người cảm thấy lạnh; không có vật nào được trao cho người đó.
+- **Hỏi wem chỉ là bước kiểm tra.** Hãy học kèm động từ hoặc giới từ. Hai câu **Ich besuche meinen Vater** và **Ich helfe meinem Vater** đều nói về bố nhưng có cấu trúc khác nhau.
+- Một số dạng rút gọn thường gặp: **bei dem → beim**, **von dem → vom**, **zu dem → zum**, **zu der → zur**, **in dem → im**. Ví dụ **Ich bin beim Arzt.** → Tôi đang ở chỗ bác sĩ. Không tự rút gọn mọi cặp giới từ–mạo từ.
+- Ở A1–A2, ưu tiên bảng từ và mẫu thông dụng; từ B1 trở lên, luyện trật tự bổ ngữ, tính từ, danh từ yếu và bị động. Các phần mở rộng không biến bài tổng quan thành khóa Dativ C1 đầy đủ.
