@@ -24,6 +24,10 @@ const TutorLibrary={
    b.onclick=()=>{$('#tutor-collection').value=c.id;this.page=0;this.query='';$('#tutor-search').value='';renderTutorReference();loadConversation();};sets.append(b);
   }
   if(!sets.children.length)sets.textContent='Chưa có bộ. Mở “Thêm bộ phỏng vấn từ TXT” để nhập tài liệu.';
+  let publish=$('#tutor-publish-shared');
+  const canPublish=typeof Account!=='undefined'&&Account.profile?.role==='super_admin'&&!!tutorCollection()&&!Account.isShared('materials',tutorCollection().id);
+  if(canPublish){if(!publish){publish=document.createElement('button');publish.id='tutor-publish-shared';publish.type='button';publish.className='secondary';publish.textContent='Chia sẻ bộ này cho mọi user';sets.after(publish);const status=document.createElement('p');status.id='tutor-publish-status';status.setAttribute('role','status');publish.after(status);}publish.hidden=false;publish.onclick=publishTutorCollection;}
+  else if(publish)publish.hidden=true;
   this.renderItems();this.loadIdeas();
  },
  async loadIdeas(){
@@ -51,3 +55,4 @@ const TutorLibrary={
   if(c?.source){const rescue=c.source.match(/CÂU CỨU NGUY[^\n]*\n+([\s\S]*)$/);if(rescue){const details=document.createElement('details');details.className='tutor-rescue';const title=document.createElement('summary');title.textContent='Câu cứu nguy khi nghe chưa rõ';details.append(title);for(const pair of rescue[1].trim().split(/\n\s*\n/)){const [de,...vi]=pair.split('\n');const text=document.createElement('p');this.german(text,de,c,vi.join(' '));const meaning=document.createElement('p');meaning.className='tutor-meaning';meaning.textContent=vi.join(' ');details.append(text,meaning);}host.append(details);}}
  }
 };
+

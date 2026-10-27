@@ -61,6 +61,27 @@ function refreshTutorCollections(){
  if($('#tutor-collection').value!==before)loadConversation();
 }
 for(const event of ['cloudchange','elioviewresume'])document.addEventListener(event,refreshTutorCollections);
+function publicTutorCopy(source,existing){
+ if(!source||source.type!=='tutor'||!Array.isArray(source.items)||!source.items.length||source.items.some(q=>!q.question?.trim()||!q.answerDe?.trim()||!q.answerVi?.trim()))throw Error('Bộ câu hỏi chưa đủ câu hỏi và đáp án Đức–Việt.');
+ return {id:existing?.id||'tutor-shared-'+source.id,type:'tutor',scope:'shared',name:source.name,level:source.level||'A2–B1',items:source.items.map(q=>({id:q.id,number:q.number,question:q.question,answerDe:q.answerDe,answerVi:q.answerVi})),source:String(source.source||''),createdAt:existing?.createdAt||Date.now(),updatedAt:Date.now()};
+}
+async function publishTutorCollection(){
+ const source=tutorCollection(),user=Auth.user,button=$('#tutor-publish-shared'),status=$('#tutor-publish-status');
+ if(!Auth.require()||Account.profile?.role!=='super_admin'||!source)return;
+ button.disabled=true;status.textContent='Đang kiểm tra và chia sẻ bộ câu hỏi…';
+ try{
+  const signature=JSON.stringify(source);await Account.refresh(['materials']);if(user!==Auth.user)return;
+  const current=tutorCollections().find(c=>c.id===source.id);if(!current||JSON.stringify(current)!==signature)throw Error('Bộ câu hỏi vừa thay đổi. Hãy chọn lại bộ để kiểm tra trước khi chia sẻ.');
+  if(Account.conflicts.materials||Account.conflicts['shared:materials'])throw Error('Có xung đột tài liệu. Giữ nguyên dữ liệu; xử lý đồng bộ trước khi chia sẻ.');
+  const all=Auth.get('materials',[]),id='tutor-shared-'+source.id,existing=all.find(c=>c.id===id),published=publicTutorCopy(source,existing);
+  Auth.set('materials',[...all.filter(c=>c.id!==id),published]);await Account.flush();if(user!==Auth.user)return;
+  if(Account.pending['shared:materials']||Account.conflicts['shared:materials'])throw Error('Bản dùng chung đang chờ đồng bộ; chưa xác nhận chia sẻ thành công.');
+  await Account.refresh(['materials']);if(user!==Auth.user)return;
+  const saved=(Account.shared.materials?.value||[]).find(c=>c.id===published.id);
+  if(!saved||JSON.stringify(saved.items)!==JSON.stringify(published.items))throw Error('Chưa đọc lại được bản dùng chung từ máy chủ.');
+  status.textContent='Đã chia sẻ '+saved.items.length+' câu cho mọi user ✓';renderTutorCollections();
+ }catch(error){if(user===Auth.user)status.textContent=error.message;}finally{button.disabled=false;}
+}
 function setupTutorCollections(){
  if(isSpeaking)return;
  const panel=document.createElement('div');panel.id='tutor-import-panel';panel.innerHTML='<label>Bộ luyện phỏng vấn<select id="tutor-collection"></select></label><details><summary>Thêm bộ phỏng vấn từ TXT</summary><label>Tên bộ<input id="tutor-collection-name" maxlength="100" value="Phỏng vấn buồng phòng"></label><label>File câu hỏi Đức–Việt<input id="tutor-collection-file" type="file" accept=".txt,text/plain"></label><p class="help-text">Lưu riêng trong tài khoản. File cần các mục đánh số, Trả lời và Nghĩa.</p><p id="tutor-import-status" role="status"></p></details><details id="tutor-reference" hidden></details>';
@@ -121,5 +142,6 @@ function setupVoiceCapture(){
  window.addEventListener('pagehide',()=>voiceCapture?.cancel());
 }
 setupVoiceCapture();
+
 
 
