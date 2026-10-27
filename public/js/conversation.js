@@ -42,20 +42,30 @@ function tutorCollections(){return isSpeaking?[]:Auth.get('materials',[]).filter
 function tutorCollection(){return tutorCollections().find(c=>c.id===$('#tutor-collection')?.value);}
 function renderTutorCollections(){
  if(isSpeaking||!$('#tutor-collection'))return;
- const select=$('#tutor-collection'),old=select.value;
+ const select=$('#tutor-collection'),old=select.value,collections=tutorCollections();
  select.innerHTML='<option value="">Giao tiếp tự do</option>'+tutorCollections().map(c=>`<option value="${esc(c.id)}">${esc(c.name)} · ${c.items.length} câu</option>`).join('');
- if(tutorCollections().some(c=>c.id===old))select.value=old;
+ if(collections.some(c=>c.id===old))select.value=old;
+ else if(select.dataset.freeConversation!=='true'&&collections.length)select.value=collections[0].id;
  renderTutorReference();
 }
 function renderTutorReference(){
  $('#tutor-topic').disabled=!!tutorCollection();
  if(typeof TutorLibrary!=='undefined')TutorLibrary.render();
 }
+// Hydration/return-to-page updates must not be mistaken for an empty library.
+// Preserve an active draft, microphone and chat unless the selected collection changes.
+function refreshTutorCollections(){
+ if(isSpeaking||!$('#tutor-collection'))return;
+ const before=$('#tutor-collection').value;
+ renderTutorCollections();
+ if($('#tutor-collection').value!==before)loadConversation();
+}
+for(const event of ['cloudchange','elioviewresume'])document.addEventListener(event,refreshTutorCollections);
 function setupTutorCollections(){
  if(isSpeaking)return;
  const panel=document.createElement('div');panel.id='tutor-import-panel';panel.innerHTML='<label>Bộ luyện phỏng vấn<select id="tutor-collection"></select></label><details><summary>Thêm bộ phỏng vấn từ TXT</summary><label>Tên bộ<input id="tutor-collection-name" maxlength="100" value="Phỏng vấn buồng phòng"></label><label>File câu hỏi Đức–Việt<input id="tutor-collection-file" type="file" accept=".txt,text/plain"></label><p class="help-text">Lưu riêng trong tài khoản. File cần các mục đánh số, Trả lời và Nghĩa.</p><p id="tutor-import-status" role="status"></p></details><details id="tutor-reference" hidden></details>';
  $('#new-conversation').before(panel);renderTutorCollections();
- $('#tutor-collection').onchange=()=>{renderTutorReference();loadConversation();};
+ $('#tutor-collection').onchange=()=>{$('#tutor-collection').dataset.freeConversation=String(!$('#tutor-collection').value);renderTutorReference();loadConversation();};
  $('#tutor-collection-file').onchange=async e=>{
   const input=e.target,file=input.files[0],owner=Auth.user;if(!file||!Auth.require())return;
   const status=$('#tutor-import-status');input.disabled=true;
@@ -111,4 +121,5 @@ function setupVoiceCapture(){
  window.addEventListener('pagehide',()=>voiceCapture?.cancel());
 }
 setupVoiceCapture();
+
 
