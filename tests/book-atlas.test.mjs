@@ -31,3 +31,9 @@ test('destination names use the original German names across interface languages
  assert.equal(A.moduleTitle(A.entries.find(e=>e.id==='vocabulary')),'Wortschatz');
  const css=fs.readFileSync('public/book-atlas.css','utf8');assert(css.includes("'Cormorant Garamond',Georgia,serif"));
 });
+
+test('learners do not see either study-space index label, while staff retain it',()=>{
+ for(const query of ['', 'Dein Lernraum', 'Góc học của bạn'])assert(!A.search(query,'vi',false).some(e=>e.id==='study'));
+ assert(A.search('Dein Lernraum','vi',true).some(e=>e.id==='study'));
+ for(const id of ['history','settings','grammar','vocabulary'])assert(A.search('','vi',false).some(e=>e.id===id));
+});
