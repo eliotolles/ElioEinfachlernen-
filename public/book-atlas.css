@@ -110,3 +110,8 @@ body.book-app.book-atlas .book-programs[hidden]{display:none!important}
 body.book-app.book-atlas .book-programs .book-menu-title{display:flex;justify-content:space-between;align-items:center}
 body.book-app.book-atlas .book-programs .atlas-program-links{width:100%;box-sizing:border-box}
 @media(max-width:700px){body.book-app.book-atlas .book-footer .book-programs:not([hidden]){width:min(380px,calc(100vw - 36px));max-height:65dvh}body.book-app.book-atlas .atlas-program-links{grid-template-columns:minmax(0,1fr);gap:18px;padding:8px}body.book-app.book-atlas .book-programs .atlas-chapter h2{font-size:1.45rem}}
+
+
+/* Restore the original book-index serif for destination names. */
+body.elio-app.book-app.book-atlas .atlas-entry strong{font:600 calc(31px * var(--text-scale,1))/1.2 'Cormorant Garamond',Georgia,serif;letter-spacing:0;color:var(--text);overflow-wrap:break-word}
+@media(max-width:700px){body.elio-app.book-app.book-atlas .atlas-entry strong{font-size:calc(28px * var(--text-scale,1));line-height:1.25}}

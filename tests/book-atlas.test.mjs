@@ -23,3 +23,11 @@ test('admin navigation is hidden for learners without changing route authorizati
  assert.equal(A.current('/index.html','#study').id,'study');
  assert.equal(A.current('/not-a-module.html'),null);
 });
+
+
+test('destination names use the original German names across interface languages',()=>{
+ for(const entry of A.entries)assert.equal(A.moduleTitle(entry),entry.title[1]);
+ assert.equal(A.moduleTitle(A.entries.find(e=>e.id==='grammar')),'Grammatik');
+ assert.equal(A.moduleTitle(A.entries.find(e=>e.id==='vocabulary')),'Wortschatz');
+ const css=fs.readFileSync('public/book-atlas.css','utf8');assert(css.includes("'Cormorant Garamond',Georgia,serif"));
+});

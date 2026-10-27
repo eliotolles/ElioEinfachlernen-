@@ -1,0 +1,1880 @@
+{
+  "id": "elio-c1-sicher-v1",
+  "name": "Elio · Grammatik C1",
+  "type": "grammar",
+  "level": "C1",
+  "packVersion": 1,
+  "sourceTitle": "Sicher! C1 – Grammatikübersicht",
+  "sourceAttribution": "Hueber Verlag; Michaela Perlmann-Balme, Susanne Schwalb, Magdalena Matussek. Tài liệu người dùng cung cấp, 22 trang.",
+  "sourceCorrections": [
+    "aus/vor nguyên nhân + Dativ, không phải Genitiv ở PDF trang 13",
+    "bekommen + Partizip II là Rezipientenpassiv, không phân loại là chủ động thông thường",
+    "be- không bảo đảm mọi động từ có Akkusativ",
+    "mức chắc chắn của modal không phải phần trăm tuyệt đối",
+    "nämlich/eben không luôn cố định ở vị trí thứ ba"
+  ],
+  "items": [
+    {
+      "id": "elio-c1-sicher-01",
+      "title": "Modalverben: suy đoán, lời đồn và tiền tố miss-/zer-/ent-/de-",
+      "topic": "Modalverben: suy đoán, lời đồn và tiền tố miss-/zer-/ent-/de-",
+      "level": "C1",
+      "levels": [
+        "C1"
+      ],
+      "group": "verbs",
+      "sourcePages": [
+        1,
+        2
+      ],
+      "sourceChapter": 1,
+      "topics": [
+        "Subjektive Bedeutung der Modalverben",
+        "Wortbildung: miss-, zer-, ent-, de-"
+      ],
+      "content": "## Modalverben: suy đoán, lời đồn và tiền tố miss-/zer-/ent-/de-\n\n### 1. Bản chất: nghĩa vụ hay nhận định?\n**Müssen** có thể diễn đạt điều bắt buộc hoặc kết luận người nói rút ra. Trong **Sie muss heute arbeiten**, phải xem ngữ cảnh mới biết là “cô ấy phải làm” hay “chắc cô ấy đang làm”. Tiếng Việt dùng “phải/chắc”; tiếng Đức có thể dùng cùng một động từ.\n\n### 2. Bảng suy đoán\n| Dạng | Sắc thái | Ví dụ mới và nghĩa |\n| --- | --- | --- |\n| muss | kết luận rất chắc dựa trên dấu hiệu | Der Laden muss geschlossen sein. → Chắc cửa hàng đóng cửa rồi. |\n| müsste | suy luận điều lẽ ra đúng theo thông tin hiện có | Der Bus müsste gleich kommen. → Theo lịch thì xe buýt sắp đến. |\n| dürfte | có lẽ, tương đối có khả năng | Die Reparatur dürfte teuer werden. → Có lẽ việc sửa sẽ tốn kém. |\n| könnte | một khả năng còn bỏ ngỏ | Der Fehler könnte am Kabel liegen. → Lỗi có thể ở dây cáp. |\n\nĐây là thang sắc thái, **không phải phần trăm xác suất toán học**. Phủ định kết luận chắc có thể dùng **Das kann nicht stimmen.** → Chuyện đó không thể đúng được.\n\n### 3. Quá khứ và nguồn thông tin\nSuy đoán quá khứ: **Modalverb + Partizip II + haben/sein**. **Sie muss schon angekommen sein.** → Chắc cô ấy đã đến. Nghĩa vụ trong quá khứ: **Sie hat früher aufstehen müssen.** → Cô ấy đã phải dậy sớm hơn. Không trộn hai cấu trúc.\n\n| Động từ | Ai đưa ra thông tin? | Ví dụ và nghĩa |\n| --- | --- | --- |\n| soll | người khác/nguồn tin bên ngoài | Der Zeuge soll abgereist sein. → Nghe nói nhân chứng đã đi. |\n| will | chính chủ ngữ tự nhận | Der Zeuge will nichts gesehen haben. → Nhân chứng tự nhận không thấy gì. |\n\n### 4. Tiền tố: nhận biết nhưng không đoán máy móc\n| Tiền tố không tách | Hướng nghĩa thường gặp | Ví dụ |\n| --- | --- | --- |\n| miss- | sai, thất bại hoặc đánh giá tiêu cực | missverstehen: hiểu nhầm |\n| zer- | vỡ, tách hoặc phá hỏng | zerbrechen: làm vỡ/bị vỡ |\n| ent- | gỡ bỏ, thoát khỏi; tùy từ | entladen: dỡ hàng |\n| de- | đảo ngược quá trình ở nhiều từ vay mượn | deaktivieren: vô hiệu hóa |\n\n**Die Technikerin deaktiviert den Alarm.** → Kỹ thuật viên tắt chức năng báo động. Học cả từ và dạng chia: **entladen – entlud – hat entladen**; **deaktivieren – hat deaktiviert**. Không tự tạo từ bằng cách gắn tiền tố tùy ý.\n\n### 5. Mẹo và dấu hiệu\nTìm dấu hiệu lập luận như **das Licht brennt**, tìm nguồn dẫn như **laut Bericht**, rồi mới chọn nghĩa. Với quá khứ, nhìn động từ cuối: **gearbeitet haben** là nguyên mẫu hoàn thành; **arbeiten müssen** là cấu trúc khác.\n\n### 6. Cạm bẫy\n- Sai: **Sie muss angekommen haben.** Đúng: **Sie muss angekommen sein.** Ankommen dùng sein.\n- Sai: dùng **will** để dẫn lời đồn của người khác. Đúng: **Er soll reich sein.** Will tự nhận thông tin về chính chủ ngữ.\n- Không biến muss/müsste/dürfte/könnte thành cam kết sự thật: đó vẫn là đánh giá của người nói.",
+      "exercises": [
+        {
+          "type": "quiz",
+          "question": "Alle Lichter sind aus. Die Familie ___ schon schlafen. (kết luận rất chắc)",
+          "options": [
+            "muss",
+            "darf",
+            "sollte"
+          ],
+          "answers": [
+            "muss"
+          ],
+          "id": "elio-c1-sicher-01-q01",
+          "explanation": "Muss diễn đạt kết luận chắc từ dấu hiệu đèn tắt; không phải nghĩa vụ ngủ.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "quiz",
+          "question": "Nach dem Fahrplan ___ der Zug in fünf Minuten eintreffen. (suy luận theo lịch)",
+          "options": [
+            "müsste",
+            "wollte",
+            "dürfte nicht"
+          ],
+          "answers": [
+            "müsste"
+          ],
+          "id": "elio-c1-sicher-01-q02",
+          "explanation": "Müsste là điều dự kiến đúng theo căn cứ lịch chạy. Không phải báo lời tự nhận với wollte.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "quiz",
+          "question": "Es ist möglich: Der Sensor ___ defekt sein.",
+          "options": [
+            "könnte",
+            "muss",
+            "will"
+          ],
+          "answers": [
+            "könnte"
+          ],
+          "id": "elio-c1-sicher-01-q03",
+          "explanation": "Könnte mở một khả năng; muss mạnh hơn mức “có thể” trong đề.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "quiz",
+          "question": "Laut Presse ___ die Firma verkauft worden sein. (lời đồn)",
+          "options": [
+            "soll",
+            "will",
+            "darf"
+          ],
+          "answers": [
+            "soll"
+          ],
+          "id": "elio-c1-sicher-01-q04",
+          "explanation": "Soll dẫn thông tin từ báo chí. Verkauft worden sein là nguyên mẫu hoàn thành bị động.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "quiz",
+          "question": "Der Fahrer behauptet, er habe nichts bemerkt. Er ___ nichts bemerkt haben.",
+          "options": [
+            "will",
+            "soll",
+            "muss"
+          ],
+          "answers": [
+            "will"
+          ],
+          "id": "elio-c1-sicher-01-q05",
+          "explanation": "Chính tài xế tự nhận không nhận thấy gì: will + Partizip II + haben.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "fill",
+          "question": "Sie muss bereits nach Hause gefahren ___. (sein/haben)",
+          "answers": [
+            "sein"
+          ],
+          "id": "elio-c1-sicher-01-q06",
+          "explanation": "Fahren ở đây là di chuyển đến nhà nên nguyên mẫu hoàn thành là gefahren sein.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "fill",
+          "question": "Điền động từ cuối: Er hat gestern länger arbeiten ___. (nghĩa vụ; müssen)",
+          "answers": [
+            "müssen"
+          ],
+          "id": "elio-c1-sicher-01-q07",
+          "explanation": "Perfekt với modal + nguyên mẫu dùng Ersatzinfinitiv: hat arbeiten müssen, khác suy đoán muss gearbeitet haben.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "fill",
+          "question": "Ich habe die Anweisung falsch verstanden: Ich habe sie ___. (missverstehen)",
+          "answers": [
+            "missverstanden"
+          ],
+          "id": "elio-c1-sicher-01-q08",
+          "explanation": "Missverstehen có Partizip II missverstanden; không tách miss- và không thêm ge- vào trước toàn từ.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "fill",
+          "question": "Das Glas ist beim Transport ___. (zerbrechen)",
+          "answers": [
+            "zerbrochen"
+          ],
+          "id": "elio-c1-sicher-01-q09",
+          "explanation": "Zerbrechen ở nghĩa tự vỡ dùng sein; Partizip II zerbrochen, không phải gezerbrochen.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "fill",
+          "question": "Die IT hat das alte Konto ___. (deaktivieren)",
+          "answers": [
+            "deaktiviert"
+          ],
+          "id": "elio-c1-sicher-01-q10",
+          "explanation": "Động từ -ieren không có ge- trong Partizip II; deaktiviert nghĩa là vô hiệu hóa tài khoản.",
+          "origin": "authored",
+          "answerSource": "authored"
+        }
+      ],
+      "origin": "elio-c1-pdf-rewrite",
+      "contentRevision": "2026-10-27",
+      "sourceNote": "Biên soạn tiếng Việt theo nhóm chủ điểm của PDF Sicher! C1 do chủ dự án cung cấp; ví dụ và bài tập mới. Số trang là trang PDF, không phải trang Kursbuch."
+    },
+    {
+      "id": "elio-c1-sicher-02",
+      "title": "Liên từ nhượng bộ, giới hạn và Nomen-Verb-Verbindungen",
+      "topic": "Liên từ nhượng bộ, giới hạn và Nomen-Verb-Verbindungen",
+      "level": "C1",
+      "levels": [
+        "C1"
+      ],
+      "group": "sentences",
+      "sourcePages": [
+        3,
+        4
+      ],
+      "sourceChapter": 2,
+      "topics": [
+        "Zweiteilige konzessive Konnektoren",
+        "Restriktive Konnektoren",
+        "Feste Nomen-Verb-Verbindungen"
+      ],
+      "content": "## Liên từ nhượng bộ, giới hạn và Nomen-Verb-Verbindungen\n\n### 1. Bản chất\nNhượng bộ: có một trở ngại nhưng kết quả trái dự đoán vẫn xảy ra. Giới hạn: phát biểu chỉ đúng nếu loại trừ một tình huống. **Obwohl** và **es sei denn** vì thế không thay nhau được.\n\n### 2. Nhượng bộ: tách từng cấu trúc\n| Cấu trúc | Vị trí động từ | Ví dụ và nghĩa |\n| --- | --- | --- |\n| wenn … auch, (so) … | động từ cuối mệnh đề wenn; câu chính V2 | Wenn der Weg auch weit ist, so lohnt sich die Reise. → Dù đường xa, chuyến đi vẫn đáng. |\n| wie … auch | cuối mệnh đề mở đầu | Wie sorgfältig er auch plant, ein Risiko bleibt. → Dù anh ấy lên kế hoạch kỹ đến đâu, vẫn còn rủi ro. |\n| zwar …, aber … | hai câu chính | Er ist zwar müde, aber er arbeitet konzentriert. → Anh ấy mệt nhưng vẫn làm tập trung. |\n\n**Wie … auch** diễn đạt “dù … đến đâu”, không hỏi mức độ. Ở câu chính **Ein Risiko bleibt** sau mệnh đề mở đầu, **ein Risiko** vẫn là chủ ngữ; không tự thêm một chủ ngữ khác.\n\n### 3. Giới hạn và ngoại lệ\n| Dạng | Mẫu đúng | Ý nghĩa |\n| --- | --- | --- |\n| es sei denn + câu V2 | Wir öffnen, es sei denn, der Strom fällt aus. | mở cửa, trừ khi mất điện |\n| es sei denn, dass + động từ cuối | …, es sei denn, dass der Strom ausfällt. | cùng ngoại lệ trên |\n| außer wenn | …, außer wenn der Strom ausfällt. | trừ trường hợp mất điện |\n| außer dass / nur dass | Beide Geräte sind gleich, nur dass dieses leiser ist. | chỉ khác ở chỗ máy này êm hơn |\n\n**Nur dass** ở đây đứng sau phát biểu cần giới hạn. Phân biệt ngoại lệ của điều kiện và điểm khác nhau giữa hai vật.\n\n### 4. Cụm danh từ–động từ cố định\n| Cụm | Vai trò | Ví dụ mới và nghĩa |\n| --- | --- | --- |\n| zur Verfügung stellen | cung cấp cái gì | Wir stellen Ihnen einen Laptop zur Verfügung. → Chúng tôi cấp máy tính cho anh/chị. |\n| zur Verfügung stehen | có sẵn cho ai | Ein Laptop steht Ihnen zur Verfügung. → Có sẵn máy tính cho anh/chị. |\n| zur Sprache bringen | chủ động nêu ra | Sie bringt das Problem zur Sprache. → Cô ấy nêu vấn đề. |\n| zur Sprache kommen | vấn đề được đề cập | Das Problem kommt zur Sprache. → Vấn đề được đề cập. |\n| in Kauf nehmen | chấp nhận hệ quả bất lợi | Wir nehmen längere Wege in Kauf. → Chúng tôi chấp nhận đi xa hơn. |\n| Kritik üben an + Dativ | phê bình | Sie übt Kritik an dem Verfahren. → Cô ấy phê bình quy trình. |\n\n### 5. Mẹo chọn\nHỏi “ai thực hiện?” trước khi chọn **stellen/stehen**, **bringen/kommen**. Học cả giới từ: **jemandem etwas zur Verfügung stellen**, không chỉ học từ Verfügung.\n\n### 6. Lỗi cần tránh\n- Sai: **es sei denn, dass er kommt morgen**. Đúng: **…, dass er morgen kommt**.\n- Sai: **Ein Zimmer stellt zur Verfügung.** Đúng: **Ein Zimmer steht zur Verfügung.** Nếu dùng stellen, cần người cung cấp và vật được cấp.\n- **In Kauf nehmen** không mang nghĩa đi mua; đó là chấp nhận một mặt bất lợi.",
+      "exercises": [
+        {
+          "type": "fill",
+          "question": "Wenn die Aufgabe auch schwierig ___, so versuchen wir sie. (sein)",
+          "answers": [
+            "ist"
+          ],
+          "id": "elio-c1-sicher-02-q01",
+          "explanation": "Trong mệnh đề wenn, động từ chia ist nằm cuối sau schwierig.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "quiz",
+          "question": "___ sehr sie sich auch bemüht, sie kann nicht alle überzeugen.",
+          "options": [
+            "Wie",
+            "Weil",
+            "Ob"
+          ],
+          "answers": [
+            "Wie"
+          ],
+          "id": "elio-c1-sicher-02-q02",
+          "explanation": "Wie sehr … auch diễn đạt dù cố gắng đến mức nào; không phải câu hỏi ob.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "fill",
+          "question": "Wir liefern morgen, es sei denn, der Kunde ___ den Auftrag. (stornieren)",
+          "answers": [
+            "storniert"
+          ],
+          "id": "elio-c1-sicher-02-q03",
+          "explanation": "Es sei denn không có dass được nối với câu chính: der Kunde storniert den Auftrag.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "fill",
+          "question": "Wir liefern morgen, es sei denn, dass der Kunde den Auftrag ___. (stornieren)",
+          "answers": [
+            "storniert"
+          ],
+          "id": "elio-c1-sicher-02-q04",
+          "explanation": "Có dass thì động từ chia đứng cuối mệnh đề phụ.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "quiz",
+          "question": "Die Zimmer sind gleich, ___ dieses einen Balkon hat.",
+          "options": [
+            "nur dass",
+            "es sei denn",
+            "trotzdem"
+          ],
+          "answers": [
+            "nur dass"
+          ],
+          "id": "elio-c1-sicher-02-q05",
+          "explanation": "Đang nêu điểm khác nhau giữa hai phòng, không nêu điều kiện ngoại lệ tương lai.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "fill",
+          "question": "Das Labor ___ uns neue Geräte zur Verfügung. (stellen/stehen)",
+          "answers": [
+            "stellt"
+          ],
+          "id": "elio-c1-sicher-02-q06",
+          "explanation": "Labor là bên cung cấp, neue Geräte là vật được cấp, uns là Dativ người nhận.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "fill",
+          "question": "Neue Geräte ___ uns zur Verfügung. (stellen/stehen)",
+          "answers": [
+            "stehen"
+          ],
+          "id": "elio-c1-sicher-02-q07",
+          "explanation": "Neue Geräte là chủ ngữ số nhiều; dùng stehen để diễn đạt có sẵn.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "fill",
+          "question": "Im Gespräch ___ sie das Problem zur Sprache. (bringen)",
+          "answers": [
+            "bringt"
+          ],
+          "id": "elio-c1-sicher-02-q08",
+          "explanation": "Cô ấy là người chủ động nêu vấn đề nên dùng zur Sprache bringen.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "fill",
+          "question": "Im Gespräch ___ das Problem zur Sprache. (kommen)",
+          "answers": [
+            "kommt"
+          ],
+          "id": "elio-c1-sicher-02-q09",
+          "explanation": "Chủ ngữ là das Problem: vấn đề được nhắc đến, dùng zur Sprache kommen.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "fill",
+          "question": "Für die neue Stelle nehme ich längere Fahrtzeiten in ___.",
+          "answers": [
+            "Kauf"
+          ],
+          "id": "elio-c1-sicher-02-q10",
+          "explanation": "In Kauf nehmen là chấp nhận bất lợi; danh từ Kauf viết hoa và không thêm mạo từ trong cụm.",
+          "origin": "authored",
+          "answerSource": "authored"
+        }
+      ],
+      "origin": "elio-c1-pdf-rewrite",
+      "contentRevision": "2026-10-27",
+      "sourceNote": "Biên soạn tiếng Việt theo nhóm chủ điểm của PDF Sicher! C1 do chủ dự án cung cấp; ví dụ và bài tập mới. Số trang là trang PDF, không phải trang Kursbuch."
+    },
+    {
+      "id": "elio-c1-sicher-03",
+      "title": "Thay Modalverben, hệ quả không xảy ra và đuôi tính từ nâng cao",
+      "topic": "Thay Modalverben, hệ quả không xảy ra và đuôi tính từ nâng cao",
+      "level": "C1",
+      "levels": [
+        "C1"
+      ],
+      "group": "verbs",
+      "sourcePages": [
+        5,
+        6
+      ],
+      "sourceChapter": 3,
+      "topics": [
+        "Alternativen zu Modalverben",
+        "Irreale Folgesätze",
+        "Adjektivendungen nach Artikelwörtern"
+      ],
+      "content": "## Thay Modalverben, hệ quả không xảy ra và đuôi tính từ nâng cao\n\n### 1. Bản chất và cách thay\nThay modal bằng một cụm trang trọng giúp viết linh hoạt, nhưng phải giữ đúng nghĩa: **khả năng**, **sự cho phép**, **nghĩa vụ**, **ý định** không giống nhau.\n\n| Nghĩa | Cấu trúc thay | Ví dụ và nghĩa |\n| --- | --- | --- |\n| có khả năng | in der Lage sein, … zu | Sie ist in der Lage, den Fehler zu beheben. → Cô ấy có khả năng sửa lỗi. |\n| được phép | die Erlaubnis haben, … zu | Wir haben die Erlaubnis, hier zu filmen. → Chúng tôi được phép quay ở đây. |\n| buộc phải | verpflichtet/gezwungen sein, … zu | Er ist verpflichtet, den Schaden zu melden. → Anh ấy có nghĩa vụ báo thiệt hại. |\n| dự định | beabsichtigen / vorhaben, … zu | Ich beabsichtige, den Vertrag zu verlängern. → Tôi định gia hạn hợp đồng. |\n| lời khuyên | Es wäre ratsam, … zu | Es wäre ratsam, früher anzurufen. → Nên gọi sớm hơn. |\n\n**Nicht müssen = không cần**, không phải cấm: **Du brauchst nicht zu warten.** → Bạn không cần đợi. Cấm: **Du darfst nicht eintreten.** → Bạn không được vào.\n\n### 2. Zu …, als dass và zu …, um zu\n| Cấu trúc | Ví dụ mới | Cách hiểu |\n| --- | --- | --- |\n| zu + tính từ, als dass + Konjunktiv II | Die Frist ist zu kurz, als dass wir alles prüfen könnten. | hạn quá ngắn nên không thể kiểm tra hết |\n| zu + tính từ, um … zu | Ich bin zu müde, um noch zu fahren. | tôi quá mệt để lái tiếp |\n\n**Als dass** có chủ ngữ riêng. Với **um … zu**, chủ thể của nguyên mẫu phải suy ra được. Có cả cấu trúc với tân ngữ được hiểu: **Der Text ist zu lang, um ihn vorzulesen.** → Bài quá dài để đọc thành tiếng. Không thay mọi mệnh đề bằng um zu một cách máy móc.\n\n### 3. Đuôi tính từ: ba bảng nhỏ\n| Sau từ xác định, số nhiều | Nominativ/Akkusativ | Dativ |\n| --- | --- | --- |\n| alle, sämtliche, keine | alle neuen Regeln | mit allen neuen Regeln |\n\n| Sau lượng từ, số nhiều | Nominativ/Akkusativ | Dativ |\n| --- | --- | --- |\n| einige, mehrere, viele, wenige | mehrere neue Regeln | mit mehreren neuen Regeln |\n\n| Có die đứng trước lượng từ | Nominativ/Akkusativ | Dativ |\n| --- | --- | --- |\n| die vielen / die wenigen | die vielen neuen Regeln | mit den vielen neuen Regeln |\n\nVới **solche/welche**, cách chia có thể có biến thể theo cách dùng; mẫu bài này dùng **solche neuen Regeln**. Đừng suy ra mọi lượng từ đều giống alle. Số ít không đếm được: **viel neues Wissen**, **mit viel neuem Wissen**.\n\n### 4. Dấu hiệu và mẹo\nTìm **die/alle/keine** trước khi chọn -e/-en. Gặp **mehrere/viele** mà không có mạo từ xác định: xét như một cụm cần tính từ biểu thị đuôi mạnh ở mẫu tương ứng.\n\n### 5. Đặt câu\n“Có đủ năng lực giải quyết” → **in der Lage sein** → đặt nguyên mẫu cuối: **Unser Team ist in der Lage, die Störung schnell zu beheben.** → Nhóm có thể khắc phục sự cố nhanh.\n\n### 6. Cạm bẫy\n- Sai: **nicht müssen = nicht dürfen**. Không cần làm khác với bị cấm làm.\n- Sai: **mit mehreren neue Geräten**. Đúng: **mit mehreren neuen Geräten**; Dativ số nhiều.\n- Sai: **alle neue Verträge**. Đúng: **alle neuen Verträge**.",
+      "exercises": [
+        {
+          "type": "fill",
+          "question": "Sie ist in der ___, die Reparatur selbst auszuführen.",
+          "answers": [
+            "Lage"
+          ],
+          "id": "elio-c1-sicher-03-q01",
+          "explanation": "In der Lage sein, etwas zu tun tương đương có khả năng thực hiện một việc.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "fill",
+          "question": "Du musst nicht bleiben. Du ___ nicht zu bleiben. (brauchen)",
+          "answers": [
+            "brauchst"
+          ],
+          "id": "elio-c1-sicher-03-q02",
+          "explanation": "Nicht müssen được diễn đạt bằng nicht brauchen + zu; du chia brauchst.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "quiz",
+          "question": "Du darfst nicht eintreten. Das Eintreten ist ___.",
+          "options": [
+            "verboten",
+            "freiwillig",
+            "unnötig"
+          ],
+          "answers": [
+            "verboten"
+          ],
+          "id": "elio-c1-sicher-03-q03",
+          "explanation": "Darfst nicht là không được phép, nên verboten; unnötig chỉ nghĩa không cần thiết.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "fill",
+          "question": "Der Lärm ist zu laut, als dass man sich konzentrieren ___. (können; Konjunktiv II)",
+          "answers": [
+            "könnte"
+          ],
+          "id": "elio-c1-sicher-03-q04",
+          "explanation": "Zu … als dass diễn đạt hệ quả không thực hiện được; man số ít dùng könnte.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "quiz",
+          "question": "Ich bin zu erschöpft, um heute noch ___.",
+          "options": [
+            "zu arbeiten",
+            "arbeite",
+            "gearbeitet"
+          ],
+          "answers": [
+            "zu arbeiten"
+          ],
+          "id": "elio-c1-sicher-03-q05",
+          "explanation": "Um … zu cần nguyên mẫu có zu, chủ thể ngầm là ich.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "fill",
+          "question": "Alle ___ Geräte werden geprüft. (neu)",
+          "answers": [
+            "neuen"
+          ],
+          "id": "elio-c1-sicher-03-q06",
+          "explanation": "Alle xác định số nhiều; tính từ theo kiểu yếu nhận -en.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "fill",
+          "question": "Mehrere ___ Geräte fehlen. (neu)",
+          "answers": [
+            "neue"
+          ],
+          "id": "elio-c1-sicher-03-q07",
+          "explanation": "Mehrere ở Nominativ số nhiều đi với neue trong mẫu không có mạo từ xác định.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "fill",
+          "question": "Mit mehreren ___ Geräten arbeiten wir schneller. (neu)",
+          "answers": [
+            "neuen"
+          ],
+          "id": "elio-c1-sicher-03-q08",
+          "explanation": "Mit yêu cầu Dativ; số nhiều có mehreren neuen Geräten.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "fill",
+          "question": "Die vielen ___ Anfragen kosten Zeit. (zusätzlich)",
+          "answers": [
+            "zusätzlichen"
+          ],
+          "id": "elio-c1-sicher-03-q09",
+          "explanation": "Die đứng trước nhiều/anfragen làm cụm xác định: tính từ -en.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "fill",
+          "question": "Sie verfügt über viel ___ Wissen. (praktisch)",
+          "answers": [
+            "praktisches"
+          ],
+          "id": "elio-c1-sicher-03-q10",
+          "explanation": "Über trong verfügen über đòi Akkusativ; Wissen trung số ít, viel không có đuôi mạo từ nên praktisches.",
+          "origin": "authored",
+          "answerSource": "authored"
+        }
+      ],
+      "origin": "elio-c1-pdf-rewrite",
+      "contentRevision": "2026-10-27",
+      "sourceNote": "Biên soạn tiếng Việt theo nhóm chủ điểm của PDF Sicher! C1 do chủ dự án cung cấp; ví dụ và bài tập mới. Số trang là trang PDF, không phải trang Kursbuch."
+    },
+    {
+      "id": "elio-c1-sicher-04",
+      "title": "Các chức năng của es và tăng mức độ tính từ",
+      "topic": "Các chức năng của es và tăng mức độ tính từ",
+      "level": "C1",
+      "levels": [
+        "C1"
+      ],
+      "group": "words",
+      "sourcePages": [
+        7,
+        8
+      ],
+      "sourceChapter": 4,
+      "topics": [
+        "Funktionen des Pronomens es",
+        "Graduierung von Adjektiven"
+      ],
+      "content": "## Các chức năng của es và tăng mức độ tính từ\n\n### 1. Bản chất: không phải es nào cũng là “nó”\n**Es** có thể thay danh từ trung, thay một nhận xét, báo trước mệnh đề hoặc là thành phần bắt buộc của cấu trúc vô nhân xưng. Trước khi xóa es, phải xác định chức năng.\n\n### 2. Bảng phân loại\n| Chức năng | Ví dụ mới và nghĩa | Có bỏ được không? |\n| --- | --- | --- |\n| thay danh từ trung | Das Paket ist da. Ich öffne es. → Gói hàng đến rồi. Tôi mở nó. | không tự bỏ tân ngữ es |\n| thay tính chất | Er ist geduldig; ich bin es nicht. → Anh ấy kiên nhẫn; tôi thì không. | es thay geduldig; không đặt es lên đầu ở nghĩa này |\n| báo trước mệnh đề | Es ist unklar, ob sie kommt. → Chưa rõ cô ấy có đến không. | khi đưa mệnh đề lên đầu: Ob sie kommt, ist unklar. |\n| giả chủ ngữ đầu câu | Es warten drei Gäste. → Có ba khách đang chờ. | Heute warten drei Gäste.; động từ hòa hợp với Gäste |\n| thời tiết/vô nhân xưng | Es schneit. Heute schneit es. → Hôm nay có tuyết. | vẫn phải giữ es khi đổi vị trí |\n| cụm cố định | Sie hat es eilig. → Cô ấy đang vội. | phải giữ es của cụm |\n\n### 3. Đừng hiểu “không bắt buộc” là bỏ tùy ý\nTrong **Ich finde es wichtig, pünktlich zu sein**, es báo trước bổ ngữ và thuộc mẫu **etwas wichtig finden**. Không bỏ thành **Ich finde wichtig …** trong mẫu chuẩn này. Với **Dass er hilft, ist wichtig**, cả mệnh đề đã làm chủ ngữ nên không thêm es giả chủ ngữ nữa. Mỗi cấu trúc có điều kiện riêng.\n\n### 4. Tăng mức độ tính từ\n| Kết hợp đã được dùng | Nghĩa và sắc thái | Ví dụ mới |\n| --- | --- | --- |\n| nagelneu / brandneu | hoàn toàn mới | Der Scanner ist nagelneu. → Máy quét mới tinh. |\n| tiefblau | xanh thẫm | Das Wasser ist tiefblau. → Nước xanh thẫm. |\n| todmüde | mệt rã rời; khẩu ngữ | Nach der Schicht war ich todmüde. → Hết ca tôi mệt rã rời. |\n| vollautomatisch | hoàn toàn tự động | Die Anlage arbeitet vollautomatisch. → Dây chuyền vận hành tự động hoàn toàn. |\n| topfit | rất khỏe/phong độ tốt | Nach der Pause ist sie wieder topfit. → Nghỉ xong cô ấy lại khỏe khoắn. |\n\nĐây là kết hợp từ vựng, không phải phép nhân tự do. **Nagelneu** tự nhiên; không suy ra “nagelaktuell” bằng cùng quy tắc. Nhiều cách nói super-/mega- thuộc quảng cáo hoặc khẩu ngữ; bài viết trang trọng có thể dùng **äußerst, besonders, sehr** phù hợp ngữ cảnh.\n\n### 5. Mẹo và ví dụ có phân tích\nĐưa **heute** lên đầu để thử: **Es kommen zwei Busse → Heute kommen zwei Busse**. Es biến mất vì chỉ lấp vị trí đầu. Nhưng **Es regnet → Heute regnet es**: es vẫn thuộc cấu trúc thời tiết. Đây là hai chức năng khác nhau.\n\n### 6. Cạm bẫy\n- Sai: **Heute regnet.** Đúng: **Heute regnet es.**\n- Sai: **Es wartet drei Gäste.** Đúng: **Es warten drei Gäste.** Gäste là chủ ngữ số nhiều.\n- Sai: **Sie hat eilig.** Đúng: **Sie hat es eilig.** Học cả cụm.",
+      "exercises": [
+        {
+          "type": "fill",
+          "question": "Das Formular liegt hier. Bitte unterschreiben Sie ___.",
+          "answers": [
+            "es"
+          ],
+          "id": "elio-c1-sicher-04-q01",
+          "explanation": "Formular là danh từ trung; es thay cho tân ngữ Akkusativ cần ký.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "fill",
+          "question": "Heute schneit ___.",
+          "answers": [
+            "es"
+          ],
+          "id": "elio-c1-sicher-04-q02",
+          "explanation": "Es của động từ thời tiết không chỉ lấp Vorfeld; dù Heute lên đầu vẫn cần es.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "fill",
+          "question": "Es ___ drei Besucher vor der Tür. (warten)",
+          "answers": [
+            "warten"
+          ],
+          "id": "elio-c1-sicher-04-q03",
+          "explanation": "Chủ ngữ thực là drei Besucher số nhiều, nên động từ warten; es ở đầu không quyết định số ít.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "fill",
+          "question": "Viết lại, điền phần còn thiếu: Es warten drei Besucher. → Heute ___ drei Besucher.",
+          "answers": [
+            "warten"
+          ],
+          "id": "elio-c1-sicher-04-q04",
+          "explanation": "Heute chiếm Vorfeld nên es lấp chỗ bị loại; chủ ngữ Besucher vẫn số nhiều.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "fill",
+          "question": "Ob der Antrag genehmigt wird, ___ noch unklar. (sein)",
+          "answers": [
+            "ist"
+          ],
+          "id": "elio-c1-sicher-04-q05",
+          "explanation": "Mệnh đề ob đóng vai chủ ngữ số ít. Không thêm một es giả chủ ngữ sau dấu phẩy.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "fill",
+          "question": "Ich finde ___ sinnvoll, zuerst anzurufen.",
+          "answers": [
+            "es"
+          ],
+          "id": "elio-c1-sicher-04-q06",
+          "explanation": "Trong finden + bổ ngữ đánh giá, es đại diện cho hành động nguyên mẫu được nêu sau.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "fill",
+          "question": "Wir haben ___ eilig und nehmen ein Taxi.",
+          "answers": [
+            "es"
+          ],
+          "id": "elio-c1-sicher-04-q07",
+          "explanation": "Es thuộc cụm cố định es eilig haben, không phải đại từ tùy ý bỏ.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "fill",
+          "question": "Er ist zuverlässig; ich bin ___ ebenfalls.",
+          "answers": [
+            "es"
+          ],
+          "id": "elio-c1-sicher-04-q08",
+          "explanation": "Es thay tính chất zuverlässig. Không cần lặp tính từ trong vế thứ hai.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "fill",
+          "question": "Der Laptop ist völlig neu. Er ist ___. (nagel- + neu)",
+          "answers": [
+            "nagelneu"
+          ],
+          "id": "elio-c1-sicher-04-q09",
+          "explanation": "Nagelneu là kết hợp cố định nghĩa mới tinh; viết liền, không tự ghép với mọi tính từ.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "fill",
+          "question": "Nach zwölf Stunden Arbeit bin ich ___. (tod- + müde)",
+          "answers": [
+            "todmüde"
+          ],
+          "id": "elio-c1-sicher-04-q10",
+          "explanation": "Todmüde là mệt rã rời; lựa chọn khẩu ngữ, không phải nghĩa chết theo nghĩa đen.",
+          "origin": "authored",
+          "answerSource": "authored"
+        }
+      ],
+      "origin": "elio-c1-pdf-rewrite",
+      "contentRevision": "2026-10-27",
+      "sourceNote": "Biên soạn tiếng Việt theo nhóm chủ điểm của PDF Sicher! C1 do chủ dự án cung cấp; ví dụ và bài tập mới. Số trang là trang PDF, không phải trang Kursbuch."
+    },
+    {
+      "id": "elio-c1-sicher-05",
+      "title": "Tiền tố be-/ver- và thuật lại câu hỏi, yêu cầu, nguồn tin",
+      "topic": "Tiền tố be-/ver- và thuật lại câu hỏi, yêu cầu, nguồn tin",
+      "level": "C1",
+      "levels": [
+        "C1"
+      ],
+      "group": "sentences",
+      "sourcePages": [
+        9,
+        10
+      ],
+      "sourceChapter": 5,
+      "topics": [
+        "Wortbildung: be-, ver-",
+        "Indirekte Fragen und Imperativ",
+        "nach, laut, zufolge, wie"
+      ],
+      "content": "## Tiền tố be-/ver- và thuật lại câu hỏi, yêu cầu, nguồn tin\n\n### 1. Bản chất\nTiền tố có thể đổi nghĩa và cách kết hợp bổ ngữ. **Antworten auf eine Frage** khác cấu trúc **eine Frage beantworten**. Trong dẫn lời, cần phân biệt **người kể xác nhận thông tin** và **người kể chỉ thuật lại lời người khác**.\n\n### 2. Be- và ver-\n| Mẫu | Ví dụ mới | Nghĩa/cơ chế |\n| --- | --- | --- |\n| arbeiten an + Dativ → bearbeiten + Akkusativ | Sie bearbeitet den Antrag. | xử lý hồ sơ; vật được xử lý làm tân ngữ |\n| antworten auf + Akkusativ → beantworten + Akkusativ | Er beantwortet die Anfrage. | trả lời yêu cầu |\n| sich ver-: hành động sai ở nhiều từ | Ich habe mich verrechnet. | tôi tính nhầm |\n| ver-: biến đổi trạng thái | Die Firma vergrößert das Lager. | công ty mở rộng kho |\n| ver-: nghĩa từ vựng riêng | Sie versteht den Hinweis. | cô ấy hiểu lời nhắc |\n\n**Be- không có nghĩa mọi động từ bắt đầu bằng be- đều đòi Akkusativ.** Có ngoại lệ như **begegnen + Dativ**, **bedürfen + Genitiv**; **bestehen** có cách dùng riêng. Học cấu trúc của từng từ, không ghép quy tắc tuyệt đối. Be-/ver- không tách; **beantwortet**, **verstanden**, không thêm ge-.\n\n### 3. Câu hỏi trong lời thuật lại\n| Trực tiếp | Gián tiếp mới | Nghĩa |\n| --- | --- | --- |\n| Wann beginnt die Sitzung? | Sie fragt, wann die Sitzung beginne. | cô ấy hỏi cuộc họp bắt đầu khi nào |\n| Ist der Raum frei? | Sie fragt, ob der Raum frei sei. | cô ấy hỏi phòng có trống không |\n| Wurde der Antrag geprüft? | Sie fragt, ob der Antrag geprüft worden sei. | cô ấy hỏi hồ sơ đã được xét chưa |\n\nĐộng từ xuống cuối. Konjunktiv I thường xuất hiện trong văn viết dẫn lời; **Indikativ cũng có thể đúng** tùy ngữ cảnh. Nếu Konjunktiv I trùng Indikativ, có thể dùng Konjunktiv II để rõ tính dẫn lời; không tự suy ra nội dung sai sự thật.\n\n### 4. Thuật lại yêu cầu và nguồn dẫn\n| Công cụ | Ví dụ mới và nghĩa |\n| --- | --- |\n| sollen | Die Chefin sagte, ich solle warten. → Sếp bảo tôi đợi. |\n| mögen, trang trọng/lịch sự | Sie bat, ich möge leiser sprechen. → Cô ấy đề nghị tôi nói nhỏ hơn. |\n| nach + Dativ | Nach dem Bericht ist die Lage stabil. → Theo báo cáo, tình hình ổn định. |\n| laut + Dativ/Genitiv | Laut dem Bericht ist die Lage stabil. → Theo báo cáo… |\n| zufolge đứng sau + Dativ | Dem Bericht zufolge ist die Lage stabil. → Theo báo cáo… |\n| wie + mệnh đề | Wie die Sprecherin erklärte, bleibt das Büro offen. → Như phát ngôn viên giải thích, văn phòng vẫn mở. |\n\n### 5. Mẹo và dấu hiệu\nCâu hỏi có/không → **ob**; có từ hỏi → giữ từ hỏi. Sau đó sửa đại từ theo người kể, đưa động từ xuống cuối và chọn thức phù hợp. **Bitte warten Sie! → Sie bat mich, zu warten.** cũng là cách thuật tự nhiên bằng nguyên mẫu.\n\n### 6. Cạm bẫy\n- Sai: **Sie fragt, ist der Raum frei.** Đúng: **Sie fragt, ob der Raum frei ist/sei.**\n- Sai: **zufolge dem Bericht** khi áp mẫu hậu giới từ. Đúng: **dem Bericht zufolge**.\n- Đừng biến **möge** thành **möchte** máy móc: möge là Konjunktiv I của mögen dùng trong lời thỉnh cầu trang trọng.",
+      "exercises": [
+        {
+          "type": "fill",
+          "question": "Die Sachbearbeiterin ___ den Antrag. (bearbeiten; Präsens)",
+          "answers": [
+            "bearbeitet"
+          ],
+          "id": "elio-c1-sicher-05-q01",
+          "explanation": "Bearbeiten là xử lý hồ sơ; be- không tách, die Sachbearbeiterin dùng bearbeitet.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "fill",
+          "question": "Ich habe mich bei der Summe ___. (verrechnen)",
+          "answers": [
+            "verrechnet"
+          ],
+          "id": "elio-c1-sicher-05-q02",
+          "explanation": "Sich verrechnen nghĩa tính nhầm; Partizip II không có ge- vì ver- không tách.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "quiz",
+          "question": "Er begegnet ___ neuen Kollegin.",
+          "options": [
+            "der",
+            "die",
+            "den"
+          ],
+          "answers": [
+            "der"
+          ],
+          "id": "elio-c1-sicher-05-q03",
+          "explanation": "Begegnen là ngoại lệ quan trọng với Dativ. Kollegin giống cái nên der neuen Kollegin.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "quiz",
+          "question": "Sie fragt, ___ alle Unterlagen vollständig seien.",
+          "options": [
+            "ob",
+            "dass",
+            "weil"
+          ],
+          "answers": [
+            "ob"
+          ],
+          "id": "elio-c1-sicher-05-q04",
+          "explanation": "Đây là câu hỏi có/không được thuật lại, nên mở bằng ob.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "fill",
+          "question": "Sie fragt, wann die Sitzung ___. (beginnen; Konjunktiv I)",
+          "answers": [
+            "beginne"
+          ],
+          "id": "elio-c1-sicher-05-q05",
+          "explanation": "Chủ ngữ Sitzung số ít; Konjunktiv I beginne ở cuối mệnh đề hỏi gián tiếp.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "fill",
+          "question": "Er wollte wissen, ob der Antrag geprüft worden ___. (sein; Konjunktiv I)",
+          "answers": [
+            "sei"
+          ],
+          "id": "elio-c1-sicher-05-q06",
+          "explanation": "Câu hỏi về bị động quá khứ: geprüft worden sei. Sein chia Konjunktiv I thành sei.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "fill",
+          "question": "Die Leiterin sagte, ich ___ die Datei sofort sichern. (sollen; Konjunktiv I)",
+          "answers": [
+            "solle"
+          ],
+          "id": "elio-c1-sicher-05-q07",
+          "explanation": "Thuật lại yêu cầu trung tính bằng sollen; Konjunktiv I với ich là solle.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "fill",
+          "question": "Sie bat höflich, ich ___ das Fenster schließen. (mögen; Konjunktiv I)",
+          "answers": [
+            "möge"
+          ],
+          "id": "elio-c1-sicher-05-q08",
+          "explanation": "Möge thể hiện lời đề nghị trang trọng; không phải möchte trong mẫu bài.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "quiz",
+          "question": "___ Bericht zufolge bleibt die Straße gesperrt.",
+          "options": [
+            "Dem",
+            "Den",
+            "Der"
+          ],
+          "answers": [
+            "Dem"
+          ],
+          "id": "elio-c1-sicher-05-q09",
+          "explanation": "Zufolge đứng sau cụm Dativ; Bericht giống đực nên dem Bericht.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "quiz",
+          "question": "___ die Sprecherin erklärte, werde später entschieden.",
+          "options": [
+            "Wie",
+            "Als ob",
+            "Ob"
+          ],
+          "answers": [
+            "Wie"
+          ],
+          "id": "elio-c1-sicher-05-q10",
+          "explanation": "Wie mở mệnh đề dẫn nguồn phát ngôn. Cả mệnh đề Wie … erklärte đứng ở đầu câu.",
+          "origin": "authored",
+          "answerSource": "authored"
+        }
+      ],
+      "origin": "elio-c1-pdf-rewrite",
+      "contentRevision": "2026-10-27",
+      "sourceNote": "Biên soạn tiếng Việt theo nhóm chủ điểm của PDF Sicher! C1 do chủ dự án cung cấp; ví dụ và bài tập mới. Số trang là trang PDF, không phải trang Kursbuch."
+    },
+    {
+      "id": "elio-c1-sicher-06",
+      "title": "Dativ trang trọng, hậu tố danh từ và từ quy chiếu",
+      "topic": "Dativ trang trọng, hậu tố danh từ và từ quy chiếu",
+      "level": "C1",
+      "levels": [
+        "C1"
+      ],
+      "group": "relations",
+      "sourcePages": [
+        11
+      ],
+      "sourceChapter": 6,
+      "topics": [
+        "Präpositionen mit Dativ",
+        "Nomensuffixe",
+        "Verweiswörter"
+      ],
+      "content": "## Dativ trang trọng, hậu tố danh từ và từ quy chiếu\n\n### 1. Bản chất\nVăn viết C1 dùng giới từ và từ quy chiếu để gắn ý chặt mà không lặp nguyên câu. Hình thức của **das/dem/daran** phụ thuộc cấu trúc câu sau, không chỉ nghĩa của ý trước.\n\n### 2. Giới từ Dativ\n| Giới từ | Vị trí và nghĩa | Ví dụ mới và dịch |\n| --- | --- | --- |\n| entsprechend | thường đứng trước, cũng có thể đứng sau | Entsprechend dem Plan beginnen wir um acht. → Theo kế hoạch, chúng tôi bắt đầu lúc tám giờ. |\n| samt | cùng với | Die Tasche samt dem Inhalt wurde gefunden. → Túi cùng đồ bên trong đã được tìm thấy. |\n| fern / fern von | cách xa; fern còn có cách dùng Genitiv | Fern von ihrer Familie arbeitet sie im Ausland. → Cô ấy làm ở nước ngoài, xa gia đình. |\n| zuliebe | đứng sau cụm Dativ; vì muốn tốt cho ai | Seinem Sohn zuliebe zieht er um. → Vì con trai, anh ấy chuyển nhà. |\n\n### 3. Hậu tố và giống: học kèm ngoại lệ\n| Nhóm | Giống điển hình | Ví dụ và nghĩa |\n| --- | --- | --- |\n| -ismus, -asmus | der | der Realismus: chủ nghĩa hiện thực; der Sarkasmus: lối châm biếm |\n| -ar/-är chỉ nghề nam | der | der Bibliothekar: thủ thư nam; der Sekretär: thư ký nam |\n| từ trung có -ar | das | das Exemplar: bản/mẫu; das Vokabular: vốn từ |\n| -ment | thường das ở nhiều từ vay mượn | das Experiment: thí nghiệm; **der Moment**: khoảnh khắc là ngoại lệ quan trọng |\n| -anz/-enz | thường die | die Toleranz: lòng khoan dung; die Kompetenz: năng lực |\n\nKhông phải mọi đuôi âm giống nhau đều có cùng quy tắc. Ghi **mạo từ + từ + số nhiều**: **das Experiment, die Experimente**. Một số từ trông giống nhau nhưng nghĩa/giống khác: **der Moment** và **das Moment** không hoàn toàn đồng nghĩa.\n\n### 4. Từ quy chiếu\n| Quan hệ câu sau | Từ phù hợp | Ví dụ mới và nghĩa |\n| --- | --- | --- |\n| nhắc lại một ý như tân ngữ | das | Das verstehe ich. → Tôi hiểu điều đó. |\n| đồng ý với một ý | dem | Dem stimme ich zu. → Tôi đồng ý với điều đó. |\n| hệ quả từ ý trước | dadurch / infolgedessen | Die Leitung ist defekt. Dadurch fällt die Heizung aus. → Đường ống hỏng, vì vậy hệ thống sưởi ngừng. |\n| thay cho phương án trước | stattdessen | Sie fährt nicht. Stattdessen nimmt sie den Zug. → Cô ấy không lái xe mà đi tàu. |\n| một địa điểm | dort / da | Das Büro ist im Erdgeschoss. Dort wartet sie. → Văn phòng ở tầng trệt; cô ấy chờ ở đó. |\n\n### 5. Mẹo đọc và viết\nGạch chân câu/nhóm từ mà đại từ trỏ tới. Sau đó kiểm tra động từ của câu mới: **zustimmen + Dativ → dem**. Trạng từ nối đứng đầu chiếm một vị trí: **Dadurch wird die Arbeit leichter**, không đặt thêm chủ ngữ trước động từ.\n\n### 6. Cạm bẫy\n- Sai: **Das stimme ich zu.** Đúng: **Dem stimme ich zu.**\n- Sai: **zuliebe seinem Kind** trong mẫu hậu giới từ đang học. Đúng: **seinem Kind zuliebe**.\n- Sai: **Dadurch die Arbeit wird leichter.** Đúng: **Dadurch wird die Arbeit leichter.**",
+      "exercises": [
+        {
+          "type": "quiz",
+          "question": "Entsprechend ___ neuen Regel wird der Antrag digital gestellt.",
+          "options": [
+            "der",
+            "die",
+            "den"
+          ],
+          "answers": [
+            "der"
+          ],
+          "id": "elio-c1-sicher-06-q01",
+          "explanation": "Entsprechend yêu cầu Dativ; Regel giống cái số ít nên der neuen Regel.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "quiz",
+          "question": "Das Handy samt ___ Zubehör ist versichert.",
+          "options": [
+            "dem",
+            "das",
+            "des"
+          ],
+          "answers": [
+            "dem"
+          ],
+          "id": "elio-c1-sicher-06-q02",
+          "explanation": "Samt dùng Dativ; Zubehör trung nên dem Zubehör.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "fill",
+          "question": "Sein___ Eltern zuliebe bleibt er in der Stadt.",
+          "answers": [
+            "en"
+          ],
+          "id": "elio-c1-sicher-06-q03",
+          "explanation": "Eltern số nhiều Dativ: seinen Eltern. Zuliebe đứng sau cụm danh từ.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "fill",
+          "question": "Sie arbeitet fern ___ ihrer Heimat. (von/aus)",
+          "answers": [
+            "von"
+          ],
+          "id": "elio-c1-sicher-06-q04",
+          "explanation": "Mẫu fern von + Dativ diễn đạt xa quê. Fern cũng có cách dùng không von, nhưng câu có chỗ trống cần von.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "quiz",
+          "question": "Welcher Artikel? ___ Experiment gelang.",
+          "options": [
+            "Das",
+            "Der",
+            "Die"
+          ],
+          "answers": [
+            "Das"
+          ],
+          "id": "elio-c1-sicher-06-q05",
+          "explanation": "Experiment là danh từ trung, số nhiều Experimente.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "quiz",
+          "question": "Welcher Artikel? ___ Sekretär ruft an.",
+          "options": [
+            "Der",
+            "Das",
+            "Die"
+          ],
+          "answers": [
+            "Der"
+          ],
+          "id": "elio-c1-sicher-06-q06",
+          "explanation": "Sekretär ở đây là nghề nam nên der; nữ là die Sekretärin.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "quiz",
+          "question": "Welcher Artikel? ___ Kompetenz ist entscheidend.",
+          "options": [
+            "Die",
+            "Der",
+            "Das"
+          ],
+          "answers": [
+            "Die"
+          ],
+          "id": "elio-c1-sicher-06-q07",
+          "explanation": "Kompetenz là giống cái, thuộc nhóm hậu tố -enz thường có die.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "quiz",
+          "question": "Dieser Vorschlag ist sinnvoll. ___ stimme ich zu.",
+          "options": [
+            "Dem",
+            "Das",
+            "Dessen"
+          ],
+          "answers": [
+            "Dem"
+          ],
+          "id": "elio-c1-sicher-06-q08",
+          "explanation": "Zustimmen đòi Dativ, nên dem trỏ lại đề xuất/nhận định trước.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "quiz",
+          "question": "Die Maschine ist kaputt. ___ müssen wir die Arbeit unterbrechen.",
+          "options": [
+            "Dadurch",
+            "Daran",
+            "Dafür"
+          ],
+          "answers": [
+            "Dadurch"
+          ],
+          "id": "elio-c1-sicher-06-q09",
+          "explanation": "Dadurch nối hệ quả do máy hỏng; danach/daran không biểu thị đúng quan hệ yêu cầu.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "quiz",
+          "question": "Sie kauft kein Auto. ___ nutzt sie den Bus.",
+          "options": [
+            "Stattdessen",
+            "Dessen",
+            "Obwohl"
+          ],
+          "answers": [
+            "Stattdessen"
+          ],
+          "id": "elio-c1-sicher-06-q10",
+          "explanation": "Stattdessen nêu phương án thay thế; câu sau V2: Stattdessen nutzt sie …",
+          "origin": "authored",
+          "answerSource": "authored"
+        }
+      ],
+      "origin": "elio-c1-pdf-rewrite",
+      "contentRevision": "2026-10-27",
+      "sourceNote": "Biên soạn tiếng Việt theo nhóm chủ điểm của PDF Sicher! C1 do chủ dự án cung cấp; ví dụ và bài tập mới. Số trang là trang PDF, không phải trang Kursbuch."
+    },
+    {
+      "id": "elio-c1-sicher-07",
+      "title": "Nominalstil, quan hệ nguyên nhân và tính từ từ trạng từ",
+      "topic": "Nominalstil, quan hệ nguyên nhân và tính từ từ trạng từ",
+      "level": "C1",
+      "levels": [
+        "C1"
+      ],
+      "group": "sentences",
+      "sourcePages": [
+        12,
+        13
+      ],
+      "sourceChapter": 7,
+      "topics": [
+        "Verbalstil und Nominalstil",
+        "Kausale Zusammenhänge",
+        "Adjektive aus Adverbien"
+      ],
+      "content": "## Nominalstil, quan hệ nguyên nhân và tính từ từ trạng từ\n\n### 1. Bản chất: đổi cách đóng gói thông tin\nVerbalstil kể **ai làm gì**; Nominalstil biến sự việc thành cụm danh từ. Đây là thay đổi cấu trúc, không đơn thuần thay một động từ bằng từ có -ung. Phải giữ rõ người làm, đối tượng, thời gian và quan hệ nguyên nhân.\n\n### 2. Biến đổi có kiểm soát\n| Câu động từ mới | Cụm danh từ tương ứng | Phân tích |\n| --- | --- | --- |\n| Die Preise steigen stark. | der starke Anstieg der Preise | stark → starke; Preise thành Genitiv |\n| Die Firma prüft den Antrag. | die Prüfung des Antrags durch die Firma | đối tượng ở Genitiv; người thực hiện có durch |\n| Die Beraterin hilft dem Kunden. | die Hilfe für den Kunden | đổi cấu trúc Dativ thành für + Akkusativ theo danh từ Hilfe |\n| Man liefert Waren. | die Lieferung von Waren | danh từ số nhiều không mạo từ thường dùng von + Dativ |\n\n**Die Prüfung des Instituts** có thể mơ hồ: viện đi kiểm tra hay bị kiểm tra? Thêm **durch das Institut** khi cần nêu rõ người thực hiện. Không cố danh từ hóa mọi câu vì có thể làm văn nặng và khó hiểu.\n\n### 3. Quan hệ nguyên nhân: ba bảng riêng\n| Mệnh đề phụ | Cách dùng | Ví dụ và nghĩa |\n| --- | --- | --- |\n| weil / da | động từ cuối | Da der Server ausfällt, verschieben wir die Sitzung. → Vì máy chủ hỏng, chúng tôi hoãn họp. |\n| zumal | bổ sung lý do đáng kể, “nhất là vì” | Ich bleibe zu Hause, zumal ich Fieber habe. → Tôi ở nhà, nhất là vì đang sốt. |\n\n| Liên kết câu chính | Vị trí |\n| --- | --- |\n| deshalb / deswegen / daher | nếu đứng đầu thì động từ chia ngay sau |\n| denn | không chiếm vị trí đầu câu trong mô hình V2 của vế sau |\n| nämlich / eben | thường ở giữa câu; không đóng đinh “vị trí 3” cho mọi câu |\n\n| Giới từ nguyên nhân | Cách | Ví dụ |\n| --- | --- | --- |\n| wegen / aufgrund / mangels / angesichts / kraft | Genitiv trong mẫu trang trọng | mangels ausreichender Belege: do thiếu chứng cứ đầy đủ |\n| aus / vor | **Dativ** | aus persönlichem Interesse; vor großer Aufregung |\n| dank | Dativ hoặc Genitiv tùy cấu trúc | dank Ihrer Hilfe: nhờ sự giúp đỡ của anh/chị |\n\n**Hiệu đính nguồn:** PDF trang 13 ghi aus/vor + Genitiv; trong các mẫu nguyên nhân này phải là Dativ. **Aus** hay chỉ động cơ; **vor** hay chỉ phản ứng do trạng thái mạnh, nhưng kết hợp từ vẫn cần học theo ngữ cảnh.\n\n### 4. Tính từ từ trạng từ\n**heute → heutig**, **morgen → morgig**, **gestern → gestrig**, **hier → hiesig**, **dort → dortig**, **oben → obig**. Trước danh từ vẫn phải chia đuôi: **die heutige Sitzung**, **mit den hiesigen Behörden**. → cuộc họp hôm nay; với cơ quan địa phương ở đây.\n\n### 5. Mẹo nhận biết\nMuốn đổi **weil** sang giới từ: xác định danh từ trung tâm, rồi chọn cách, cuối cùng xử lý tác nhân. **Weil der Bus verspätet ist → wegen der Verspätung des Busses**: do xe buýt trễ. Đừng giữ nguyên động từ chia sau wegen.\n\n### 6. Cạm bẫy\n- Sai: **aus persönliches Interesse**. Đúng: **aus persönlichem Interesse**.\n- Sai: **Deshalb wir warten.** Đúng: **Deshalb warten wir.**\n- Sai: **die morgen Sitzung**. Đúng: **die morgige Sitzung**.",
+      "exercises": [
+        {
+          "type": "quiz",
+          "question": "Wegen ___ Ausfalls bleibt die Anlage stehen.",
+          "options": [
+            "des",
+            "dem",
+            "den"
+          ],
+          "answers": [
+            "des"
+          ],
+          "id": "elio-c1-sicher-07-q01",
+          "explanation": "Mẫu văn viết dùng wegen + Genitiv; Ausfall giống đực nên des Ausfalls.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "fill",
+          "question": "Sie hilft aus persönlich___ Interesse. (đuôi tính từ)",
+          "answers": [
+            "em"
+          ],
+          "id": "elio-c1-sicher-07-q02",
+          "explanation": "Aus luôn đòi Dativ trong mẫu này; Interesse trung, không mạo từ nên persönlichem.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "fill",
+          "question": "Er zittert vor groß___ Aufregung. (đuôi tính từ)",
+          "answers": [
+            "er"
+          ],
+          "id": "elio-c1-sicher-07-q03",
+          "explanation": "Vor nguyên nhân dùng Dativ; Aufregung giống cái, không mạo từ nên großer.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "fill",
+          "question": "Die Straße ist gesperrt. Deshalb ___ wir einen Umweg. (nehmen)",
+          "answers": [
+            "nehmen"
+          ],
+          "id": "elio-c1-sicher-07-q04",
+          "explanation": "Deshalb chiếm Vorfeld, động từ đứng ngay sau; chủ ngữ wir đứng sau động từ.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "quiz",
+          "question": "Ich sage ab, ___ ich morgen operiert werde. (thêm lý do nhấn mạnh)",
+          "options": [
+            "zumal",
+            "trotzdem",
+            "dadurch"
+          ],
+          "answers": [
+            "zumal"
+          ],
+          "id": "elio-c1-sicher-07-q05",
+          "explanation": "Zumal mở mệnh đề phụ, bổ sung lý do đáng kể; werde cuối câu.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "quiz",
+          "question": "Die Prüfung des Antrags ___ die Behörde dauert lange. (nêu tác nhân)",
+          "options": [
+            "durch",
+            "wegen",
+            "ohne"
+          ],
+          "answers": [
+            "durch"
+          ],
+          "id": "elio-c1-sicher-07-q06",
+          "explanation": "Durch die Behörde nêu bên thực hiện kiểm tra; des Antrags là đối tượng được kiểm tra.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "fill",
+          "question": "Verbal → nominal: Die Preise steigen. → der ___ der Preise.",
+          "answers": [
+            "Anstieg"
+          ],
+          "id": "elio-c1-sicher-07-q07",
+          "explanation": "Steigen có danh từ der Anstieg; không tự tạo Steigung cho mọi nghĩa, vì Steigung còn chỉ độ dốc.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "fill",
+          "question": "Die Beratung hilft dem Kunden. → die Hilfe ___ den Kunden.",
+          "answers": [
+            "für"
+          ],
+          "id": "elio-c1-sicher-07-q08",
+          "explanation": "Hilfe thường có für + Akkusativ khi nêu người hưởng sự giúp đỡ; không giữ nguyên Dativ máy móc.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "fill",
+          "question": "Die ___ Sitzung beginnt um neun. (heute → tính từ)",
+          "answers": [
+            "heutige"
+          ],
+          "id": "elio-c1-sicher-07-q09",
+          "explanation": "Heute đổi thành heutig; sau die ở Nominativ cái, thêm -e.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "fill",
+          "question": "Wir arbeiten mit den ___ Behörden. (hier → tính từ)",
+          "answers": [
+            "hiesigen"
+          ],
+          "id": "elio-c1-sicher-07-q10",
+          "explanation": "Hier có tính từ hiesig. Mit den … Behörden là Dativ số nhiều, tính từ -en.",
+          "origin": "authored",
+          "answerSource": "authored"
+        }
+      ],
+      "origin": "elio-c1-pdf-rewrite",
+      "contentRevision": "2026-10-27",
+      "sourceNote": "Biên soạn tiếng Việt theo nhóm chủ điểm của PDF Sicher! C1 do chủ dự án cung cấp; ví dụ và bài tập mới. Số trang là trang PDF, không phải trang Kursbuch."
+    },
+    {
+      "id": "elio-c1-sicher-08",
+      "title": "Gerundiv, bekommen-Passiv và hậu tố tính từ",
+      "topic": "Gerundiv, bekommen-Passiv và hậu tố tính từ",
+      "level": "C1",
+      "levels": [
+        "C1"
+      ],
+      "group": "verbs",
+      "sourcePages": [
+        14,
+        15
+      ],
+      "sourceChapter": 8,
+      "topics": [
+        "Gerundiv",
+        "wollen und sollen im Passiv",
+        "bekommen-Passiv",
+        "Adjektivsuffixe"
+      ],
+      "content": "## Gerundiv, bekommen-Passiv và hậu tố tính từ\n\n### 1. Bản chất\nMột danh từ có thể được mô tả bằng hành động **có thể/cần được làm**. Gerundiv nén quan hệ bị động có tính modal vào một thuộc ngữ: **die noch zu prüfenden Anträge** → các hồ sơ còn cần được xét.\n\n### 2. Gerundiv từng bước\n| Bước | Dạng |\n| --- | --- |\n| động từ gốc | prüfen |\n| Partizip I | prüfend |\n| thêm zu và đuôi thuộc ngữ | die zu prüfenden Anträge |\n| diễn đạt lại | die Anträge, die geprüft werden müssen/sollen |\n\nVới động từ tách: **durchführen → durchzuführend → ein durchzuführender Test**. Nghĩa có thể hay phải tùy ngữ cảnh: **leicht zu behebende Fehler** thường là lỗi dễ sửa; **dringend zu behebende Fehler** thường là lỗi cần sửa gấp.\n\n### 3. Chuyển góc nhìn và bị động người nhận\n| Cấu trúc | Ví dụ mới | Giải thích |\n| --- | --- | --- |\n| ý định của tác nhân | Die Leitung will die Gäste informieren. | ban quản lý muốn thông báo cho khách |\n| kế hoạch nhìn từ đối tượng | Die Gäste sollen informiert werden. | theo kế hoạch khách cần được thông báo; chỉ tương đương khi ngữ cảnh giữ cùng ý định |\n| werden-Passiv | Dem Gast wird der Weg erklärt. | đường đi được giải thích cho khách |\n| bekommen-Passiv | Der Gast bekommt den Weg erklärt. | khách là người nhận lời giải thích |\n\n**Hiệu đính thuật ngữ:** bekommen + Partizip II ở nghĩa này là **Rezipientenpassiv/bekommen-Passiv**, không phải câu chủ động thông thường. Dativ **dem Gast** chuyển thành chủ ngữ **der Gast**; Akkusativ **den Weg** vẫn là tân ngữ. Không áp dụng được tự do cho mọi động từ và mọi Dativ.\n\n### 4. Hậu tố tính từ: phân biệt bằng nghĩa\n| Cặp/nhóm | Nghĩa | Ví dụ và dịch |\n| --- | --- | --- |\n| real / reell | có thực / thực chất, có triển vọng, ngay thẳng tùy ngữ cảnh | reale Kosten: chi phí thực; reelle Chancen: cơ hội thực sự |\n| ideal / ideell | lý tưởng / thuộc tinh thần, phi vật chất | ideelle Unterstützung: hỗ trợ tinh thần |\n| rational / rationell | dựa lý trí / hiệu quả, tiết kiệm nguồn lực | rationale Entscheidung; rationelle Arbeitsweise |\n| -abel/-ibel | nhiều từ diễn đạt khả năng, nhưng có ngoại lệ nghĩa | reparabel: sửa được; sensibel: nhạy cảm |\n| -ös/-iös | nghĩa từ vựng phải học cả từ | nervös: lo lắng; seriös: đáng tin/nghiêm túc |\n\nKhông diễn giải **sensibel** thành “có thể bị cảm nhận” chỉ vì đuôi -ibel. Tiền/hậu tố là gợi ý, không thay từ điển.\n\n### 5. Mẹo nhận biết\nGặp **zu + dạng có -d- + đuôi** trước danh từ, thử bung thành mệnh đề quan hệ có **werden + modal**. Gặp **bekommt … erklärt**, hỏi ai nhận việc giải thích thay vì dịch bekommt thành “nhận được một món đồ”.\n\n### 6. Cạm bẫy\n- Sai: **die zu prüfen Anträge**. Đúng: **die zu prüfenden Anträge**.\n- Sai: **Der Gast bekommt der Weg erklärt.** Đúng: **… den Weg erklärt**.\n- Không đổi mọi **wollen** thành **sollen** mà bỏ tác nhân hoặc thay nội dung dự định.",
+      "exercises": [
+        {
+          "type": "fill",
+          "question": "die noch zu ___ Anträge (prüfen; Gerundiv)",
+          "answers": [
+            "prüfenden"
+          ],
+          "id": "elio-c1-sicher-08-q01",
+          "explanation": "Prüfen → prüfend; sau die số nhiều là prüfenden. Zu giữ riêng vì prüfen không tách.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "fill",
+          "question": "ein leicht zu ___ Fehler (beheben; Gerundiv)",
+          "answers": [
+            "behebender"
+          ],
+          "id": "elio-c1-sicher-08-q02",
+          "explanation": "Fehler giống đực Nominativ sau ein cần -er: behebend + er.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "quiz",
+          "question": "der heute ___ Test (durchführen; Gerundiv)",
+          "options": [
+            "durchzuführende",
+            "zu durchführen",
+            "durchgeführt"
+          ],
+          "answers": [
+            "durchzuführende"
+          ],
+          "id": "elio-c1-sicher-08-q03",
+          "explanation": "Động từ tách đưa zu vào trong: durchzuführen; Gerundiv durchzuführend, sau der thêm -e.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "fill",
+          "question": "Bung nghĩa: eine leicht zu öffnende Tür → eine Tür, die leicht geöffnet werden ___.",
+          "answers": [
+            "kann"
+          ],
+          "id": "elio-c1-sicher-08-q04",
+          "explanation": "Leicht cho thấy khả năng mở được; không phải lúc nào Gerundiv cũng mang nghĩa phải.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "fill",
+          "question": "Die Gäste sollen rechtzeitig informiert ___.",
+          "answers": [
+            "werden"
+          ],
+          "id": "elio-c1-sicher-08-q05",
+          "explanation": "Bị động với modal dùng Partizip II + werden, không dùng sein nếu đang nói hành động thông báo.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "quiz",
+          "question": "Dem Gast wird der Plan erklärt. → Der Gast bekommt ___ Plan erklärt.",
+          "options": [
+            "den",
+            "der",
+            "dem"
+          ],
+          "answers": [
+            "den"
+          ],
+          "id": "elio-c1-sicher-08-q06",
+          "explanation": "Người nhận thành chủ ngữ, nhưng vật được giải thích vẫn Akkusativ: den Plan.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "quiz",
+          "question": "Bekommen + Partizip II ở nghĩa người nhận được gọi là gì?",
+          "options": [
+            "Rezipientenpassiv",
+            "Futur II",
+            "Zustandspassiv"
+          ],
+          "answers": [
+            "Rezipientenpassiv"
+          ],
+          "id": "elio-c1-sicher-08-q07",
+          "explanation": "Đây là một loại bị động lấy người nhận làm chủ ngữ, không phải chủ động chỉ vì có bekommen.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "fill",
+          "question": "Materielle und ___ Werte sind verschieden. (ideal/ideell)",
+          "answers": [
+            "ideelle"
+          ],
+          "id": "elio-c1-sicher-08-q08",
+          "explanation": "Ideell nghĩa thuộc tinh thần, đối lập vật chất; ở số nhiều không mạo từ là ideelle Werte.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "fill",
+          "question": "Eine vernunftgeleitete Entscheidung ist ___. (rational/rationell)",
+          "answers": [
+            "rational"
+          ],
+          "id": "elio-c1-sicher-08-q09",
+          "explanation": "Rational nhấn mạnh lý trí; rationell nhấn hiệu quả sử dụng công sức/nguồn lực.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "fill",
+          "question": "Der Schaden kann repariert werden. Er ist ___. (Adjektiv auf -abel)",
+          "answers": [
+            "reparabel"
+          ],
+          "id": "elio-c1-sicher-08-q10",
+          "explanation": "Reparabel là có thể sửa được; học trọn từ, không suy ra mọi từ -abel đều cùng một cấu trúc nghĩa.",
+          "origin": "authored",
+          "answerSource": "authored"
+        }
+      ],
+      "origin": "elio-c1-pdf-rewrite",
+      "contentRevision": "2026-10-27",
+      "sourceNote": "Biên soạn tiếng Việt theo nhóm chủ điểm của PDF Sicher! C1 do chủ dự án cung cấp; ví dụ và bài tập mới. Số trang là trang PDF, không phải trang Kursbuch."
+    },
+    {
+      "id": "elio-c1-sicher-09",
+      "title": "Điều kiện, nhượng bộ, tính từ kèm giới từ và làm rõ ý",
+      "topic": "Điều kiện, nhượng bộ, tính từ kèm giới từ và làm rõ ý",
+      "level": "C1",
+      "levels": [
+        "C1"
+      ],
+      "group": "sentences",
+      "sourcePages": [
+        16,
+        17
+      ],
+      "sourceChapter": 9,
+      "topics": [
+        "Konditionale Zusammenhänge",
+        "Konzessive Zusammenhänge",
+        "Adjektive mit Präpositionen",
+        "Präzisierende Verbindungsadverbien"
+      ],
+      "content": "## Điều kiện, nhượng bộ, tính từ kèm giới từ và làm rõ ý\n\n### 1. Bản chất: điều kiện khác nhượng bộ\n**Nếu được tài trợ thì mua máy** là điều kiện. **Dù chưa được tài trợ vẫn mua máy** là nhượng bộ. Trước khi chọn liên từ, viết lại quan hệ bằng tiếng Việt để không lẫn ý.\n\n### 2. Điều kiện: câu và cụm danh từ\n| Cấu trúc | Vị trí | Ví dụ mới và nghĩa |\n| --- | --- | --- |\n| falls / sofern / unter der Bedingung, dass | động từ cuối mệnh đề | Sofern die Mittel reichen, kaufen wir neue Geräte. → Nếu kinh phí đủ, chúng tôi mua thiết bị mới. |\n| vorausgesetzt, (dass) | có dass: động từ cuối; không dass có thể là câu V2 | Wir starten, vorausgesetzt, alle sind bereit. → Chúng tôi bắt đầu với điều kiện mọi người sẵn sàng. |\n| sonst / andernfalls | nối câu chính V2 | Bezahlen Sie bis Freitag, andernfalls verfällt die Reservierung. → Trả trước hết thứ Sáu, nếu không đặt chỗ mất hiệu lực. |\n| bei + Dativ / im Falle + Genitiv | giới từ + danh từ | Bei starkem Regen bleiben wir drinnen. → Nếu mưa to, chúng tôi ở trong nhà. |\n| je nach + Dativ | tùy theo | Je nach Ergebnis ändern wir den Plan. → Tùy kết quả, chúng tôi đổi kế hoạch. |\n\n**Je nachdem, ob/wie …** là câu phụ; **je nach** đi với cụm danh từ. **Ohne Ihre Zustimmung** diễn đạt thiếu điều kiện chấp thuận, nhưng không phải mọi ohne đều có nghĩa điều kiện.\n\n### 3. Nhượng bộ\n| Dạng | Ví dụ mới và nghĩa |\n| --- | --- |\n| obwohl / obgleich / obschon | Obwohl er gut vorbereitet ist, bleibt er nervös. → Dù chuẩn bị kỹ, anh ấy vẫn lo. |\n| auch wenn / selbst wenn | Auch wenn es regnet, fahren wir. → Dù có mưa, chúng tôi vẫn đi. |\n| trotzdem / dennoch / allerdings | Es regnet. Dennoch fahren wir. → Trời mưa. Tuy vậy chúng tôi vẫn đi. |\n| trotz / ungeachtet + Genitiv; selbst bei + Dativ | Trotz des Regens fahren wir. → Bất chấp trời mưa, chúng tôi vẫn đi. |\n\n**Obwohl** thường coi sự việc là đã biết; **selbst wenn** có thể nêu giả định cực đoan. Chúng không luôn tương đương hoàn toàn. **Allerdings** còn có nghĩa xác nhận/giới hạn nhận định, không thay trotzdem ở mọi câu.\n\n### 4. Tính từ và giới từ: hai bảng\n| Akkusativ | Ví dụ |\n| --- | --- |\n| angewiesen auf, bemüht um, dankbar für, entscheidend für | Wir sind auf Ihre Hilfe angewiesen. → Chúng tôi cần sự giúp đỡ của anh/chị. |\n| erfreut über, gespannt auf, glücklich über, verwundert über | Ich bin gespannt auf den Bericht. → Tôi đang mong xem báo cáo. |\n\n| Dativ | Ví dụ |\n| --- | --- |\n| aufgeschlossen gegenüber, erfahren in, überzeugt von, zufrieden mit | Sie ist mit dem Ergebnis zufrieden. → Cô ấy hài lòng với kết quả. |\n\n### 5. Làm rõ và sửa ý\n**Und zwar** bổ sung chính xác: **Wir treffen uns morgen, und zwar um acht.** → Chúng ta gặp ngày mai, cụ thể lúc tám giờ. **Vielmehr** sửa cách hiểu: **Es ist kein Verbot, vielmehr ist es eine Empfehlung.** → Đó không phải lệnh cấm mà là lời khuyên. **Beziehungsweise/respektive** tùy ngữ cảnh có thể nối tương ứng hoặc diễn đạt chính xác hơn; không luôn bằng “hoặc”.\n\n### 6. Mẹo và cạm bẫy\n- Nhớ cặp: **je nach + danh từ**, **je nachdem + mệnh đề**.\n- Sai: **Trotz dem Regens**. Mẫu văn viết: **trotz des Regens**; không trộn đuôi Dativ và Genitiv.\n- Sai: **zufrieden über dem Ergebnis**. Đúng: **zufrieden mit dem Ergebnis**.",
+      "exercises": [
+        {
+          "type": "quiz",
+          "question": "___ die Finanzierung steht, können wir beginnen. (điều kiện)",
+          "options": [
+            "Sofern",
+            "Obwohl",
+            "Dennoch"
+          ],
+          "answers": [
+            "Sofern"
+          ],
+          "id": "elio-c1-sicher-09-q01",
+          "explanation": "Sofern nghĩa với điều kiện là; động từ steht nằm cuối mệnh đề phụ.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "quiz",
+          "question": "Zahlen Sie fristgerecht, ___ verlieren Sie den Anspruch.",
+          "options": [
+            "andernfalls",
+            "obgleich",
+            "sofern"
+          ],
+          "answers": [
+            "andernfalls"
+          ],
+          "id": "elio-c1-sicher-09-q02",
+          "explanation": "Andernfalls mở câu chính biểu thị nếu không thì; động từ verlieren theo ngay sau.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "fill",
+          "question": "Bei stark___ Regen fällt das Konzert aus.",
+          "answers": [
+            "em"
+          ],
+          "id": "elio-c1-sicher-09-q03",
+          "explanation": "Bei yêu cầu Dativ; Regen giống đực không mạo từ nên starkem.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "quiz",
+          "question": "Je ___ Ergebnis wird neu entschieden.",
+          "options": [
+            "nach",
+            "nachdem",
+            "obwohl"
+          ],
+          "answers": [
+            "nach"
+          ],
+          "id": "elio-c1-sicher-09-q04",
+          "explanation": "Sau chỗ trống là danh từ Ergebnis, nên je nach + Dativ, không phải je nachdem mở mệnh đề.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "quiz",
+          "question": "Je nachdem, ___ viele Gäste kommen, öffnen wir einen zweiten Raum.",
+          "options": [
+            "wie",
+            "nach",
+            "trotz"
+          ],
+          "answers": [
+            "wie"
+          ],
+          "id": "elio-c1-sicher-09-q05",
+          "explanation": "Je nachdem, wie … diễn đạt tùy vào số lượng khách; kommen cuối mệnh đề.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "quiz",
+          "question": "___ des Regens findet das Training statt.",
+          "options": [
+            "Trotz",
+            "Wegen",
+            "Mangels"
+          ],
+          "answers": [
+            "Trotz"
+          ],
+          "id": "elio-c1-sicher-09-q06",
+          "explanation": "Trời mưa nhưng vẫn tập là quan hệ nhượng bộ; des Regens là Genitiv.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "fill",
+          "question": "Wir sind auf Ihr___ Rat angewiesen.",
+          "answers": [
+            "en"
+          ],
+          "id": "elio-c1-sicher-09-q07",
+          "explanation": "Angewiesen auf + Akkusativ; Rat giống đực nên Ihren Rat.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "fill",
+          "question": "Sie ist mit d___ Ergebnis zufrieden.",
+          "answers": [
+            "em"
+          ],
+          "id": "elio-c1-sicher-09-q08",
+          "explanation": "Zufrieden mit + Dativ; Ergebnis trung nên dem Ergebnis.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "quiz",
+          "question": "Wir reisen am Montag, ___ um sechs Uhr.",
+          "options": [
+            "und zwar",
+            "vielmehr nicht",
+            "sofern"
+          ],
+          "answers": [
+            "und zwar"
+          ],
+          "id": "elio-c1-sicher-09-q09",
+          "explanation": "Und zwar bổ sung giờ chính xác cho thời điểm thứ Hai; không mở mệnh đề điều kiện.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "quiz",
+          "question": "Es ist keine Pflicht; ___ ist es eine Empfehlung.",
+          "options": [
+            "vielmehr",
+            "obwohl",
+            "außer wenn"
+          ],
+          "answers": [
+            "vielmehr"
+          ],
+          "id": "elio-c1-sicher-09-q10",
+          "explanation": "Vielmehr đính chính cách hiểu “nghĩa vụ” bằng “lời khuyên”; câu theo trật tự V2.",
+          "origin": "authored",
+          "answerSource": "authored"
+        }
+      ],
+      "origin": "elio-c1-pdf-rewrite",
+      "contentRevision": "2026-10-27",
+      "sourceNote": "Biên soạn tiếng Việt theo nhóm chủ điểm của PDF Sicher! C1 do chủ dự án cung cấp; ví dụ và bài tập mới. Số trang là trang PDF, không phải trang Kursbuch."
+    },
+    {
+      "id": "elio-c1-sicher-10",
+      "title": "Vorfeld–Nachfeld, hậu tố danh từ và quan hệ thời gian–mục đích",
+      "topic": "Vorfeld–Nachfeld, hậu tố danh từ và quan hệ thời gian–mục đích",
+      "level": "C1",
+      "levels": [
+        "C1"
+      ],
+      "group": "sentences",
+      "sourcePages": [
+        18,
+        19
+      ],
+      "sourceChapter": 10,
+      "topics": [
+        "Variationen der Satzstellung",
+        "Nomensuffixe",
+        "Temporale Zusammenhänge",
+        "Finale Zusammenhänge"
+      ],
+      "content": "## Vorfeld–Nachfeld, hậu tố danh từ và quan hệ thời gian–mục đích\n\n### 1. Bản chất: thay điểm nhấn, giữ khung câu\nTiếng Đức cho phép đưa một thành phần lên đầu để nhấn mạnh, nhưng động từ chia trong câu trần thuật vẫn giữ vị trí thứ hai. “Vị trí” là thành phần câu, không phải số từ.\n\n### 2. Vorfeld và Nachfeld tách riêng\n| Dạng thường | Đưa lên Vorfeld | Ý nghĩa |\n| --- | --- | --- |\n| Ich habe den Bericht gelesen. | Gelesen habe ich den Bericht. | nhấn mạnh hành động đã đọc |\n| Man kann die Frist verlängern. | Verlängern kann man die Frist. | nhấn mạnh khả năng gia hạn |\n\n| Trong Satzklammer | Ra Nachfeld | Ý nghĩa |\n| --- | --- | --- |\n| Er ist größer als ich gewesen. | Er ist größer gewesen als ich. | cụm so sánh được đặt sau phần động từ cuối |\n| Sie hat zu arbeiten begonnen. | Sie hat begonnen zu arbeiten. | cụm nguyên mẫu ra sau |\n\nKhông đưa tự do mọi bổ ngữ ra sau mà vẫn mặc định tự nhiên như nhau. Nachfeld thường hợp với thành phần dài, so sánh, mệnh đề hoặc phần bổ sung; câu trang trọng vẫn cần cân bằng.\n\n### 3. Hậu tố danh từ\n| Giống thường gặp | Đuôi | Ví dụ và nghĩa |\n| --- | --- | --- |\n| die | -(a)tion, -ie, -ität, -ur | die Organisation: tổ chức; die Harmonie: hòa hợp; die Stabilität: ổn định; die Struktur: cấu trúc |\n| das | nhiều từ -tum; -ium | das Eigentum: tài sản; das Studium: việc học đại học |\n| ngoại lệ cần học | -tum | **der Reichtum**, **der Irrtum**; không áp das cho mọi từ -tum |\n\n### 4. Thời gian\n| Quan hệ | Công cụ | Ví dụ mới và nghĩa |\n| --- | --- | --- |\n| một lần quá khứ | als | Als der Kurs endete, bekam sie ein Zertifikat. → Khi khóa học kết thúc, cô ấy nhận chứng chỉ. |\n| trước/sau | bevor/ehe; nachdem | Nachdem sie gegessen hatte, ging sie los. → Ăn xong cô ấy đi. |\n| xảy ra ngay sau | sobald | Sobald die Prüfung beendet ist, rufe ich an. → Thi xong là tôi gọi. |\n| đồng thời | während; währenddessen | Während sie liest, macht er Notizen. → Trong khi cô ấy đọc, anh ấy ghi chú. |\n| sự việc dẫn tiếp diễn biến | woraufhin; daraufhin | Die Tür fiel zu, woraufhin er zurücklief. → Cửa sập lại, sau đó anh ấy chạy quay lại. |\n\n**Woraufhin** nối mệnh đề phụ có động từ cuối; **daraufhin** là trạng từ của câu chính V2. **Beim Lesen** = khi đọc; **im Sitzen** = trong tư thế ngồi. **Am Arbeiten sein** thuộc cách diễn đạt tiến hành thường gặp ở khẩu ngữ, không mặc định dùng cho mọi bài viết trang trọng.\n\n### 5. Mục đích\n**Um … zu** dùng với chủ thể ngầm xác định được; **damit** có chủ ngữ riêng. **Sie spricht leise, damit das Kind nicht aufwacht.** → Cô ấy nói nhỏ để đứa trẻ không tỉnh. Dạng danh từ: **für + Akkusativ**, **zu + Dativ**, **zwecks / zum Zwecke + Genitiv**. **Zur Vorbereitung liest sie den Bericht.** → Để chuẩn bị, cô ấy đọc báo cáo. **Wofür/wozu** có thể hỏi mục đích hoặc nối tới một hành động trước đó; **dafür/dazu** ở câu chính.\n\n### 6. Cạm bẫy và mẹo\n- Sai: **Gelesen ich habe …**. Đúng: **Gelesen habe ich …**.\n- Sai: **woraufhin er lief zurück**. Đúng: **woraufhin er zurücklief**.\n- Đừng biến nachdem thành quy tắc “luôn Plusquamperfekt”: thì phụ thuộc mốc kể. Quá khứ kể thường dùng Plusquamperfekt trước Präteritum; hiện tại/tương lai có thể dùng Perfekt trước Präsens.",
+      "exercises": [
+        {
+          "type": "fill",
+          "question": "___ habe ich den Vertrag, unterschrieben aber noch nicht. (lesen; Partizip II)",
+          "answers": [
+            "Gelesen"
+          ],
+          "id": "elio-c1-sicher-10-q01",
+          "explanation": "Gelesen đưa lên Vorfeld để nhấn; habe vẫn là động từ chia vị trí hai.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "fill",
+          "question": "Verlängern ___ man die Frist nur einmal. (können)",
+          "answers": [
+            "kann"
+          ],
+          "id": "elio-c1-sicher-10-q02",
+          "explanation": "Nguyên mẫu Verlängern chiếm đầu câu; man dùng kann ngay sau.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "quiz",
+          "question": "Đuôi -tum không luôn trung. Chọn mạo từ: ___ Irrtum.",
+          "options": [
+            "der",
+            "das",
+            "die"
+          ],
+          "answers": [
+            "der"
+          ],
+          "id": "elio-c1-sicher-10-q03",
+          "explanation": "Der Irrtum là ngoại lệ; không suy ra das chỉ từ hình thức -tum.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "quiz",
+          "question": "Welcher Artikel? ___ Stabilität ist wichtig.",
+          "options": [
+            "Die",
+            "Der",
+            "Das"
+          ],
+          "answers": [
+            "Die"
+          ],
+          "id": "elio-c1-sicher-10-q04",
+          "explanation": "Stabilität là giống cái; -ität là dấu hiệu mạnh cho die.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "quiz",
+          "question": "___ sie gestern ankam, war das Büro geschlossen.",
+          "options": [
+            "Als",
+            "Wenn",
+            "Sobald dass"
+          ],
+          "answers": [
+            "Als"
+          ],
+          "id": "elio-c1-sicher-10-q05",
+          "explanation": "Một lần đến hôm qua trong quá khứ dùng als, không dùng wenn như mẫu lặp lại.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "fill",
+          "question": "Nachdem er gegessen ___, fuhr er los. (haben; quá khứ trước mốc fuhr)",
+          "answers": [
+            "hatte"
+          ],
+          "id": "elio-c1-sicher-10-q06",
+          "explanation": "Hành động ăn xảy ra trước fuhr; Plusquamperfekt hatte gegessen nêu rõ trình tự.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "fill",
+          "question": "Die Tür fiel zu, woraufhin er sofort ___. (zurücklaufen; Präteritum)",
+          "answers": [
+            "zurücklief"
+          ],
+          "id": "elio-c1-sicher-10-q07",
+          "explanation": "Woraufhin mở mệnh đề phụ; động từ tách được ghép lại và đưa xuống cuối: zurücklief.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "fill",
+          "question": "Die Tür fiel zu. Daraufhin ___ er zurück. (laufen; Präteritum)",
+          "answers": [
+            "lief"
+          ],
+          "id": "elio-c1-sicher-10-q08",
+          "explanation": "Daraufhin là trạng từ chiếm Vorfeld của câu chính; động từ chia lief đứng sau.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "quiz",
+          "question": "Sie spricht leise, ___ das Kind nicht aufwacht.",
+          "options": [
+            "damit",
+            "um zu",
+            "zwecks"
+          ],
+          "answers": [
+            "damit"
+          ],
+          "id": "elio-c1-sicher-10-q09",
+          "explanation": "Chủ thể cô ấy nói và đứa trẻ tỉnh khác nhau; damit mở câu phụ có chủ ngữ riêng.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "fill",
+          "question": "Zwecks d___ Vorbereitung werden Unterlagen verschickt.",
+          "answers": [
+            "er"
+          ],
+          "id": "elio-c1-sicher-10-q10",
+          "explanation": "Zwecks đi với Genitiv; Vorbereitung giống cái nên der Vorbereitung.",
+          "origin": "authored",
+          "answerSource": "authored"
+        }
+      ],
+      "origin": "elio-c1-pdf-rewrite",
+      "contentRevision": "2026-10-27",
+      "sourceNote": "Biên soạn tiếng Việt theo nhóm chủ điểm của PDF Sicher! C1 do chủ dự án cung cấp; ví dụ và bài tập mới. Số trang là trang PDF, không phải trang Kursbuch."
+    },
+    {
+      "id": "elio-c1-sicher-11",
+      "title": "Hệ quả, phương thức, so sánh ngầm và tiền tố er-/re-",
+      "topic": "Hệ quả, phương thức, so sánh ngầm và tiền tố er-/re-",
+      "level": "C1",
+      "levels": [
+        "C1"
+      ],
+      "group": "sentences",
+      "sourcePages": [
+        20,
+        21
+      ],
+      "sourceChapter": 11,
+      "topics": [
+        "Konsekutive Zusammenhänge",
+        "Modale Zusammenhänge",
+        "Implizite Vergleiche und relativer Superlativ",
+        "Wortbildung: er-, re-"
+      ],
+      "content": "## Hệ quả, phương thức, so sánh ngầm và tiền tố er-/re-\n\n### 1. Bản chất: kết quả hay cách thực hiện?\n**Vì vậy khách hài lòng** là hệ quả. **Bằng cách giải thích rõ, cô ấy giúp khách hiểu** là phương thức. Một từ như **damit** có thể biểu đạt mục đích trong câu phụ hoặc “bằng việc đó” trong câu chính: cần xem cấu trúc.\n\n### 2. Hệ quả\n| Cấu trúc | Ví dụ mới và nghĩa |\n| --- | --- |\n| so …, dass | Die Anleitung ist so klar, dass jeder sie versteht. → Hướng dẫn rõ đến mức ai cũng hiểu. |\n| solch ein / ein solcher …, dass | Es war ein solcher Lärm, dass wir gehen mussten. → Ồn đến mức chúng tôi phải đi. |\n| sodass / so dass | Es regnete, sodass die Straße überflutet wurde. → Mưa khiến đường ngập. |\n| weshalb / weswegen | Der Zug fiel aus, weshalb sie ein Taxi nahm. → Tàu bị hủy nên cô ấy đi taxi. |\n| folglich / demnach / demzufolge / infolgedessen | Die Nachfrage steigt. Folglich brauchen wir mehr Personal. → Nhu cầu tăng, vì vậy cần thêm nhân sự. |\n| infolge + Genitiv; infolge von + Dativ | Infolge eines Defekts stand die Anlage still. → Do trục trặc, dây chuyền dừng. |\n\n### 3. Phương thức\n| Cấu trúc | Ví dụ mới và nghĩa |\n| --- | --- |\n| indem / dadurch, dass | Sie spart Zeit, indem sie Vorlagen nutzt. → Cô ấy tiết kiệm thời gian bằng cách dùng mẫu. |\n| wodurch / womit | Er automatisiert den Ablauf, wodurch Fehler seltener werden. → Anh ấy tự động hóa quy trình, nhờ vậy lỗi giảm. |\n| dadurch / damit / auf diese Weise | Sie nutzt Vorlagen. Dadurch spart sie Zeit. → Cô ấy dùng mẫu, nhờ đó tiết kiệm thời gian. |\n| durch + Akkusativ; mittels/mithilfe + Genitiv | Mittels eines Sensors wird die Temperatur überwacht. → Nhiệt độ được theo dõi bằng cảm biến. |\n\n**Indem** thường nêu cách thực hiện; **wodurch** có thể nêu hệ quả do việc trước gây ra. Không cho rằng mọi câu có chúng đều thay nhau hoàn toàn.\n\n### 4. So sánh ngầm: hai lớp đuôi\n**Wir brauchen einen größeren Raum.** → Chúng ta cần phòng rộng hơn. Chuẩn so sánh được hiểu theo ngữ cảnh, không bắt buộc có **als**. **Größ-er-en** có -er của so sánh và -en của biến cách; không cắt mất lớp nào.\n\n| Danh từ được chọn | Mẫu tương đối | Dịch |\n| --- | --- | --- |\n| đực | einer der besten Vorschläge | một trong những đề xuất tốt nhất |\n| trung | eines der besten Ergebnisse | một trong những kết quả tốt nhất |\n| cái | eine der besten Lösungen | một trong những giải pháp tốt nhất |\n\n**Einer/eines/eine** còn đổi theo vai trò trong câu: **mit einem der besten Vorschläge**. Danh từ sau **der besten** là số nhiều, ở Genitiv.\n\n### 5. Tiền tố và mẹo\n**Er-** thường gặp ở kết quả hoặc thay đổi trạng thái: **erröten** đỏ mặt, **erarbeiten** làm ra thông qua công sức. **Re-** ở nhiều từ vay mượn liên quan trở lại/làm lại: **reimportieren**, **reaktivieren**. Nghĩa của **reagieren** phải học như một từ riêng, không suy ra tự động “làm lại một hành động”. Không tách er-/re- trong các từ này; từ -ieren như reaktivieren không thêm ge-.\n\n### 6. Cạm bẫy\n- Sai: **einer der beste Vorschlag**. Đúng: **einer der besten Vorschläge**.\n- Sai: **mittels einen Sensor**. Đúng: **mittels eines Sensors**.\n- Sai: **Dadurch sie spart Zeit.** Đúng: **Dadurch spart sie Zeit.**",
+      "exercises": [
+        {
+          "type": "quiz",
+          "question": "Die Datei war so groß, ___ sie nicht versendet werden konnte.",
+          "options": [
+            "dass",
+            "denn",
+            "damit"
+          ],
+          "answers": [
+            "dass"
+          ],
+          "id": "elio-c1-sicher-11-q01",
+          "explanation": "So … dass diễn đạt mức độ dẫn đến hệ quả; konnte đứng cuối mệnh đề.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "quiz",
+          "question": "Der Zug fiel aus, ___ wir ein Taxi nahmen.",
+          "options": [
+            "weshalb",
+            "deshalb",
+            "folglich"
+          ],
+          "answers": [
+            "weshalb"
+          ],
+          "id": "elio-c1-sicher-11-q02",
+          "explanation": "Weshalb mở mệnh đề phụ nên nahmen nằm cuối; deshalb/folglich sẽ cần cấu trúc câu chính V2.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "fill",
+          "question": "Infolge ein___ Defekts blieb das Gerät stehen.",
+          "answers": [
+            "es"
+          ],
+          "id": "elio-c1-sicher-11-q03",
+          "explanation": "Infolge trực tiếp với Genitiv; Defekt giống đực dùng eines Defekts.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "fill",
+          "question": "Infolge von stark___ Regenfällen fiel die Verbindung aus.",
+          "answers": [
+            "en"
+          ],
+          "id": "elio-c1-sicher-11-q04",
+          "explanation": "Infolge von dùng Dativ; số nhiều starken Regenfällen có -en ở tính từ và -n ở danh từ.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "quiz",
+          "question": "Sie spart Zeit, ___ sie eine Vorlage verwendet.",
+          "options": [
+            "indem",
+            "obwohl",
+            "dennoch"
+          ],
+          "answers": [
+            "indem"
+          ],
+          "id": "elio-c1-sicher-11-q05",
+          "explanation": "Indem mô tả cách thức tiết kiệm thời gian; không phải nhượng bộ.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "fill",
+          "question": "Mittels ein___ Sensors wird die Temperatur gemessen.",
+          "answers": [
+            "es"
+          ],
+          "id": "elio-c1-sicher-11-q06",
+          "explanation": "Mittels theo mẫu trang trọng đòi Genitiv: eines Sensors.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "fill",
+          "question": "Wir brauchen einen größer___ Raum. (đuôi biến cách)",
+          "answers": [
+            "en"
+          ],
+          "id": "elio-c1-sicher-11-q07",
+          "explanation": "So sánh größer đã có -er; sau einen ở Akkusativ đực thêm -en thành größeren.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "quiz",
+          "question": "Das ist ___ der besten Ergebnisse.",
+          "options": [
+            "eines",
+            "einer",
+            "eine"
+          ],
+          "answers": [
+            "eines"
+          ],
+          "id": "elio-c1-sicher-11-q08",
+          "explanation": "Ergebnis là trung; chọn một kết quả trong nhóm dùng eines der besten Ergebnisse.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "quiz",
+          "question": "Mit ___ der besten Vorschläge gewann sie.",
+          "options": [
+            "einem",
+            "einer",
+            "eines"
+          ],
+          "answers": [
+            "einem"
+          ],
+          "id": "elio-c1-sicher-11-q09",
+          "explanation": "Mit yêu cầu Dativ; đại từ thay Vorschlag giống đực là einem. Der besten Vorschläge vẫn là nhóm Genitiv số nhiều.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "fill",
+          "question": "Die IT hat das Konto wieder ___. (reaktivieren)",
+          "answers": [
+            "reaktiviert"
+          ],
+          "id": "elio-c1-sicher-11-q10",
+          "explanation": "Reaktivieren nghĩa kích hoạt lại; -ieren tạo Partizip II không có ge-.",
+          "origin": "authored",
+          "answerSource": "authored"
+        }
+      ],
+      "origin": "elio-c1-pdf-rewrite",
+      "contentRevision": "2026-10-27",
+      "sourceNote": "Biên soạn tiếng Việt theo nhóm chủ điểm của PDF Sicher! C1 do chủ dự án cung cấp; ví dụ và bài tập mới. Số trang là trang PDF, không phải trang Kursbuch."
+    },
+    {
+      "id": "elio-c1-sicher-12",
+      "title": "Genitiv chuyên sâu, Partizipialsätze và tiền tố tách/không tách",
+      "topic": "Genitiv chuyên sâu, Partizipialsätze và tiền tố tách/không tách",
+      "level": "C1",
+      "levels": [
+        "C1"
+      ],
+      "group": "relations",
+      "sourcePages": [
+        22
+      ],
+      "sourceChapter": 12,
+      "topics": [
+        "Präpositionen mit Genitiv",
+        "Partizipialsätze",
+        "durch-, über-, um-, unter-"
+      ],
+      "content": "## Genitiv chuyên sâu, Partizipialsätze và tiền tố tách/không tách\n\n### 1. Bản chất\nVăn viết có thể nén cả một mệnh đề thành cụm giới từ hoặc cụm phân từ. Câu ngắn hơn chưa chắc rõ hơn: phải giữ đúng quan hệ nghĩa và chủ thể của hành động.\n\n### 2. Giới từ Genitiv theo nghĩa\n| Giới từ | Quan hệ | Ví dụ mới và nghĩa |\n| --- | --- | --- |\n| angesichts | xét tình hình/đối mặt với | angesichts der hohen Kosten: trước chi phí cao |\n| anlässlich | nhân dịp/sự kiện | anlässlich des Jubiläums: nhân dịp kỷ niệm |\n| hinsichtlich | xét về, liên quan đến | hinsichtlich der Sicherheit: về mặt an toàn |\n| mithilfe / mittels | công cụ, phương tiện | mithilfe eines Programms: nhờ một chương trình |\n| oberhalb | ở phía trên một mốc | oberhalb der Grenze: phía trên giới hạn |\n| ungeachtet | bất chấp, không xét đến | ungeachtet der Risiken: bất chấp rủi ro |\n| unweit | không xa | unweit des Bahnhofs: gần ga |\n\nMẫu đang học là Genitiv trang trọng; **mithilfe von + Dativ** là biến thể khác. Kiểm tra cả danh từ: **mittels eines neuen Verfahrens**, không chỉ sửa ein thành eines.\n\n### 3. Partizipialsätze: tách hai dạng\n| Dạng | Câu mới | Diễn đạt đầy đủ và nghĩa |\n| --- | --- | --- |\n| Partizip I: chủ động, thường đồng thời | Leise sprechend, erklärte sie den Ablauf. | Während/indem sie leise sprach, erklärte sie den Ablauf. → Vừa nói nhỏ, cô ấy giải thích quy trình. |\n| Partizip II: thường bị động/kết quả; có thể là trạng thái sau hành động | Vom Ergebnis enttäuscht, verließ er den Raum. | Weil er vom Ergebnis enttäuscht war, verließ er den Raum. → Thất vọng về kết quả, anh ấy rời phòng. |\n| phân từ trong phần chen | Der Plan, obwohl gut vorbereitet, scheiterte. | … obwohl er gut vorbereitet war … → Kế hoạch dù chuẩn bị tốt vẫn thất bại. |\n\nKhông có chủ ngữ riêng trong cụm phân từ: chủ thể phải nối được với thành phần thích hợp, thường là chủ ngữ câu chính. **Im Büro angekommen, schaltete sie den Computer ein.** → Đến văn phòng, cô ấy bật máy. Angekommen là Partizip II của động từ nội động nên **không tự động là bị động**.\n\n### 4. Tiền tố tách và trọng âm\n| Cặp | Tách, trọng âm ở tiền tố | Không tách, trọng âm ở thân |\n| --- | --- | --- |\n| umfahren | Er fährt den Pfosten um. → Anh ấy tông đổ cột. Perfekt: hat umgefahren. | Er umfährt die Baustelle. → Anh ấy lái vòng tránh công trường. Perfekt: hat umfahren. |\n| überziehen | Sie zieht eine Jacke über. → Cô ấy khoác thêm áo. Perfekt: hat übergezogen. | Sie überzieht ihr Konto. → Cô ấy thấu chi. Perfekt: hat überzogen. |\n| unterstellen | Wir stellen uns unter. → Chúng tôi trú vào chỗ che. | Er unterstellt mir Absicht. → Anh ấy quy cho tôi có chủ ý. |\n| durch- | Sie schaut durch das Rohr durch. → Cô ấy nhìn xuyên ống. | Sie durchschaut den Trick. → Cô ấy nhìn thấu mẹo đó. |\n\nĐây là các cặp từ cụ thể; không suy ra cứ nghĩa trừu tượng là luôn không tách. Với nguyên mẫu có zu: **umzufahren** ở nghĩa tông đổ, **zu umfahren** ở nghĩa đi vòng.\n\n### 5. Mẹo tự kiểm tra\nBung cụm phân từ thành **weil/während/obwohl + chủ ngữ**. Nếu không tìm được ai thực hiện, câu có thể gắn sai chủ thể. Với tiền tố, kiểm tra đồng thời **nghĩa → trọng âm → tách → Partizip II**, không chỉ nhìn mặt chữ.\n\n### 6. Cạm bẫy\n- Sai: **Leise sprechend, wurde die Tür geöffnet** nếu muốn nói một người vừa nói vừa mở cửa nhưng không nêu ai. Viết rõ: **Leise sprechend, öffnete sie die Tür.**\n- Sai: **unweit dem Bahnhof** trong mẫu Genitiv này. Đúng: **unweit des Bahnhofs**.\n- Nhầm **umgefahren/umfahren** có thể đổi “tông đổ” thành “đi vòng tránh”, không chỉ sai đuôi động từ.",
+      "exercises": [
+        {
+          "type": "fill",
+          "question": "Hinsichtlich d___ Sicherheit gibt es Fragen.",
+          "answers": [
+            "er"
+          ],
+          "id": "elio-c1-sicher-12-q01",
+          "explanation": "Hinsichtlich theo mẫu trang trọng dùng Genitiv; Sicherheit giống cái nên der Sicherheit.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "fill",
+          "question": "Anlässlich d___ Jubiläums bleibt das Museum länger offen.",
+          "answers": [
+            "es"
+          ],
+          "id": "elio-c1-sicher-12-q02",
+          "explanation": "Anlässlich + Genitiv; Jubiläum trung, Genitiv des Jubiläums.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "quiz",
+          "question": "Unweit ___ Bahnhofs liegt das Hotel.",
+          "options": [
+            "des",
+            "dem",
+            "den"
+          ],
+          "answers": [
+            "des"
+          ],
+          "id": "elio-c1-sicher-12-q03",
+          "explanation": "Unweit theo mẫu Genitiv: des Bahnhofs; không lấy Dativ chỉ vì đây là nơi chốn.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "quiz",
+          "question": "Mithilfe von ___ neuen Programm sparen wir Zeit.",
+          "options": [
+            "einem",
+            "eines",
+            "einen"
+          ],
+          "answers": [
+            "einem"
+          ],
+          "id": "elio-c1-sicher-12-q04",
+          "explanation": "Mithilfe von dùng Dativ do von; khác mithilfe eines Programms khi không có von.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "fill",
+          "question": "Leise ___, erklärte sie den Ablauf. (sprechen; Partizip I)",
+          "answers": [
+            "sprechend"
+          ],
+          "id": "elio-c1-sicher-12-q05",
+          "explanation": "Partizip I sprechend diễn đạt hành động đồng thời của cùng chủ thể sie, không thêm đuôi thuộc ngữ.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "fill",
+          "question": "Vom Ergebnis ___, verließ er die Sitzung. (enttäuschen; Partizip II)",
+          "answers": [
+            "enttäuscht"
+          ],
+          "id": "elio-c1-sicher-12-q06",
+          "explanation": "Enttäuscht nêu trạng thái của er; cụm có thể bung thành weil er enttäuscht war.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "quiz",
+          "question": "Im Büro angekommen, schaltete ___ den Computer ein.",
+          "options": [
+            "sie",
+            "der Computer",
+            "das Licht"
+          ],
+          "answers": [
+            "sie"
+          ],
+          "id": "elio-c1-sicher-12-q07",
+          "explanation": "Chủ thể ngầm của angekommen là người đến văn phòng; sie là lựa chọn nối chủ thể hợp nghĩa.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "fill",
+          "question": "Er hat den Pfosten ___. (umfahren = tông đổ)",
+          "answers": [
+            "umgefahren"
+          ],
+          "id": "elio-c1-sicher-12-q08",
+          "explanation": "Ở nghĩa tông đổ, umfahren tách và thêm ge- bên trong: umgefahren.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "fill",
+          "question": "Er hat die Baustelle ___. (umfahren = đi vòng tránh)",
+          "answers": [
+            "umfahren"
+          ],
+          "id": "elio-c1-sicher-12-q09",
+          "explanation": "Ở nghĩa lái vòng tránh, umfahren không tách; Partizip II không có ge-.",
+          "origin": "authored",
+          "answerSource": "authored"
+        },
+        {
+          "type": "fill",
+          "question": "Sie hat ihr Konto ___. (überziehen = thấu chi)",
+          "answers": [
+            "überzogen"
+          ],
+          "id": "elio-c1-sicher-12-q10",
+          "explanation": "Überziehen nghĩa thấu chi không tách, nên überzogen; khoác thêm áo mới là übergezogen.",
+          "origin": "authored",
+          "answerSource": "authored"
+        }
+      ],
+      "origin": "elio-c1-pdf-rewrite",
+      "contentRevision": "2026-10-27",
+      "sourceNote": "Biên soạn tiếng Việt theo nhóm chủ điểm của PDF Sicher! C1 do chủ dự án cung cấp; ví dụ và bài tập mới. Số trang là trang PDF, không phải trang Kursbuch."
+    }
+  ]
+}

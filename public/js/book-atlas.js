@@ -26,7 +26,8 @@ const ElioBookAtlas=(()=>{
  const pick=(value,language='vi')=>value[{vi:0,de:1,en:2}[language]??0];
  function search(query,language='vi',administrator=false){const normalize=s=>String(s).normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/g,'d').toLowerCase();const words=normalize(query).trim().split(/\s+/).filter(Boolean);return entries.filter(e=>(!e.admin||administrator)&&words.every(w=>normalize([...e.title,...e.note,e.id].join(' ')).includes(w)));}
  function current(path,hash=''){const file=path.split('/').pop()||'index.html';return entries.find(e=>e.url===file+hash)||entries.find(e=>e.url.split('#')[0]===file&&e.id!=='study')||null;}
- return {groups,entries,pick,search,current};
+ const moduleTitle=entry=>pick(entry.title,'de');
+ return {groups,entries,pick,search,current,moduleTitle};
 })();
 
 (()=>{
@@ -37,7 +38,7 @@ const ElioBookAtlas=(()=>{
  const isAdmin=()=>Account.profile?.role==='super_admin',visible=()=>A.entries.filter(e=>!e.admin||isAdmin());
  const file=location.pathname.split('/').pop()||'index.html',home=file==='index.html';
  const groupOf=e=>A.groups.find(g=>g.id===e?.group);
- function entryHTML(e){return `<a class="atlas-entry" href="${e.url}" data-atlas-entry="${e.id}"${e.url.split('#')[0]===file&&(!home||location.hash==='#study')?' aria-current="page"':''}><span class="atlas-entry-copy"><strong>${text(e.title)}</strong><small>${text(e.note)}</small></span><span class="atlas-entry-arrow" aria-hidden="true">↗</span></a>`;}
+ function entryHTML(e){return `<a class="atlas-entry" href="${e.url}" data-atlas-entry="${e.id}"${e.url.split('#')[0]===file&&(!home||location.hash==='#study')?' aria-current="page"':''}><span class="atlas-entry-copy"><strong>${esc(A.moduleTitle(e))}</strong><small>${text(e.note)}</small></span><span class="atlas-entry-arrow" aria-hidden="true">↗</span></a>`;}
  function groupHTML(g,rows,ids=false){return `<section class="atlas-chapter"${ids?` id="atlas-${g.id}"`:""}><header><span>${g.number}</span><div><h2>${text(g.title)}</h2><p>${text(g.note)}</p></div></header><div class="atlas-entries">${rows.map(entryHTML).join('')}</div></section>`;}
  function groupedHTML(rows,ids=false){return A.groups.map(g=>{const list=rows.filter(e=>e.group===g.id);return list.length?groupHTML(g,list,ids):'';}).join('');}
  const jump=document.createElement('button');jump.type='button';jump.className='atlas-search-toggle';jump.setAttribute('data-atlas-search','');shell.querySelector('.book-profile').prepend(jump);
@@ -71,7 +72,7 @@ const ElioBookAtlas=(()=>{
  function updateLeaf(){
   if(home)return;const e=A.current(location.pathname,location.hash),g=groupOf(e);if(!e)return;
   const siblings=visible().filter(x=>x.group===e.group&&x.id!==e.id);
-  leafNav.innerHTML=`<div class="atlas-crumb"><a href="index.html#contents">${t('Mục lục','Inhalt','Contents')}</a><span aria-hidden="true">/</span><span>${g.number} · ${text(g.title)}</span><span aria-hidden="true">/</span><strong aria-current="page">${text(e.title)}</strong></div><div class="atlas-leaf-tools"><span>${t('Cùng phần này','In diesem Teil','In this part')}</span>${siblings.map(x=>`<a href="${x.url}">${text(x.title)}</a>`).join('')}<button type="button" data-atlas-open>${t('Tra mục lục','Kapitel finden','Find a chapter')} <kbd>/</kbd></button></div>`;
+  leafNav.innerHTML=`<div class="atlas-crumb"><a href="index.html#contents">${t('Mục lục','Inhalt','Contents')}</a><span aria-hidden="true">/</span><span>${g.number} · ${text(g.title)}</span><span aria-hidden="true">/</span><strong aria-current="page">${esc(A.moduleTitle(e))}</strong></div><div class="atlas-leaf-tools"><span>${t('Cùng phần này','In diesem Teil','In this part')}</span>${siblings.map(x=>`<a href="${x.url}">${esc(A.moduleTitle(x))}</a>`).join('')}<button type="button" data-atlas-open>${t('Tra mục lục','Kapitel finden','Find a chapter')} <kbd>/</kbd></button></div>`;
   leafNav.querySelector('button').onclick=openSearch;
  }
  // These are navigation containers only; no exercise, editor, media, feedback,
@@ -86,7 +87,7 @@ const ElioBookAtlas=(()=>{
    const title=program.querySelector('.book-menu-title');if(title?.firstChild?.nodeType===3)title.firstChild.textContent=t('MỤC LỤC ','INHALT ','CONTENTS ');
   }
   const mobile=document.querySelector('#studio-mobile-menu .studio-menu-links');if(mobile){mobile.classList.add('atlas-mobile-links');mobile.innerHTML=groupedHTML(visible());}
-  const page=document.getElementById('studio-current-page'),e=A.current(location.pathname,location.hash);if(page&&e&&!home)page.textContent=A.pick(e.title,language());
+  const page=document.getElementById('studio-current-page'),e=A.current(location.pathname,location.hash);if(page&&e&&!home)page.textContent=A.moduleTitle(e);
  }
  // Existing listeners refresh their chrome first, then this one consistently
  // applies the same index to desktop, mobile and module navigation.
@@ -94,3 +95,4 @@ const ElioBookAtlas=(()=>{
  window.addEventListener('hashchange',refresh);refresh();
  const menu=document.getElementById('book-programs');menu?.addEventListener('click',event=>{if(event.target.closest('a')){menu.hidden=true;document.getElementById('book-menu-toggle')?.setAttribute('aria-expanded','false');}});
 })();
+

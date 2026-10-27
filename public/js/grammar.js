@@ -1,11 +1,25 @@
 'use strict';
 let currentLesson=null,exerciseIndex=0,answered=false,built=[],grammarEditorOwner=null;
-function grammarCanEdit(id){return id!=='elio-grammar-atlas-v1'&&Account.canEdit('materials',id);}
+function grammarCanEdit(id){
+ if(id==='elio-grammar-atlas-v1')return false;
+ if(id==='elio-c1-sicher-v1')return Account.profile?.role==='super_admin';
+ return Account.canEdit('materials',id);
+}
+function materializeGrammarC1(){
+ if(typeof ElioGrammarC1Pack==='undefined'||currentLesson?.collectionId!==ElioGrammarC1Pack.id)return;
+ if(Account.profile?.role!=='super_admin')throw Error('Chỉ quản trị viên được sửa giáo trình C1 chung.');
+ const all=Auth.get('materials',[]);if(all.some(c=>c.id===ElioGrammarC1Pack.id))return;
+ if(Account.conflicts.materials||Account.conflicts['shared:materials'])throw Error('Tài liệu có xung đột; hãy xử lý trước khi sửa C1.');
+ Auth.set('materials',[...all,{...structuredClone(ElioGrammarC1Pack),createdAt:Date.now()}]);
+}
+
 function grammarItems(){
  const levels=['A1','A2','B1','B2','C1'];
  const imported=ImportHub.collections('grammar').flatMap(c=>c.items.map(l=>({...l,collectionId:c.id,level:levels.includes(l.level)?l.level:levels.includes(c.level)?c.level:(String(c.name||'').match(/(?:^|[^a-z0-9])(a1|a2|b1|b2|c1)(?=$|[^a-z0-9])/i)?.[1]||'').toUpperCase()})));
- const library=typeof ElioGrammarAtlasData==='undefined'?[]:ElioGrammarAtlasData;
- return [...library,...imported];
+ const old=imported.filter(item=>item.collectionId!=='elio-grammar-atlas-v1');
+ const pack=typeof ElioGrammarC1Pack==='undefined'?null:ElioGrammarC1Pack;
+ const overridden=pack&&ImportHub.collections('grammar').some(c=>c.id===pack.id);
+ return pack&&!overridden?[...old,...pack.items.map(item=>({...item,collectionId:pack.id}))]:old;
 }
 function grammarAtlasFilter(items,{level='all',source='all',query='',group='all'}={}){
  const norm=s=>String(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/g,'d').replace(/ß/g,'ss');
@@ -13,12 +27,7 @@ function grammarAtlasFilter(items,{level='all',source='all',query='',group='all'
  return items.filter(l=>(level==='all'||(l.levels||[l.level]).includes(level))&&(source==='all'||(source==='atlas'?l.collectionId==='elio-grammar-atlas-v1':l.collectionId!=='elio-grammar-atlas-v1'))&&(group==='all'||l.group===group)&&words.every(w=>norm([l.title,l.subtitle,l.content].join(' ')).includes(w)));
 }
 
-function grammarAtlasOrdered(items,level){
- const rows=typeof ElioGrammarLevelCatalogue==='undefined'?[]:ElioGrammarLevelCatalogue.levels[level]||[];
- const order=new Map(rows.map((row,index)=>[row.id,index]));
- return items.map((item,index)=>({item,index})).sort((a,b)=>(order.get(a.item.id)??10000+a.index)-(order.get(b.item.id)??10000+b.index)).map(x=>x.item);
-}
-function filteredGrammarItems(){return grammarAtlasOrdered(grammarAtlasFilter(grammarItems(),{level:$('#grammar-level').value,source:['atlas','imported','all'].includes($('#grammar-source')?.value)?$('#grammar-source').value:'all',query:$('#grammar-search')?.type==='search'?$('#grammar-search').value:'',group:['words','verbs','relations','sentences','all'].includes($('#grammar-group')?.value)?$('#grammar-group').value:'all'}),$('#grammar-level').value);}
+function filteredGrammarItems(){return grammarAtlasFilter(grammarItems(),{level:$('#grammar-level').value,source:['atlas','imported','all'].includes($('#grammar-source')?.value)?$('#grammar-source').value:'all',query:$('#grammar-search')?.type==='search'?$('#grammar-search').value:'',group:['words','verbs','relations','sentences','all'].includes($('#grammar-group')?.value)?$('#grammar-group').value:'all'});}
 function renderLessonList(){
  const items=filteredGrammarItems(),completed=Auth.get('lessons',{}),labels=typeof grammarAtlasLabels==='function'?grammarAtlasLabels():null;
  const row=(l,index)=>`<div class="grammar-topic-row"><button type="button" class="grammar-topic-link ${currentLesson?.id===l.id?'active':''}" data-id="${esc(l.id)}" ${currentLesson?.id===l.id?'aria-current="page"':''}><span>${esc(l.title)}</span>${completed[l.id]?'<span class="grammar-topic-check" aria-label="Completed">✓</span>':''}</button>${grammarCanEdit(l.collectionId)?`<button type="button" class="secondary" data-delete-grammar="${esc(l.id)}" aria-label="${esc(App.t('delete')+' '+l.title)}">×</button>`:''}</div>`;
@@ -30,7 +39,7 @@ function renderLessonList(){
  $('#lesson-list').querySelectorAll('[data-delete-grammar]').forEach(b=>b.onclick=()=>deleteGrammarTopic(b.dataset.deleteGrammar));
  if(typeof grammarAtlasCount==='function')grammarAtlasCount(items,completed);
 }
-function deleteGrammarTopic(id){if(!Auth.require())return;const item=grammarItems().find(l=>l.id===id);if(!item||!grammarCanEdit(item.collectionId))return;if(!confirm(App.t('delete')+' “'+item.title+'”?'))return;const collections=Auth.get('materials',[]),collection=collections.find(c=>c.type==='grammar'&&c.id===item.collectionId);if(!collection)return;collection.items=collection.items.filter(l=>l.id!==id);Auth.set('materials',collections);if(currentLesson?.id===id)currentLesson=null;loadGrammar();}
+function deleteGrammarTopic(id){if(!Auth.require())return;const item=grammarItems().find(l=>l.id===id);if(!item||!grammarCanEdit(item.collectionId))return;if(!confirm(App.t('delete')+' “'+item.title+'”?'))return;if(item.collectionId==='elio-c1-sicher-v1'){const previous=currentLesson;currentLesson=item;materializeGrammarC1();currentLesson=previous;}const collections=Auth.get('materials',[]),collection=collections.find(c=>c.type==='grammar'&&c.id===item.collectionId);if(!collection)return;collection.items=collection.items.filter(l=>l.id!==id);Auth.set('materials',collections);if(currentLesson?.id===id)currentLesson=null;loadGrammar();}
 function openLesson(id){currentLesson=grammarItems().find(l=>l.id===id)||null;const source=$('#grammar-source');if(currentLesson&&source&&['atlas','imported'].includes(source.value))source.value=currentLesson.collectionId==='elio-grammar-atlas-v1'?'atlas':'imported';exerciseIndex=0;renderLesson();renderLessonList();}
 function lessonText(value){if(typeof value==='string')return value;return value?.[App.settings().language]||value?.de||value?.vi||'';}
 function visibleGrammarExercises(lesson){return (Array.isArray(lesson?.exercises)?lesson.exercises:[]).filter(ex=>ex.origin!=='ai'&&ex.answerSource!=='ai');}
@@ -52,7 +61,7 @@ function loadGrammar(){if(grammarEditorOwner===Auth.user&&$('#grammar-edit-form'
 ImportHub.mount('grammar',c=>{if($('#grammar-source'))$('#grammar-source').value='imported';if($('#grammar-group'))$('#grammar-group').value='all';if($('#grammar-search'))$('#grammar-search').value='';const first=c.items.find(l=>$('#grammar-level').value==='all'||l.level===$('#grammar-level').value);if(first)openLesson(first.id);else loadGrammar();});document.addEventListener('authchange',()=>{currentLesson=null;loadGrammar();});document.addEventListener('languagechange',loadGrammar);loadGrammar();
 
 let enrichingGrammar=false;
-async function enrichCurrentLesson(){if(enrichingGrammar||!Auth.require()||!currentLesson||!grammarCanEdit(currentLesson?.collectionId))return;const user=Auth.user,folder=currentLesson.collectionId,id=currentLesson.id,lesson=structuredClone(currentLesson);enrichingGrammar=true;$('#grammar-enrich').disabled=true;$('#grammar-enrich-status').textContent='AI…';try{const extra=await GrammarImport.enrich(lesson);if(user!==Auth.user)return;const collections=Auth.get('materials',[]),collection=collections.find(c=>c.type==='grammar'&&c.id===folder),target=collection?.items.find(l=>l.id===id);if(!target)return;target.aiAdditions=[...(target.aiAdditions||[]),...extra.additions];target.exercises=[...(target.exercises||[]),...extra.exercises];delete target.enrichmentError;Auth.set('materials',collections);if(currentLesson?.collectionId===folder&&currentLesson?.id===id){currentLesson={...target,collectionId:folder};renderLesson();renderLessonList();}}catch(error){if(user===Auth.user&&currentLesson?.id===id)$('#grammar-enrich-status').textContent=error.message;}finally{enrichingGrammar=false;if($('#grammar-enrich'))$('#grammar-enrich').disabled=false;}}
+async function enrichCurrentLesson(){if(enrichingGrammar||!Auth.require()||!currentLesson||!grammarCanEdit(currentLesson?.collectionId))return;materializeGrammarC1();const user=Auth.user,folder=currentLesson.collectionId,id=currentLesson.id,lesson=structuredClone(currentLesson);enrichingGrammar=true;$('#grammar-enrich').disabled=true;$('#grammar-enrich-status').textContent='AI…';try{const extra=await GrammarImport.enrich(lesson);if(user!==Auth.user)return;const collections=Auth.get('materials',[]),collection=collections.find(c=>c.type==='grammar'&&c.id===folder),target=collection?.items.find(l=>l.id===id);if(!target)return;target.aiAdditions=[...(target.aiAdditions||[]),...extra.additions];target.exercises=[...(target.exercises||[]),...extra.exercises];delete target.enrichmentError;Auth.set('materials',collections);if(currentLesson?.collectionId===folder&&currentLesson?.id===id){currentLesson={...target,collectionId:folder};renderLesson();renderLessonList();}}catch(error){if(user===Auth.user&&currentLesson?.id===id)$('#grammar-enrich-status').textContent=error.message;}finally{enrichingGrammar=false;if($('#grammar-enrich'))$('#grammar-enrich').disabled=false;}}
 
 function grammarExerciseKey(ex){return ex?JSON.stringify([ex.type,ex.question||ex.content||'',ex.sourcePage||null]):'';}
 function saveGrammarSession(extra={}){if(!Auth.user||!currentLesson)return;const old=Auth.get('grammarSession',{}),same=old.lessonId===currentLesson.id&&old.exerciseIndex===exerciseIndex;const response={...(same?old:{}),lessonId:currentLesson.id,exerciseIndex,exerciseKey:grammarExerciseKey(visibleGrammarExercises(currentLesson)[exerciseIndex]),folder:currentLesson.collectionId,built,...extra};delete response.responses;const responses=old.lessonId===currentLesson.id?{...(old.responses||{})}:{};if(same&&!responses[old.exerciseIndex]){const previous={...old};delete previous.responses;responses[old.exerciseIndex]=previous;}responses[exerciseIndex]=response;Auth.set('grammarSession',{...response,responses});}
@@ -99,6 +108,7 @@ function validateGrammarEdit(title,level,content,exercises){
  return {title:title.trim(),topic:title.trim(),level,content:content.trim(),exercises:exercises.map(e=>({...e,origin:'admin',answerSource:'admin'}))};
 }
 function openGrammarEditor(){
+ materializeGrammarC1();
  const lesson=currentLesson;if(!lesson||!grammarCanEdit(lesson.collectionId))return;
  grammarEditorOwner=Auth.user;const target=$('#grammar-editor');target.innerHTML='<form id="grammar-edit-form"><label>Tiêu đề<input id="grammar-edit-title" maxlength="200" required></label><label>Cấp độ<select id="grammar-edit-level">'+['A1','A2','B1','B2','C1'].map(l=>'<option>'+l+'</option>').join('')+'</select></label><label>Nội dung bài học<textarea id="grammar-edit-content" rows="18" required></textarea></label><p class="help-text">Dùng ## cho tiêu đề, **chữ đậm**, - cho danh sách; bảng Markdown dùng dấu | để chia cột.</p><label>Bài tập (JSON)<textarea id="grammar-edit-exercises" rows="8"></textarea></label><p class="help-text">Mẫu: [{"type":"fill","question":"Ich ___ hier. (sein)","answers":["bin"],"explanation":"Ich đi với bin."}]. Để [] nếu chỉ có bài học.</p><div class="chat-tools"><button type="button" id="grammar-edit-preview" class="secondary">Xem trước</button><button type="submit">Lưu bài học</button><button type="button" id="grammar-edit-cancel" class="secondary">Hủy</button></div><p id="grammar-edit-status" role="status"></p><div id="grammar-edit-preview-body" class="learning-content formatted-content"></div></form>';
  $('#grammar-edit-title').value=lesson.title;$('#grammar-edit-level').value=lesson.level||'A1';$('#grammar-edit-content').value=lessonText(lesson.content);$('#grammar-edit-exercises').value=JSON.stringify(lesson.exercises||[],null,2);
@@ -113,12 +123,17 @@ function openGrammarEditor(){
    const all=Auth.get('materials',[]),collection=all.find(c=>c.id===collectionId),item=collection?.items.find(l=>l.id===id);if(!item)throw Error('Bài học không còn tồn tại.');
    const fingerprint=v=>JSON.stringify([v.title,v.level,v.content,v.exercises]);if(fingerprint(item)!==fingerprint(lesson))throw Error('Bài đã thay đổi trong lúc sửa. Hãy sao chép bản đang sửa rồi mở lại để tránh ghi đè.');
    const baseline=JSON.stringify(all);await AccountCache.write(Account.cacheKey('grammar-edit-backup:'+id),structuredClone(item));if(user!==Auth.user)return;if(JSON.stringify(Auth.get('materials',[]))!==baseline)throw Error('Tài liệu vừa đồng bộ thay đổi. Giữ bản đang sửa và thử lưu lại để kiểm tra.');
-   Object.assign(item,update,{updatedAt:Date.now()});delete item.sourceContent;delete item.aiAdditions;Auth.set('materials',all);grammarEditorOwner=null;currentLesson={...item,collectionId};exerciseIndex=0;renderLesson();renderLessonList();toast('Đã lưu bài học; đang đồng bộ…');await Account.flush();
+   Object.assign(item,update,{updatedAt:Date.now()});if(Array.isArray(item.levels))item.levels=[update.level];delete item.sourceContent;delete item.aiAdditions;Auth.set('materials',all);grammarEditorOwner=null;currentLesson={...item,collectionId};exerciseIndex=0;renderLesson();renderLessonList();toast('Đã lưu bài học; đang đồng bộ…');await Account.flush();
   }catch(e){if(user===Auth.user)status.textContent=e.message;}finally{if(button)button.disabled=false;}
  };
 }
 
-function grammarSourceHTML(lesson){const links=(Array.isArray(lesson.reviewSources)?lesson.reviewSources:[]).flatMap(ref=>{try{const url=new URL(ref.url);return url.protocol==='https:'?['<li><a href="'+esc(url.href)+'" target="_blank" rel="noopener noreferrer">'+esc(ref.title||url.hostname)+'</a></li>']:[];}catch{return [];}});return links.length?'<details class="lesson-source-book"><summary>Nguồn đối chiếu quy tắc</summary><ul>'+links.join('')+'</ul></details>':'';}
+function grammarSourceHTML(lesson){
+ const links=(Array.isArray(lesson.reviewSources)?lesson.reviewSources:[]).flatMap(ref=>{try{const url=new URL(ref.url);return url.protocol==='https:'?['<li><a href="'+esc(url.href)+'" target="_blank" rel="noopener noreferrer">'+esc(ref.title||url.hostname)+'</a></li>']:[];}catch{return [];}});
+ const note=lesson.sourceNote?'<p>'+esc(lesson.sourceNote)+'</p>':'';
+ const pages=lesson.origin==='elio-c1-pdf-rewrite'?'<p>Sicher! C1 · Hueber Verlag · PDF '+esc((lesson.sourcePages||[]).join(', '))+'</p>':'';
+ return note||links.length?'<details class="lesson-source-book"><summary>Nguồn và ghi chú biên soạn</summary>'+note+pages+(links.length?'<ul>'+links.join('')+'</ul>':'')+'</details>':'';
+}
 
 function parseGrammarExerciseCode(raw){
  const text=String(raw||'').trim().replace(/^\x60{3}(?:json)?\s*\n?/i,'').replace(/\n?\x60{3}\s*$/,'').trim();
@@ -195,6 +210,7 @@ function decorateGrammarAnswer(result){
  @media(max-width:850px){.sprach-grid{grid-template-columns:1fr}.sprach-sheet{border-left:0}.sprach-numbers{grid-template-columns:repeat(auto-fill,minmax(40px,1fr))}.sprach-navigation{grid-template-columns:1fr 1fr}.sprach-heading{padding:18px}.sprach-paper{padding:18px}}
  `;document.head.append(style);
 })();
+
 
 
 
