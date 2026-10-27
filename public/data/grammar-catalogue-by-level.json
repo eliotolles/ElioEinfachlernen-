@@ -1,0 +1,1963 @@
+{
+  "version": 2,
+  "updatedAt": "2026-10-27",
+  "classification": "user-provided",
+  "note": "Phân nhóm theo danh sách chủ dự án; không phải danh mục ngữ pháp CEFR duy nhất. Một chủ điểm có thể được ôn ở nhiều level.",
+  "levels": {
+    "A1": [
+      {
+        "id": "elio-rewrite-2e6656c5a43e",
+        "topic": "Adjektive",
+        "order": 1
+      },
+      {
+        "id": "elio-rewrite-4ea5a0f4a305",
+        "topic": "Adjektive im Komparativ",
+        "order": 2
+      },
+      {
+        "id": "elio-rewrite-589e164cd1e2",
+        "topic": "Adjektive im Superlativ",
+        "order": 3
+      },
+      {
+        "id": "elio-reviewed-akkusativ-v2",
+        "topic": "Akkusativ",
+        "order": 4
+      },
+      {
+        "id": "elio-rewrite-3679126a7ea9",
+        "topic": "Artikel",
+        "order": 5
+      },
+      {
+        "id": "elio-rewrite-a3eb42942da9",
+        "topic": "Bestimmter Artikel: der, die, das",
+        "order": 6
+      },
+      {
+        "id": "elio-reviewed-dativ-v2",
+        "topic": "Dativ",
+        "order": 7
+      },
+      {
+        "id": "elio-rewrite-e931b3a6c347",
+        "topic": "Dativ Akkusativ Übungen",
+        "order": 8
+      },
+      {
+        "id": "elio-rewrite-5e0ec91fe007",
+        "topic": "Dativ oder Akkusativ",
+        "order": 9
+      },
+      {
+        "id": "elio-rewrite-d2cecb6b6624",
+        "topic": "Demonstrativpronomen",
+        "order": 10
+      },
+      {
+        "id": "elio-rewrite-09000c088974",
+        "topic": "Fragesatz",
+        "order": 11
+      },
+      {
+        "id": "elio-rewrite-0c400e8c43f8",
+        "topic": "Fragewörter welcher, welche, welches",
+        "order": 12
+      },
+      {
+        "id": "elio-rewrite-6bcaf785f53d",
+        "topic": "Futur 1",
+        "order": 13
+      },
+      {
+        "id": "elio-rewrite-a4b6cd93dc6e",
+        "topic": "Genitiv s bei Namen",
+        "order": 14
+      },
+      {
+        "id": "elio-rewrite-e8836114be5e",
+        "topic": "Hauptsatz",
+        "order": 15
+      },
+      {
+        "id": "elio-rewrite-58e21fc20453",
+        "topic": "Hauptsatz Konnektoren ADUSO",
+        "order": 16
+      },
+      {
+        "id": "elio-rewrite-7a35372b9c63",
+        "topic": "im Akkusativ",
+        "order": 17
+      },
+      {
+        "id": "elio-rewrite-f52123ecea9c",
+        "topic": "im Dativ",
+        "order": 18
+      },
+      {
+        "id": "elio-rewrite-6d9dfeacea9a",
+        "topic": "Imperativ",
+        "order": 19
+      },
+      {
+        "id": "elio-rewrite-25bc2eeb56d2",
+        "topic": "Indikativ",
+        "order": 20
+      },
+      {
+        "id": "elio-rewrite-70de7f94dba1",
+        "topic": "Infinitiv",
+        "order": 21
+      },
+      {
+        "id": "elio-rewrite-1846458e3e07",
+        "topic": "Kausaler Konnektor denn",
+        "order": 22
+      },
+      {
+        "id": "elio-rewrite-c17719be4cb8",
+        "topic": "Komparation mit wie und als",
+        "order": 23
+      },
+      {
+        "id": "elio-rewrite-e0e13dde9a27",
+        "topic": "Komposita",
+        "order": 24
+      },
+      {
+        "id": "elio-rewrite-83a914759913",
+        "topic": "Lokaladverbien",
+        "order": 25
+      },
+      {
+        "id": "elio-rewrite-15399f4af00e",
+        "topic": "Lokale Präpositionen",
+        "order": 26
+      },
+      {
+        "id": "elio-rewrite-10026b6ad19e",
+        "topic": "Mir oder mich",
+        "order": 27
+      },
+      {
+        "id": "elio-rewrite-139427663bda",
+        "topic": "mit bestimmtem Artikel",
+        "order": 28
+      },
+      {
+        "id": "elio-rewrite-6d2379bce27f",
+        "topic": "Modale Präpositionen",
+        "order": 29
+      },
+      {
+        "id": "elio-rewrite-c09d6f2d5385",
+        "topic": "Modalverb dürfen",
+        "order": 30
+      },
+      {
+        "id": "elio-rewrite-f0580f927acd",
+        "topic": "Modalverb können",
+        "order": 31
+      },
+      {
+        "id": "elio-rewrite-ea15104857f3",
+        "topic": "Modalverb möchten/mögen",
+        "order": 32
+      },
+      {
+        "id": "elio-rewrite-8e8a0e8b6129",
+        "topic": "Modalverb müssen",
+        "order": 33
+      },
+      {
+        "id": "elio-rewrite-b2a37ffd0db5",
+        "topic": "Modalverb sollen",
+        "order": 34
+      },
+      {
+        "id": "elio-rewrite-784a78a7e963",
+        "topic": "Modalverb wollen",
+        "order": 35
+      },
+      {
+        "id": "elio-rewrite-3bf85d9e459e",
+        "topic": "Modalverben",
+        "order": 36
+      },
+      {
+        "id": "elio-rewrite-4cc062a5add8",
+        "topic": "Nebensatz",
+        "order": 37
+      },
+      {
+        "id": "elio-rewrite-4842fc8255c2",
+        "topic": "Negation: Verneinung im Deutschen",
+        "order": 38
+      },
+      {
+        "id": "elio-rewrite-43ffe9253362",
+        "topic": "Nomen",
+        "order": 39
+      },
+      {
+        "id": "elio-rewrite-c37c5fa46b72",
+        "topic": "Nominativ",
+        "order": 40
+      },
+      {
+        "id": "elio-rewrite-365d9a019cfb",
+        "topic": "Partizip 2",
+        "order": 41
+      },
+      {
+        "id": "elio-rewrite-aa4db3145840",
+        "topic": "Perfekt",
+        "order": 42
+      },
+      {
+        "id": "elio-rewrite-6245452ff515",
+        "topic": "Personalpronomen",
+        "order": 43
+      },
+      {
+        "id": "elio-rewrite-4ef8776654a5",
+        "topic": "Plural",
+        "order": 44
+      },
+      {
+        "id": "elio-rewrite-06577511f134",
+        "topic": "Possessivartikel",
+        "order": 45
+      },
+      {
+        "id": "elio-rewrite-9b0fc9b5ed5a",
+        "topic": "Possessivpronomen",
+        "order": 46
+      },
+      {
+        "id": "elio-rewrite-c07b5cba8b40",
+        "topic": "Präpositionen",
+        "order": 47
+      },
+      {
+        "id": "elio-rewrite-2456a868f9bf",
+        "topic": "Präpositionen mit Akkusativ",
+        "order": 48
+      },
+      {
+        "id": "elio-rewrite-91ba5ff39d09",
+        "topic": "Präpositionen mit Dativ",
+        "order": 49
+      },
+      {
+        "id": "elio-rewrite-71f7bdda32b4",
+        "topic": "Präsens",
+        "order": 50
+      },
+      {
+        "id": "elio-rewrite-df8632a23f54",
+        "topic": "Präteritum von haben und sein",
+        "order": 51
+      },
+      {
+        "id": "elio-rewrite-575438422c0d",
+        "topic": "Regelmäßige und unregelmäßige Verben",
+        "order": 52
+      },
+      {
+        "id": "elio-rewrite-0cafa9035ed7",
+        "topic": "Satzbau",
+        "order": 53
+      },
+      {
+        "id": "elio-rewrite-434e3d57da00",
+        "topic": "Satzklammer",
+        "order": 54
+      },
+      {
+        "id": "elio-rewrite-4a2ef7d834ec",
+        "topic": "Sein und haben im Präsens",
+        "order": 55
+      },
+      {
+        "id": "elio-rewrite-eba13bc04067",
+        "topic": "Temporaladverbien",
+        "order": 56
+      },
+      {
+        "id": "elio-rewrite-d7157e8f1f05",
+        "topic": "Temporale Präpositionen",
+        "order": 57
+      },
+      {
+        "id": "elio-rewrite-a8db0c16980a",
+        "topic": "Trennbare Verben",
+        "order": 58
+      },
+      {
+        "id": "elio-rewrite-8d72529c6dc2",
+        "topic": "Uhrzeit im Deutschen",
+        "order": 59
+      },
+      {
+        "id": "elio-rewrite-a9869174dab6",
+        "topic": "Unbestimmter Artikel: ein, eine, einen",
+        "order": 60
+      },
+      {
+        "id": "elio-rewrite-a39c557eae63",
+        "topic": "Unregelmäßige Adjektive",
+        "order": 61
+      },
+      {
+        "id": "elio-rewrite-2536b7470677",
+        "topic": "Verb hängen",
+        "order": 62
+      },
+      {
+        "id": "elio-rewrite-c07eb33b47c1",
+        "topic": "Verb kommen",
+        "order": 63
+      },
+      {
+        "id": "elio-rewrite-77da0ed00eff",
+        "topic": "Verb werden",
+        "order": 64
+      },
+      {
+        "id": "elio-rewrite-c74b012da725",
+        "topic": "Verben",
+        "order": 65
+      },
+      {
+        "id": "elio-rewrite-e12b32f19f85",
+        "topic": "Verben mit Akkusativ",
+        "order": 66
+      },
+      {
+        "id": "elio-rewrite-028d99162ec0",
+        "topic": "Verben mit Dativ",
+        "order": 67
+      },
+      {
+        "id": "elio-rewrite-d5eee831f575",
+        "topic": "Verben mit Dativ und Akkusativ",
+        "order": 68
+      },
+      {
+        "id": "elio-rewrite-be2f1b66525b",
+        "topic": "Verben mit Vokalwechsel",
+        "order": 69
+      },
+      {
+        "id": "elio-rewrite-03b4b0c2c685",
+        "topic": "W-Fragen",
+        "order": 70
+      }
+    ],
+    "A2": [
+      {
+        "id": "elio-rewrite-7b6c0aa091e7",
+        "topic": "Adjektivdeklination",
+        "order": 1
+      },
+      {
+        "id": "elio-rewrite-2e6656c5a43e",
+        "topic": "Adjektive",
+        "order": 2
+      },
+      {
+        "id": "elio-rewrite-4ea5a0f4a305",
+        "topic": "Adjektive im Komparativ",
+        "order": 3
+      },
+      {
+        "id": "elio-rewrite-589e164cd1e2",
+        "topic": "Adjektive im Superlativ",
+        "order": 4
+      },
+      {
+        "id": "elio-rewrite-44c423950d98",
+        "topic": "Adverbien",
+        "order": 5
+      },
+      {
+        "id": "elio-reviewed-akkusativ-v2",
+        "topic": "Akkusativ",
+        "order": 6
+      },
+      {
+        "id": "elio-rewrite-bd8a867ac8aa",
+        "topic": "Am Mittag oder zu Mittag",
+        "order": 7
+      },
+      {
+        "id": "elio-rewrite-3679126a7ea9",
+        "topic": "Artikel",
+        "order": 8
+      },
+      {
+        "id": "elio-rewrite-9318c6962f4a",
+        "topic": "Daher",
+        "order": 9
+      },
+      {
+        "id": "elio-rewrite-d5d2dc4b87f7",
+        "topic": "Das oder dass?",
+        "order": 10
+      },
+      {
+        "id": "elio-reviewed-dativ-v2",
+        "topic": "Dativ",
+        "order": 11
+      },
+      {
+        "id": "elio-rewrite-e931b3a6c347",
+        "topic": "Dativ Akkusativ Übungen",
+        "order": 12
+      },
+      {
+        "id": "elio-rewrite-5e0ec91fe007",
+        "topic": "Dativ oder Akkusativ",
+        "order": 13
+      },
+      {
+        "id": "elio-rewrite-826ebb00b76d",
+        "topic": "Deklination",
+        "order": 14
+      },
+      {
+        "id": "elio-rewrite-ede283221d6c",
+        "topic": "Dem oder den",
+        "order": 15
+      },
+      {
+        "id": "elio-rewrite-d2cecb6b6624",
+        "topic": "Demonstrativpronomen",
+        "order": 16
+      },
+      {
+        "id": "elio-rewrite-2abd4e5f717d",
+        "topic": "Deshalb",
+        "order": 17
+      },
+      {
+        "id": "elio-rewrite-09000c088974",
+        "topic": "Fragesatz",
+        "order": 18
+      },
+      {
+        "id": "elio-rewrite-0c400e8c43f8",
+        "topic": "Fragewörter welcher, welche, welches",
+        "order": 19
+      },
+      {
+        "id": "elio-rewrite-6bcaf785f53d",
+        "topic": "Futur 1",
+        "order": 20
+      },
+      {
+        "id": "elio-rewrite-440f616eb388",
+        "topic": "Genitiv",
+        "order": 21
+      },
+      {
+        "id": "elio-rewrite-a4b6cd93dc6e",
+        "topic": "Genitiv s bei Namen",
+        "order": 22
+      },
+      {
+        "id": "elio-rewrite-1e8d75f03833",
+        "topic": "Graduierung von Adjektiven",
+        "order": 23
+      },
+      {
+        "id": "elio-rewrite-1390e0cad36c",
+        "topic": "Hätte, wäre, würde",
+        "order": 24
+      },
+      {
+        "id": "elio-rewrite-e8836114be5e",
+        "topic": "Hauptsatz",
+        "order": 25
+      },
+      {
+        "id": "elio-rewrite-58e21fc20453",
+        "topic": "Hauptsatz Konnektoren ADUSO",
+        "order": 26
+      },
+      {
+        "id": "elio-rewrite-7a35372b9c63",
+        "topic": "im Akkusativ",
+        "order": 27
+      },
+      {
+        "id": "elio-rewrite-f52123ecea9c",
+        "topic": "im Dativ",
+        "order": 28
+      },
+      {
+        "id": "elio-rewrite-6d9dfeacea9a",
+        "topic": "Imperativ",
+        "order": 29
+      },
+      {
+        "id": "elio-rewrite-1846f8f32cf0",
+        "topic": "Indirekte Frage formulieren",
+        "order": 30
+      },
+      {
+        "id": "elio-rewrite-91fbd7107b15",
+        "topic": "Indirekte Rede",
+        "order": 31
+      },
+      {
+        "id": "elio-rewrite-7e2da72d6794",
+        "topic": "Interrogativpronomen",
+        "order": 32
+      },
+      {
+        "id": "elio-rewrite-85c127949365",
+        "topic": "Irgendwie, irgendwo, irgendwann",
+        "order": 33
+      },
+      {
+        "id": "elio-rewrite-27a1173d2ba2",
+        "topic": "Kausale Konjunktion weil",
+        "order": 34
+      },
+      {
+        "id": "elio-rewrite-1846458e3e07",
+        "topic": "Kausaler Konnektor denn",
+        "order": 35
+      },
+      {
+        "id": "elio-rewrite-1563bd3661aa",
+        "topic": "Kausalsatz",
+        "order": 36
+      },
+      {
+        "id": "elio-rewrite-c17719be4cb8",
+        "topic": "Komparation mit wie und als",
+        "order": 37
+      },
+      {
+        "id": "elio-rewrite-e0e13dde9a27",
+        "topic": "Komposita",
+        "order": 38
+      },
+      {
+        "id": "elio-rewrite-0906dd14e862",
+        "topic": "Konditionale Konjunktion falls",
+        "order": 39
+      },
+      {
+        "id": "elio-rewrite-0eb23fc5b52a",
+        "topic": "Konditionalsatz",
+        "order": 40
+      },
+      {
+        "id": "elio-rewrite-d14ff1cf9f7b",
+        "topic": "Konjunktion dass",
+        "order": 41
+      },
+      {
+        "id": "elio-rewrite-58a1b25ab78c",
+        "topic": "Konjunktionaladverbien",
+        "order": 42
+      },
+      {
+        "id": "elio-rewrite-3615e5816fc7",
+        "topic": "Konjunktionen",
+        "order": 43
+      },
+      {
+        "id": "elio-rewrite-f297543f175e",
+        "topic": "Konjunktiv 2 der Gegenwart",
+        "order": 44
+      },
+      {
+        "id": "elio-rewrite-6edfa73c6597",
+        "topic": "Konzessivsatz",
+        "order": 45
+      },
+      {
+        "id": "elio-rewrite-83a914759913",
+        "topic": "Lokaladverbien",
+        "order": 46
+      },
+      {
+        "id": "elio-rewrite-15399f4af00e",
+        "topic": "Lokale Präpositionen",
+        "order": 47
+      },
+      {
+        "id": "elio-rewrite-10026b6ad19e",
+        "topic": "Mir oder mich",
+        "order": 48
+      },
+      {
+        "id": "elio-rewrite-139427663bda",
+        "topic": "mit bestimmtem Artikel",
+        "order": 49
+      },
+      {
+        "id": "elio-rewrite-bcf6cf847f9c",
+        "topic": "mit Komparativ und Superlativ",
+        "order": 50
+      },
+      {
+        "id": "elio-rewrite-d168472b6c8b",
+        "topic": "mit unbestimmtem Artikel",
+        "order": 51
+      },
+      {
+        "id": "elio-rewrite-e2f4c650f61d",
+        "topic": "mit was und wo",
+        "order": 52
+      },
+      {
+        "id": "elio-rewrite-b94da79fef9e",
+        "topic": "Modaladverbien",
+        "order": 53
+      },
+      {
+        "id": "elio-rewrite-6d2379bce27f",
+        "topic": "Modale Präpositionen",
+        "order": 54
+      },
+      {
+        "id": "elio-rewrite-9a006e0dc7b3",
+        "topic": "Modalpartikel",
+        "order": 55
+      },
+      {
+        "id": "elio-rewrite-c09d6f2d5385",
+        "topic": "Modalverb dürfen",
+        "order": 56
+      },
+      {
+        "id": "elio-rewrite-b2a37ffd0db5",
+        "topic": "Modalverb sollen",
+        "order": 57
+      },
+      {
+        "id": "elio-rewrite-3bf85d9e459e",
+        "topic": "Modalverben",
+        "order": 58
+      },
+      {
+        "id": "elio-rewrite-37e541af5051",
+        "topic": "Modalverben im Präteritum",
+        "order": 59
+      },
+      {
+        "id": "elio-rewrite-fe0b82d12d1f",
+        "topic": "N-Deklination",
+        "order": 60
+      },
+      {
+        "id": "elio-rewrite-4cc062a5add8",
+        "topic": "Nebensatz",
+        "order": 61
+      },
+      {
+        "id": "elio-rewrite-4842fc8255c2",
+        "topic": "Negation: Verneinung im Deutschen",
+        "order": 62
+      },
+      {
+        "id": "elio-rewrite-bf0e47612713",
+        "topic": "Negative Adjektive",
+        "order": 63
+      },
+      {
+        "id": "elio-rewrite-c37c5fa46b72",
+        "topic": "Nominativ",
+        "order": 64
+      },
+      {
+        "id": "elio-rewrite-5f9a5bd3ac64",
+        "topic": "Partikel",
+        "order": 65
+      },
+      {
+        "id": "elio-rewrite-365d9a019cfb",
+        "topic": "Partizip 2",
+        "order": 66
+      },
+      {
+        "id": "elio-rewrite-582e4fcb7148",
+        "topic": "Passiv Präsens",
+        "order": 67
+      },
+      {
+        "id": "elio-rewrite-aa4db3145840",
+        "topic": "Perfekt",
+        "order": 68
+      },
+      {
+        "id": "elio-rewrite-6245452ff515",
+        "topic": "Personalpronomen",
+        "order": 69
+      },
+      {
+        "id": "elio-rewrite-4ef8776654a5",
+        "topic": "Plural",
+        "order": 70
+      },
+      {
+        "id": "elio-rewrite-06577511f134",
+        "topic": "Possessivartikel",
+        "order": 71
+      },
+      {
+        "id": "elio-rewrite-9b0fc9b5ed5a",
+        "topic": "Possessivpronomen",
+        "order": 72
+      },
+      {
+        "id": "elio-rewrite-99a5fb603f97",
+        "topic": "Präpositionalpronomen",
+        "order": 73
+      },
+      {
+        "id": "elio-rewrite-c07b5cba8b40",
+        "topic": "Präpositionen",
+        "order": 74
+      },
+      {
+        "id": "elio-rewrite-2456a868f9bf",
+        "topic": "Präpositionen mit Akkusativ",
+        "order": 75
+      },
+      {
+        "id": "elio-rewrite-91ba5ff39d09",
+        "topic": "Präpositionen mit Dativ",
+        "order": 76
+      },
+      {
+        "id": "elio-rewrite-71f7bdda32b4",
+        "topic": "Präsens",
+        "order": 77
+      },
+      {
+        "id": "elio-rewrite-df8632a23f54",
+        "topic": "Präteritum von haben und sein",
+        "order": 78
+      },
+      {
+        "id": "elio-rewrite-2d0878053e93",
+        "topic": "Pronomen es",
+        "order": 79
+      },
+      {
+        "id": "elio-rewrite-86df402c6d6b",
+        "topic": "Reflexive Verben",
+        "order": 80
+      },
+      {
+        "id": "elio-rewrite-492044980b61",
+        "topic": "Reflexive Verben mit Präpositionen",
+        "order": 81
+      },
+      {
+        "id": "elio-rewrite-c2ab64db67f6",
+        "topic": "Reflexivpronomen",
+        "order": 82
+      },
+      {
+        "id": "elio-rewrite-575438422c0d",
+        "topic": "Regelmäßige und unregelmäßige Verben",
+        "order": 83
+      },
+      {
+        "id": "elio-rewrite-13b2479c277a",
+        "topic": "Relativpronomen der, die, das",
+        "order": 84
+      },
+      {
+        "id": "elio-rewrite-50d9f8b6dc27",
+        "topic": "Relativsatz",
+        "order": 85
+      },
+      {
+        "id": "elio-rewrite-0cafa9035ed7",
+        "topic": "Satzbau",
+        "order": 86
+      },
+      {
+        "id": "elio-rewrite-434e3d57da00",
+        "topic": "Satzklammer",
+        "order": 87
+      },
+      {
+        "id": "elio-rewrite-91369ca05de2",
+        "topic": "Seitdem oder seit dem",
+        "order": 88
+      },
+      {
+        "id": "elio-rewrite-eba13bc04067",
+        "topic": "Temporaladverbien",
+        "order": 89
+      },
+      {
+        "id": "elio-rewrite-8720239ebce2",
+        "topic": "Temporale Konjunktion als",
+        "order": 90
+      },
+      {
+        "id": "elio-rewrite-f888e253a0c2",
+        "topic": "Temporale Konjunktion bis",
+        "order": 91
+      },
+      {
+        "id": "elio-rewrite-af51dac4f879",
+        "topic": "Temporale Konjunktion wenn",
+        "order": 92
+      },
+      {
+        "id": "elio-rewrite-d7157e8f1f05",
+        "topic": "Temporale Präpositionen",
+        "order": 93
+      },
+      {
+        "id": "elio-rewrite-a8db0c16980a",
+        "topic": "Trennbare Verben",
+        "order": 94
+      },
+      {
+        "id": "elio-rewrite-728c2fecad95",
+        "topic": "Trotzdem",
+        "order": 95
+      },
+      {
+        "id": "elio-rewrite-a39c557eae63",
+        "topic": "Unregelmäßige Adjektive",
+        "order": 96
+      },
+      {
+        "id": "elio-rewrite-df9eba257ee1",
+        "topic": "Verb brauchen",
+        "order": 97
+      },
+      {
+        "id": "elio-rewrite-2536b7470677",
+        "topic": "Verb hängen",
+        "order": 98
+      },
+      {
+        "id": "elio-rewrite-49f2a054d4fd",
+        "topic": "Verb lassen",
+        "order": 99
+      },
+      {
+        "id": "elio-rewrite-77da0ed00eff",
+        "topic": "Verb werden",
+        "order": 100
+      },
+      {
+        "id": "elio-rewrite-c74b012da725",
+        "topic": "Verben",
+        "order": 101
+      },
+      {
+        "id": "elio-rewrite-e12b32f19f85",
+        "topic": "Verben mit Akkusativ",
+        "order": 102
+      },
+      {
+        "id": "elio-rewrite-028d99162ec0",
+        "topic": "Verben mit Dativ",
+        "order": 103
+      },
+      {
+        "id": "elio-rewrite-d5eee831f575",
+        "topic": "Verben mit Dativ und Akkusativ",
+        "order": 104
+      },
+      {
+        "id": "elio-rewrite-3b92c5936631",
+        "topic": "Verben mit Präpositionen",
+        "order": 105
+      },
+      {
+        "id": "elio-rewrite-be2f1b66525b",
+        "topic": "Verben mit Vokalwechsel",
+        "order": 106
+      },
+      {
+        "id": "elio-rewrite-a3d567c09fcf",
+        "topic": "Vorgangspassiv",
+        "order": 107
+      },
+      {
+        "id": "elio-rewrite-03b4b0c2c685",
+        "topic": "W-Fragen",
+        "order": 108
+      },
+      {
+        "id": "elio-rewrite-696cc1481c0f",
+        "topic": "Wechselpräpositionen",
+        "order": 109
+      }
+    ],
+    "B1": [
+      {
+        "id": "elio-rewrite-7b6c0aa091e7",
+        "topic": "Adjektivdeklination",
+        "order": 1
+      },
+      {
+        "id": "elio-rewrite-2e6656c5a43e",
+        "topic": "Adjektive",
+        "order": 2
+      },
+      {
+        "id": "elio-rewrite-4ea5a0f4a305",
+        "topic": "Adjektive im Komparativ",
+        "order": 3
+      },
+      {
+        "id": "elio-rewrite-589e164cd1e2",
+        "topic": "Adjektive im Superlativ",
+        "order": 4
+      },
+      {
+        "id": "elio-rewrite-44c423950d98",
+        "topic": "Adverbien",
+        "order": 5
+      },
+      {
+        "id": "elio-reviewed-akkusativ-v2",
+        "topic": "Akkusativ",
+        "order": 6
+      },
+      {
+        "id": "elio-rewrite-61bc1d766346",
+        "topic": "Dadurch dass",
+        "order": 7
+      },
+      {
+        "id": "elio-rewrite-9318c6962f4a",
+        "topic": "Daher",
+        "order": 8
+      },
+      {
+        "id": "elio-rewrite-d5d2dc4b87f7",
+        "topic": "Das oder dass?",
+        "order": 9
+      },
+      {
+        "id": "elio-reviewed-dativ-v2",
+        "topic": "Dativ",
+        "order": 10
+      },
+      {
+        "id": "elio-rewrite-e931b3a6c347",
+        "topic": "Dativ Akkusativ Übungen",
+        "order": 11
+      },
+      {
+        "id": "elio-rewrite-5e0ec91fe007",
+        "topic": "Dativ oder Akkusativ",
+        "order": 12
+      },
+      {
+        "id": "elio-rewrite-826ebb00b76d",
+        "topic": "Deklination",
+        "order": 13
+      },
+      {
+        "id": "elio-rewrite-d2cecb6b6624",
+        "topic": "Demonstrativpronomen",
+        "order": 14
+      },
+      {
+        "id": "elio-rewrite-2abd4e5f717d",
+        "topic": "Deshalb",
+        "order": 15
+      },
+      {
+        "id": "elio-rewrite-5a58a9f5e720",
+        "topic": "Finale Konjunktion damit",
+        "order": 16
+      },
+      {
+        "id": "elio-rewrite-09de6a20884c",
+        "topic": "Finalsatz",
+        "order": 17
+      },
+      {
+        "id": "elio-rewrite-17bcb0f43a6a",
+        "topic": "Fragewort was für ein",
+        "order": 18
+      },
+      {
+        "id": "elio-rewrite-440f616eb388",
+        "topic": "Genitiv",
+        "order": 19
+      },
+      {
+        "id": "elio-rewrite-1e8d75f03833",
+        "topic": "Graduierung von Adjektiven",
+        "order": 20
+      },
+      {
+        "id": "elio-rewrite-1390e0cad36c",
+        "topic": "Hätte, wäre, würde",
+        "order": 21
+      },
+      {
+        "id": "elio-rewrite-47d74a0c07ca",
+        "topic": "Hinauf – herauf, hinunter – herunter, hinab – herab",
+        "order": 22
+      },
+      {
+        "id": "elio-rewrite-7a35372b9c63",
+        "topic": "im Akkusativ",
+        "order": 23
+      },
+      {
+        "id": "elio-rewrite-f52123ecea9c",
+        "topic": "im Dativ",
+        "order": 24
+      },
+      {
+        "id": "elio-rewrite-a945348f1981",
+        "topic": "im Genitiv",
+        "order": 25
+      },
+      {
+        "id": "elio-rewrite-e52f5223aaa6",
+        "topic": "Indefinitpronomen",
+        "order": 26
+      },
+      {
+        "id": "elio-rewrite-1846f8f32cf0",
+        "topic": "Indirekte Frage formulieren",
+        "order": 27
+      },
+      {
+        "id": "elio-rewrite-91fbd7107b15",
+        "topic": "Indirekte Rede",
+        "order": 28
+      },
+      {
+        "id": "elio-rewrite-85c127949365",
+        "topic": "Irgendwie, irgendwo, irgendwann",
+        "order": 29
+      },
+      {
+        "id": "elio-rewrite-eae00bfba13b",
+        "topic": "Jedoch",
+        "order": 30
+      },
+      {
+        "id": "elio-rewrite-27a1173d2ba2",
+        "topic": "Kausale Konjunktion weil",
+        "order": 31
+      },
+      {
+        "id": "elio-rewrite-be0ee7ce68a6",
+        "topic": "Kausale Präpositionen",
+        "order": 32
+      },
+      {
+        "id": "elio-rewrite-1563bd3661aa",
+        "topic": "Kausalsatz",
+        "order": 33
+      },
+      {
+        "id": "elio-rewrite-c17719be4cb8",
+        "topic": "Komparation mit wie und als",
+        "order": 34
+      },
+      {
+        "id": "elio-rewrite-0906dd14e862",
+        "topic": "Konditionale Konjunktion falls",
+        "order": 35
+      },
+      {
+        "id": "elio-rewrite-0eb23fc5b52a",
+        "topic": "Konditionalsatz",
+        "order": 36
+      },
+      {
+        "id": "elio-rewrite-d14ff1cf9f7b",
+        "topic": "Konjunktion dass",
+        "order": 37
+      },
+      {
+        "id": "elio-rewrite-58a1b25ab78c",
+        "topic": "Konjunktionaladverbien",
+        "order": 38
+      },
+      {
+        "id": "elio-rewrite-f297543f175e",
+        "topic": "Konjunktiv 2 der Gegenwart",
+        "order": 39
+      },
+      {
+        "id": "elio-rewrite-0a91f7c15a2f",
+        "topic": "Konjunktiv 2 der Vergangenheit",
+        "order": 40
+      },
+      {
+        "id": "elio-rewrite-800941182951",
+        "topic": "Konsekutive Konjunktion sodass",
+        "order": 41
+      },
+      {
+        "id": "elio-rewrite-4ed9aabdfb34",
+        "topic": "Konzessive Konjunktion obwohl",
+        "order": 42
+      },
+      {
+        "id": "elio-rewrite-6edfa73c6597",
+        "topic": "Konzessivsatz",
+        "order": 43
+      },
+      {
+        "id": "elio-rewrite-83a914759913",
+        "topic": "Lokaladverbien",
+        "order": 44
+      },
+      {
+        "id": "elio-rewrite-15399f4af00e",
+        "topic": "Lokale Präpositionen",
+        "order": 45
+      },
+      {
+        "id": "elio-rewrite-139427663bda",
+        "topic": "mit bestimmtem Artikel",
+        "order": 46
+      },
+      {
+        "id": "elio-rewrite-bcf6cf847f9c",
+        "topic": "mit Komparativ und Superlativ",
+        "order": 47
+      },
+      {
+        "id": "elio-rewrite-d168472b6c8b",
+        "topic": "mit unbestimmtem Artikel",
+        "order": 48
+      },
+      {
+        "id": "elio-rewrite-e2f4c650f61d",
+        "topic": "mit was und wo",
+        "order": 49
+      },
+      {
+        "id": "elio-rewrite-b94da79fef9e",
+        "topic": "Modaladverbien",
+        "order": 50
+      },
+      {
+        "id": "elio-rewrite-7261a42886ef",
+        "topic": "Modale Konjunktion indem",
+        "order": 51
+      },
+      {
+        "id": "elio-rewrite-6d2379bce27f",
+        "topic": "Modale Präpositionen",
+        "order": 52
+      },
+      {
+        "id": "elio-rewrite-9a006e0dc7b3",
+        "topic": "Modalpartikel",
+        "order": 53
+      },
+      {
+        "id": "elio-rewrite-bb4ea54bbf4b",
+        "topic": "Modalsatz",
+        "order": 54
+      },
+      {
+        "id": "elio-rewrite-3bf85d9e459e",
+        "topic": "Modalverben",
+        "order": 55
+      },
+      {
+        "id": "elio-rewrite-37e541af5051",
+        "topic": "Modalverben im Präteritum",
+        "order": 56
+      },
+      {
+        "id": "elio-rewrite-fe0b82d12d1f",
+        "topic": "N-Deklination",
+        "order": 57
+      },
+      {
+        "id": "elio-rewrite-fc2889c83aec",
+        "topic": "Nämlich",
+        "order": 58
+      },
+      {
+        "id": "elio-rewrite-4cc062a5add8",
+        "topic": "Nebensatz",
+        "order": 59
+      },
+      {
+        "id": "elio-rewrite-bf0e47612713",
+        "topic": "Negative Adjektive",
+        "order": 60
+      },
+      {
+        "id": "elio-rewrite-f8ad822b6b48",
+        "topic": "Nomen Verb Verbindungen",
+        "order": 61
+      },
+      {
+        "id": "elio-rewrite-43098a5eb22a",
+        "topic": "Nominalisierte Adjektive",
+        "order": 62
+      },
+      {
+        "id": "elio-rewrite-ef8600518434",
+        "topic": "Nominalisierung",
+        "order": 63
+      },
+      {
+        "id": "elio-rewrite-fcb8a9557da6",
+        "topic": "ohne Artikel",
+        "order": 64
+      },
+      {
+        "id": "elio-rewrite-030044d0c024",
+        "topic": "Ohne dass",
+        "order": 65
+      },
+      {
+        "id": "elio-rewrite-5f9a5bd3ac64",
+        "topic": "Partikel",
+        "order": 66
+      },
+      {
+        "id": "elio-rewrite-bb0048fdbce4",
+        "topic": "Partizip 1",
+        "order": 67
+      },
+      {
+        "id": "elio-rewrite-365d9a019cfb",
+        "topic": "Partizip 2",
+        "order": 68
+      },
+      {
+        "id": "elio-rewrite-1200de97feb5",
+        "topic": "Passiv mit Modalverben",
+        "order": 69
+      },
+      {
+        "id": "elio-rewrite-33c554e99b75",
+        "topic": "Passiv Perfekt",
+        "order": 70
+      },
+      {
+        "id": "elio-rewrite-582e4fcb7148",
+        "topic": "Passiv Präsens",
+        "order": 71
+      },
+      {
+        "id": "elio-rewrite-c370d511542f",
+        "topic": "Passiv Präteritum",
+        "order": 72
+      },
+      {
+        "id": "elio-rewrite-aa4db3145840",
+        "topic": "Perfekt",
+        "order": 73
+      },
+      {
+        "id": "elio-rewrite-b9128c6fae16",
+        "topic": "Perfekt mit Modalverben",
+        "order": 74
+      },
+      {
+        "id": "elio-rewrite-30aad191bbee",
+        "topic": "Plusquamperfekt",
+        "order": 75
+      },
+      {
+        "id": "elio-rewrite-99a5fb603f97",
+        "topic": "Präpositionalpronomen",
+        "order": 76
+      },
+      {
+        "id": "elio-rewrite-c07b5cba8b40",
+        "topic": "Präpositionen",
+        "order": 77
+      },
+      {
+        "id": "elio-rewrite-2456a868f9bf",
+        "topic": "Präpositionen mit Akkusativ",
+        "order": 78
+      },
+      {
+        "id": "elio-rewrite-91ba5ff39d09",
+        "topic": "Präpositionen mit Dativ",
+        "order": 79
+      },
+      {
+        "id": "elio-rewrite-a58b7274edf3",
+        "topic": "Präpositionen mit Genitiv",
+        "order": 80
+      },
+      {
+        "id": "elio-rewrite-7c4ed4af2296",
+        "topic": "Präteritum",
+        "order": 81
+      },
+      {
+        "id": "elio-rewrite-2d0878053e93",
+        "topic": "Pronomen es",
+        "order": 82
+      },
+      {
+        "id": "elio-rewrite-86df402c6d6b",
+        "topic": "Reflexive Verben",
+        "order": 83
+      },
+      {
+        "id": "elio-rewrite-492044980b61",
+        "topic": "Reflexive Verben mit Präpositionen",
+        "order": 84
+      },
+      {
+        "id": "elio-rewrite-c2ab64db67f6",
+        "topic": "Reflexivpronomen",
+        "order": 85
+      },
+      {
+        "id": "elio-rewrite-575438422c0d",
+        "topic": "Regelmäßige und unregelmäßige Verben",
+        "order": 86
+      },
+      {
+        "id": "elio-rewrite-13b2479c277a",
+        "topic": "Relativpronomen der, die, das",
+        "order": 87
+      },
+      {
+        "id": "elio-rewrite-50d9f8b6dc27",
+        "topic": "Relativsatz",
+        "order": 88
+      },
+      {
+        "id": "elio-rewrite-0cafa9035ed7",
+        "topic": "Satzbau",
+        "order": 89
+      },
+      {
+        "id": "elio-rewrite-434e3d57da00",
+        "topic": "Satzklammer",
+        "order": 90
+      },
+      {
+        "id": "elio-rewrite-91369ca05de2",
+        "topic": "Seitdem oder seit dem",
+        "order": 91
+      },
+      {
+        "id": "elio-rewrite-46493906c3b1",
+        "topic": "Sodass oder so dass",
+        "order": 92
+      },
+      {
+        "id": "elio-rewrite-c1d707835b21",
+        "topic": "TEKAMOLO",
+        "order": 93
+      },
+      {
+        "id": "elio-rewrite-8720239ebce2",
+        "topic": "Temporale Konjunktion als",
+        "order": 94
+      },
+      {
+        "id": "elio-rewrite-a373fa435869",
+        "topic": "Temporale Konjunktion bevor",
+        "order": 95
+      },
+      {
+        "id": "elio-rewrite-f888e253a0c2",
+        "topic": "Temporale Konjunktion bis",
+        "order": 96
+      },
+      {
+        "id": "elio-rewrite-3c26738cb201",
+        "topic": "Temporale Konjunktion nachdem",
+        "order": 97
+      },
+      {
+        "id": "elio-rewrite-b08e37bdfe04",
+        "topic": "Temporale Konjunktion seit",
+        "order": 98
+      },
+      {
+        "id": "elio-rewrite-4024054d589a",
+        "topic": "Temporale Konjunktion während",
+        "order": 99
+      },
+      {
+        "id": "elio-rewrite-af51dac4f879",
+        "topic": "Temporale Konjunktion wenn",
+        "order": 100
+      },
+      {
+        "id": "elio-rewrite-d7157e8f1f05",
+        "topic": "Temporale Präpositionen",
+        "order": 101
+      },
+      {
+        "id": "elio-rewrite-551d8e824d7b",
+        "topic": "Temporalsatz",
+        "order": 102
+      },
+      {
+        "id": "elio-rewrite-a8db0c16980a",
+        "topic": "Trennbare Verben",
+        "order": 103
+      },
+      {
+        "id": "elio-rewrite-728c2fecad95",
+        "topic": "Trotzdem",
+        "order": 104
+      },
+      {
+        "id": "elio-rewrite-a39c557eae63",
+        "topic": "Unregelmäßige Adjektive",
+        "order": 105
+      },
+      {
+        "id": "elio-rewrite-df9eba257ee1",
+        "topic": "Verb brauchen",
+        "order": 106
+      },
+      {
+        "id": "elio-rewrite-49f2a054d4fd",
+        "topic": "Verb lassen",
+        "order": 107
+      },
+      {
+        "id": "elio-rewrite-c74b012da725",
+        "topic": "Verben",
+        "order": 108
+      },
+      {
+        "id": "elio-rewrite-e12b32f19f85",
+        "topic": "Verben mit Akkusativ",
+        "order": 109
+      },
+      {
+        "id": "elio-rewrite-028d99162ec0",
+        "topic": "Verben mit Dativ",
+        "order": 110
+      },
+      {
+        "id": "elio-rewrite-d5eee831f575",
+        "topic": "Verben mit Dativ und Akkusativ",
+        "order": 111
+      },
+      {
+        "id": "elio-rewrite-3b92c5936631",
+        "topic": "Verben mit Präpositionen",
+        "order": 112
+      },
+      {
+        "id": "elio-rewrite-be2f1b66525b",
+        "topic": "Verben mit Vokalwechsel",
+        "order": 113
+      },
+      {
+        "id": "elio-rewrite-800486b6f55c",
+        "topic": "Vergleichssätze mit als ob",
+        "order": 114
+      },
+      {
+        "id": "elio-rewrite-a3d567c09fcf",
+        "topic": "Vorgangspassiv",
+        "order": 115
+      },
+      {
+        "id": "elio-rewrite-696cc1481c0f",
+        "topic": "Wechselpräpositionen",
+        "order": 116
+      },
+      {
+        "id": "elio-rewrite-58fc77e128c5",
+        "topic": "Zustandspassiv",
+        "order": 117
+      },
+      {
+        "id": "elio-rewrite-8b0545d7ad5a",
+        "topic": "Zweiteilige Konnektoren",
+        "order": 118
+      }
+    ],
+    "B2": [
+      {
+        "id": "elio-rewrite-7b6c0aa091e7",
+        "topic": "Adjektivdeklination",
+        "order": 1
+      },
+      {
+        "id": "elio-rewrite-2e6656c5a43e",
+        "topic": "Adjektive",
+        "order": 2
+      },
+      {
+        "id": "elio-reviewed-akkusativ-v2",
+        "topic": "Akkusativ",
+        "order": 3
+      },
+      {
+        "id": "elio-reviewed-dativ-v2",
+        "topic": "Dativ",
+        "order": 4
+      },
+      {
+        "id": "elio-rewrite-e931b3a6c347",
+        "topic": "Dativ Akkusativ Übungen",
+        "order": 5
+      },
+      {
+        "id": "elio-rewrite-5e0ec91fe007",
+        "topic": "Dativ oder Akkusativ",
+        "order": 6
+      },
+      {
+        "id": "elio-rewrite-5a58a9f5e720",
+        "topic": "Finale Konjunktion damit",
+        "order": 7
+      },
+      {
+        "id": "elio-rewrite-09de6a20884c",
+        "topic": "Finalsatz",
+        "order": 8
+      },
+      {
+        "id": "elio-rewrite-17bcb0f43a6a",
+        "topic": "Fragewort was für ein",
+        "order": 9
+      },
+      {
+        "id": "elio-rewrite-5c0a1d67a609",
+        "topic": "Futur 2",
+        "order": 10
+      },
+      {
+        "id": "elio-rewrite-440f616eb388",
+        "topic": "Genitiv",
+        "order": 11
+      },
+      {
+        "id": "elio-rewrite-8d7d6a544656",
+        "topic": "Gerundiv",
+        "order": 12
+      },
+      {
+        "id": "elio-rewrite-47d74a0c07ca",
+        "topic": "Hinauf – herauf, hinunter – herunter, hinab – herab",
+        "order": 13
+      },
+      {
+        "id": "elio-rewrite-a945348f1981",
+        "topic": "im Genitiv",
+        "order": 14
+      },
+      {
+        "id": "elio-rewrite-e52f5223aaa6",
+        "topic": "Indefinitpronomen",
+        "order": 15
+      },
+      {
+        "id": "elio-rewrite-1846f8f32cf0",
+        "topic": "Indirekte Frage formulieren",
+        "order": 16
+      },
+      {
+        "id": "elio-rewrite-91fbd7107b15",
+        "topic": "Indirekte Rede",
+        "order": 17
+      },
+      {
+        "id": "elio-rewrite-be0ee7ce68a6",
+        "topic": "Kausale Präpositionen",
+        "order": 18
+      },
+      {
+        "id": "elio-rewrite-1563bd3661aa",
+        "topic": "Kausalsatz",
+        "order": 19
+      },
+      {
+        "id": "elio-rewrite-0eb23fc5b52a",
+        "topic": "Konditionalsatz",
+        "order": 20
+      },
+      {
+        "id": "elio-rewrite-58a1b25ab78c",
+        "topic": "Konjunktionaladverbien",
+        "order": 21
+      },
+      {
+        "id": "elio-rewrite-98cdee067bb4",
+        "topic": "Konjunktiv 1",
+        "order": 22
+      },
+      {
+        "id": "elio-rewrite-f56e7a43cd0e",
+        "topic": "Konjunktiv 1 der Vergangenheit",
+        "order": 23
+      },
+      {
+        "id": "elio-rewrite-0a91f7c15a2f",
+        "topic": "Konjunktiv 2 der Vergangenheit",
+        "order": 24
+      },
+      {
+        "id": "elio-rewrite-800941182951",
+        "topic": "Konsekutive Konjunktion sodass",
+        "order": 25
+      },
+      {
+        "id": "elio-rewrite-bcf6cf847f9c",
+        "topic": "mit Komparativ und Superlativ",
+        "order": 26
+      },
+      {
+        "id": "elio-rewrite-d168472b6c8b",
+        "topic": "mit unbestimmtem Artikel",
+        "order": 27
+      },
+      {
+        "id": "elio-rewrite-e2f4c650f61d",
+        "topic": "mit was und wo",
+        "order": 28
+      },
+      {
+        "id": "elio-rewrite-b94da79fef9e",
+        "topic": "Modaladverbien",
+        "order": 29
+      },
+      {
+        "id": "elio-rewrite-9a006e0dc7b3",
+        "topic": "Modalpartikel",
+        "order": 30
+      },
+      {
+        "id": "elio-rewrite-bb4ea54bbf4b",
+        "topic": "Modalsatz",
+        "order": 31
+      },
+      {
+        "id": "elio-rewrite-3bf85d9e459e",
+        "topic": "Modalverben",
+        "order": 32
+      },
+      {
+        "id": "elio-rewrite-fe0b82d12d1f",
+        "topic": "N-Deklination",
+        "order": 33
+      },
+      {
+        "id": "elio-rewrite-fc2889c83aec",
+        "topic": "Nämlich",
+        "order": 34
+      },
+      {
+        "id": "elio-rewrite-bf0e47612713",
+        "topic": "Negative Adjektive",
+        "order": 35
+      },
+      {
+        "id": "elio-rewrite-f8ad822b6b48",
+        "topic": "Nomen Verb Verbindungen",
+        "order": 36
+      },
+      {
+        "id": "elio-rewrite-43098a5eb22a",
+        "topic": "Nominalisierte Adjektive",
+        "order": 37
+      },
+      {
+        "id": "elio-rewrite-ef8600518434",
+        "topic": "Nominalisierung",
+        "order": 38
+      },
+      {
+        "id": "elio-rewrite-fcb8a9557da6",
+        "topic": "ohne Artikel",
+        "order": 39
+      },
+      {
+        "id": "elio-rewrite-030044d0c024",
+        "topic": "Ohne dass",
+        "order": 40
+      },
+      {
+        "id": "elio-rewrite-5f9a5bd3ac64",
+        "topic": "Partikel",
+        "order": 41
+      },
+      {
+        "id": "elio-rewrite-bb0048fdbce4",
+        "topic": "Partizip 1",
+        "order": 42
+      },
+      {
+        "id": "elio-rewrite-6a9e56255603",
+        "topic": "Passiv Ersatzformen",
+        "order": 43
+      },
+      {
+        "id": "elio-rewrite-1200de97feb5",
+        "topic": "Passiv mit Modalverben",
+        "order": 44
+      },
+      {
+        "id": "elio-rewrite-33c554e99b75",
+        "topic": "Passiv Perfekt",
+        "order": 45
+      },
+      {
+        "id": "elio-rewrite-c370d511542f",
+        "topic": "Passiv Präteritum",
+        "order": 46
+      },
+      {
+        "id": "elio-rewrite-b9128c6fae16",
+        "topic": "Perfekt mit Modalverben",
+        "order": 47
+      },
+      {
+        "id": "elio-rewrite-30aad191bbee",
+        "topic": "Plusquamperfekt",
+        "order": 48
+      },
+      {
+        "id": "elio-rewrite-99a5fb603f97",
+        "topic": "Präpositionalpronomen",
+        "order": 49
+      },
+      {
+        "id": "elio-rewrite-c07b5cba8b40",
+        "topic": "Präpositionen",
+        "order": 50
+      },
+      {
+        "id": "elio-rewrite-a58b7274edf3",
+        "topic": "Präpositionen mit Genitiv",
+        "order": 51
+      },
+      {
+        "id": "elio-rewrite-7c4ed4af2296",
+        "topic": "Präteritum",
+        "order": 52
+      },
+      {
+        "id": "elio-rewrite-2d0878053e93",
+        "topic": "Pronomen es",
+        "order": 53
+      },
+      {
+        "id": "elio-rewrite-86df402c6d6b",
+        "topic": "Reflexive Verben",
+        "order": 54
+      },
+      {
+        "id": "elio-rewrite-492044980b61",
+        "topic": "Reflexive Verben mit Präpositionen",
+        "order": 55
+      },
+      {
+        "id": "elio-rewrite-13b2479c277a",
+        "topic": "Relativpronomen der, die, das",
+        "order": 56
+      },
+      {
+        "id": "elio-rewrite-50d9f8b6dc27",
+        "topic": "Relativsatz",
+        "order": 57
+      },
+      {
+        "id": "elio-rewrite-434e3d57da00",
+        "topic": "Satzklammer",
+        "order": 58
+      },
+      {
+        "id": "elio-rewrite-89bed0654a38",
+        "topic": "Subjektive Bedeutung von Modalverben",
+        "order": 59
+      },
+      {
+        "id": "elio-rewrite-c1d707835b21",
+        "topic": "TEKAMOLO",
+        "order": 60
+      },
+      {
+        "id": "elio-rewrite-3c26738cb201",
+        "topic": "Temporale Konjunktion nachdem",
+        "order": 61
+      },
+      {
+        "id": "elio-rewrite-4024054d589a",
+        "topic": "Temporale Konjunktion während",
+        "order": 62
+      },
+      {
+        "id": "elio-rewrite-551d8e824d7b",
+        "topic": "Temporalsatz",
+        "order": 63
+      },
+      {
+        "id": "elio-rewrite-df9eba257ee1",
+        "topic": "Verb brauchen",
+        "order": 64
+      },
+      {
+        "id": "elio-rewrite-49f2a054d4fd",
+        "topic": "Verb lassen",
+        "order": 65
+      },
+      {
+        "id": "elio-rewrite-028d99162ec0",
+        "topic": "Verben mit Dativ",
+        "order": 66
+      },
+      {
+        "id": "elio-rewrite-d5eee831f575",
+        "topic": "Verben mit Dativ und Akkusativ",
+        "order": 67
+      },
+      {
+        "id": "elio-rewrite-3b92c5936631",
+        "topic": "Verben mit Präpositionen",
+        "order": 68
+      },
+      {
+        "id": "elio-rewrite-800486b6f55c",
+        "topic": "Vergleichssätze mit als ob",
+        "order": 69
+      },
+      {
+        "id": "elio-rewrite-58fc77e128c5",
+        "topic": "Zustandspassiv",
+        "order": 70
+      }
+    ],
+    "C1": [
+      {
+        "id": "elio-reviewed-akkusativ-v2",
+        "topic": "Akkusativ",
+        "order": 1
+      },
+      {
+        "id": "elio-reviewed-dativ-v2",
+        "topic": "Dativ",
+        "order": 2
+      },
+      {
+        "id": "elio-rewrite-5c0a1d67a609",
+        "topic": "Futur 2",
+        "order": 3
+      },
+      {
+        "id": "elio-rewrite-8d7d6a544656",
+        "topic": "Gerundiv",
+        "order": 4
+      },
+      {
+        "id": "elio-rewrite-91fbd7107b15",
+        "topic": "Indirekte Rede",
+        "order": 5
+      },
+      {
+        "id": "elio-rewrite-98cdee067bb4",
+        "topic": "Konjunktiv 1",
+        "order": 6
+      },
+      {
+        "id": "elio-rewrite-f56e7a43cd0e",
+        "topic": "Konjunktiv 1 der Vergangenheit",
+        "order": 7
+      },
+      {
+        "id": "elio-rewrite-fe0b82d12d1f",
+        "topic": "N-Deklination",
+        "order": 8
+      },
+      {
+        "id": "elio-rewrite-f8ad822b6b48",
+        "topic": "Nomen Verb Verbindungen",
+        "order": 9
+      },
+      {
+        "id": "elio-rewrite-43098a5eb22a",
+        "topic": "Nominalisierte Adjektive",
+        "order": 10
+      },
+      {
+        "id": "elio-rewrite-ef8600518434",
+        "topic": "Nominalisierung",
+        "order": 11
+      },
+      {
+        "id": "elio-rewrite-bb0048fdbce4",
+        "topic": "Partizip 1",
+        "order": 12
+      },
+      {
+        "id": "elio-rewrite-6a9e56255603",
+        "topic": "Passiv Ersatzformen",
+        "order": 13
+      },
+      {
+        "id": "elio-rewrite-b9128c6fae16",
+        "topic": "Perfekt mit Modalverben",
+        "order": 14
+      },
+      {
+        "id": "elio-rewrite-30aad191bbee",
+        "topic": "Plusquamperfekt",
+        "order": 15
+      },
+      {
+        "id": "elio-rewrite-a58b7274edf3",
+        "topic": "Präpositionen mit Genitiv",
+        "order": 16
+      },
+      {
+        "id": "elio-rewrite-2d0878053e93",
+        "topic": "Pronomen es",
+        "order": 17
+      },
+      {
+        "id": "elio-rewrite-89bed0654a38",
+        "topic": "Subjektive Bedeutung von Modalverben",
+        "order": 18
+      }
+    ]
+  },
+  "duplicateRowsRemoved": [
+    {
+      "level": "A2",
+      "topic": "im Dativ"
+    },
+    {
+      "level": "B1",
+      "topic": "im Dativ"
+    }
+  ],
+  "unresolvedLabels": [
+    "im Akkusativ",
+    "im Dativ",
+    "im Genitiv",
+    "mit bestimmtem Artikel",
+    "mit unbestimmtem Artikel",
+    "mit Komparativ und Superlativ",
+    "mit was und wo",
+    "ohne Artikel"
+  ]
+}

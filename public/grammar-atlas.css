@@ -42,3 +42,21 @@ body.book-app.book-atlas.grammar-atlas :is(button,input,select,summary):focus-vi
 @media(min-width:801px){body.book-app.book-atlas.grammar-atlas #grammar-catalogue>summary{display:none}}
 
 body.book-app.book-atlas.grammar-atlas .grammar-sidebar{position:static!important;max-height:none!important;overflow:visible!important}
+
+/* Level-first catalogue: compact book tabs, using the existing theme tokens. */
+body.book-app.book-atlas.grammar-atlas .grammar-level-navigation{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
+body.book-app.book-atlas.grammar-atlas .grammar-level-navigation button{display:grid;gap:5px;justify-items:center;padding:12px 4px;min-height:58px;border:1px solid var(--line);border-radius:3px 10px 3px 3px;background:var(--card);color:var(--text);box-shadow:none}
+body.book-app.book-atlas.grammar-atlas .grammar-level-navigation strong{font:700 1rem/1.2 Lexend,sans-serif}
+body.book-app.book-atlas.grammar-atlas .grammar-level-navigation small{font-size:.75rem;color:var(--muted)}
+body.book-app.book-atlas.grammar-atlas .grammar-level-navigation [aria-pressed="true"]{background:var(--soft);border-color:var(--book-gold,var(--accent));box-shadow:inset 0 -3px var(--book-gold,var(--accent))}
+body.book-app.book-atlas.grammar-atlas .grammar-level-note{margin:0;font:italic 1rem/1.55 Georgia,serif;color:var(--muted)}
+body.book-app.book-atlas.grammar-atlas .grammar-atlas-controls label{font-size:.9rem}
+body.book-app.book-atlas.grammar-atlas .grammar-atlas-controls :is(input,select){font-size:1rem}
+body.book-app.book-atlas.grammar-atlas .grammar-topic-link{font-size:1rem;line-height:1.5;align-items:flex-start;padding-block:14px}
+body.book-app.book-atlas.grammar-atlas .grammar-topic-link>span:nth-child(2){font-weight:600}
+body.book-app.book-atlas.grammar-atlas .grammar-topic-link small{font:italic .95rem/1.5 Georgia,serif;margin-top:5px}
+body.book-app.book-atlas.grammar-atlas .grammar-reader-route :is(button,span){font-size:.9rem}
+body.book-app.book-atlas.grammar-atlas .grammar-official-source{font-size:.85rem;margin:0;line-height:1.6}
+body.book-app.book-atlas.grammar-atlas .grammar-level-scope{font-size:.95rem;line-height:1.65;color:var(--muted);border-left:2px solid var(--book-gold,var(--line));padding:10px 14px;background:var(--soft);margin-block:16px}
+@media(max-width:800px){body.book-app.book-atlas.grammar-atlas .grammar-atlas-filters{grid-template-columns:1fr}body.book-app.book-atlas.grammar-atlas .grammar-reader-route{margin-bottom:18px}body.book-app.book-atlas.grammar-atlas .grammar-atlas-controls{gap:12px}body.book-app.book-atlas.grammar-atlas .grammar-atlas-heading h2{margin-block:6px}body.book-app.book-atlas.grammar-atlas .grammar-topic-link{min-height:48px}body.book-app.book-atlas.grammar-atlas .lesson-reader-title{font-size:clamp(1.8rem,7vw,2.5rem);overflow-wrap:break-word}}
+
