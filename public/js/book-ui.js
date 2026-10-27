@@ -132,11 +132,11 @@
  const studioFolds=[];
  for(const workspace of main.querySelectorAll('.workspace')){
   const aside=Array.from(workspace.children).find(node=>node.tagName==='ASIDE');if(!aside)continue;
-  const fold=document.createElement('details');fold.className='studio-module-tools';fold.open=!phoneLayout.matches;
+  const fold=document.createElement('details');fold.className='studio-module-tools';fold.open=file==='grammatik.html'||!phoneLayout.matches;
   const summary=document.createElement('summary');summary.textContent=tr('Chọn bài · Tài liệu & tùy chọn','Aufgabe · Materialien & Optionen','Task · Materials & options');
   aside.before(fold);fold.append(summary,aside);studioFolds.push(fold);
  }
- phoneLayout.addEventListener('change',()=>{for(const fold of studioFolds)fold.open=!phoneLayout.matches;});
+ phoneLayout.addEventListener('change',()=>{for(const fold of studioFolds)fold.open=file==='grammatik.html'||!phoneLayout.matches;});
  let mobileDashboard=null;
  if(home){
   mobileDashboard=document.createElement('section');mobileDashboard.className='studio-mobile-home';mobileDashboard.setAttribute('aria-label',tr('Tổng quan học tập','Lernübersicht','Learning overview'));

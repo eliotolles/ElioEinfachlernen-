@@ -1,0 +1,42 @@
+/* A quiet book reader with a practical, searchable catalogue. Existing Elio palette. */
+body.book-app.book-atlas.grammar-atlas{--grammar-rule:var(--line)}
+body.book-app.book-atlas.grammar-atlas .workspace{display:grid;grid-template-columns:minmax(260px,330px) minmax(0,1fr);gap:clamp(24px,3vw,48px);align-items:start}
+body.book-app.book-atlas.grammar-atlas .workspace>aside{min-width:0;border:0;border-right:1px solid var(--line);background:transparent;padding:0 22px 0 0;box-shadow:none;border-radius:0}
+body.book-app.book-atlas.grammar-atlas .workspace>.studio-module-tools{position:static;max-height:none;overflow:visible;border:0;background:transparent}
+body.book-app.book-atlas.grammar-atlas .workspace>.studio-module-tools>summary{display:none}
+body.book-app.book-atlas.grammar-atlas .workspace>.studio-module-tools>aside{padding:0 22px 0 0;border-right:1px solid var(--line)}
+body.book-app.book-atlas.grammar-atlas #lesson-panel{min-width:0;border-radius:2px 16px 16px 2px;border:1px solid var(--line);background:var(--card);padding:clamp(20px,3vw,46px);box-shadow:inset 6px 0 16px -16px var(--text)}
+body.book-app.book-atlas.grammar-atlas .grammar-atlas-heading>span{font-size:.68rem;letter-spacing:.18em;color:var(--book-gold)}
+body.book-app.book-atlas.grammar-atlas .grammar-atlas-heading h2{font-family:'Cormorant Garamond',Georgia,serif;font-size:2rem;margin:8px 0}
+body.book-app.book-atlas.grammar-atlas #grammar-atlas-count{font-size:.78rem;color:var(--muted);margin:8px 0 20px}
+body.book-app.book-atlas.grammar-atlas .grammar-atlas-controls{display:grid;gap:14px;padding-bottom:20px;border-bottom:2px solid var(--book-gold,var(--line))}
+body.book-app.book-atlas.grammar-atlas .grammar-atlas-controls label{display:grid;gap:7px;font-size:.78rem;color:var(--muted);margin:0}
+body.book-app.book-atlas.grammar-atlas .grammar-atlas-controls :is(input,select){min-width:0;width:100%;min-height:44px;border:1px solid var(--line);border-radius:3px;background:var(--card);color:var(--text);padding:9px 11px;font:inherit;font-size:.85rem}
+body.book-app.book-atlas.grammar-atlas .grammar-atlas-filters{display:grid;gap:12px}
+body.book-app.book-atlas.grammar-atlas #grammar-catalogue>summary{font-size:.85rem;padding:12px 0;cursor:pointer}
+body.book-app.book-atlas.grammar-atlas .grammar-chapter{border-bottom:1px solid var(--line)}
+body.book-app.book-atlas.grammar-atlas .grammar-chapter>summary{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:18px 0;font:600 1.3rem/1.25 'Cormorant Garamond',Georgia,serif;cursor:pointer;list-style:none}
+body.book-app.book-atlas.grammar-atlas .grammar-chapter>summary:after{content:'+';color:var(--book-gold)}
+body.book-app.book-atlas.grammar-atlas .grammar-chapter[open]>summary:after{content:'−'}
+body.book-app.book-atlas.grammar-atlas .grammar-chapter>summary small{margin-left:auto;font:400 .75rem/1.4 Lexend,sans-serif;color:var(--muted)}
+body.book-app.book-atlas.grammar-atlas .grammar-topic-row{display:flex;align-items:center;gap:5px;min-width:0}
+body.book-app.book-atlas.grammar-atlas .grammar-topic-link{display:flex;align-items:baseline;gap:10px;width:100%;min-width:0;text-align:left;border:0;border-bottom:1px solid var(--line);border-radius:0;background:transparent;color:var(--text);padding:13px 8px;line-height:1.55;white-space:normal;font-size:.85rem;box-shadow:none}
+body.book-app.book-atlas.grammar-atlas .grammar-topic-link.active{background:var(--soft);border-left:3px solid var(--book-gold);padding-left:9px}
+body.book-app.book-atlas.grammar-atlas .grammar-topic-link small{display:block;font-size:.7rem;color:var(--muted);margin-top:4px}
+body.book-app.book-atlas.grammar-atlas .grammar-topic-number{color:var(--book-gold);min-width:22px;font:italic 1.1rem Georgia,serif}
+body.book-app.book-atlas.grammar-atlas .grammar-topic-check{margin-left:auto;color:var(--accent)}
+body.book-app.book-atlas.grammar-atlas #lesson-list{max-height:72dvh;overflow:auto;scrollbar-width:thin;padding-right:5px}
+body.book-app.book-atlas.grammar-atlas .grammar-reader-route{display:flex;flex-wrap:wrap;align-items:center;gap:10px;border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:28px}
+body.book-app.book-atlas.grammar-atlas .grammar-reader-route button{font-size:.75rem;background:transparent;color:var(--text);border:1px solid var(--line);border-radius:3px;padding:9px 12px}
+body.book-app.book-atlas.grammar-atlas .grammar-reader-route span{font-size:.72rem;color:var(--muted);flex:1}
+body.book-app.book-atlas.grammar-atlas .grammar-resume{width:100%;text-align:left;padding:12px;border:1px solid var(--line);border-left:3px solid var(--book-gold);background:var(--soft);color:var(--text);font-size:.8rem;line-height:1.6}
+body.book-app.book-atlas.grammar-atlas .grammar-deep-guide,body.book-app.book-atlas.grammar-atlas .grammar-import-drawer{border-block:1px solid var(--line);padding:15px 0;margin:20px 0}
+body.book-app.book-atlas.grammar-atlas :is(.grammar-deep-guide,.grammar-import-drawer)>summary{cursor:pointer;color:var(--muted);font-size:.85rem}
+body.book-app.book-atlas.grammar-atlas .grammar-deep-guide>div{padding-top:20px}
+body.book-app.book-atlas.grammar-atlas .lesson-reader-title{font-size:clamp(2rem,3.5vw,3.3rem);line-height:1.15}
+body.book-app.book-atlas.grammar-atlas .lesson-prose{line-height:1.85}
+body.book-app.book-atlas.grammar-atlas #grammar-exercise{border-top:3px double var(--book-gold);padding-top:24px;margin-top:28px}
+body.book-app.book-atlas.grammar-atlas :is(button,input,select,summary):focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+@media(max-width:1000px){body.book-app.book-atlas.grammar-atlas .workspace{grid-template-columns:minmax(230px,280px) minmax(0,1fr);gap:20px}body.book-app.book-atlas.grammar-atlas .lesson-reader-grid{display:block}body.book-app.book-atlas.grammar-atlas .lesson-toc{position:static}}
+@media(max-width:800px){body.book-app.book-atlas.grammar-atlas .workspace{grid-template-columns:minmax(0,1fr)}body.book-app.book-atlas.grammar-atlas .workspace>aside,body.book-app.book-atlas.grammar-atlas .workspace>.studio-module-tools>aside{padding:0;border:0}body.book-app.book-atlas.grammar-atlas #grammar-catalogue{border:1px solid var(--line);padding:0 16px;border-radius:2px 12px 12px 2px;background:var(--card)}body.book-app.book-atlas.grammar-atlas #grammar-catalogue>summary{padding:16px 0}body.book-app.book-atlas.grammar-atlas .grammar-atlas-filters{grid-template-columns:repeat(2,minmax(0,1fr))}body.book-app.book-atlas.grammar-atlas #lesson-list{max-height:56dvh}body.book-app.book-atlas.grammar-atlas #lesson-panel{padding:22px 16px}body.book-app.book-atlas.grammar-atlas .grammar-reader-route span{flex-basis:100%}body.book-app.book-atlas.grammar-atlas .grammar-atlas-heading h2{font-size:1.8rem}body.book-app.book-atlas.grammar-atlas #lesson-panel{scroll-margin-top:80px}}
+@media(min-width:801px){body.book-app.book-atlas.grammar-atlas #grammar-catalogue>summary{display:none}}
