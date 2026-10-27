@@ -1,33 +1,38 @@
-# Grammar rewrite after owner review
+# Full grammar rewrite — 2026-10-27
 
-The owner rejected the newly authored 165-topic / 513-exercise catalogue on
-2026-10-27. That pack is withdrawn, including its authoring generator. It must
-not be silently restored. Git history preserves the audit trail.
+The owner rejected the earlier generated 165-topic / 513-question pack. That
+content and its build-atlas.py generator remain withdrawn. Do not restore it.
 
-The requested taxonomy remains as a scope reference only. The replacement
-library currently contains TWO independently authored, source-reviewed chapters:
-Akkusativ and Dativ, each with extensive Vietnamese explanations, inflection
-tables, worked German–Vietnamese examples, misconceptions/corrections, and
-12 newly authored exercises. The remaining requested topics are NOT completed.
-No empty or templated lesson entries are published to conceal that gap.
+The replacement covers every supplied topic label: 165 unique topic entries,
+385 level memberships after de-duplication within each level. The long-form
+teaching consists of 42 related units: 40 new Vietnamese/German explanations and
+the two reviewed Akkusativ/Dativ chapters, whose IDs/content/questions are kept.
+Topic entries deliberately share the longer relevant unit; this is clearly
+labelled in the reader. Do NOT describe this as 165 independent long-form lessons.
+Each new topic has a distinct focus and explicit answered practice question,
+plus related revision practice. There are 223 unique questions (including the
+24 existing case questions), reused where related topics share a teaching unit.
 
-Authoring files: content/grammar-reviewed/*.vi.md.
+New authoring: content/grammar-rewrite/01-*.md through 40-*.md,
+practice.tsv, unit-practice.tsv; reviewed cases: content/grammar-reviewed/.
+Topic/level source: scripts/grammar-authoring/requested-topics.json.
+Explicit grouping: scripts/grammar-authoring/rewrite-map.py.
 Rebuild: python scripts/grammar-authoring/build-reviewed.py.
-Published asset: public/js/grammar-atlas-data.js (new elio-reviewed-* IDs).
+Build-full-rewrite.py compiles normalized unit/question references to avoid
+shipping repeated copies of each teaching unit. Runtime entry content retains
+compatibility with the existing reader/search/exercise engine.
 
-Reference readings: DeutschAkademie's Akkusativ and Dativ articles, official IDS
-grammis explanations of cases and Wechselpräpositionen, Goethe grammar tables,
-and LEO's grammar explanations of objects and their order. New text is not a
-full translation, scrape or reproduction of the third-party course or quiz bank.
-Examples and questions are independently authored. Source links remain visible.
-Avoid presenting simplified claims from a source as universal rules, e.g. a
-percentage of verbs requiring Akkusativ, or interpreting case signals as a ban
-on multiple words carrying endings in one noun phrase.
+Coverage: docs/GRAMMAR-REWRITE-COVERAGE.md. Every unit has rules/usage,
+construction/tables, worked German/Vietnamese examples, sentence-writing
+instructions and cautions/errors. Explanations and questions are independently
+authored, not a translation/reproduction of an external course or quiz bank.
+Official reference links are for checking rules, not an endorsement/certification.
+Automated checks validate coverage, tables, offline keys, rendering and read-only
+boundaries; they do not certify pedagogy. Cases and advanced subjects are linked
+to their primary grammar references for further checking.
 
-No account materials, learning history, completions, ownership or private state
-are deleted or migrated. Imported earlier material keeps the original IDs and
-remains reachable in its source filter. Only the shipped rejected catalogue is
-removed. Reader UX and existing grading/sync behavior are retained.
-
-## Review 2026-10-27: complete lesson structure
-Both reviewed replacements (Akkusativ, Dativ) now explicitly contain: concept/rule, usage, sentence construction tables, German examples with Vietnamese explanations, step-by-step sentence writing, common errors and cautions, article/pronoun tables, and 12 explained exercises each. Added modal/question/fronted-adverb examples and Dativ mixed pronoun/noun ordering. Review scope is these two static chapters only; account imports have not been audited or rewritten. The full requested A1–C1 taxonomy is still pending. Do not describe two overview chapters as a complete C1 course.
+No DB access/migration, no deletion of imported/account material, study progress,
+ownership or history. Existing imported lessons remain reachable through their
+source filter, with original edit permissions. The static library remains
+read-only. Opening a lesson may update the current-lesson bookmark through the
+existing engine; grading/history is written only through the existing actions.

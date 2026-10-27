@@ -37,5 +37,5 @@ for slug,title,ex in [('akkusativ','Akkusativ — hiểu cấu trúc, chọn đ�
  source=f'https://www.deutschakademie.de/online-deutschkurs/deutsche-grammatik/vier-faelle-deutsch/{slug}/'
  refs=[{'title':f'DeutschAkademie · {slug.title()} (bài tham khảo tiếng Đức)','url':source},{'title':'IDS grammis · Giới từ hai cách','url':'https://grammis.ids-mannheim.de/progr@mm/6858'},{'title':'Goethe-Institut · Deutsche Grammatik','url':'https://www.goethe.de/ins/de/de/prf/grm.html'},{'title':'LEO · Wortstellung der Objekte','url':'https://dict.leo.org/grammatik/deutsch/Satz/Wortstellung/Stellungsfeld/Mittelfeld/Objekt.xml?lang=de'}]
  lessons.append(dict(id=f'elio-reviewed-{slug}-v2',collectionId='elio-grammar-atlas-v1',title=title,level='A1',levels=['A1','A2','B1','B2','C1'],group='words',content=text,exercises=ex,reviewSources=refs,origin='elio-source-reviewed',reviewScope='Bài giải thích tiếng Việt biên soạn độc lập, đối chiếu nguồn; ví dụ và bài tập mới, không phải bản dịch chính thức của DeutschAkademie.'))
-Path('public/js/grammar-atlas-data.js').write_text("'use strict';\n// Rejected 165-topic pack removed. Only substantive reviewed replacements are listed.\nconst ElioGrammarAtlasData="+json.dumps(lessons,ensure_ascii=False,indent=1)+';\n')
-print(len(lessons),'lessons;',sum(len(l['exercises']) for l in lessons),'exercises')
+import runpy
+runpy.run_path(str(Path(__file__).with_name('build-full-rewrite.py')))['compile_catalogue'](lessons)
