@@ -13,3 +13,9 @@ test('legacy bold and emoji headings produce separate branches',()=>{
  const m=ctx.map.model({},'Giới thiệu.\n\n**Ví dụ**\nDer Student lernt.\n\n🔹 Quy tắc chia đuôi\nThêm -en.\n\nLưu ý\nNgoại lệ.','');
  assert.equal(m.groups[2][0].body,'Der Student lernt.');assert.equal(m.groups[1][0].body,'Thêm -en.');assert.equal(m.groups[3][0].body,'Ngoại lệ.');assert.equal(m.groups[4][0].body,'Giới thiệu.');
 });
+
+test('mind map shows the complete declared level scope for shared topic entries',()=>{
+ const ctx={console};vm.createContext(ctx);vm.runInContext(fs.readFileSync('public/js/grammar-mindmap.js','utf8'),ctx);
+ const model=vm.runInContext("GrammarMindmap.model({title:'Gerundiv',level:'B2',levels:['B2','C1']},'## Gerundiv\\nText','')",ctx);
+ assert.equal(model.level,'B2 · C1');
+});

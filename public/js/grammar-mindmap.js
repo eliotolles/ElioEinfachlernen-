@@ -13,7 +13,7 @@ const GrammarMindmap={
   if(/cách nhận biết|cách dùng|khi nào|ý nghĩa|verwendung|gebrauch|bedeutung|usage|meaning/i.test(title))return 0;
   return 4;
  },
- model(lesson,text,examples){const groups=Array.from({length:5},()=>[]);for(const section of this.sections(text))groups[this.group(section.title)].push(section);if(examples)groups[2].push({title:'',body:String(examples)});return {title:String(lesson.title||'Grammatik'),level:String(lesson.level||''),groups};},
+ model(lesson,text,examples){const groups=Array.from({length:5},()=>[]);for(const section of this.sections(text))groups[this.group(section.title)].push(section);if(examples)groups[2].push({title:'',body:String(examples)});return {title:String(lesson.title||'Grammatik'),level:(lesson.levels||[lesson.level]).filter(Boolean).join(' · '),groups};},
  mount(host,lesson,text,examples){
   const c=this.copy(App.settings().language),m=this.model(lesson,text,examples),node=(tag,cls,value)=>{const e=document.createElement(tag);if(cls)e.className=cls;if(value)e.textContent=value;return e;};
   host.classList.add('grammar-mindmap');host.setAttribute('aria-label',c.tab);
