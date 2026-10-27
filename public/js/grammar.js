@@ -21,10 +21,11 @@ function grammarAtlasOrdered(items,level){
 function filteredGrammarItems(){return grammarAtlasOrdered(grammarAtlasFilter(grammarItems(),{level:$('#grammar-level').value,source:['atlas','imported','all'].includes($('#grammar-source')?.value)?$('#grammar-source').value:'all',query:$('#grammar-search')?.type==='search'?$('#grammar-search').value:'',group:['words','verbs','relations','sentences','all'].includes($('#grammar-group')?.value)?$('#grammar-group').value:'all'}),$('#grammar-level').value);}
 function renderLessonList(){
  const items=filteredGrammarItems(),completed=Auth.get('lessons',{}),labels=typeof grammarAtlasLabels==='function'?grammarAtlasLabels():null;
- const row=(l,index)=>`<div class="grammar-topic-row"><button type="button" class="grammar-topic-link ${currentLesson?.id===l.id?'active':''}" data-id="${esc(l.id)}" ${currentLesson?.id===l.id?'aria-current="page"':''}><span class="grammar-topic-number">${index+1}.</span><span>${esc(l.title)}<small>${esc(l.subtitle||((l.levels||[l.level]).join(' · ')))}</small></span>${completed[l.id]?'<span class="grammar-topic-check" aria-label="Completed">✓</span>':''}</button>${grammarCanEdit(l.collectionId)?`<button type="button" class="secondary" data-delete-grammar="${esc(l.id)}" aria-label="${esc(App.t('delete')+' '+l.title)}">×</button>`:''}</div>`;
+ const row=(l,index)=>`<div class="grammar-topic-row"><button type="button" class="grammar-topic-link ${currentLesson?.id===l.id?'active':''}" data-id="${esc(l.id)}" ${currentLesson?.id===l.id?'aria-current="page"':''}><span>${esc(l.title)}</span>${completed[l.id]?'<span class="grammar-topic-check" aria-label="Completed">✓</span>':''}</button>${grammarCanEdit(l.collectionId)?`<button type="button" class="secondary" data-delete-grammar="${esc(l.id)}" aria-label="${esc(App.t('delete')+' '+l.title)}">×</button>`:''}</div>`;
  let count=0;
- if(labels){const groups=[...labels.groups,['imported',labels.imported]];$('#lesson-list').innerHTML=groups.map(([key,title])=>{const list=items.filter(l=>(l.group||'imported')===key);if(!list.length)return '';const open=$('#grammar-search')?.value||list.some(l=>l.id===currentLesson?.id)||list.length<6;return `<details class="grammar-chapter" ${open?'open':''}><summary><span>${esc(title)}</span><small>${list.length}</small></summary>${list.map(l=>row(l,count++)).join('')}</details>`;}).join('')||`<p class="grammar-no-results">${esc(labels.empty)}</p>`;
+ if(labels){const groups=[...labels.groups,['imported',labels.imported]];$('#lesson-list').innerHTML=groups.map(([key,title])=>{const list=items.filter(l=>(l.group||'imported')===key);if(!list.length)return '';const open=$('#grammar-search')?.value||list.some(l=>l.id===currentLesson?.id);return `<details class="grammar-chapter" ${open?'open':''}><summary><span>${esc(title)}</span><small>${list.length}</small></summary>${list.map(l=>row(l,count++)).join('')}</details>`;}).join('')||`<p class="grammar-no-results">${esc(labels.empty)}</p>`;
  }else $('#lesson-list').innerHTML=items.map(row).join('')||`<p>${esc(App.t('empty'))}</p>`;
+ $('#lesson-list').querySelectorAll('.grammar-chapter').forEach(chapter=>chapter.addEventListener('toggle',()=>{if(!chapter.open||$('#grammar-search')?.value)return;$('#lesson-list').querySelectorAll('.grammar-chapter').forEach(other=>{if(other!==chapter)other.open=false;});}));
  $('#lesson-list').querySelectorAll('[data-id]').forEach(b=>b.onclick=()=>{openLesson(b.dataset.id);if(typeof grammarAtlasSelected==='function')grammarAtlasSelected();});
  $('#lesson-list').querySelectorAll('[data-delete-grammar]').forEach(b=>b.onclick=()=>deleteGrammarTopic(b.dataset.deleteGrammar));
  if(typeof grammarAtlasCount==='function')grammarAtlasCount(items,completed);
@@ -194,6 +195,7 @@ function decorateGrammarAnswer(result){
  @media(max-width:850px){.sprach-grid{grid-template-columns:1fr}.sprach-sheet{border-left:0}.sprach-numbers{grid-template-columns:repeat(auto-fill,minmax(40px,1fr))}.sprach-navigation{grid-template-columns:1fr 1fr}.sprach-heading{padding:18px}.sprach-paper{padding:18px}}
  `;document.head.append(style);
 })();
+
 
 
 

@@ -44,6 +44,7 @@ body.book-app.book-atlas.grammar-atlas :is(button,input,select,summary):focus-vi
 body.book-app.book-atlas.grammar-atlas .grammar-sidebar{position:static!important;max-height:none!important;overflow:visible!important}
 
 /* Level-first catalogue: compact book tabs, using the existing theme tokens. */
+body.book-app.book-atlas.grammar-atlas .grammar-atlas-controls [hidden]{display:none!important}
 body.book-app.book-atlas.grammar-atlas .grammar-level-navigation{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
 body.book-app.book-atlas.grammar-atlas .grammar-level-navigation button{display:grid;gap:5px;justify-items:center;padding:12px 4px;min-height:58px;border:1px solid var(--line);border-radius:3px 10px 3px 3px;background:var(--card);color:var(--text);box-shadow:none}
 body.book-app.book-atlas.grammar-atlas .grammar-level-navigation strong{font:700 1rem/1.2 Lexend,sans-serif}
@@ -59,4 +60,22 @@ body.book-app.book-atlas.grammar-atlas .grammar-reader-route :is(button,span){fo
 body.book-app.book-atlas.grammar-atlas .grammar-official-source{font-size:.85rem;margin:0;line-height:1.6}
 body.book-app.book-atlas.grammar-atlas .grammar-level-scope{font-size:.95rem;line-height:1.65;color:var(--muted);border-left:2px solid var(--book-gold,var(--line));padding:10px 14px;background:var(--soft);margin-block:16px}
 @media(max-width:800px){body.book-app.book-atlas.grammar-atlas .grammar-atlas-filters{grid-template-columns:1fr}body.book-app.book-atlas.grammar-atlas .grammar-reader-route{margin-bottom:18px}body.book-app.book-atlas.grammar-atlas .grammar-atlas-controls{gap:12px}body.book-app.book-atlas.grammar-atlas .grammar-atlas-heading h2{margin-block:6px}body.book-app.book-atlas.grammar-atlas .grammar-topic-link{min-height:48px}body.book-app.book-atlas.grammar-atlas .lesson-reader-title{font-size:clamp(1.8rem,7vw,2.5rem);overflow-wrap:break-word}}
+
+/* One clear picker: level, search, topic chapters. Secondary controls stay folded. */
+body.book-app.book-atlas.grammar-atlas .grammar-atlas-heading>span{display:none}
+body.book-app.book-atlas.grammar-atlas .grammar-atlas-heading h2{font-size:1.65rem;margin:0}
+body.book-app.book-atlas.grammar-atlas #grammar-atlas-count{font-size:.85rem;margin:6px 0 0}
+body.book-app.book-atlas.grammar-atlas .grammar-atlas-controls{gap:14px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+body.book-app.book-atlas.grammar-atlas details.grammar-atlas-filters{display:block;border:0;margin:0;padding:0}
+body.book-app.book-atlas.grammar-atlas .grammar-atlas-filters>summary{padding:8px 0;cursor:pointer;font-size:.9rem;color:var(--muted)}
+body.book-app.book-atlas.grammar-atlas .grammar-atlas-filters>summary small{font-size:.8rem}
+body.book-app.book-atlas.grammar-atlas .grammar-filter-fields{display:grid;gap:12px;padding:12px 0 4px}
+body.book-app.book-atlas.grammar-atlas .grammar-filter-reset{justify-self:start;background:transparent;color:var(--text);padding:8px 12px;font-size:.85rem;border:1px solid var(--line);border-radius:3px}
+body.book-app.book-atlas.grammar-atlas .grammar-chapter>summary{font-size:1.15rem;padding:15px 0;line-height:1.4}
+body.book-app.book-atlas.grammar-atlas .grammar-topic-link{padding:11px 10px;font-size:.95rem;line-height:1.5;min-height:44px}
+body.book-app.book-atlas.grammar-atlas .grammar-topic-link>span:first-child{font-weight:500}
+body.book-app.book-atlas.grammar-atlas .grammar-topic-link.active>span:first-child{font-weight:700}
+body.book-app.book-atlas.grammar-atlas .grammar-topic-link.active{border-radius:2px;background:var(--soft)}
+@media(max-width:800px){body.book-app.book-atlas.grammar-atlas #grammar-catalogue>summary{font:600 1.1rem/1.4 Georgia,serif}body.book-app.book-atlas.grammar-atlas .grammar-atlas-heading h2{display:none}body.book-app.book-atlas.grammar-atlas #grammar-atlas-count{margin-top:0}body.book-app.book-atlas.grammar-atlas .grammar-level-navigation button{min-height:52px;padding:9px 4px}body.book-app.book-atlas.grammar-atlas .grammar-atlas-controls{gap:12px}body.book-app.book-atlas.grammar-atlas #lesson-list{max-height:52dvh}}
+
 
