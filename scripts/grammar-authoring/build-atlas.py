@@ -154,10 +154,11 @@ missing=[t for t in titles if t not in rows]
 assert not missing,missing
 
 def group(t):
- if any(x in t for x in ['Artikel','Adjektiv','Kompar','Komposita','Nomen','Nominativ','Akkusativ','Dativ','Genitiv','Deklination','Pronomen','Fragewörter','Fragewort','mit was','ohne Artikel']):return 'words'
- if any(x in t for x in ['Präposition','adverb','adverbien','Uhrzeit','Hinauf','Mittag','Seitdem']):return 'relations'
- if any(x in t for x in ['satz','Satz','Konnektor','Konjunktion','dass','Dass','weil','Falls','Daher','Deshalb','Trotzdem','Jedoch','Nämlich','TEKAMOLO','Frage','Rede']):return 'sentences'
- return 'verbs'
+ if t in ['Daher','Deshalb','Trotzdem','Jedoch','Nämlich','Konjunktionaladverbien','Konjunktionen','Seitdem oder seit dem']:return 'sentences'
+ if 'Präposition' in t or 'adverb' in t.lower() or t in ['Uhrzeit im Deutschen','Am Mittag oder zu Mittag','Hinauf – herauf, hinunter – herunter, hinab – herab']:return 'relations'
+ if any(x in t for x in ['Passiv','Partizip','Perfekt','Präteritum','Futur','Konjunktiv','Verb','Infinitiv','Imperativ','Indikativ']) or t in ['Hätte, wäre, würde','Nomen Verb Verbindungen','Nominalisierung','Gerundiv','Modalpartikel','Partikel']:return 'verbs'
+ if any(x in t for x in ['satz','Satz','Konnektor','Konjunktion','dass','Dass','Frage','Rede','TEKAMOLO','Ohne dass','Dadurch dass']):return 'sentences'
+ return 'words'
 labels={'im Akkusativ':'Đại từ & danh ngữ ở Akkusativ','im Dativ':'Đại từ & danh ngữ ở Dativ','im Genitiv':'Danh ngữ ở Genitiv','mit bestimmtem Artikel':'Tính từ sau mạo từ xác định','mit unbestimmtem Artikel':'Tính từ sau mạo từ không xác định','mit Komparativ und Superlativ':'Biến cách dạng so sánh','mit was und wo':'Mệnh đề quan hệ với was/wo','ohne Artikel':'Tính từ khi không có mạo từ'}
 advanced={
 'Subjektive Bedeutung von Modalverben':('Nguồn tin nâng cao: sollen và wollen','**Sie soll die Prüfung bestanden haben** dẫn lời người khác; **sie will die Prüfung bestanden haben** thuật lại lời tự khẳng định của chính cô ấy. Phân biệt với **sie will die Prüfung bestehen** nêu ý định tương lai. Khi phủ định khả năng: **Sie kann nicht dort gewesen sein**, không dùng nicht müssen như một phủ định chắc chắn.', 'Sie soll die Prüfung bestanden haben.','Nghe nói cô ấy đã đỗ kỳ thi.','Sie soll die Prüfung bestanden ___.','haben','Bestehen với tân ngữ die Prüfung tạo Perfekt bằng haben; sollen ở đây dẫn tin chứ không diễn đạt nghĩa vụ.'),

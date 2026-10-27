@@ -668,7 +668,7 @@ const ElioGrammarAtlasData=[
    "B1"
   ],
   "level": "A1",
-  "group": "verbs",
+  "group": "words",
   "content": "## Demonstrativpronomen\nDieser/diese/dieses chỉ đối tượng cụ thể hoặc đối chiếu. Nó biến cách theo giống, số, cách của đối tượng, có thể đứng trước danh từ hoặc độc lập. Dieser hier ist besser: đại từ thay cho một danh từ đã rõ.\n\n### Câu mẫu & nghĩa Việt\n**Dieses Buch gehört mir.**\n→ Quyển sách này thuộc về tôi.\n\n### Bẫy, nguyên nhân & cách tránh\nNicht jeder dieser đều có nghĩa khoảng cách gần vật lý; nó còn chỉ cái vừa đề cập trong văn bản.\n\n### Thực hành có phân tích\nBài tập bên dưới kiểm tra đúng cấu trúc này. Sau khi trả lời, đọc lý do của từng lựa chọn; câu dựng lại yêu cầu đúng câu mẫu đã cho và toàn bộ từ gợi ý. Các cách diễn đạt khác có thể hợp ngữ pháp nhưng không thuộc đáp án của dạng tái tạo này.",
   "exercises": [
    {
@@ -803,7 +803,7 @@ const ElioGrammarAtlasData=[
    "A2"
   ],
   "level": "A1",
-  "group": "words",
+  "group": "sentences",
   "content": "## Fragewörter welcher, welche, welches\nWelcher hỏi chọn một trong nhóm đã rõ. Đuôi theo danh từ: welcher Bus, welche Straße, welches Hotel; Akkusativ đực welchen Bus; Dativ mit welchem Bus. Khác was für ein hỏi loại/tính chất.\n\n### Câu mẫu & nghĩa Việt\n**Mit welchem Bus fährst du?**\n→ Bạn đi bằng xe buýt nào?\n\n### Bẫy, nguyên nhân & cách tránh\nMit yêu cầu Dativ; không viết mit welchen Bus ở số ít.\n\n### Thực hành có phân tích\nBài tập bên dưới kiểm tra đúng cấu trúc này. Sau khi trả lời, đọc lý do của từng lựa chọn; câu dựng lại yêu cầu đúng câu mẫu đã cho và toàn bộ từ gợi ý. Các cách diễn đạt khác có thể hợp ngữ pháp nhưng không thuộc đáp án của dạng tái tạo này.",
   "exercises": [
    {
@@ -1836,7 +1836,7 @@ const ElioGrammarAtlasData=[
    "A2"
   ],
   "level": "A1",
-  "group": "verbs",
+  "group": "words",
   "content": "## Mir oder mich\nMir là Dativ, mich là Akkusativ của ich. Dùng helfen/danken/gefallen + mir, sehen/anrufen/besuchen + mich. Khi phản thân, rửa tay: Ich wasche mir die Hände, vì die Hände đã là Akkusativ.\n\n### Câu mẫu & nghĩa Việt\n**Kannst du mir helfen?**\n→ Bạn có thể giúp tôi không?\n\n### Bẫy, nguyên nhân & cách tránh\nNicht: Kannst du mich helfen? Đây là lỗi rektion, không phải lỗi thứ tự từ.\n\n### Thực hành có phân tích\nBài tập bên dưới kiểm tra đúng cấu trúc này. Sau khi trả lời, đọc lý do của từng lựa chọn; câu dựng lại yêu cầu đúng câu mẫu đã cho và toàn bộ từ gợi ý. Các cách diễn đạt khác có thể hợp ngữ pháp nhưng không thuộc đáp án của dạng tái tạo này.",
   "exercises": [
    {
@@ -2046,7 +2046,7 @@ const ElioGrammarAtlasData=[
    "A2"
   ],
   "level": "A1",
-  "group": "verbs",
+  "group": "words",
   "content": "## Modalverb dürfen\nDürfen chỉ sự cho phép, phủ định nicht dürfen chỉ cấm. Ich darf, du darfst, er darf, wir dürfen, ihr dürft. Dürfte còn có thể là Konjunktiv II lịch sự/phỏng đoán ở mức cao hơn, không đồng nhất với Präsens dürfen.\n\n### Câu mẫu & nghĩa Việt\n**Hier darf man nicht rauchen.**\n→ Ở đây không được hút thuốc.\n\n### Bẫy, nguyên nhân & cách tránh\nKhông dùng nicht müssen để diễn đạt cấm: nó chỉ không bắt buộc.\n\n### Thực hành có phân tích\nBài tập bên dưới kiểm tra đúng cấu trúc này. Sau khi trả lời, đọc lý do của từng lựa chọn; câu dựng lại yêu cầu đúng câu mẫu đã cho và toàn bộ từ gợi ý. Các cách diễn đạt khác có thể hợp ngữ pháp nhưng không thuộc đáp án của dạng tái tạo này.",
   "exercises": [
    {
@@ -2114,7 +2114,7 @@ const ElioGrammarAtlasData=[
    "A1"
   ],
   "level": "A1",
-  "group": "verbs",
+  "group": "words",
   "content": "## Modalverb können\nKönnen chỉ khả năng, năng lực hoặc cơ hội. Ich kann, du kannst, er kann, wir können, ihr könnt. Để xin phép, kann có trong thực tế nhưng dürfen nêu quyền cho phép rõ hơn. Nguyên mẫu đứng cuối không zu.\n\n### Câu mẫu & nghĩa Việt\n**Sie kann gut schwimmen.**\n→ Cô ấy bơi giỏi.\n\n### Bẫy, nguyên nhân & cách tránh\nEr könnt sai chia ngôi; könnt thuộc ihr. Không thêm -t vào er kann.\n\n### Thực hành có phân tích\nBài tập bên dưới kiểm tra đúng cấu trúc này. Sau khi trả lời, đọc lý do của từng lựa chọn; câu dựng lại yêu cầu đúng câu mẫu đã cho và toàn bộ từ gợi ý. Các cách diễn đạt khác có thể hợp ngữ pháp nhưng không thuộc đáp án của dạng tái tạo này.",
   "exercises": [
    {
@@ -2181,7 +2181,7 @@ const ElioGrammarAtlasData=[
    "A1"
   ],
   "level": "A1",
-  "group": "verbs",
+  "group": "words",
   "content": "## Modalverb möchten/mögen\nMögen: thích, thường đi với danh từ hoặc động từ trong một số nghĩa. Möchten là dạng Konjunktiv II của mögen được dùng thông dụng cho mong muốn lịch sự: Ich möchte einen Tee. Không có nguyên mẫu möchten tiêu chuẩn để suy mọi thì; quá khứ ý muốn thường dùng wollte.\n\n### Câu mẫu & nghĩa Việt\n**Ich möchte einen Tee.**\n→ Tôi muốn một tách trà.\n\n### Bẫy, nguyên nhân & cách tránh\nIch möchte là muốn lịch sự, không phải đơn giản tôi thích trà nói chung. Ich mag Tee mới là thích trà.\n\n### Thực hành có phân tích\nBài tập bên dưới kiểm tra đúng cấu trúc này. Sau khi trả lời, đọc lý do của từng lựa chọn; câu dựng lại yêu cầu đúng câu mẫu đã cho và toàn bộ từ gợi ý. Các cách diễn đạt khác có thể hợp ngữ pháp nhưng không thuộc đáp án của dạng tái tạo này.",
   "exercises": [
    {
@@ -2248,7 +2248,7 @@ const ElioGrammarAtlasData=[
    "A1"
   ],
   "level": "A1",
-  "group": "verbs",
+  "group": "words",
   "content": "## Modalverb müssen\nMüssen chỉ nghĩa vụ/sự cần thiết; nicht müssen nghĩa không cần. Không được làm phải dùng nicht dürfen. Ở mức nâng cao, muss có thể chỉ suy đoán chắc chắn; xác định nghĩa từ ngữ cảnh.\n\n### Câu mẫu & nghĩa Việt\n**Du musst heute nicht arbeiten.**\n→ Hôm nay bạn không cần làm việc.\n\n### Bẫy, nguyên nhân & cách tránh\nCâu này không có nghĩa hôm nay bạn bị cấm làm việc; đó là du darfst heute nicht arbeiten.\n\n### Thực hành có phân tích\nBài tập bên dưới kiểm tra đúng cấu trúc này. Sau khi trả lời, đọc lý do của từng lựa chọn; câu dựng lại yêu cầu đúng câu mẫu đã cho và toàn bộ từ gợi ý. Các cách diễn đạt khác có thể hợp ngữ pháp nhưng không thuộc đáp án của dạng tái tạo này.",
   "exercises": [
    {
@@ -2317,7 +2317,7 @@ const ElioGrammarAtlasData=[
    "A2"
   ],
   "level": "A1",
-  "group": "verbs",
+  "group": "words",
   "content": "## Modalverb sollen\nSollen thường chỉ lời yêu cầu, lời khuyên hoặc nhiệm vụ từ người khác. Ich soll den Arzt anrufen: ai đó yêu cầu/khuyên tôi gọi bác sĩ. Sollte thường nhẹ hơn và có thể làm lời khuyên. Nâng cao: soll còn dẫn thông tin nghe nói.\n\n### Câu mẫu & nghĩa Việt\n**Der Arzt sagt, ich soll mich ausruhen.**\n→ Bác sĩ nói tôi nên nghỉ ngơi.\n\n### Bẫy, nguyên nhân & cách tránh\nSollen không tự có nghĩa muốn; wollen mới nêu ý muốn của chủ thể. Không trộn hai nguồn nghĩa vụ này.\n\n### Thực hành có phân tích\nBài tập bên dưới kiểm tra đúng cấu trúc này. Sau khi trả lời, đọc lý do của từng lựa chọn; câu dựng lại yêu cầu đúng câu mẫu đã cho và toàn bộ từ gợi ý. Các cách diễn đạt khác có thể hợp ngữ pháp nhưng không thuộc đáp án của dạng tái tạo này.",
   "exercises": [
    {
@@ -2387,7 +2387,7 @@ const ElioGrammarAtlasData=[
    "A1"
   ],
   "level": "A1",
-  "group": "verbs",
+  "group": "words",
   "content": "## Modalverb wollen\nWollen diễn đạt ý định/mong muốn khá trực tiếp. Ich will, du willst, er will, wir wollen, ihr wollt. Khi gọi món hoặc nhờ vả, möchte thường mềm hơn will; không coi will là sai ngữ pháp nhưng cần chọn sắc thái.\n\n### Câu mẫu & nghĩa Việt\n**Wir wollen morgen verreisen.**\n→ Chúng tôi định đi xa ngày mai.\n\n### Bẫy, nguyên nhân & cách tránh\nEr willt sai vì ngôi ba số ít là will, không thêm -t.\n\n### Thực hành có phân tích\nBài tập bên dưới kiểm tra đúng cấu trúc này. Sau khi trả lời, đọc lý do của từng lựa chọn; câu dựng lại yêu cầu đúng câu mẫu đã cho và toàn bộ từ gợi ý. Các cách diễn đạt khác có thể hợp ngữ pháp nhưng không thuộc đáp án của dạng tái tạo này.",
   "exercises": [
    {
@@ -2457,7 +2457,7 @@ const ElioGrammarAtlasData=[
    "B2"
   ],
   "level": "A1",
-  "group": "verbs",
+  "group": "words",
   "content": "## Modalverben\nModalverb đã chia ở V2, động từ nguyên mẫu thường đứng cuối không có zu: Ich kann schwimmen. Các ngôi ich/er thường không có đuôi -e/-t ở Präsens: ich muss, er kann. Phủ định có thể đổi nghĩa mạnh: nicht müssen khác nicht dürfen.\n\n### Câu mẫu & nghĩa Việt\n**Ich kann heute nicht kommen.**\n→ Hôm nay tôi không thể đến.\n\n### Bẫy, nguyên nhân & cách tránh\nIch kann zu kommen sai vì können đi với nguyên mẫu không zu. Nicht müssen là không cần, không phải cấm.\n\n### Thực hành có phân tích\nBài tập bên dưới kiểm tra đúng cấu trúc này. Sau khi trả lời, đọc lý do của từng lựa chọn; câu dựng lại yêu cầu đúng câu mẫu đã cho và toàn bộ từ gợi ý. Các cách diễn đạt khác có thể hợp ngữ pháp nhưng không thuộc đáp án của dạng tái tạo này.",
   "exercises": [
    {
@@ -2597,7 +2597,7 @@ const ElioGrammarAtlasData=[
    "A2"
   ],
   "level": "A1",
-  "group": "verbs",
+  "group": "words",
   "content": "## Negation: Verneinung im Deutschen\nKein phủ định danh ngữ với ein hoặc không mạo từ: kein Auto, keine Zeit. Nicht phủ định tính từ, động từ, giới từ hoặc thành phần cụ thể: nicht müde, nicht in Berlin. Vị trí nicht phụ thuộc phạm vi phủ định; không có quy tắc luôn đứng cuối.\n\n### Câu mẫu & nghĩa Việt\n**Ich habe kein Auto.**\n→ Tôi không có ô tô.\n\n### Bẫy, nguyên nhân & cách tránh\nNicht ein Auto có thể đối chiếu một chiếc với số khác, nhưng phủ định tồn tại trung hòa là kein Auto.\n\n### Thực hành có phân tích\nBài tập bên dưới kiểm tra đúng cấu trúc này. Sau khi trả lời, đọc lý do của từng lựa chọn; câu dựng lại yêu cầu đúng câu mẫu đã cho và toàn bộ từ gợi ý. Các cách diễn đạt khác có thể hợp ngữ pháp nhưng không thuộc đáp án của dạng tái tạo này.",
   "exercises": [
    {
@@ -2940,7 +2940,7 @@ const ElioGrammarAtlasData=[
    "A2"
   ],
   "level": "A1",
-  "group": "verbs",
+  "group": "words",
   "content": "## Personalpronomen\nĐại từ nhân xưng thay người/vật và biến cách: ich/mich/mir; du/dich/dir; er/ihn/ihm; sie/sie/ihr; wir/uns/uns. Sie viết hoa chỉ xưng hô lịch sự; động từ dùng dạng như ngôi số nhiều.\n\n### Câu mẫu & nghĩa Việt\n**Sie gibt mir das Buch.**\n→ Cô ấy đưa quyển sách cho tôi.\n\n### Bẫy, nguyên nhân & cách tránh\nMir không đồng nghĩa mich: geben chỉ người nhận bằng Dativ. Nhìn động từ và vai trò trước khi chọn dạng.\n\n### Thực hành có phân tích\nBài tập bên dưới kiểm tra đúng cấu trúc này. Sau khi trả lời, đọc lý do của từng lựa chọn; câu dựng lại yêu cầu đúng câu mẫu đã cho và toàn bộ từ gợi ý. Các cách diễn đạt khác có thể hợp ngữ pháp nhưng không thuộc đáp án của dạng tái tạo này.",
   "exercises": [
    {
@@ -3009,7 +3009,7 @@ const ElioGrammarAtlasData=[
    "A2"
   ],
   "level": "A1",
-  "group": "verbs",
+  "group": "words",
   "content": "## Plural\nDanh từ viết hoa. Số nhiều có các mẫu -e, -er, -(e)n, -s hoặc không đổi; có thể đổi Umlaut. Không suy một quy tắc duy nhất cho mọi từ. Mạo từ Nominativ/Akkusativ số nhiều là die; Dativ thường thêm -n cho danh từ nếu cần.\n\n### Câu mẫu & nghĩa Việt\n**Die Kinder spielen im Garten.**\n→ Bọn trẻ đang chơi trong vườn.\n\n### Bẫy, nguyên nhân & cách tránh\nDas Kind → die Kinder, không phải Kinds. Luôn học cùng danh từ gốc, giống và số nhiều.\n\n### Thực hành có phân tích\nBài tập bên dưới kiểm tra đúng cấu trúc này. Sau khi trả lời, đọc lý do của từng lựa chọn; câu dựng lại yêu cầu đúng câu mẫu đã cho và toàn bộ từ gợi ý. Các cách diễn đạt khác có thể hợp ngữ pháp nhưng không thuộc đáp án của dạng tái tạo này.",
   "exercises": [
    {
@@ -3078,7 +3078,7 @@ const ElioGrammarAtlasData=[
    "A2"
   ],
   "level": "A1",
-  "group": "verbs",
+  "group": "words",
   "content": "## Possessivartikel\nMein/dein/sein/ihr/unser/euer/Ihr đứng trước danh từ. Gốc cho biết chủ sở hữu, đuôi phụ thuộc vật sở hữu và cách. Sein Buch có thể là sách của một người nam; ihr Buch có thể là sách của một người nữ hoặc nhiều người.\n\n### Câu mẫu & nghĩa Việt\n**Ich suche meinen Schlüssel.**\n→ Tôi đang tìm chìa khóa của mình.\n\n### Bẫy, nguyên nhân & cách tránh\nChọn mein theo người sở hữu ich nhưng -en theo Schlüssel giống đực Akkusativ. Không chọn đuôi theo giới tính người sở hữu.\n\n### Thực hành có phân tích\nBài tập bên dưới kiểm tra đúng cấu trúc này. Sau khi trả lời, đọc lý do của từng lựa chọn; câu dựng lại yêu cầu đúng câu mẫu đã cho và toàn bộ từ gợi ý. Các cách diễn đạt khác có thể hợp ngữ pháp nhưng không thuộc đáp án của dạng tái tạo này.",
   "exercises": [
    {
@@ -3146,7 +3146,7 @@ const ElioGrammarAtlasData=[
    "A2"
   ],
   "level": "A1",
-  "group": "verbs",
+  "group": "words",
   "content": "## Possessivpronomen\nĐại từ sở hữu đứng độc lập thay cả cụm danh từ. Phân biệt mein Buch với Das ist meins/meines. Dạng đại từ phải mang tín hiệu giống/cách mà danh từ bị lược bỏ không còn thể hiện.\n\n### Câu mẫu & nghĩa Việt\n**Ist das dein Stift? Ja, das ist meiner.**\n→ Đó là bút của bạn à? Vâng, là của tôi.\n\n### Bẫy, nguyên nhân & cách tránh\nMein không có đuôi trước Stift ở Nominativ, nhưng đứng độc lập cần meiner.\n\n### Thực hành có phân tích\nBài tập bên dưới kiểm tra đúng cấu trúc này. Sau khi trả lời, đọc lý do của từng lựa chọn; câu dựng lại yêu cầu đúng câu mẫu đã cho và toàn bộ từ gợi ý. Các cách diễn đạt khác có thể hợp ngữ pháp nhưng không thuộc đáp án của dạng tái tạo này.",
   "exercises": [
    {
@@ -3290,7 +3290,7 @@ const ElioGrammarAtlasData=[
    "B1"
   ],
   "level": "A1",
-  "group": "words",
+  "group": "relations",
   "content": "## Präpositionen mit Akkusativ\nDurch, für, gegen, ohne, um thường dùng Akkusativ: durch den Park, für einen Freund, ohne mich. Cách do giới từ chi phối, không phụ thuộc chuyển động có xảy ra hay không. Bis thường có cấu trúc riêng khi kết hợp giới từ khác: bis zum Bahnhof.\n\n### Câu mẫu & nghĩa Việt\n**Das Geschenk ist für meinen Vater.**\n→ Món quà dành cho bố tôi.\n\n### Bẫy, nguyên nhân & cách tránh\nFür meinem Vater sai vì für không dùng Dativ. Không áp quy tắc wo/wohin lên für.\n\n### Thực hành có phân tích\nBài tập bên dưới kiểm tra đúng cấu trúc này. Sau khi trả lời, đọc lý do của từng lựa chọn; câu dựng lại yêu cầu đúng câu mẫu đã cho và toàn bộ từ gợi ý. Các cách diễn đạt khác có thể hợp ngữ pháp nhưng không thuộc đáp án của dạng tái tạo này.",
   "exercises": [
    {
@@ -3361,7 +3361,7 @@ const ElioGrammarAtlasData=[
    "B1"
   ],
   "level": "A1",
-  "group": "words",
+  "group": "relations",
   "content": "## Präpositionen mit Dativ\nAus, bei, mit, nach, seit, von, zu dùng Dativ trong các mẫu cơ bản: bei der Ärztin, seit einem Jahr. Seit nói kéo dài từ mốc quá khứ, thường đi với Präsens nếu còn tiếp diễn. Không đổi cách chỉ vì câu có chuyển động.\n\n### Câu mẫu & nghĩa Việt\n**Ich gehe zu meinem Freund.**\n→ Tôi đến chỗ bạn tôi.\n\n### Bẫy, nguyên nhân & cách tránh\nDù có đi đến, zu vẫn Dativ. Wo/wohin không quyết định cách của giới từ có cách cố định.\n\n### Thực hành có phân tích\nBài tập bên dưới kiểm tra đúng cấu trúc này. Sau khi trả lời, đọc lý do của từng lựa chọn; câu dựng lại yêu cầu đúng câu mẫu đã cho và toàn bộ từ gợi ý. Các cách diễn đạt khác có thể hợp ngữ pháp nhưng không thuộc đáp án của dạng tái tạo này.",
   "exercises": [
    {
@@ -3430,7 +3430,7 @@ const ElioGrammarAtlasData=[
    "A2"
   ],
   "level": "A1",
-  "group": "verbs",
+  "group": "words",
   "content": "## Präsens\nPräsens diễn đạt hiện tại, thói quen và cả tương lai khi có mốc. Mẫu đều: ich -e, du -st, er/sie/es -t, wir -en, ihr -t, sie/Sie -en. Gốc tận cùng -t/-d thường cần thêm e để phát âm: du arbeitest.\n\n### Câu mẫu & nghĩa Việt\n**Morgen arbeite ich zu Hause.**\n→ Ngày mai tôi làm việc ở nhà.\n\n### Bẫy, nguyên nhân & cách tránh\nTương lai không bắt buộc Futur I. Ihr arbeitet khác er arbeitet ở chủ ngữ nhưng hình thức có thể giống.\n\n### Thực hành có phân tích\nBài tập bên dưới kiểm tra đúng cấu trúc này. Sau khi trả lời, đọc lý do của từng lựa chọn; câu dựng lại yêu cầu đúng câu mẫu đã cho và toàn bộ từ gợi ý. Các cách diễn đạt khác có thể hợp ngữ pháp nhưng không thuộc đáp án của dạng tái tạo này.",
   "exercises": [
    {
@@ -3778,7 +3778,7 @@ const ElioGrammarAtlasData=[
    "A1"
   ],
   "level": "A1",
-  "group": "verbs",
+  "group": "words",
   "content": "## Sein und haben im Präsens\nSein: bin, bist, ist, sind, seid, sind. Haben: habe, hast, hat, haben, habt, haben. Hai động từ vừa có nghĩa riêng vừa làm trợ động từ; không dùng mẫu đều bằng cách thêm -e vào sein.\n\n### Câu mẫu & nghĩa Việt\n**Ich bin müde und habe Hunger.**\n→ Tôi mệt và đói.\n\n### Bẫy, nguyên nhân & cách tránh\nTiếng Đức nói Hunger haben, không Hunger sein. Seid là động từ của ihr, seit là từ chỉ thời gian.\n\n### Thực hành có phân tích\nBài tập bên dưới kiểm tra đúng cấu trúc này. Sau khi trả lời, đọc lý do của từng lựa chọn; câu dựng lại yêu cầu đúng câu mẫu đã cho và toàn bộ từ gợi ý. Các cách diễn đạt khác có thể hợp ngữ pháp nhưng không thuộc đáp án của dạng tái tạo này.",
   "exercises": [
    {
@@ -4539,7 +4539,7 @@ const ElioGrammarAtlasData=[
    "B1"
   ],
   "level": "A1",
-  "group": "words",
+  "group": "verbs",
   "content": "## Verben mit Akkusativ\nLernen/kaufen/besuchen/sehen/anrufen thường có tân ngữ Akkusativ. Không phải mỗi câu đều phải hiện tân ngữ; khi có, cách do động từ và nghĩa chi phối. Đại từ người nam: ihn, không phải ihm.\n\n### Câu mẫu & nghĩa Việt\n**Ich besuche meinen Onkel.**\n→ Tôi thăm chú/bác/cậu của tôi.\n\n### Bẫy, nguyên nhân & cách tránh\nBesuchen + Akkusativ, không phải Dativ chỉ vì tân ngữ là người.\n\n### Thực hành có phân tích\nBài tập bên dưới kiểm tra đúng cấu trúc này. Sau khi trả lời, đọc lý do của từng lựa chọn; câu dựng lại yêu cầu đúng câu mẫu đã cho và toàn bộ từ gợi ý. Các cách diễn đạt khác có thể hợp ngữ pháp nhưng không thuộc đáp án của dạng tái tạo này.",
   "exercises": [
    {
@@ -4609,7 +4609,7 @@ const ElioGrammarAtlasData=[
    "B2"
   ],
   "level": "A1",
-  "group": "words",
+  "group": "verbs",
   "content": "## Verben mit Dativ\nHelfen, danken, gefallen, gehören, folgen đòi Dativ trong các nghĩa cơ bản. Người giúp là chủ ngữ, người được giúp Dativ. Với gefallen, thứ được thích làm chủ ngữ: Das Buch gefällt mir.\n\n### Câu mẫu & nghĩa Việt\n**Das Buch gefällt mir.**\n→ Tôi thích quyển sách này.\n\n### Bẫy, nguyên nhân & cách tránh\nIch gefalle das Buch không diễn đạt tôi thích sách; gefallen có cấu trúc khác mögen.\n\n### Thực hành có phân tích\nBài tập bên dưới kiểm tra đúng cấu trúc này. Sau khi trả lời, đọc lý do của từng lựa chọn; câu dựng lại yêu cầu đúng câu mẫu đã cho và toàn bộ từ gợi ý. Các cách diễn đạt khác có thể hợp ngữ pháp nhưng không thuộc đáp án của dạng tái tạo này.",
   "exercises": [
    {
@@ -4679,7 +4679,7 @@ const ElioGrammarAtlasData=[
    "B2"
   ],
   "level": "A1",
-  "group": "words",
+  "group": "verbs",
   "content": "## Verben mit Dativ und Akkusativ\nGeben/schenken/zeigen/schicken thường có người nhận Dativ và vật Akkusativ. Hai danh từ thường Dativ trước Akkusativ; nếu cả hai là đại từ không nhấn, Akkusativ thường đứng trước Dativ: Ich gebe es ihm. Ngữ cảnh có thể thay đổi trọng tâm.\n\n### Câu mẫu & nghĩa Việt\n**Ich gebe es ihm.**\n→ Tôi đưa nó cho anh ấy.\n\n### Bẫy, nguyên nhân & cách tránh\nIch gebe ihm es không phải thứ tự trung hòa với hai đại từ không nhấn. Không coi thứ tự danh từ là quy tắc cho mọi đại từ.\n\n### Thực hành có phân tích\nBài tập bên dưới kiểm tra đúng cấu trúc này. Sau khi trả lời, đọc lý do của từng lựa chọn; câu dựng lại yêu cầu đúng câu mẫu đã cho và toàn bộ từ gợi ý. Các cách diễn đạt khác có thể hợp ngữ pháp nhưng không thuộc đáp án của dạng tái tạo này.",
   "exercises": [
    {
@@ -4953,7 +4953,7 @@ const ElioGrammarAtlasData=[
    "B1"
   ],
   "level": "A2",
-  "group": "verbs",
+  "group": "relations",
   "content": "## Adverbien\nTrạng từ bổ sung thời gian, nơi chốn, cách thức hoặc đánh giá. Khi dùng để bổ nghĩa động từ, tính từ/trạng từ không thêm đuôi: Sie arbeitet sorgfältig. So sánh sorgfältiger vẫn có thể dùng, nhưng không thêm đuôi định ngữ khi không đứng trước danh từ.\n\n### Câu mẫu & nghĩa Việt\n**Sie arbeitet sehr sorgfältig.**\n→ Cô ấy làm việc rất cẩn thận.\n\n### Bẫy, nguyên nhân & cách tránh\nNicht Sie arbeitet sorgfältige; đuôi tính từ thuộc eine sorgfältige Mitarbeiterin, không thuộc cách thức làm.\n\n### Thực hành có phân tích\nBài tập bên dưới kiểm tra đúng cấu trúc này. Sau khi trả lời, đọc lý do của từng lựa chọn; câu dựng lại yêu cầu đúng câu mẫu đã cho và toàn bộ từ gợi ý. Các cách diễn đạt khác có thể hợp ngữ pháp nhưng không thuộc đáp án của dạng tái tạo này.",
   "exercises": [
    {
@@ -5300,7 +5300,7 @@ const ElioGrammarAtlasData=[
    "A2"
   ],
   "level": "A2",
-  "group": "verbs",
+  "group": "words",
   "content": "## Dem oder den\nDem là Dativ đực/trung số ít; den là Akkusativ đực số ít hoặc Dativ số nhiều. Để chọn, cần biết cả cách và số: mit dem Mann, für den Mann, mit den Männern. Den không đồng nghĩa luôn Akkusativ.\n\n### Câu mẫu & nghĩa Việt\n**Ich spreche mit dem Mann.**\n→ Tôi nói chuyện với người đàn ông.\n\n### Bẫy, nguyên nhân & cách tránh\nMit den Mann sai ở số ít; nếu số nhiều phải là mit den Männern với biến đổi danh từ tương ứng.\n\n### Thực hành có phân tích\nBài tập bên dưới kiểm tra đúng cấu trúc này. Sau khi trả lời, đọc lý do của từng lựa chọn; câu dựng lại yêu cầu đúng câu mẫu đã cho và toàn bộ từ gợi ý. Các cách diễn đạt khác có thể hợp ngữ pháp nhưng không thuộc đáp án của dạng tái tạo này.",
   "exercises": [
    {
@@ -5804,7 +5804,7 @@ const ElioGrammarAtlasData=[
    "A2"
   ],
   "level": "A2",
-  "group": "verbs",
+  "group": "words",
   "content": "## Interrogativpronomen\nWer hỏi chủ ngữ người, wen hỏi Akkusativ, wem hỏi Dativ, wessen hỏi sở hữu. Was hỏi sự vật/sự việc. Cách của đại từ phụ thuộc vị trí bị hỏi trong câu trả lời, không phụ thuộc cách của người đặt câu hỏi.\n\n### Câu mẫu & nghĩa Việt\n**Wem gehört das Fahrrad?**\n→ Chiếc xe đạp thuộc về ai?\n\n### Bẫy, nguyên nhân & cách tránh\nGehören + Dativ nên hỏi wem, không phải wen. Wessen Fahrrad là một cấu trúc sở hữu khác.\n\n### Thực hành có phân tích\nBài tập bên dưới kiểm tra đúng cấu trúc này. Sau khi trả lời, đọc lý do của từng lựa chọn; câu dựng lại yêu cầu đúng câu mẫu đã cho và toàn bộ từ gợi ý. Các cách diễn đạt khác có thể hợp ngữ pháp nhưng không thuộc đáp án của dạng tái tạo này.",
   "exercises": [
    {
@@ -5872,7 +5872,7 @@ const ElioGrammarAtlasData=[
    "B1"
   ],
   "level": "A2",
-  "group": "verbs",
+  "group": "words",
   "content": "## Irgendwie, irgendwo, irgendwann\nIrgendwie: bằng cách nào đó/không rõ vì sao; irgendwo: ở đâu đó; irgendwann: lúc nào đó. Dùng để biểu thị không xác định, không tự mang nghĩa phủ định. Hướng đi dùng irgendwohin, không chỉ irgendwo khi cần nhấn đích.\n\n### Câu mẫu & nghĩa Việt\n**Wir treffen uns irgendwann nächste Woche.**\n→ Chúng ta gặp nhau lúc nào đó vào tuần sau.\n\n### Bẫy, nguyên nhân & cách tránh\nKhông dùng irgendwo cho thời điểm. Irgendwie có thể làm lời đánh giá mơ hồ, không chỉ cách thức vật lý.\n\n### Thực hành có phân tích\nBài tập bên dưới kiểm tra đúng cấu trúc này. Sau khi trả lời, đọc lý do của từng lựa chọn; câu dựng lại yêu cầu đúng câu mẫu đã cho và toàn bộ từ gợi ý. Các cách diễn đạt khác có thể hợp ngữ pháp nhưng không thuộc đáp án của dạng tái tạo này.",
   "exercises": [
    {
@@ -6301,7 +6301,7 @@ const ElioGrammarAtlasData=[
    "B2"
   ],
   "level": "A2",
-  "group": "relations",
+  "group": "sentences",
   "content": "## Konjunktionaladverbien\nDeshalb/trotzdem/danach/jedoch có thể nối ý như trạng từ. Khi đứng đầu câu, chúng chiếm Vorfeld nên động từ theo ngay: Deshalb bleibe ich. Chúng cũng có thể ở Mittelfeld: Ich bleibe deshalb. Không giống denn/und.\n\n### Câu mẫu & nghĩa Việt\n**Es regnet; trotzdem gehen wir hinaus.**\n→ Trời mưa; dù vậy chúng tôi ra ngoài.\n\n### Bẫy, nguyên nhân & cách tránh\nTrotzdem wir gehen ... sai V2. Nếu dùng obwohl, phải cấu trúc lại thành mệnh đề phụ.\n\n### Thực hành có phân tích\nBài tập bên dưới kiểm tra đúng cấu trúc này. Sau khi trả lời, đọc lý do của từng lựa chọn; câu dựng lại yêu cầu đúng câu mẫu đã cho và toàn bộ từ gợi ý. Các cách diễn đạt khác có thể hợp ngữ pháp nhưng không thuộc đáp án của dạng tái tạo này.",
   "exercises": [
    {
@@ -7577,7 +7577,7 @@ const ElioGrammarAtlasData=[
    "B1"
   ],
   "level": "A2",
-  "group": "verbs",
+  "group": "words",
   "content": "## Reflexivpronomen\nĐộng từ phản thân dùng đại từ cùng chủ thể: Ich erinnere mich. Akkusativ mich/dich/sich/uns/euch/sich; Dativ mir/dir/sich... khi cấu trúc yêu cầu: Ich wasche mir die Hände. Không tự thêm sich vào mọi động từ theo bản dịch tự mình.\n\n### Câu mẫu & nghĩa Việt\n**Ich wasche mir die Hände.**\n→ Tôi rửa tay.\n\n### Bẫy, nguyên nhân & cách tránh\nDie Hände đã là Akkusativ, người sở hữu/được tác động dùng Dativ mir. Ich wasche mich là rửa người mình, nghĩa khác.\n\n### Thực hành có phân tích\nBài tập bên dưới kiểm tra đúng cấu trúc này. Sau khi trả lời, đọc lý do của từng lựa chọn; câu dựng lại yêu cầu đúng câu mẫu đã cho và toàn bộ từ gợi ý. Các cách diễn đạt khác có thể hợp ngữ pháp nhưng không thuộc đáp án của dạng tái tạo này.",
   "exercises": [
    {
@@ -7647,7 +7647,7 @@ const ElioGrammarAtlasData=[
    "B2"
   ],
   "level": "A2",
-  "group": "verbs",
+  "group": "words",
   "content": "## Relativpronomen der, die, das\nĐại từ quan hệ nhận giống/số từ danh từ tiền ngữ, nhưng cách từ vai trò trong mệnh đề quan hệ. Der Mann, den ich sehe: Mann đực số ít nhưng den vì là Akkusativ của sehe. Giới từ đứng trước: mit dem ich spreche. Động từ cuối.\n\n### Câu mẫu & nghĩa Việt\n**Das ist der Mann, dem ich helfe.**\n→ Đó là người đàn ông mà tôi giúp.\n\n### Bẫy, nguyên nhân & cách tránh\nKhông chọn der chỉ vì Mann làm chủ ngữ câu chính; trong câu phụ helfen đòi Dativ nên dem.\n\n### Thực hành có phân tích\nBài tập bên dưới kiểm tra đúng cấu trúc này. Sau khi trả lời, đọc lý do của từng lựa chọn; câu dựng lại yêu cầu đúng câu mẫu đã cho và toàn bộ từ gợi ý. Các cách diễn đạt khác có thể hợp ngữ pháp nhưng không thuộc đáp án của dạng tái tạo này.",
   "exercises": [
    {
@@ -7790,7 +7790,7 @@ const ElioGrammarAtlasData=[
    "B1"
   ],
   "level": "A2",
-  "group": "relations",
+  "group": "sentences",
   "content": "## Seitdem oder seit dem\nSeit/seitdem + mệnh đề dùng động từ cuối: seitdem ich hier wohne. Seit dem + danh ngữ là giới từ và mạo từ Dativ: seit dem Umzug. Seitdem cũng có thể là trạng từ độc lập: Seitdem wohne ich hier.\n\n### Câu mẫu & nghĩa Việt\n**Seit dem Umzug fahre ich mit dem Bus.**\n→ Từ khi chuyển nhà, tôi đi xe buýt.\n\n### Bẫy, nguyên nhân & cách tránh\nKhông viết seitdem Umzug khi sau đó là danh từ cần mạo từ. Ngược lại seit dem ich hier wohne sai nếu cần liên từ.\n\n### Thực hành có phân tích\nBài tập bên dưới kiểm tra đúng cấu trúc này. Sau khi trả lời, đọc lý do của từng lựa chọn; câu dựng lại yêu cầu đúng câu mẫu đã cho và toàn bộ từ gợi ý. Các cách diễn đạt khác có thể hợp ngữ pháp nhưng không thuộc đáp án của dạng tái tạo này.",
   "exercises": [
    {
@@ -8356,7 +8356,7 @@ const ElioGrammarAtlasData=[
    "B1"
   ],
   "level": "A2",
-  "group": "verbs",
+  "group": "words",
   "content": "## Vorgangspassiv\nWerden đã chia + Partizip II đặt quá trình/hành động vào trung tâm. Akkusativ của chủ động có thể thành chủ ngữ; Dativ giữ Dativ. Người thực hiện có thể nêu với von. Không phải câu nào cũng chuyển bị động tự nhiên.\n\n### Câu mẫu & nghĩa Việt\n**Der Brief wird geschrieben.**\n→ Bức thư đang được viết.\n\n### Bẫy, nguyên nhân & cách tránh\nDer Brief ist geschrieben nói trạng thái đã xong, khác wird geschrieben nhấn quá trình. Chọn theo điều muốn nói.\n\n### Thực hành có phân tích\nBài tập bên dưới kiểm tra đúng cấu trúc này. Sau khi trả lời, đọc lý do của từng lựa chọn; câu dựng lại yêu cầu đúng câu mẫu đã cho và toàn bộ từ gợi ý. Các cách diễn đạt khác có thể hợp ngữ pháp nhưng không thuộc đáp án của dạng tái tạo này.",
   "exercises": [
    {
@@ -8424,7 +8424,7 @@ const ElioGrammarAtlasData=[
    "B1"
   ],
   "level": "A2",
-  "group": "verbs",
+  "group": "words",
   "content": "## Wechselpräpositionen\nAn, auf, hinter, in, neben, über, unter, vor, zwischen dùng Dativ cho vị trí và Akkusativ cho đích đổi vị trí. Ngoài ra nach thường chỉ quốc gia/thành phố không mạo từ, zu chỉ hướng đến người/địa điểm hoạt động, in thường nói vào bên trong.\n\n### Câu mẫu & nghĩa Việt\n**Wir gehen in den Park.**\n→ Chúng tôi đi vào công viên.\n\n### Bẫy, nguyên nhân & cách tránh\nWir laufen im Park là hoạt động trong công viên, vẫn Dativ. Không đồng nhất mọi động từ chuyển động với Akkusativ.\n\n### Thực hành có phân tích\nBài tập bên dưới kiểm tra đúng cấu trúc này. Sau khi trả lời, đọc lý do của từng lựa chọn; câu dựng lại yêu cầu đúng câu mẫu đã cho và toàn bộ từ gợi ý. Các cách diễn đạt khác có thể hợp ngữ pháp nhưng không thuộc đáp án của dạng tái tạo này.",
   "exercises": [
    {
@@ -8706,7 +8706,7 @@ const ElioGrammarAtlasData=[
    "B2"
   ],
   "level": "B1",
-  "group": "words",
+  "group": "sentences",
   "content": "## Fragewort was für ein\nWas für ein/eine hỏi loại hoặc tính chất, không phải chọn thành viên cụ thể trong một danh sách. Ein biến cách theo danh từ và cấu trúc câu: Was für einen Film siehst du? Für trong cụm hỏi này không tự chi phối Akkusativ.\n\n### Câu mẫu & nghĩa Việt\n**Was für ein Auto fährst du?**\n→ Bạn lái loại xe gì?\n\n### Bẫy, nguyên nhân & cách tránh\nMit was für einem Auto: einem do mit yêu cầu Dativ. Không áp für + Akkusativ lên cả cụm nghi vấn.\n\n### Thực hành có phân tích\nBài tập bên dưới kiểm tra đúng cấu trúc này. Sau khi trả lời, đọc lý do của từng lựa chọn; câu dựng lại yêu cầu đúng câu mẫu đã cho và toàn bộ từ gợi ý. Các cách diễn đạt khác có thể hợp ngữ pháp nhưng không thuộc đáp án của dạng tái tạo này.",
   "exercises": [
    {
@@ -8914,7 +8914,7 @@ const ElioGrammarAtlasData=[
    "B2"
   ],
   "level": "B1",
-  "group": "verbs",
+  "group": "words",
   "content": "## Indefinitpronomen\nJemand/niemand chỉ người không xác định, etwas/nichts chỉ vật/sự việc. Einer/keiner có thể thay danh ngữ và phải biến cách. Nicht alle không đồng nghĩa niemand: không phải tất cả vẫn có thể một số. Chọn theo người/vật và phạm vi phủ định.\n\n### Câu mẫu & nghĩa Việt\n**Ich habe niemanden gesehen.**\n→ Tôi không thấy ai.\n\n### Bẫy, nguyên nhân & cách tránh\nKhông dùng nichts khi muốn nói không thấy người nào; nichts là không có gì. Jemand có biến thể đuôi tùy cách và văn phong.\n\n### Thực hành có phân tích\nBài tập bên dưới kiểm tra đúng cấu trúc này. Sau khi trả lời, đọc lý do của từng lựa chọn; câu dựng lại yêu cầu đúng câu mẫu đã cho và toàn bộ từ gợi ý. Các cách diễn đạt khác có thể hợp ngữ pháp nhưng không thuộc đáp án của dạng tái tạo này.",
   "exercises": [
    {
@@ -9550,7 +9550,7 @@ const ElioGrammarAtlasData=[
    "C1"
   ],
   "level": "B1",
-  "group": "words",
+  "group": "verbs",
   "content": "## Nomen Verb Verbindungen\nCụm động từ–danh từ có kết hợp cố định: eine Entscheidung treffen, Kritik üben, zur Verfügung stehen/stellen. Phân biệt hành động đưa vào với trạng thái: in Betrieb nehmen / in Betrieb sein. Không thay động từ chức năng tùy bản dịch làm.\n\n### Câu mẫu & nghĩa Việt\n**Wir treffen morgen eine Entscheidung.**\n→ Ngày mai chúng tôi sẽ quyết định.\n\n### Bẫy, nguyên nhân & cách tránh\nEine Entscheidung machen là kết hợp thiếu tự nhiên trong nghĩa này; dùng treffen hoặc entscheiden.\n\n### Thực hành có phân tích\nBài tập bên dưới kiểm tra đúng cấu trúc này. Sau khi trả lời, đọc lý do của từng lựa chọn; câu dựng lại yêu cầu đúng câu mẫu đã cho và toàn bộ từ gợi ý. Các cách diễn đạt khác có thể hợp ngữ pháp nhưng không thuộc đáp án của dạng tái tạo này.\n\n### C1 · Cụm chức năng nâng cao: thay đổi vai trò và thể\n**Zur Sprache bringen** đưa vấn đề ra bàn; **zur Sprache kommen** vấn đề được đề cập. **Zur Verfügung stellen** cung cấp; **zur Verfügung stehen** có sẵn. Chuyển động từ chức năng có thể đổi tác thể hoặc quá trình/trạng thái; không thay chúng chỉ để tránh lặp từ.\n\n**Das Problem kam erst später zur Sprache.** → Mãi về sau vấn đề mới được đề cập.",
   "exercises": [
    {
@@ -10302,7 +10302,7 @@ const ElioGrammarAtlasData=[
    "C1"
   ],
   "level": "B1",
-  "group": "verbs",
+  "group": "words",
   "content": "## Plusquamperfekt\nHatte/war + Partizip II đặt một sự việc trước một mốc quá khứ. Không dùng chỉ vì việc xảy ra rất lâu; phải có quan hệ trước–sau với mốc khác. Giữ trợ động từ như Perfekt, chỉ đổi haben/sein sang quá khứ.\n\n### Câu mẫu & nghĩa Việt\n**Als ich ankam, war sie bereits gegangen.**\n→ Khi tôi đến, cô ấy đã đi rồi.\n\n### Bẫy, nguyên nhân & cách tránh\nSie hatte gegangen sai trợ động từ: gehen dùng sein trong nghĩa này nên war gegangen.\n\n### Thực hành có phân tích\nBài tập bên dưới kiểm tra đúng cấu trúc này. Sau khi trả lời, đọc lý do của từng lựa chọn; câu dựng lại yêu cầu đúng câu mẫu đã cho và toàn bộ từ gợi ý. Các cách diễn đạt khác có thể hợp ngữ pháp nhưng không thuộc đáp án của dạng tái tạo này.\n\n### C1 · Plusquamperfekt nâng cao: tầng thời gian và bị động\n**Der Antrag war geprüft worden, bevor die Sitzung begann** đặt việc kiểm tra trước cuộc họp. Phân biệt **war geprüft** trạng thái với **war geprüft worden** quá trình đã hoàn tất trước mốc. Không dùng Plusquamperfekt chỉ để làm câu trang trọng hơn nếu không có quan hệ thời gian cần nêu.\n\n**Der Antrag war geprüft worden, bevor die Sitzung begann.** → Đơn đã được kiểm tra trước khi cuộc họp bắt đầu.",
   "exercises": [
    {
@@ -10384,7 +10384,7 @@ const ElioGrammarAtlasData=[
    "C1"
   ],
   "level": "B1",
-  "group": "words",
+  "group": "relations",
   "content": "## Präpositionen mit Genitiv\nTrong văn viết, wegen, trotz, während, aufgrund, innerhalb, außerhalb thường đi với Genitiv. Cần phân biệt während + danh ngữ với während + mệnh đề. Một số giới từ có Dativ trong biến thể khẩu ngữ; khi viết trang trọng, ưu tiên mẫu Genitiv rõ.\n\n### Câu mẫu & nghĩa Việt\n**Wegen des Sturms fällt der Zug aus.**\n→ Do bão, chuyến tàu bị hủy.\n\n### Bẫy, nguyên nhân & cách tránh\nDes Sturm thiếu -s: des Sturms. Không áp -s cho danh từ yếu như des Studenten.\n\n### Thực hành có phân tích\nBài tập bên dưới kiểm tra đúng cấu trúc này. Sau khi trả lời, đọc lý do của từng lựa chọn; câu dựng lại yêu cầu đúng câu mẫu đã cho và toàn bộ từ gợi ý. Các cách diễn đạt khác có thể hợp ngữ pháp nhưng không thuộc đáp án của dạng tái tạo này.\n\n### C1 · Giới từ Genitiv nâng cao trong lập luận\nHọc **mangels ausreichender Beweise**, **anhand der Unterlagen**, **zwecks einer Prüfung**, **seitens der Leitung** theo cả nghĩa và cách. Mangels chỉ thiếu điều kiện, zwecks chỉ mục đích, seitens chỉ phía tác thể. Với danh từ trần số nhiều có biến thể hình thái; ưu tiên mẫu rõ thay vì ép mọi trường hợp vào một bảng.\n\n**Mangels ausreichender Beweise wurde das Verfahren eingestellt.** → Vụ việc bị đình chỉ do không đủ chứng cứ.",
   "exercises": [
    {
@@ -11031,7 +11031,7 @@ const ElioGrammarAtlasData=[
    "B2"
   ],
   "level": "B1",
-  "group": "verbs",
+  "group": "words",
   "content": "## Vergleichssätze mit als ob\nAls ob mở so sánh giả định: Er tut so, als ob er alles wüsste. Konjunktiv II thường thể hiện khoảng cách với thực tế. Có thể bỏ ob và đảo: als wüsste er alles. Không giữ đồng thời ob rồi áp trật tự đảo đó.\n\n### Câu mẫu & nghĩa Việt\n**Er tut so, als ob er alles wüsste.**\n→ Anh ấy làm như mình biết hết mọi thứ.\n\n### Bẫy, nguyên nhân & cách tránh\nAls ob wüsste er alles sai trật tự cho mẫu có ob; nếu bỏ ob thì als wüsste er alles hợp lệ.\n\n### Thực hành có phân tích\nBài tập bên dưới kiểm tra đúng cấu trúc này. Sau khi trả lời, đọc lý do của từng lựa chọn; câu dựng lại yêu cầu đúng câu mẫu đã cho và toàn bộ từ gợi ý. Các cách diễn đạt khác có thể hợp ngữ pháp nhưng không thuộc đáp án của dạng tái tạo này.",
   "exercises": [
    {
@@ -11103,7 +11103,7 @@ const ElioGrammarAtlasData=[
    "B2"
   ],
   "level": "B1",
-  "group": "verbs",
+  "group": "words",
   "content": "## Zustandspassiv\nSein + Partizip II nhấn trạng thái kết quả: Die Tür ist geschlossen. Werden + Partizip II nhấn quá trình đóng. Không phải mọi sein + Partizip đều là bị động: Er ist angekommen là Perfekt chủ động. Phân biệt theo động từ và nghĩa.\n\n### Câu mẫu & nghĩa Việt\n**Die Tür ist geschlossen.**\n→ Cửa đang ở trạng thái đóng.\n\n### Bẫy, nguyên nhân & cách tránh\nIst geschlossen không nói ai/bao giờ đã đóng nếu không có ngữ cảnh. Wird geschlossen là quá trình cửa được đóng.\n\n### Thực hành có phân tích\nBài tập bên dưới kiểm tra đúng cấu trúc này. Sau khi trả lời, đọc lý do của từng lựa chọn; câu dựng lại yêu cầu đúng câu mẫu đã cho và toàn bộ từ gợi ý. Các cách diễn đạt khác có thể hợp ngữ pháp nhưng không thuộc đáp án của dạng tái tạo này.",
   "exercises": [
    {
@@ -11564,7 +11564,7 @@ const ElioGrammarAtlasData=[
    "C1"
   ],
   "level": "B2",
-  "group": "sentences",
+  "group": "verbs",
   "content": "## Passiv Ersatzformen\nMột số dạng thay bị động: sich lassen + Infinitiv (khả năng), sein + zu + Infinitiv (cần/có thể), tính từ -bar (khả năng). Không hoán đổi mọi mẫu mà giữ nguyên nghĩa: ist zu prüfen thường nói nghĩa vụ, ist prüfbar nói có thể kiểm tra.\n\n### Câu mẫu & nghĩa Việt\n**Das Problem lässt sich lösen.**\n→ Vấn đề này có thể giải quyết được.\n\n### Bẫy, nguyên nhân & cách tránh\nLässt sich lösen không phải ai đó tự cho phép mình giải quyết; ở đây là cách diễn đạt khả năng bị động.\n\n### Thực hành có phân tích\nBài tập bên dưới kiểm tra đúng cấu trúc này. Sau khi trả lời, đọc lý do của từng lựa chọn; câu dựng lại yêu cầu đúng câu mẫu đã cho và toàn bộ từ gợi ý. Các cách diễn đạt khác có thể hợp ngữ pháp nhưng không thuộc đáp án của dạng tái tạo này.\n\n### C1 · Thay bị động nâng cao: không đánh đồng nghĩa\n**Die Datei lässt sich öffnen / ist zu öffnen / ist lesbar** không luôn đồng nghĩa. Lässt sich nhấn khả năng; ist zu mở khả năng/nghĩa vụ theo ngữ cảnh; -bar thường khả năng. **Die Tür gehört repariert** có sắc thái vùng/khẩu ngữ, không thay mẫu trung hòa trong mọi văn bản.\n\n**Die Vorschrift ist unbedingt zu beachten.** → Quy định này nhất thiết phải được tuân thủ.",
   "exercises": [
    {
@@ -11643,7 +11643,7 @@ const ElioGrammarAtlasData=[
    "C1"
   ],
   "level": "B2",
-  "group": "verbs",
+  "group": "words",
   "content": "## Subjektive Bedeutung von Modalverben\nModalverb có thể biểu thị mức chắc chắn hoặc nguồn tin: muss chắc hẳn, könnte có thể, dürfte có lẽ; soll nghe nói, will tự khẳng định. Với sự việc đã qua dùng Infinitiv Perfekt: muss gegangen sein, soll gearbeitet haben. Không gán tỷ lệ chắc chắn tuyệt đối.\n\n### Câu mẫu & nghĩa Việt\n**Sie muss den Termin vergessen haben.**\n→ Hẳn cô ấy đã quên cuộc hẹn.\n\n### Bẫy, nguyên nhân & cách tránh\nMusste den Termin vergessen dễ thành nghĩa đã buộc phải quên; để phỏng đoán việc quá khứ dùng muss ... vergessen haben.\n\n### Thực hành có phân tích\nBài tập bên dưới kiểm tra đúng cấu trúc này. Sau khi trả lời, đọc lý do của từng lựa chọn; câu dựng lại yêu cầu đúng câu mẫu đã cho và toàn bộ từ gợi ý. Các cách diễn đạt khác có thể hợp ngữ pháp nhưng không thuộc đáp án của dạng tái tạo này.\n\n### C1 · Nguồn tin nâng cao: sollen và wollen\n**Sie soll die Prüfung bestanden haben** dẫn lời người khác; **sie will die Prüfung bestanden haben** thuật lại lời tự khẳng định của chính cô ấy. Phân biệt với **sie will die Prüfung bestehen** nêu ý định tương lai. Khi phủ định khả năng: **Sie kann nicht dort gewesen sein**, không dùng nicht müssen như một phủ định chắc chắn.\n\n**Sie soll die Prüfung bestanden haben.** → Nghe nói cô ấy đã đỗ kỳ thi.",
   "exercises": [
    {

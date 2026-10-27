@@ -36,3 +36,10 @@ test('catalogue filtering keeps old IDs, all material owners and caller state un
 test('reader loads the authored library before engines and keeps mobile chapter controls accessible',()=>{
  const html=fs.readFileSync('public/grammatik.html','utf8'),book=fs.readFileSync('public/js/book-ui.js','utf8');assert(html.includes('<option>C1</option>'));assert(html.indexOf('js/grammar-atlas-data.js')<html.indexOf('js/grammar.js'));assert(html.includes('grammar-atlas.css'));assert(book.includes("fold.open=file==='grammatik.html'||!phoneLayout.matches"));
 });
+
+test('book groups place passive with verbs and genitive prepositions with relations, and static chapters offer no broken editor',()=>{
+ assert.equal(items.find(l=>l.title==='Passiv Ersatzformen').group,'verbs');
+ assert.equal(items.find(l=>l.title==='Präpositionen mit Genitiv').group,'relations');
+ const code=fs.readFileSync('public/js/grammar.js','utf8');const editor=code.slice(code.indexOf('function renderGrammarEditorControl'),code.indexOf('function validateGrammarEdit'));assert(editor.includes('grammarCanEdit(currentLesson.collectionId)'));
+ assert(fs.readFileSync('public/grammar-atlas.css','utf8').includes('.grammar-sidebar{position:static!important;max-height:none!important;overflow:visible!important}'));
+});

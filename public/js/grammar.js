@@ -81,7 +81,7 @@ renderBookPackControls();
 
 $('#book-pack-restore').onclick=async()=>{if(!Auth.require()||Account.profile?.role!=='super_admin')return;const user=Auth.user,status=$('#book-pack-status');try{if(Account.conflicts.materials||Account.conflicts['shared:materials'])throw Error('Xử lý xung đột tài liệu trước.');const old=await AccountCache.read(Account.cacheKey('grammar-book-backup'),null);if(!old)throw Error('Thiết bị này chưa có bản sao trước khi thay.');if(user!==Auth.user)return;const all=Auth.get('materials',[]);Auth.set('materials',[...all.filter(c=>c.id!==old.id),old]);currentLesson=null;loadGrammar();await Account.flush();if(user===Auth.user)status.textContent='Đã khôi phục. Kiểm tra trạng thái đồng bộ trong Cài đặt.';}catch(e){status.textContent=e.message;}};
 function renderGrammarEditorControl(){
- if(!currentLesson||!Account.canEdit('materials',currentLesson.collectionId))return;
+ if(!currentLesson||!grammarCanEdit(currentLesson.collectionId))return;
  $('#grammar-lesson-tabs').insertAdjacentHTML('beforebegin','<div class="grammar-editor-tools"><button type="button" id="grammar-edit" class="secondary">✎ Sửa bài học</button><div id="grammar-editor"></div></div>');$('#grammar-edit').onclick=openGrammarEditor;
 }
 function validateGrammarEdit(title,level,content,exercises){

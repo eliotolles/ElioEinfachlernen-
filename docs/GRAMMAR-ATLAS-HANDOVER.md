@@ -63,10 +63,11 @@ mounted and use the previous handlers. Other modules keep their fold behavior.
 ## Validation
 
 - Build succeeds: 101 assets / 11 images.
-- 22 grammar catalogue/engine/content tests pass; client bootstrap and saved
-  correction/draft resume also pass.
+- 24 targeted grammar catalogue/engine/content and client bootstrap/resume tests pass.
 - Full suite: 304 tests, 298 pass, 5 known database-fixture failures (`app_users`
   missing in four admin-delete tests and one Gmail test), 1 optional skip.
 - No database credentials, paid services, migrations or new dependencies.
-- A signed-in Elio browser session is still required for visual acceptance;
-  build success and deployed assets do not establish authenticated visual QA.
+- Authenticated production browser review confirmed the C1 filter has 18 topics,
+  the advanced C1 analysis renders, and the original saved lesson remains
+  available. Review also prompted a fix for nested sidebar scrolling and a
+  redundant edit control on shipped static chapters.
