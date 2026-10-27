@@ -43,3 +43,7 @@ test('book groups place passive with verbs and genitive prepositions with relati
  const code=fs.readFileSync('public/js/grammar.js','utf8');const editor=code.slice(code.indexOf('function renderGrammarEditorControl'),code.indexOf('function validateGrammarEdit'));assert(editor.includes('grammarCanEdit(currentLesson.collectionId)'));
  assert(fs.readFileSync('public/grammar-atlas.css','utf8').includes('.grammar-sidebar{position:static!important;max-height:none!important;overflow:visible!important}'));
 });
+test('each new lesson produces distinct rule, example and mistake mindmap branches',()=>{
+ const c=vm.createContext({});vm.runInContext(fs.readFileSync('public/js/grammar-mindmap.js','utf8'),c);
+ for(const l of items){c.lesson=l;const groups=vm.runInContext('GrammarMindmap.model(lesson,lesson.content).groups',c);assert(groups[1].length,l.title);assert(groups[2].length,l.title);assert(groups[3].length,l.title);}
+});

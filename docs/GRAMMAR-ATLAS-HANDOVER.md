@@ -63,7 +63,7 @@ mounted and use the previous handlers. Other modules keep their fold behavior.
 ## Validation
 
 - Build succeeds: 101 assets / 11 images.
-- 24 targeted grammar catalogue/engine/content and client bootstrap/resume tests pass.
+- 25 targeted grammar catalogue/engine/content and client bootstrap/resume tests pass.
 - Full suite: 304 tests, 298 pass, 5 known database-fixture failures (`app_users`
   missing in four admin-delete tests and one Gmail test), 1 optional skip.
 - No database credentials, paid services, migrations or new dependencies.
@@ -71,3 +71,5 @@ mounted and use the previous handlers. Other modules keep their fold behavior.
   the advanced C1 analysis renders, and the original saved lesson remains
   available. Review also prompted a fix for nested sidebar scrolling and a
   redundant edit control on shipped static chapters.
+
+New lesson headings also produce distinct rule, example and mistake branches in the existing mindmap engine; a regression test covers all 165 topics.

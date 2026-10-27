@@ -186,11 +186,11 @@ for title in titles:
  r=rows[title]; levels=[k for k,v in spec.items() if title in v.split('|')]; ident='elio-grammar-'+hashlib.sha256(title.encode()).hexdigest()[:16]
  # Original prose and examples above; extended guides are Elio's existing authored content.
  guide=book[r['guide']]
- content=f"## {title}\n{r['rule']}\n\n### Câu mẫu & nghĩa Việt\n**{r['de']}**\n→ {r['vi']}\n\n### Bẫy, nguyên nhân & cách tránh\n{r['trap']}\n\n### Thực hành có phân tích\nBài tập bên dưới kiểm tra đúng cấu trúc này. Sau khi trả lời, đọc lý do của từng lựa chọn; câu dựng lại yêu cầu đúng câu mẫu đã cho và toàn bộ từ gợi ý. Các cách diễn đạt khác có thể hợp ngữ pháp nhưng không thuộc đáp án của dạng tái tạo này."
+ content=f"## {title}\n### Quy tắc & cách dùng\n{r['rule']}\n\n### Ví dụ Đức–Việt\n> **{r['de']}**\n> → {r['vi']}\n\n### Lỗi · Bẫy, nguyên nhân & cách tránh\n{r['trap']}\n\n### Thực hành có phân tích\nBài tập bên dưới kiểm tra đúng cấu trúc này. Sau khi trả lời, đọc lý do của từng lựa chọn; câu dựng lại yêu cầu đúng câu mẫu đã cho và toàn bộ từ gợi ý. Các cách diễn đạt khác có thể hợp ngữ pháp nhưng không thuộc đáp án của dạng tái tạo này."
  exercises=[dict(type='fill',question=r['question'],answers=[r['answer']],explanation=r['rule']+' '+r['trap']),dict(type='quiz',question=r['question'],options=[r['bad1'],r['answer'],r['bad2']],answers=[r['answer']],explanation=f"Đúng: {r['answer']}. {r['rule']}\nKhông chọn {r['bad1']}: {r['why1']}\nKhông chọn {r['bad2']}: {r['why2']}"),dict(type='build',question='Tái tạo đúng câu mẫu đã học: '+r['vi'],tokens=list(reversed(r['de'].split())),answers=[r['de']],explanation='Câu mẫu: '+r['de']+' → '+r['vi']+' '+r['trap'])]
  if title in advanced:
   heading,theory,exde,exvi,question,answer,why=advanced[title]
-  content+='\n\n### C1 · '+heading+'\n'+theory+'\n\n**'+exde+'** → '+exvi
+  content+='\n\n### C1 · Cấu trúc nâng cao · '+heading+'\n'+theory+'\n\n**'+exde+'** → '+exvi
   exercises.append(dict(type='fill',question='C1 · '+question,answers=[answer],explanation=why))
  for e in exercises:e.update(origin='authored',answerSource='authored')
  items.append(dict(id=ident,collectionId='elio-grammar-atlas-v1',title=title,subtitle=labels.get(title,''),levels=levels,level=levels[0],group=group(title),content=content,exercises=exercises,atlasGuide=dict(title=guide['title'],content=guide['content']),origin='elio-authored',reviewSources=[{'title':'IDS grammis','url':'https://grammis.ids-mannheim.de/'},{'title':'Goethe: Deutsche Grammatik','url':'https://www.goethe.de/ins/de/de/prf/grm.html'}]))
