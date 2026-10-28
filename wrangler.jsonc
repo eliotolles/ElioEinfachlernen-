@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "elio-einfach",
+  "name": "elio-einfach-lernen",
   "main": "cloudflare/worker.mjs",
   "compatibility_date": "2026-10-18",
   "workers_dev": true,
