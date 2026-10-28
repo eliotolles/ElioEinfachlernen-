@@ -141,7 +141,10 @@ const Account=parentAccount||{profile:null,records:{},shared:{},config:{},pendin
   const owner=this.current();if(!owner)return false;
   if(!names&&this.loaded&&/(?:^|\/)hoeren(?:\.html)?$/.test(location.pathname))names=['listeningV2','listeningLibraryV2','settings'];
   const serial=this.refreshSerial=(this.refreshSerial||0)+1,beforeRecords={...this.records},beforeShared={...this.shared};
-  const data=await this.request('/api/state'+(names?'?keys='+encodeURIComponent(names.join(',')):''));
+  const params=[];if(names)params.push('keys='+encodeURIComponent(names.join(',')));
+  // Versions refer only to hydrated server records, never pending local edits.
+  if(this.loaded){const versions=source=>Object.fromEntries(Object.entries(source).filter(([name,row])=>(!names||names.includes(name))&&Number.isSafeInteger(row.version)).map(([name,row])=>[name,row.version]));params.push('versions='+encodeURIComponent(JSON.stringify({records:versions(beforeRecords),shared:versions(beforeShared)})));}
+  const data=await this.request('/api/state'+(params.length?'?'+params.join('&'):''));
   if(this.current()!==owner||data.user?.id!==owner)return false;
   const old=JSON.stringify([this.records,this.shared,this.config]);
   this.refreshApplied ||= {};
@@ -149,10 +152,10 @@ const Account=parentAccount||{profile:null,records:{},shared:{},config:{},pendin
   for(const name of keys){
    if((this.refreshApplied[name]||0)>serial)continue;
    this.refreshApplied[name]=serial;
-   for(const [target,incoming,before]of [[this.records,data.records,beforeRecords],[this.shared,data.shared,beforeShared]]){
+   for(const [target,incoming,before,scope]of [[this.records,data.records,beforeRecords,'records'],[this.shared,data.shared,beforeShared,'shared']]){
     const next=incoming[name],current=target[name];
     if(next){if(!current||next.version>=current.version)target[name]=next;}
-    else if(current===before[name])delete target[name];
+    else if(current===before[name]&&(!data.delta||!data.present?.[scope]?.includes(name)))delete target[name];
    }
   }
   if((this.profileRefreshSerial||0)<=serial){this.profileRefreshSerial=serial;this.profile=data.user;this.config=data.config;}
@@ -169,7 +172,7 @@ const Account=parentAccount||{profile:null,records:{},shared:{},config:{},pendin
   const work=this.flushOnce();this.flushPromise=work;
   try{return await work;}finally{if(this.flushPromise===work)this.flushPromise=null;}
  },
- async flushOnce(){const owner=this.current();if(this.syncing||!this.current()||!navigator.onLine){this.status('Chờ kết nối');return;}if(!Object.keys(this.pending).length&&Date.now()-(this.lastRefresh||0)<60000)return;this.syncing=true;try{for(const [key,job]of Object.entries(this.pending)){try{const result=await this.request(job.shared?'/api/shared':'/api/state','PUT',{name:job.name,value:job.value,version:job.version});if(this.current()!==owner)return;const target=job.shared?this.shared:this.records;if(!target[job.name]||target[job.name].version<=result.version)target[job.name]={value:job.value,version:result.version};if(this.pending[key]?.stamp===job.stamp)delete this.pending[key];else if(this.pending[key])this.pending[key].version=result.version;this.persist();}catch(e){if(this.current()!==owner)return;if(e.data?.code==='ACCOUNT_CHANGED'){if(this.pending[key])this.pending[key].error=e.message;await this.persist();break;}if(e.status===409){const current=this.pending[key];const latest=e.data.latest;if(current&&JSON.stringify(current.value)===JSON.stringify(latest?.value)){(job.shared?this.shared:this.records)[job.name]=latest;delete this.pending[key];}else if(current){this.conflicts[key]={...current,latest};delete this.pending[key];await this.reconcileCaptions();}this.persist();}else{if(this.pending[key])this.pending[key].error=e.message;this.persist();this.status(e.message);if(e.offline||[401,403,428].includes(e.status))break;}}}if(!Object.keys(this.pending).length)await this.refresh();this.status(Object.keys(this.conflicts).length?'Có xung đột · Mở Cài đặt':Object.keys(this.pending).length?(Object.values(this.pending).find(j=>j.error)?.error||'Chờ đồng bộ'):'Đã đồng bộ ✓');}catch(e){if(this.current()===owner)this.status(e.message);}finally{this.syncing=false;}},
+ async flushOnce(){const owner=this.current();if(this.syncing||!this.current()||!navigator.onLine){this.status('Chờ kết nối');return;}if(!Object.keys(this.pending).length&&Date.now()-(this.lastRefresh||0)<120000)return;this.syncing=true;try{for(const [key,job]of Object.entries(this.pending)){try{const result=await this.request(job.shared?'/api/shared':'/api/state','PUT',{name:job.name,value:job.value,version:job.version});if(this.current()!==owner)return;const target=job.shared?this.shared:this.records;if(!target[job.name]||target[job.name].version<=result.version)target[job.name]={value:job.value,version:result.version};if(this.pending[key]?.stamp===job.stamp)delete this.pending[key];else if(this.pending[key])this.pending[key].version=result.version;this.persist();}catch(e){if(this.current()!==owner)return;if(e.data?.code==='ACCOUNT_CHANGED'){if(this.pending[key])this.pending[key].error=e.message;await this.persist();break;}if(e.status===409){const current=this.pending[key];const latest=e.data.latest;if(current&&JSON.stringify(current.value)===JSON.stringify(latest?.value)){(job.shared?this.shared:this.records)[job.name]=latest;delete this.pending[key];}else if(current){this.conflicts[key]={...current,latest};delete this.pending[key];await this.reconcileCaptions();}this.persist();}else{if(this.pending[key])this.pending[key].error=e.message;this.persist();this.status(e.message);if(e.offline||[401,403,428].includes(e.status))break;}}}if(!Object.keys(this.pending).length)await this.refresh();this.status(Object.keys(this.conflicts).length?'Có xung đột · Mở Cài đặt':Object.keys(this.pending).length?(Object.values(this.pending).find(j=>j.error)?.error||'Chờ đồng bộ'):'Đã đồng bộ ✓');}catch(e){if(this.current()===owner)this.status(e.message);}finally{this.syncing=false;}},
  async mergeFeedbackConflict(key){if(this.syncing)throw Error('Đang đồng bộ. Chờ vài giây rồi thử gộp lại.');const c=this.conflicts[key];if(!c||c.name!=='writingFeedback'||c.shared)throw Error('Chỉ hỗ trợ gộp bài chữa viết cá nhân.');const value=mergeWritingFeedback(c.value,c.latest?.value||{});await AccountCache.write(this.cacheKey('conflict-backup:'+Date.now()+':'+crypto.randomUUID()),structuredClone(c));if(this.conflicts[key]!==c)throw Error('Dữ liệu đã thay đổi. Kiểm tra lại trước khi gộp.');this.pending[key]={name:c.name,value,version:c.latest?.version||0,shared:false,stamp:crypto.randomUUID()};delete this.conflicts[key];await this.persist();await this.flush();document.dispatchEvent(new Event('cloudchange'));},
  async resolve(key,useLocal){const c=this.conflicts[key];if(!c)return;await AccountCache.write(this.cacheKey('conflict-backup:'+Date.now()),c);if(useLocal)this.pending[key]={...c,version:c.latest?.version||0,stamp:crypto.randomUUID()};else{(c.shared?this.shared:this.records)[c.name]=c.latest||{value:null,version:0};}delete this.conflicts[key];this.persist();await this.flush();document.dispatchEvent(new Event('cloudchange'));}
 };
@@ -196,7 +199,7 @@ Account.ready=typeof parentAccount!=='undefined'&&parentAccount?Account.ready:(a
   return false;
  }
 })();
-window.addEventListener('online',()=>Account.flush());window.addEventListener('storage',e=>{if(e.key==='elio:logout'){Account.profile=null;Account.redirectToLogin();}});if(!parentAccount)setInterval(()=>{if(Account.current())Account.flush();},15000);
+window.addEventListener('online',()=>Account.flush());window.addEventListener('storage',e=>{if(e.key==='elio:logout'){Account.profile=null;Account.redirectToLogin();}});if(!parentAccount)setInterval(()=>{if(Account.current()&&(document.visibilityState!=='hidden'||Object.keys(Account.pending).length))Account.flush();},30000);
 window.ElioSharedAccount=Account;
 
 
