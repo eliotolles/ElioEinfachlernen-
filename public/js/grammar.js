@@ -14,7 +14,7 @@ function materializeGrammarC1(){
 }
 
 function grammarItems(){
- const levels=['A1','A2','B1','B2','C1'];
+ const levels=['A1','A2','B1','B2','C1','C2'];
  const imported=ImportHub.collections('grammar').flatMap(c=>c.items.map(l=>({...l,collectionId:c.id,level:levels.includes(l.level)?l.level:levels.includes(c.level)?c.level:(String(c.name||'').match(/(?:^|[^a-z0-9])(a1|a2|b1|b2|c1)(?=$|[^a-z0-9])/i)?.[1]||'').toUpperCase()})));
  const old=imported.filter(item=>item.collectionId!=='elio-grammar-atlas-v1');
  const pack=typeof ElioGrammarC1Pack==='undefined'?null:ElioGrammarC1Pack;
@@ -215,3 +215,5 @@ function decorateGrammarAnswer(result){
 
 
 
+
+GrammarImport.mountManual();
