@@ -12,18 +12,19 @@ const ListeningTranscripts={
    for(const line of text.split('\n').map(l=>l.trim()).filter(Boolean)){const m=line.match(/^(\d{1,3}:\d{2}(?::\d{2})?)(?:\s+(.+))?$/);if(m){current={start:time(m[1]),text:m[2]||''};cues.push(current);}else if(current)current.text+=(current.text?' ':'')+line;else throw Error('Bản chép lời cần có mốc như 0:10 trước mỗi đoạn.');}
    for(let i=0;i<cues.length;i++)cues[i].end=cues[i+1]?.start??Number(duration);
   }
-  if(!cues.length||cues.length>1500)throw Error('Cần từ 1 đến 1500 đoạn phụ đề.');
+  if(!cues.length||cues.length>10000)throw Error('Cần từ 1 đến 10000 đoạn phụ đề.');
   if(cues.some((c,i)=>!c.text||!Number.isFinite(c.start)||!Number.isFinite(c.end)||c.start<0||c.end<=c.start||(i&&c.start<cues[i-1].start)))throw Error('Kiểm tra thứ tự mốc, nội dung và thời điểm kết thúc video; chưa thay phụ đề cũ.');
   return cues;
  },
  toSrt(cues){const time=n=>{const ms=Math.round(n*1000);return [Math.floor(ms/3600000),Math.floor(ms/60000)%60,Math.floor(ms/1000)%60].map(n=>String(n).padStart(2,'0')).join(':')+','+String(ms%1000).padStart(3,'0');};return cues.map((c,i)=>(i+1)+'\n'+time(c.start)+' --> '+time(c.end)+'\n'+c.text).join('\n\n')+'\n';},
+ toVtt(cues){const time=n=>{const ms=Math.round(n*1000);return [Math.floor(ms/3600000),Math.floor(ms/60000)%60,Math.floor(ms/1000)%60].map(n=>String(n).padStart(2,'0')).join(':')+'.'+String(ms%1000).padStart(3,'0');};return 'WEBVTT\n\n'+cues.map(c=>time(c.start)+' --> '+time(c.end)+'\n'+c.text).join('\n\n')+'\n';},
  create({videos,user,request,save,transcribe,duration,changed=()=>{},sleep=ms=>new Promise(r=>setTimeout(r,ms)),lock}){
-  const pending=new Set(),states=new Map(),unsaved=new Set();let running=false,paused=false,ccUnavailable=false;
+  const pending=new Set(),states=new Map(),unsaved=new Set(),captionsOnly=new Set();let running=false,paused=false,ccUnavailable=false;
   const needs=v=>v.youtubeId&&(unsaved.has(v.id)||!(v.transcriptSource==='ai'&&v.transcriptComplete)&&(!v.cues?.length||v.transcriptSource==='ai'));
   const label=v=>states.get(v?.id)||(v?.cues?.length?(v.transcriptSource==='ai'?(v.transcriptComplete?'Bản chép AI đã hoàn tất':'Bản chép AI còn dở'):'CC/SRT đã có')+' · '+v.cues.length+' câu':'Chưa có phụ đề');
   const valid=c=>Number.isFinite(c.start)&&Number.isFinite(c.end)&&c.start>=0&&c.end>c.start&&typeof c.text==='string'&&c.text.trim();
   async function saveTranscript(v,owner){unsaved.add(v.id);await save(v,owner);unsaved.delete(v.id);}
-  function enqueue(rows){for(const v of rows)if(needs(v)){pending.add(v.id);if(!states.has(v.id))states.set(v.id,'Chờ tạo bản chép lời');}changed();}
+  function enqueue(rows,options={}){for(const v of rows)if(needs(v)){pending.add(v.id);if(options.captionsOnly)captionsOnly.add(v.id);else captionsOnly.delete(v.id);if(!states.has(v.id))states.set(v.id,'Chờ tạo bản chép lời');}changed();}
   async function drain(){const owner=user();paused=false;let done=0,failed=0;
    const current=id=>user()===owner&&videos().find(v=>v.id===id);
    try{while(pending.size&&!paused&&user()===owner){const id=pending.values().next().value;pending.delete(id);let v=current(id);if(!v||!needs(v))continue;
@@ -35,11 +36,12 @@ const ListeningTranscripts={
       if(!needs(v)){states.set(id,'Đã đồng bộ '+v.cues.length+' câu');done++;changed();continue;}
      }
      let ccError;
-     if(!v.cues?.length&&!ccUnavailable){states.set(id,'Đang lấy CC tiếng Đức…');changed();try{
-      const result=await request(v.youtubeId);v=current(id);if(!v)return;if(v.cues?.length)continue;
-      if(!result.available||!Array.isArray(result.cues)||!result.cues.length||!result.cues.every(valid)){const e=Error(result.reason||'CC chưa lấy được');e.code=result.code;throw e;}
-      v.cues=result.cues;v.transcriptSource=result.source||'youtube';v.transcriptComplete=true;await saveTranscript(v,owner);states.set(id,'Đã lưu '+v.cues.length+' câu CC/SRT');done++;changed();if(pending.size&&!paused)await sleep(3500);continue;
-     }catch(e){if(unsaved.has(id))throw e;ccError=e;if(['CAPTIONS_REDIRECT_ERROR','CAPTIONS_ACCESS_REQUIRED','CAPTIONS_CONSENT'].includes(e.code))ccUnavailable=true;}}
+     if((!v.cues?.length||captionsOnly.has(id))&&!ccUnavailable){states.set(id,'Đang lấy CC tiếng Đức…');changed();try{
+      const result=await request(v.youtubeId);v=current(id);if(!v)return;if(v.cues?.length&&v.transcriptSource!=='ai')continue;
+      if(!result.available||!Array.isArray(result.cues)||!result.cues.length||!result.cues.every(valid)){const e=Error(result.reason||'CC chưa lấy được');e.code=result.code;e.retryable=!!result.retryable;e.allowAiFallback=result.allowAiFallback;throw e;}
+      v.cues=result.cues;v.transcriptSource=result.source||'youtube';v.transcriptVia=result.via||'';v.transcriptLanguage=result.language||'de';v.transcriptComplete=true;await saveTranscript(v,owner);states.set(id,'Đã lưu '+v.cues.length+' câu CC/SRT');done++;changed();if(pending.size&&!paused)await sleep(3500);continue;
+     }catch(e){if(unsaved.has(id))throw e;ccError=e;if(e.allowAiFallback!==false&&['CAPTIONS_REDIRECT_ERROR','CAPTIONS_ACCESS_REQUIRED','CAPTIONS_CONSENT'].includes(e.code))ccUnavailable=true;}}
+     if(ccError?.allowAiFallback===false||captionsOnly.has(id))throw ccError||Error('Chưa lấy được phụ đề; bản cũ được giữ nguyên.');
      if(!transcribe||!duration)throw ccError||Error('Chưa lấy được CC từ máy chủ.');
      v=current(id);if(!v)return;if(v.cues?.length&&v.transcriptSource!=='ai')continue;
      states.set(id,'CC chưa lấy được · chuẩn bị AI nghe video…');changed();
@@ -53,7 +55,7 @@ const ListeningTranscripts={
       let result;for(let attempt=0;attempt<3;attempt++){try{result=await transcribe(v.youtubeId,start,end);break;}catch(e){if(!(e.status===429||e.data?.retryable)||attempt===2)throw e;for(let remaining=30;remaining>0;remaining--){if(paused||!current(id))throw Error('Đã tạm dừng.');states.set(id,'AI tạm bận · tự thử tiếp sau '+remaining+' giây · giữ tới giây '+start);changed();await sleep(1000);}}}v=current(id);if(!v)return;if(v.cues?.length&&v.transcriptSource!=='ai')break;
       if(result.start!==start||result.end!==end||!Array.isArray(result.cues)||!result.cues.every(c=>valid(c)&&c.start>=start&&c.end<=end)||(!result.cues.length&&result.status!=='no_speech'))throw Error('AI chưa trả đoạn hợp lệ; giữ tiến độ để thử tiếp.');
       const merged=[...(v.cues||[]),...result.cues].sort((a,b)=>a.start-b.start).filter((c,i,a)=>!i||c.start!==a[i-1].start||c.text!==a[i-1].text);
-      if(merged.length>1500)throw Error('Vượt 1500 câu; bản đã lưu được giữ nguyên.');
+      if(merged.length>10000)throw Error('Vượt 10000 câu; bản đã lưu được giữ nguyên.');
       v.cues=merged;v.transcriptSource='ai';v.processedUntil=end;v.transcriptComplete=end>=total;
       await saveTranscript(v,owner);if(!current(id))return;start=end;
       states.set(id,'Đã lưu '+Math.ceil(end)+' / '+Math.ceil(total)+' giây · '+v.cues.length+' câu AI');changed();
@@ -61,7 +63,7 @@ const ListeningTranscripts={
      }
      if(paused){pending.add(id);states.set(id,'Đã tạm dừng · giữ tới giây '+Math.floor(start));}
      else if(v.transcriptComplete){states.set(id,'Hoàn tất bản chép AI · '+v.cues.length+' câu · cần kiểm tra độ chính xác');done++;}
-    }catch(e){if(user()!==owner)return;states.set(id,'Chưa hoàn tất: '+e.message);if(paused){pending.add(id);}else failed++;if(transcribe&&(e.status===429||e.data?.retryable||/chưa cấu hình AI|cấu hình AI phù hợp/i.test(e.message))){paused=true;pending.add(id);}
+    }catch(e){if(user()!==owner)return;states.set(id,'Chưa hoàn tất: '+e.message);if(paused){pending.add(id);}else failed++;if(e.retryable||transcribe&&(e.status===429||e.data?.retryable||/chưa cấu hình AI|cấu hình AI phù hợp/i.test(e.message))){paused=true;pending.add(id);}
      if(!transcribe&&ccUnavailable){paused=true;for(const next of pending)states.set(next,'Tạm dừng: máy chủ chưa truy cập được YouTube. Không kết luận video thiếu CC.');}
     }
     changed();if(pending.size&&!paused)await sleep(3500);

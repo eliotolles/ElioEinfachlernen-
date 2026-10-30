@@ -15,3 +15,13 @@ for(const source of ['cc','ai'])test(source+' save failure retries synchronizati
  q.enqueue([row]);await q.start();assert.equal(stored,undefined);assert.match(q.label(row),/offline/);
  q.enqueue([row]);await q.start();assert.equal(writes,2);assert.equal(requests,1);assert.equal(transcriptions,source==='ai'?1:0);assert.equal(stored.cues[0].text,'Hallo!');assert.equal(stored.transcriptComplete,true);assert(!q.label(row).includes('offline'));
 });
+
+test('CC-only lookup never invokes AI and explicit AI can resume the same video',async()=>{
+ const row={id:'cc',youtubeId:'aaaaaaaaaaa',cues:[]};let ai=0,writes=0;
+ const q=api.create({videos:()=>[row],user:()=> 'u',request:async()=>({available:false,reason:'CC unavailable'}),duration:async()=>10,transcribe:async(id,start,end)=>{ai++;return {start,end,cues:[{start,end,text:'Hallo!'}]};},save:async()=>writes++,sleep:async()=>{}});
+ q.enqueue([row],{captionsOnly:true});await q.start();assert.equal(ai,0);assert.equal(writes,0);assert.match(q.label(row),/CC unavailable/);
+ q.enqueue([row],{captionsOnly:false});await q.start();assert.equal(ai,1);assert.equal(writes,1);assert.equal(row.transcriptComplete,true);
+});
+test('listening exposes separate CC controls for a video and a whole collection',()=>{
+ const source=fs.readFileSync('public/js/listening-v2.js','utf8');assert.match(source,/Lấy phụ đề có sẵn \(CC\)/);assert.match(source,/Lấy \/ tiếp tục phụ đề cả bộ/);assert.match(source,/queueMissing\(rows,allowAi=false\)/);assert.match(source,/root.append\(captionBatch\(rows\)\)/);
+});
