@@ -24,7 +24,7 @@ function mergeCaptionLibraries(local,remote){
  }return result;
 }
 const parentAccount=(()=>{try{return window.parent!==window&&window.parent.ElioNavigationHost?window.parent.ElioSharedAccount:null;}catch{return null;}})();
-const STUDY_BACKUP_KEYS=['learningLab','wc','drafts','vocab','history','settings','events','lessons','grammarAttempts','materials','conversations','srs','reviewHistory','examAttempts','activeExam','writingFeedback','vocabSession','grammarSession','chatDrafts','examMediaIndex','listeningV2','listeningLibraryV2'];
+const STUDY_BACKUP_KEYS=['studyPlan','learningLab','wc','drafts','vocab','history','settings','events','lessons','grammarAttempts','materials','conversations','srs','reviewHistory','examAttempts','activeExam','writingFeedback','vocabSession','grammarSession','chatDrafts','examMediaIndex','listeningV2','listeningLibraryV2'];
 const Account=parentAccount||{profile:null,records:{},shared:{},config:{},pending:{},conflicts:{},syncing:false,online:true,
  users(){try{return JSON.parse(localStorage.getItem('dt:_users')||'{}');}catch{return {};}},
  current(){return this.profile?.id||null;},

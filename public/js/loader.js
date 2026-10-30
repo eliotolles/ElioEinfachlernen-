@@ -1,7 +1,7 @@
 const appScripts=JSON.parse(document.currentScript.dataset.scripts);
 const importLibraries=appScripts.filter(src=>/^https?:/.test(src)),libraryLoads=new Map();
 window.ensureImportLibrary=async ext=>{const src=importLibraries.find(src=>/^(xlsx|xls|csv)$/.test(ext)?src.includes('xlsx'):ext==='docx'?src.includes('mammoth'):ext==='pdf'?src.includes('pdf.min.js'):false);if(!src)return;if(!libraryLoads.has(src)){const promise=new Promise((resolve,reject)=>{const script=document.createElement('script');script.src=src;script.onload=resolve;script.onerror=()=>{libraryLoads.delete(src);reject(Error('Không tải được thư viện đọc file. Kiểm tra mạng rồi thử lại.'));};document.head.append(script);});libraryLoads.set(src,promise);}await libraryLoads.get(src);};
-const localScripts=[...appScripts.filter(src=>!/^https?:/.test(src)),'js/pdf-tools.js','js/cloud-ui.js','js/navigation.js','js/book-ui.js','js/book-atlas.js'];
+const localScripts=[...appScripts.filter(src=>!/^https?:/.test(src)),'js/pdf-tools.js','js/cloud-ui.js','js/navigation.js','js/book-ui.js','js/book-atlas.js','js/study-planner.js'];
 const assetVersion=document.querySelector('meta[name="elio-assets"]')?.content;
 let assetVersions={};try{assetVersions=JSON.parse(document.getElementById?.('elio-asset-map')?.textContent||'{}');}catch{}
 const assetURL=src=>{const version=assetVersions[src]||assetVersion;return version?src+'?v='+encodeURIComponent(version):src;};
