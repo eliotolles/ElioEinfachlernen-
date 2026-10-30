@@ -6,3 +6,13 @@ test('minimum daily budget remains valid; no automatic passing claim',()=>{const
 test('rejects impossible level pairs and unsupported TestDaF targets',()=>{assert.throws(()=>C.build({...p,current:'C1',target:'A1'}));assert.throws(()=>C.build({...p,exam:'TestDaF',target:'A1'}));assert.throws(()=>C.build({...p,days:[]}));assert.throws(()=>C.build({...p,date:'2020-01-01'}));});
 test('partial AI response is rejected instead of replacing saved plan',()=>{const plan=C.build(p);assert.throws(()=>C.normalizeAI({weeks:[{week:1,topic:'x',goal:'y'}]},plan));assert.equal(plan.source,'basic');assert.equal(C.normalizeAI({weeks:plan.weekly.map(w=>({...w,topic:'Perfekt',goal:'Đặt 5 câu'}))},plan).length,12);});
 test('private plan included in backup and server allowlist; preserves grader',()=>{assert.match(fs.readFileSync('public/js/session.js','utf8'),/STUDY_BACKUP_KEYS=\['studyPlan'/);assert.match(fs.readFileSync('worker/index.js','utf8'),/DATA_KEYS=new Set\(\['studyPlan'/);assert.match(fs.readFileSync('public/js/study-planner.js','utf8'),/Account.refresh\(\['studyPlan'\]\)/);});
+
+test('planner feature is accepted by backend routing and rejects unknown features',()=>{
+ const source=fs.readFileSync('worker/index.js','utf8');
+ const start=source.indexOf('const AI_FEATURES=');const end=source.indexOf('function aiCompatible',start);
+ const backend=vm.createContext({error:(status,message)=>Object.assign(new Error(message),{status})});
+ vm.runInContext(source.slice(start,end)+';globalThis.route=aiFeatureInput;',backend);
+ assert.equal(backend.route({feature:'study.plan',prompt:'Plan'}).task,'text');
+ assert.equal(backend.route({feature:'writing.feedback'}).task,'text');
+ assert.throws(()=>backend.route({feature:'unknown.feature'}),/Công việc AI không hợp lệ/);
+});
