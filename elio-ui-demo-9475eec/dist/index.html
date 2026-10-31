@@ -1,0 +1,2044 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elio Einfach — Learn German. Grow Further.</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  
+  
+  
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: #f0f3fa;
+      color: #0f172a;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    button, input, select, textarea {
+      font-family: inherit;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* ══════════════════════════════════════════════════════════
+       APP SHELL: DỌC SIDEBAR (LEFT) + MAIN WORKSPACE (RIGHT)
+       ══════════════════════════════════════════════════════════ */
+    .app-layout {
+      display: flex;
+      min-height: 100vh;
+      width: 100%;
+    }
+
+    /* ── VERTICAL SIDEBAR ─────────────────────────────────────── */
+    .sidebar-vertical {
+      width: 260px;
+      background: #ffffff;
+      border-right: 1px solid #e2e8f0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 24px 16px;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      flex-shrink: 0;
+      box-shadow: 4px 0 24px rgba(15, 23, 42, 0.02);
+      z-index: 100;
+      transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s ease, width 0.28s ease;
+    }
+
+    /* ── SIDEBAR AUTO-HIDE / AUTO-SHOW SYSTEM ── */
+    body.sidebar-autohide .sidebar-vertical {
+      position: fixed;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      transform: translateX(-100%);
+      box-shadow: 8px 0 32px rgba(15, 23, 42, 0.18);
+      z-index: 1000;
+    }
+
+    body.sidebar-autohide .sidebar-vertical:hover,
+    body.sidebar-autohide .sidebar-vertical.sidebar-revealed {
+      transform: translateX(0);
+    }
+
+    body.sidebar-autohide .main-viewport {
+      max-width: 100vw;
+      width: 100%;
+      padding-left: 32px;
+    }
+
+    /* Edge Hover Sensor at left screen edge */
+    .sidebar-edge-sensor {
+      display: none;
+      position: fixed;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 18px;
+      z-index: 999;
+      background: transparent;
+      transition: background 0.2s ease;
+      cursor: e-resize;
+    }
+    body.sidebar-autohide .sidebar-edge-sensor {
+      display: block;
+    }
+    body.sidebar-autohide .sidebar-edge-sensor:hover {
+      background: linear-gradient(to right, rgba(15, 169, 104, 0.3), transparent);
+    }
+
+    /* Floating toggle button when sidebar is auto-hidden */
+    .floating-sidebar-btn {
+      display: none;
+      position: fixed;
+      left: 14px;
+      top: 14px;
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      color: #0f172a;
+      font-size: 18px;
+      cursor: pointer;
+      z-index: 990;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.1);
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+    .floating-sidebar-btn:hover {
+      background: #0fa968;
+      color: #ffffff;
+      border-color: #0fa968;
+      transform: scale(1.06);
+    }
+    body.sidebar-autohide .floating-sidebar-btn {
+      display: flex;
+    }
+
+    /* Mobile drawer backdrop */
+    .sidebar-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.45);
+      backdrop-filter: blur(2px);
+      z-index: 995;
+    }
+    body.sidebar-autohide.sidebar-mobile-open .sidebar-backdrop {
+      display: block;
+    }
+
+    /* Brand Logo */
+    .sidebar-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0 8px 20px 8px;
+      border-bottom: 1px solid #f1f5f9;
+      cursor: pointer;
+    }
+    .brand-logo-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: #0fa968;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      font-weight: 800;
+      font-style: italic;
+      box-shadow: 0 4px 14px rgba(15, 169, 104, 0.28);
+      flex-shrink: 0;
+    }
+    .brand-text h1 {
+      font-size: 16px;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1.15;
+    }
+    .brand-text span {
+      font-size: 11px;
+      color: #94a3b8;
+      font-weight: 500;
+    }
+
+    /* Profile Badge in Sidebar */
+    .sidebar-profile-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      margin: 16px 0;
+      border-radius: 16px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .sidebar-profile-card:hover {
+      background: #f1f5f9;
+    }
+    .avatar-wrap {
+      position: relative;
+      width: 38px;
+      height: 38px;
+      flex-shrink: 0;
+    }
+    .avatar-img {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .online-dot {
+      position: absolute;
+      bottom: -1px;
+      right: -1px;
+      width: 10px;
+      height: 10px;
+      background: #10b981;
+      border: 2px solid #ffffff;
+      border-radius: 50%;
+    }
+    .user-name-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #0f172a;
+      line-height: 1.15;
+    }
+    .user-sub-label {
+      font-size: 11px;
+      color: #94a3b8;
+      font-weight: 500;
+      margin-top: 2px;
+    }
+
+    /* Navigation Stream (Vertical items) */
+    .sidebar-section-tag {
+      font-size: 10.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #94a3b8;
+      padding: 0 10px;
+      margin-bottom: 8px;
+    }
+    .sidebar-nav-list {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .sidebar-nav-btn {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      border-radius: 14px;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #475569;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      background: transparent;
+      border: 1px solid transparent;
+      width: 100%;
+      text-align: left;
+    }
+    .sidebar-nav-btn:hover {
+      background: #f8fafc;
+      color: #0f172a;
+      transform: translateX(2px);
+    }
+    .sidebar-nav-btn.active {
+      background: #e6f7ef;
+      color: #04057;
+      font-weight: 700;
+      border-color: #bbf7d0;
+    }
+    .sidebar-nav-icon {
+      font-size: 18px;
+      width: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .sidebar-nav-badge {
+      margin-left: auto;
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 999px;
+      background: #f1f5f9;
+      color: #64748b;
+    }
+    .sidebar-nav-btn.active .sidebar-nav-badge {
+      background: #10b981;
+      color: #ffffff;
+    }
+
+    /* Sidebar Bottom CTA & Utilities */
+    .sidebar-bottom-block {
+      padding-top: 16px;
+      border-top: 1px solid #f1f5f9;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .sidebar-streak-card {
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #eaf8f0 0%, #d1fae5 100%);
+      border: 1px solid #bbf7d0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .sidebar-streak-card span.flame-icon {
+      font-size: 22px;
+    }
+    .sidebar-streak-card strong {
+      font-size: 12.5px;
+      font-weight: 800;
+      color: #065f46;
+      display: block;
+    }
+    .sidebar-streak-card small {
+      font-size: 10.5px;
+      color: #04057;
+    }
+    .sidebar-util-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 4px;
+    }
+    .lang-pill {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #334155;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+    .util-circle-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .util-circle-btn:hover {
+      background: #f1f5f9;
+      transform: scale(1.05);
+    }
+
+    /* ── RIGHT MAIN WORKSPACE ─────────────────────────────────── */
+    .main-viewport {
+      flex: 1;
+      padding: 20px 28px 48px 28px;
+      max-width: calc(100vw - 260px);
+      overflow-y: auto;
+    }
+
+    /* Top Search & Telemetry Bar */
+    .topbar-stream {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+    .topbar-search-box {
+      flex: 1;
+      max-width: 480px;
+      position: relative;
+    }
+    .topbar-search-input {
+      width: 100%;
+      padding: 10px 42px 10px 16px;
+      border-radius: 14px;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      font-size: 13px;
+      color: #0f172a;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+      outline: none;
+      transition: border 0.2s;
+    }
+    .topbar-search-input:focus {
+      border-color: #0fa968;
+    }
+    .kbd-shortcut {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 10.5px;
+      font-weight: 700;
+      color: #94a3b8;
+      background: #f1f5f9;
+      padding: 2px 6px;
+      border-radius: 6px;
+      border: 1px solid #e2e8f0;
+    }
+    .topbar-search-dropdown {
+      display: none;
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      width: 100%;
+      max-height: 380px;
+      overflow-y: auto;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      box-shadow: 0 12px 32px rgba(15, 23, 42, 0.12);
+      padding: 12px;
+      z-index: 60;
+    }
+
+    .topbar-telemetry-cluster {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .telemetry-chip {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      border-radius: 9999px;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      font-size: 12.5px;
+      font-weight: 700;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+      cursor: pointer;
+    }
+    .telemetry-chip-flame {
+      color: #e11d48;
+    }
+    .telemetry-chip-ai {
+      color: #7c3aed;
+    }
+
+    /* ══════════════════════════════════════════════════════════
+       HERO & DASHBOARD COMPONENTS (Từ ảnh mẫu của User)
+       ══════════════════════════════════════════════════════════ */
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 2.15fr 1fr;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+    .hero-banner-card {
+      background: linear-gradient(108deg, #fef1ea 0%, #fff7ed 32%, #e0f2fe 72%, #ecfdf5 100%);
+      border-radius: 28px;
+      overflow: hidden;
+      display: flex;
+      position: relative;
+      min-height: 250px;
+      box-shadow: 0 4px 24px rgba(15, 23, 42, 0.03);
+      border: 1px solid rgba(255,255,255,0.8);
+    }
+    .hero-left-text {
+      width: 52%;
+      padding: 34px 28px 32px 34px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      z-index: 2;
+    }
+    .hero-headline {
+      font-size: 34px;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1.18;
+      letter-spacing: -0.5px;
+    }
+    .hero-slogan {
+      font-size: 14px;
+      color: #475569;
+      margin: 10px 0 22px 0;
+      font-weight: 500;
+      line-height: 1.4;
+    }
+    .btn-hero-cta {
+      align-self: flex-start;
+      background: #0f6f43;
+      color: #ffffff;
+      padding: 13px 26px;
+      border-radius: 9999px;
+      font-size: 14px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 6px 18px rgba(15, 111, 67, 0.35);
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-hero-cta:hover {
+      background: #0a5231;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 22px rgba(15, 111, 67, 0.45);
+    }
+    .hero-right-visual {
+      width: 48%;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-boy-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 15% center;
+      display: block;
+    }
+    .hero-speech-bubble {
+      position: absolute;
+      top: 26px;
+      right: 28px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      border: 1px solid #e2e8f0;
+      padding: 10px 16px;
+      border-radius: 18px;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #04057;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+      max-width: 170px;
+      line-height: 1.35;
+      animation: floatBubble 4s ease-in-out infinite alternate;
+    }
+    @keyframes floatBubble {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-6px); }
+    }
+
+    /* Top Right: Lịch học tuần này */
+    .schedule-card {
+      background: #ffffff;
+      border-radius: 28px;
+      padding: 22px 20px;
+      box-shadow: 0 4px 24px rgba(15, 23, 42, 0.03);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border: 1px solid rgba(255,255,255,0.8);
+    }
+    .schedule-journey {
+      position: relative;
+      overflow: hidden;
+      margin: 2px 0 12px;
+      padding: 13px 12px 11px;
+      border-radius: 20px;
+      color: #fff;
+      background: linear-gradient(135deg, #17283e 0%, #243d5e 58%, #314e70 100%);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.12), 0 8px 22px rgba(23,40,62,.13);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 150px;
+    }
+    .schedule-journey:after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: .22;
+      background: radial-gradient(ellipse at 78% 5%, #93c5fd 0, transparent 35%), linear-gradient(160deg, transparent 62%, rgba(8,18,34,.5));
+    }
+    .journey-heading, .journey-stops, .journey-footer { position: relative; z-index: 1; }
+    .journey-heading { display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:13px; }
+    .journey-heading strong { font-size:12px; letter-spacing:.01em; }
+    .journey-heading span { border:1px solid rgba(255,255,255,.15); background:rgba(8,18,34,.38); border-radius:999px; padding:4px 8px; color:#bfdbfe; font-size:9px; font-weight:800; white-space:nowrap; }
+    .journey-stops { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); position:relative; }
+    .journey-stops:before { content:""; position:absolute; top:18px; left:12%; right:12%; border-top:2px dashed #78aaf5; opacity:.95; }
+    .journey-stop { min-width:0; display:flex; flex-direction:column; align-items:center; text-align:center; position:relative; z-index:1; }
+    .journey-stop-icon { display:grid; place-items:center; width:36px; height:36px; border:2px solid rgba(255,255,255,.86); border-radius:50%; color:#fff; font-size:16px; box-shadow:0 4px 12px rgba(5,12,24,.25); }
+    .journey-stop:nth-child(1) .journey-stop-icon { background:#df6558; }
+    .journey-stop:nth-child(2) .journey-stop-icon { background:#08a6d8; }
+    .journey-stop:nth-child(3) .journey-stop-icon { background:#3976df; }
+    .journey-stop:nth-child(4) .journey-stop-icon { background:#2d9b6b; }
+    .journey-stop strong { display:block; width:100%; margin-top:7px; color:#fff; font-size:9px; line-height:1.2; }
+    .journey-stop small { display:block; margin-top:3px; color:#cbd5e1; font-size:8px; line-height:1.15; }
+    .journey-footer { display:flex; align-items:center; justify-content:space-between; gap:6px; margin-top:11px; }
+    .journey-progress, .journey-exam-time { border-radius:999px; background:rgba(8,18,34,.68); padding:5px 8px; color:#f8fafc; font-size:9px; font-weight:800; white-space:nowrap; }
+    .journey-exam-time { color:#dbeafe; }
+    .card-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+    .card-title-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 15px;
+      font-weight: 700;
+      color: #0f172a;
+    }
+    .link-action {
+      font-size: 12px;
+      font-weight: 600;
+      color: #2563eb;
+      cursor: pointer;
+    }
+    .link-action:hover {
+      text-decoration: underline;
+    }
+
+    /* 7 Days Grid */
+    .week-days-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 6px;
+      text-align: center;
+    }
+    .day-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+    .day-name {
+      font-size: 10.5px;
+      font-weight: 600;
+      color: #94a3b8;
+    }
+    .day-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      color: #1e293b;
+    }
+    .day-num.active {
+      background: #0fa968;
+      color: #ffffff;
+      box-shadow: 0 4px 10px rgba(15, 169, 104, 0.35);
+    }
+    .day-pillar {
+      width: 100%;
+      height: 86px;
+      border-radius: 16px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 8px;
+      font-size: 14px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    .day-pillar:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.06);
+    }
+    .pillar-t2 { background: #f3e8ff; color: #9333ea; }
+    .pillar-t3 { background: #dcfce7; color: #16a34a; }
+    .pillar-t4 { background: #fef9c3; color: #ca8a04; }
+    .day-pillar.is-today { border: 2px solid #fde047; box-shadow: 0 0 0 2px rgba(253,224,71,.18); }
+    .pillar-t5 { background: #e0f2fe; color: #0284c7; }
+    .pillar-t6 { background: #fce7f3; color: #db2777; }
+    .pillar-t7 { background: #ffedd5; color: #ea580c; }
+    .pillar-cn { background: #fef08a; color: #eab308; }
+
+    /* ── STATS ROW ────────────────────────────────────────────── */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+    .stat-card-pill {
+      border-radius: 24px;
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      box-shadow: 0 4px 18px rgba(15, 23, 42, 0.02);
+      transition: all 0.2s ease;
+      position: relative;
+    }
+    .stat-card-pill:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+    }
+    .stat-card-mint { background: #eaf8f0; border: 1px solid #d1fae5; }
+    .stat-card-cream { background: #fff8eb; border: 1px solid #fef3c7; }
+    .stat-card-lavender { background: #f5f3ff; border: 1px solid #ede9fe; }
+    .stat-card-pink { background: #fff1f2; border: 1px solid #ffe4e6; }
+
+    .stat-icon-circle {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+      flex-shrink: 0;
+    }
+    .stat-number-val {
+      font-size: 24px;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1;
+    }
+    .stat-title-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: #1e293b;
+      margin: 3px 0 1px 0;
+    }
+    .stat-desc-sub {
+      font-size: 11px;
+      color: #64748b;
+      font-weight: 500;
+    }
+    .stat-corner-badge {
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      font-size: 14px;
+    }
+
+    /* ── MIDDLE ROW ───────────────────────────────────────────── */
+    .middle-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.35fr 1.1fr;
+      gap: 18px;
+      margin-bottom: 22px;
+    }
+    .middle-white-card {
+      background: #ffffff;
+      border-radius: 28px;
+      padding: 22px;
+      box-shadow: 0 4px 20px rgba(15, 23, 42, 0.03);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border: 1px solid rgba(255,255,255,0.8);
+      position: relative;
+    }
+
+    /* Circular gauge */
+    .progress-circle-wrap {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin: 16px 0 8px 0;
+    }
+    .circle-gauge {
+      width: 74px;
+      height: 74px;
+      position: relative;
+      flex-shrink: 0;
+    }
+    .circle-gauge svg {
+      transform: rotate(-90deg);
+      width: 100%;
+      height: 100%;
+    }
+    .circle-gauge-val {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 800;
+      color: #0f172a;
+    }
+    .progress-bar-bg {
+      width: 100%;
+      height: 9px;
+      border-radius: 9999px;
+      background: #f1f5f9;
+      overflow: hidden;
+      margin-top: 6px;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      border-radius: 9999px;
+      background: #10b981;
+      transition: width 0.4s ease;
+    }
+
+    /* Topic card */
+    .topic-card-body {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-top: 10px;
+    }
+    .topic-tag {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 8px;
+      background: #ede9fe;
+      color: #7c3aed;
+      font-size: 11px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .topic-headline {
+      font-size: 17px;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1.3;
+      margin-bottom: 12px;
+    }
+    .topic-notebook-img {
+      width: 130px;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.06);
+      flex-shrink: 0;
+    }
+    .topic-circle-btn {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: #0f172a;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      cursor: pointer;
+      position: absolute;
+      bottom: 22px;
+      right: 22px;
+      transition: transform 0.2s ease;
+    }
+    .topic-circle-btn:hover {
+      transform: scale(1.1);
+      background: #0fa968;
+    }
+
+    /* Today's lessons list */
+    .lesson-item-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    .lesson-item-row:last-child {
+      border-bottom: none;
+    }
+    .lesson-time-stamp {
+      font-size: 12px;
+      font-weight: 700;
+      color: #94a3b8;
+      width: 44px;
+    }
+    .lesson-icon-box {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      margin-right: 10px;
+      flex-shrink: 0;
+    }
+    .lesson-main-info {
+      flex: 1;
+    }
+    .lesson-title-txt {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #0f172a;
+      line-height: 1.2;
+    }
+    .lesson-sub-txt {
+      font-size: 11px;
+      color: #64748b;
+    }
+    .btn-play-mini {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: #f1f5f9;
+      color: #0f172a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-play-mini:hover {
+      background: #0fa968;
+      color: #ffffff;
+    }
+    .btn-check-done {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #10b981;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    /* ── BOTTOM ROW: 8 SKILL CARDS ────────────────────────────── */
+    .skills-section-header {
+      font-size: 17px;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .skills-grid-8 {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      gap: 12px;
+    }
+    .skill-card-unit {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 12px 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.03);
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+      border: 1px solid rgba(255,255,255,0.8);
+      position: relative;
+    }
+    .skill-card-unit:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+      border-color: #d1fae5;
+    }
+    .skill-icon-3d {
+      width: 76px;
+      height: 62px;
+      object-fit: contain;
+      margin-bottom: 8px;
+      transition: transform 0.2s ease;
+    }
+    .skill-card-unit:hover .skill-icon-3d {
+      transform: scale(1.08);
+    }
+    .skill-title-txt {
+      font-size: 12.5px;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1.2;
+    }
+    .skill-desc-txt {
+      font-size: 10px;
+      color: #64748b;
+      margin-top: 3px;
+      line-height: 1.3;
+    }
+    .skill-circle-arrow {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9px;
+      color: #64748b;
+      transition: all 0.2s ease;
+    }
+    .skill-card-unit:hover .skill-circle-arrow {
+      background: #0fa968;
+      color: #ffffff;
+      border-color: #0fa968;
+    }
+
+    /* ── MODAL COMPONENT ──────────────────────────────────────── */
+    .module-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(8px);
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+    .module-modal-backdrop.open {
+      display: flex;
+      opacity: 1;
+    }
+    .module-modal-card {
+      background: #ffffff;
+      width: 100%;
+      max-width: 960px;
+      max-height: 90vh;
+      border-radius: 28px;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.25);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      animation: modalSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @keyframes modalSlideUp {
+      from { transform: translateY(40px) scale(0.96); opacity: 0; }
+      to { transform: translateY(0) scale(1); opacity: 1; }
+    }
+    .modal-header-bar {
+      padding: 18px 24px;
+      border-bottom: 1px solid #f1f5f9;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #fafbfc;
+    }
+    .modal-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .modal-body-scroll {
+      padding: 24px;
+      overflow-y: auto;
+      flex: 1;
+    }
+    .btn-close-modal {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid #e2e8f0;
+      background: #ffffff;
+      color: #64748b;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 700;
+      transition: all 0.2s;
+    }
+    .btn-close-modal:hover {
+      background: #f1f5f9;
+      color: #0f172a;
+    }
+
+    /* Responsiveness */
+    @media (max-width: 1200px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .middle-grid { grid-template-columns: 1fr; }
+      .skills-grid-8 { grid-template-columns: repeat(4, 1fr); }
+      .stats-row { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 900px) {
+      .sidebar-vertical { display: none; }
+      .main-viewport { max-width: 100vw; padding: 16px; }
+      .skills-grid-8 { grid-template-columns: repeat(2, 1fr); }
+      .stats-row { grid-template-columns: 1fr; }
+      .hero-left-text { width: 100%; }
+      .hero-right-visual { display: none; }
+    }
+
+    /* ── UNIFIED FULL-PAGE WORKSPACE ROUTER ────────────────── */
+    .app-view-container {
+      display: block;
+      animation: fadeInView 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+      width: 100%;
+    }
+    @keyframes fadeInView {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .workspace-page-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 20px;
+      padding: 18px 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 20px rgba(15, 23, 42, 0.02);
+    }
+    .workspace-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 4px 10px;
+      border-radius: 8px;
+      margin-bottom: 6px;
+    }
+    .workspace-heading {
+      font-size: 22px;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: -0.5px;
+      line-height: 1.2;
+    }
+    .workspace-subheading {
+      font-size: 13px;
+      color: #64748b;
+      margin-top: 4px;
+    }
+    .btn-return-dashboard {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 12px;
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      color: #334155;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+    .btn-return-dashboard:hover {
+      background: #0fa968;
+      color: #ffffff;
+      border-color: #0fa968;
+      box-shadow: 0 4px 14px rgba(15, 169, 104, 0.25);
+      transform: translateY(-1px);
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="app-layout">
+    
+    <!-- ══════════════════════════════════════════════════════════
+         VERTICAL SIDEBAR (DỌC BÊN TRÁI)
+         ══════════════════════════════════════════════════════════ -->
+    <!-- Edge Sensor & Floating Trigger for Auto-Hide Sidebar -->
+    <div id="sidebarEdgeSensor" class="sidebar-edge-sensor" title="Rê chuột vào mép trái để mở thanh điều hướng"></div>
+    <button id="btnFloatingSidebarTrigger" class="floating-sidebar-btn" title="Mở thanh điều hướng">☰</button>
+    <div id="sidebarBackdrop" class="sidebar-backdrop"></div>
+
+    <aside class="sidebar-vertical">
+      
+      <!-- Top Section -->
+      <div>
+        <!-- Brand Logo + Auto-Hide Pin Button -->
+        <div class="sidebar-brand" style="display: flex; justify-content: space-between; align-items: center;">
+          <div style="display: flex; align-items: center; gap: 12px; cursor: pointer;">
+            <div class="brand-logo-icon">e</div>
+            <div class="brand-text">
+              <h1>Elio Einfach</h1>
+              <span>Learn German. Grow Further.</span>
+            </div>
+          </div>
+          <button id="btnPinSidebar" title="Bật/Tắt chế độ tự động ẩn hiện sidebar" style="width: 30px; height: 30px; border-radius: 8px; border: 1px solid #cbd5e1; background: #f8fafc; font-size: 13px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; color: #64748b; transition: all 0.2s;">
+            ⇤
+          </button>
+        </div>
+
+        <!-- Profile Badge -->
+        <div class="sidebar-profile-card">
+          <div class="avatar-wrap">
+            <img src="assets/demo-image-01.svg" alt="Học viên" class="avatar-img">
+            <span class="online-dot"></span>
+          </div>
+          <div>
+            <div class="user-name-title">Học viên</div>
+            <div class="user-sub-label">Bản xem giao diện</div>
+          </div>
+        </div>
+
+        <!-- Nav Categories -->
+        <div class="sidebar-section-tag">CHỨC NĂNG CHÍNH</div>
+        <nav class="sidebar-nav-list" id="sidebarNavList">
+          <button class="sidebar-nav-btn active" data-mod="dashboard">
+            <span class="sidebar-nav-icon">🏠</span>
+            <span>Übersicht</span>
+            <span class="sidebar-nav-badge">Trang chủ</span>
+          </button>
+          <button class="sidebar-nav-btn" data-mod="grammatik">
+            <span class="sidebar-nav-icon">📖</span>
+            <span>Grammatik</span>
+          </button>
+          <button class="sidebar-nav-btn" data-mod="wortschatz">
+            <span class="sidebar-nav-icon">🗂️</span>
+            <span>Wortschatz</span>
+          </button>
+          <button class="sidebar-nav-btn" data-mod="quiz">
+            <span class="sidebar-nav-icon">💎</span>
+            <span>Quiz & SRS</span>
+            <span class="sidebar-nav-badge">Game</span>
+          </button>
+          <button class="sidebar-nav-btn" data-mod="hoeren">
+            <span class="sidebar-nav-icon">🎧</span>
+            <span>Hören & Diktat</span>
+          </button>
+          <button class="sidebar-nav-btn" data-mod="schreiben">
+            <span class="sidebar-nav-icon">✍️</span>
+            <span>Schreiben</span>
+            <span class="sidebar-nav-badge">AI Chấm</span>
+          </button>
+          <button class="sidebar-nav-btn" data-mod="sprechen">
+            <span class="sidebar-nav-icon">🎙️</span>
+            <span>Sprechen</span>
+          </button>
+          <button class="sidebar-nav-btn" data-mod="pruefung">
+            <span class="sidebar-nav-icon">📜</span>
+            <span>Prüfung B1/B2</span>
+          </button>
+          <button class="sidebar-nav-btn" data-mod="kitutor">
+            <span class="sidebar-nav-icon">✨</span>
+            <span>Elio KI-Tutor</span>
+            <span class="sidebar-nav-badge" style="background:#fef3c7; color:#b45309;">AI</span>
+          </button>
+        </nav>
+      </div>
+
+      <!-- Bottom Section -->
+      <div class="sidebar-bottom-block">
+        <div class="sidebar-streak-card">
+          <span class="flame-icon">🔥</span>
+          <div>
+            <strong>Bản demo giao diện</strong>
+            <small>Hoàn thành 1 bài hôm nay để giữ chuỗi.</small>
+          </div>
+        </div>
+
+        <div class="sidebar-util-row">
+          <span class="lang-pill">🇩🇪 DE</span>
+          <button class="util-circle-btn" title="Chế độ sáng">☀️</button>
+          <button class="util-circle-btn" title="Cài đặt">⚙️</button>
+          <button class="util-circle-btn" title="Thông báo">🔔</button>
+        </div>
+      </div>
+
+    </aside>
+
+
+    <!-- ══════════════════════════════════════════════════════════
+         MAIN WORKSPACE (BÊN PHẢI - 100% GIAO DIỆN MẪU CỦA USER)
+         ══════════════════════════════════════════════════════════ -->
+    <main class="main-viewport">
+
+      <!-- Topbar with Search & Telemetry -->
+      <div class="topbar-stream">
+        <div class="topbar-search-box">
+          <input type="text" id="topSearchInput" class="topbar-search-input" placeholder="Tìm kiếm từ vựng, ngữ pháp (ví dụ: Tisch, weil, Passiv)...">
+          <span class="kbd-shortcut">Ctrl+K</span>
+          <div class="topbar-search-dropdown" id="searchDropdown"></div>
+        </div>
+
+        <div class="topbar-telemetry-cluster">
+          <div class="telemetry-chip telemetry-chip-flame" title="Chuỗi ngày học">
+            <span>🔥</span>
+            <span>7 ngày</span>
+          </div>
+          <div class="telemetry-chip telemetry-chip-ai" title="Mở gia sư AI">
+            <span>✨</span>
+            <span>Elio AI 2.0</span>
+          </div>
+          <button class="util-circle-btn" style="width:36px; height:36px;" title="Thông báo">
+            🔔
+          </button>
+        </div>
+      </div>
+
+      <!-- ══ UNIFIED APP WORKSPACE CONTAINER (ROUTER) ══ -->
+      <div id="appWorkspace"><div class="demo-note">✨ Bản demo lấy giao diện từ commit 9475eec · dữ liệu/API đã được ngắt </div>
+
+        <!-- 1. DASHBOARD VIEW -->
+        <div id="view-dashboard" class="app-view-container">
+      <!-- ── Row 1: Hero Banner + Lịch tuần ───────────────── -->
+      <section class="hero-grid">
+        
+        <!-- Hero Card (Boy + Cathedral + Gradient) -->
+        <div class="hero-banner-card">
+          <div class="hero-left-text">
+            <h2 class="hero-headline">
+              Chào bạn! 👋
+            </h2>
+            <p class="hero-slogan">
+              Sẵn sàng học tiếng Đức hôm nay chưa?<br>Chọn một chặng trong lộ trình để bắt đầu.
+            </p>
+
+          </div>
+
+          <div class="hero-right-visual">
+            <img src="assets/mascot-elio.webp" alt="Linh vật cậu bé Elio đang nghe nhạc" class="hero-boy-img">
+            <div class="hero-speech-bubble">
+              Deutsch öffnet dir eine grössere Welt. 🙂
+            </div>
+          </div>
+        </div>
+
+        <!-- Lịch học tuần này -->
+        <div class="schedule-card">
+          <div class="card-header-row">
+            <div class="card-title-badge">
+              <span>📅</span>
+              <span>Lịch học tuần này</span>
+            </div>
+            <a class="link-action" id="openFullSchedule" href="#schedule">Xem tất cả ➔</a>
+          </div>
+
+          <div class="schedule-journey" aria-label="Lộ trình học mẫu">
+            <div class="journey-heading"><strong>Hành trình ôn thi · B1</strong><span>Giai đoạn 1 · Bước đầu</span></div>
+            <div class="journey-stops">
+              <button type="button" class="journey-stop" data-lesson="vocab" aria-label="Mở bài từ vựng hôm nay"><span class="journey-stop-icon">▣</span><strong>Học từ vựng</strong><small>10 từ B1</small></button>
+              <button type="button" class="journey-stop" data-lesson="grammar" aria-label="Mở bài ngữ pháp hôm nay"><span class="journey-stop-icon">▤</span><strong>Ngữ pháp</strong><small>Bài ngắn</small></button>
+              <button type="button" class="journey-stop" data-lesson="reading" aria-label="Mở bài đọc hiểu hôm nay"><span class="journey-stop-icon">◧</span><strong>Lesen</strong><small>Đọc hiểu</small></button>
+              <button type="button" class="journey-stop" data-lesson="listening" aria-label="Mở bài nghe hiểu hôm nay"><span class="journey-stop-icon">◖</span><strong>Hören</strong><small>Nghe hiểu</small></button>
+            </div>
+            <div class="journey-footer"><span class="journey-progress" id="journeyAttendance">📍 Chưa điểm danh hôm nay</span><span class="journey-exam-time">♧ Kỳ thi trong 1–3 tháng</span></div>
+          </div>
+
+          <div class="week-days-grid">
+            <!-- T2 -->
+            <div class="day-col">
+              <span class="day-name">T2</span>
+              <span class="day-num">14</span>
+              <div class="day-pillar pillar-t2">📖</div>
+            </div>
+            <!-- T3 -->
+            <div class="day-col">
+              <span class="day-name">T3</span>
+              <span class="day-num">15</span>
+              <div class="day-pillar pillar-t3">🎧</div>
+            </div>
+            <!-- T4 (Active) -->
+            <div class="day-col">
+              <span class="day-name">T4</span>
+              <span class="day-num active">16</span>
+              <div class="day-pillar pillar-t4">✏️</div>
+            </div>
+            <!-- T5 -->
+            <div class="day-col">
+              <span class="day-name">T5</span>
+              <span class="day-num">17</span>
+              <div class="day-pillar pillar-t5">🎙️</div>
+            </div>
+            <!-- T6 -->
+            <div class="day-col">
+              <span class="day-name">T6</span>
+              <span class="day-num">18</span>
+              <div class="day-pillar pillar-t6">💎</div>
+            </div>
+            <!-- T7 -->
+            <div class="day-col">
+              <span class="day-name">T7</span>
+              <span class="day-num">19</span>
+              <div class="day-pillar pillar-t7">📄</div>
+            </div>
+            <!-- CN -->
+            <div class="day-col">
+              <span class="day-name">CN</span>
+              <span class="day-num">20</span>
+              <div class="day-pillar pillar-cn">✨</div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ── Row 2: Bốn thẻ thống kê màu Pastel ─────────────── -->
+      <section class="stats-row">
+        
+        <!-- Card 1: Mint - Vocab Count -->
+        <div class="stat-card-pill stat-card-mint" style="cursor: pointer;">
+          <div class="stat-icon-circle" style="color: #059669;">📚</div>
+          <div>
+            <div class="stat-number-val" id="stat-vocab">0</div>
+            <div class="stat-title-label">Từ vựng chuẩn</div>
+            <div class="stat-desc-sub">0 bộ từ vựng</div>
+          </div>
+        </div>
+
+        <!-- Card 2: Cream - Articles Bank -->
+        <div class="stat-card-pill stat-card-cream" style="cursor: pointer;">
+          <div class="stat-icon-circle" style="color: #d97706;">⚡</div>
+          <div>
+            <div class="stat-number-val" id="stat-nouns">0</div>
+            <div class="stat-title-label">Danh từ Der/Die/Das</div>
+            <div class="stat-desc-sub">Kèm quy tắc ngữ pháp</div>
+          </div>
+        </div>
+
+        <!-- Card 3: Lavender - Writing Prompts -->
+        <div class="stat-card-pill stat-card-lavender" style="cursor: pointer;">
+          <div class="stat-icon-circle" style="color: #7c3aed;">✍️</div>
+          <div>
+            <div class="stat-number-val" id="stat-prompts">0</div>
+            <div class="stat-title-label">Đề thi Goethe/Telc</div>
+            <div class="stat-desc-sub">Chấm 4 tiêu chí AI</div>
+          </div>
+          <span class="stat-corner-badge">✨</span>
+        </div>
+
+        <!-- Card 4: Pink - Listening Lessons -->
+        <div class="stat-card-pill stat-card-pink" style="cursor: pointer;">
+          <div class="stat-icon-circle" style="color: #e11d48;">🎧</div>
+          <div>
+            <div class="stat-number-val" id="stat-lessons">0</div>
+            <div class="stat-title-label">Video Nicos Weg</div>
+            <div class="stat-desc-sub">Kèm phụ đề & chính tả</div>
+          </div>
+          <span class="stat-corner-badge">👑</span>
+        </div>
+
+      </section>
+
+      <!-- ── Row 3: Tiến độ + Chủ đề đang học + Bài học hôm nay ─ -->
+      <section class="middle-grid">
+        
+        <!-- Col 1: Tiến độ học tập -->
+        <div class="middle-white-card">
+          <div class="card-header-row">
+            <div>
+              <div class="card-title-badge">
+                <span>📊</span>
+                <span>Tiến độ học tập</span>
+              </div>
+              <span style="font-size: 11px; color: #94a3b8; font-weight: 500;">Mục tiêu học tập</span>
+            </div>
+            <div style="font-size: 12px; font-weight: 700; color: #475569; background: #f8fafc; border: 1px solid #e2e8f0; padding: 4px 10px; border-radius: 10px;">
+              B1 ⌄
+            </div>
+          </div>
+
+          <div class="progress-circle-wrap">
+            <div class="circle-gauge">
+              <svg viewBox="0 0 36 36">
+                <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#e2e8f0" stroke-width="3.5" />
+                <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#10b981" stroke-width="3.5" stroke-dasharray="58, 100" />
+              </svg>
+              <div class="circle-gauge-val">0%</div>
+            </div>
+
+            <div style="flex: 1;">
+              <div style="display: flex; justify-content: flex-end; font-size: 12px; font-weight: 700; color: #475569;">
+                0 / 0 bài
+              </div>
+              <div class="progress-bar-bg">
+                <div class="progress-bar-fill" style="width: 0%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Col 2: Chủ đề đang học (Grammatik B1) -->
+        <div class="middle-white-card" style="cursor: pointer;">
+          <div class="card-header-row">
+            <div class="card-title-badge">
+              <span>📖</span>
+              <span>Chủ đề đang học</span>
+            </div>
+            <a class="link-action">Xem chi tiết ➔</a>
+          </div>
+
+          <div class="topic-card-body">
+            <div>
+              <span class="topic-tag">Grammatik • B1</span>
+              <h3 class="topic-headline">Chưa chọn chủ đề</h3>
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <div class="progress-bar-bg" style="width: 140px;">
+                  <div class="progress-bar-fill" style="width: 0%; background: #0fa968;"></div>
+                </div>
+                <span style="font-size: 12px; font-weight: 700; color: #0f172a;">0%</span>
+              </div>
+            </div>
+
+            <img src="assets/demo-image-03.svg" alt="Notebook" class="topic-notebook-img">
+          </div>
+
+          <div class="topic-circle-btn">➔</div>
+        </div>
+
+        <!-- Col 3: Bài học hôm nay -->
+        <div class="middle-white-card">
+          <div class="card-header-row">
+            <div class="card-title-badge">
+              <span>📅</span>
+              <span>Bài học hôm nay</span>
+            </div>
+            <span style="font-size: 11px; font-weight: 700; color: #0284c7; background: #e0f2fe; padding: 2px 8px; border-radius: 8px;">
+              3 bài học
+            </span>
+          </div>
+
+          <div style="margin-top: 4px;">
+            <!-- Lesson 1 -->
+            <div class="lesson-item-row">
+              <span class="lesson-time-stamp">--:--</span>
+              <div class="lesson-icon-box" style="background: #fce7f3; color: #db2777;">📖</div>
+              <div class="lesson-main-info">
+                <div class="lesson-title-txt">Chưa có lịch học</div>
+                <div class="lesson-sub-txt">Tạo lộ trình để bắt đầu</div>
+              </div>
+              <button class="btn-play-mini" title="Học ngay">▶</button>
+            </div>
+
+            <!-- Lesson 2 -->
+            <div class="lesson-item-row">
+              <span class="lesson-time-stamp">--:--</span>
+              <div class="lesson-icon-box" style="background: #dcfce7; color: #16a34a;">🎧</div>
+              <div class="lesson-main-info">
+                <div class="lesson-title-txt">Lịch học cá nhân</div>
+                <div class="lesson-sub-txt">Chưa có bài nghe nào</div>
+              </div>
+              <div class="btn-check-done">✓</div>
+            </div>
+
+            <!-- Lesson 3 -->
+            <div class="lesson-item-row">
+              <span class="lesson-time-stamp">--:--</span>
+              <div class="lesson-icon-box" style="background: #ede9fe; color: #7c3aed;">🎙️</div>
+              <div class="lesson-main-info">
+                <div class="lesson-title-txt">Lịch học cá nhân</div>
+                <div class="lesson-sub-txt">Chưa có bài luyện nói nào</div>
+              </div>
+              <button class="btn-play-mini" title="Luyện nói">▶</button>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ── Row 4: Khám phá các kỹ năng (8 thẻ 3D Isometric) ── -->
+      <section>
+        <div class="skills-section-header">
+          <span>✨</span>
+          <span>Khám phá các kỹ năng</span>
+        </div>
+
+        <div class="skills-grid-8">
+          
+          <!-- 1. Grammatik -->
+          <div class="skill-card-unit">
+            <img src="assets/demo-image-04.svg" alt="Grammatik" class="skill-icon-3d">
+            <h4 class="skill-title-txt">Grammatik</h4>
+            <p class="skill-desc-txt">Ngữ pháp A1 - B2</p>
+            <div class="skill-circle-arrow">➔</div>
+          </div>
+
+          <!-- 2. Wortschatz -->
+          <div class="skill-card-unit">
+            <img src="assets/demo-image-05.svg" alt="Wortschatz" class="skill-icon-3d">
+            <h4 class="skill-title-txt">Wortschatz</h4>
+            <p class="skill-desc-txt">Từ vựng theo chủ đề</p>
+            <div class="skill-circle-arrow">➔</div>
+          </div>
+
+          <!-- 3. Quiz -->
+          <div class="skill-card-unit">
+            <img src="assets/demo-image-06.svg" alt="Quiz" class="skill-icon-3d">
+            <h4 class="skill-title-txt">Quiz</h4>
+            <p class="skill-desc-txt">Ôn tập thông minh</p>
+            <div class="skill-circle-arrow">➔</div>
+          </div>
+
+          <!-- 4. Hören & Diktat -->
+          <div class="skill-card-unit">
+            <img src="assets/demo-image-07.svg" alt="Hören & Diktat" class="skill-icon-3d">
+            <h4 class="skill-title-txt">Hören & Diktat</h4>
+            <p class="skill-desc-txt">Luyện nghe & chép</p>
+            <div class="skill-circle-arrow">➔</div>
+          </div>
+
+          <!-- 5. Schreiben -->
+          <div class="skill-card-unit">
+            <img src="assets/demo-image-08.svg" alt="Schreiben" class="skill-icon-3d">
+            <h4 class="skill-title-txt">Schreiben</h4>
+            <p class="skill-desc-txt">Luyện viết tiếng Đức</p>
+            <div class="skill-circle-arrow">➔</div>
+          </div>
+
+          <!-- 6. Sprechen -->
+          <div class="skill-card-unit">
+            <img src="assets/demo-image-09.svg" alt="Sprechen" class="skill-icon-3d">
+            <h4 class="skill-title-txt">Sprechen</h4>
+            <p class="skill-desc-txt">Luyện nói & hội thoại</p>
+            <div class="skill-circle-arrow">➔</div>
+          </div>
+
+          <!-- 7. Prüfung -->
+          <div class="skill-card-unit">
+            <img src="assets/demo-image-10.svg" alt="Prüfung" class="skill-icon-3d">
+            <h4 class="skill-title-txt">Prüfung</h4>
+            <p class="skill-desc-txt">Luyện thi Goethe, telc...</p>
+            <div class="skill-circle-arrow">➔</div>
+          </div>
+
+          <!-- 8. KI-Tutor -->
+          <div class="skill-card-unit">
+            <img src="assets/demo-image-11.svg" alt="KI-Tutor" class="skill-icon-3d">
+            <h4 class="skill-title-txt">KI-Tutor</h4>
+            <p class="skill-desc-txt">Gia sư AI đồng hành</p>
+            <div class="skill-circle-arrow">➔</div>
+          </div>
+
+        </div>
+      </section>
+        </div>
+
+        <!-- 2. GRAMMATIK VIEW -->
+        <div id="view-grammatik" class="app-view-container" style="display: none;">
+          <div class="workspace-page-header">
+            <div class="workspace-title-block">
+              <div class="workspace-badge" style="background: #ede9fe; color: #6d28d9;">📘 Chuyên đề Ngữ pháp</div>
+              <h2 class="workspace-heading">Deutsche Grammatik (A1 – B2)</h2>
+              <p class="workspace-subheading">Giao diện chuyên đề ngữ pháp theo chuẩn CEFR, có thể mở rộng nội dung song ngữ Đức–Việt khi kết nối dữ liệu</p>
+            </div>
+            <button class="btn-return-dashboard">
+              <span>🏠</span>
+              <span>Về Tổng quan</span>
+            </button>
+          </div>
+          <div id="container-grammatik"><div class="demo-panel"><div class="demo-panel-head"><div><div class="demo-eyebrow">📘 BẢN XEM GIAO DIỆN</div><h3>Ngữ pháp Đức</h3><p>Chọn cấp độ để khám phá cấu trúc ngữ pháp</p></div><span class="demo-empty-pill">0 mục</span></div><div class="demo-toolbar"><button class="demo-chip is-selected" type="button">A1</button><button class="demo-chip" type="button">A2</button><button class="demo-chip" type="button">B1</button><button class="demo-chip" type="button">B2</button></div><div class="demo-empty"><div class="demo-empty-icon">📘</div><strong>Chưa có dữ liệu</strong><span>Đây là bản demo giao diện, không kết nối API hoặc cơ sở dữ liệu.</span></div></div></div>
+        </div>
+
+        <!-- 3. WORTSCHATZ VIEW -->
+        <div id="view-wortschatz" class="app-view-container" style="display: none;">
+          <div class="workspace-page-header">
+            <div class="workspace-title-block">
+              <div class="workspace-badge" style="background: #e0f2fe; color: #0369a1;">🗂️ Kho Từ Vựng Chuẩn Khảo Thí</div>
+              <h2 class="workspace-heading">Wortschatz & Flashcards (0 từ)</h2>
+              <p class="workspace-subheading">Các bộ từ vựng của bạn sẽ xuất hiện tại đây</p>
+            </div>
+            <button class="btn-return-dashboard">
+              <span>🏠</span>
+              <span>Về Tổng quan</span>
+            </button>
+          </div>
+          <div id="container-wortschatz"><div class="demo-panel"><div class="demo-panel-head"><div><div class="demo-eyebrow">🗂️ BẢN XEM GIAO DIỆN</div><h3>Kho từ vựng</h3><p>Bộ từ của bạn sẽ được hiển thị tại đây khi có dữ liệu.</p></div><span class="demo-empty-pill">0 mục</span></div><div class="demo-toolbar"><button class="demo-chip is-selected" type="button">Từ vựng</button><button class="demo-chip" type="button">Flashcards</button><button class="demo-chip" type="button">Theo chủ đề</button><button class="demo-chip" type="button">Theo cấp độ</button></div><div class="demo-empty"><div class="demo-empty-icon">🗂️</div><strong>Chưa có dữ liệu</strong><span>Đây là bản demo giao diện, không kết nối API hoặc cơ sở dữ liệu.</span></div></div></div>
+        </div>
+
+        <!-- 4. QUIZ VIEW -->
+        <div id="view-quiz" class="app-view-container" style="display: none;">
+          <div class="workspace-page-header">
+            <div class="workspace-title-block">
+              <div class="workspace-badge" style="background: #fef3c7; color: #b45309;">⚡ Luyện Phản Xạ Mạo Từ</div>
+              <h2 class="workspace-heading">Der / Die / Das Blitz-Trainer (0 Danh từ)</h2>
+              <p class="workspace-subheading">Giao diện luyện mạo từ với phần giải thích quy tắc nhận diện giống; dữ liệu đã được ngắt trong bản demo</p>
+            </div>
+            <button class="btn-return-dashboard">
+              <span>🏠</span>
+              <span>Về Tổng quan</span>
+            </button>
+          </div>
+          <div id="container-quiz"><div class="demo-panel"><div class="demo-panel-head"><div><div class="demo-eyebrow">⚡ BẢN XEM GIAO DIỆN</div><h3>Luyện tập nhanh</h3><p>Khu vực luyện tập sẽ sẵn sàng khi có bộ dữ liệu.</p></div><span class="demo-empty-pill">0 mục</span></div><div class="demo-toolbar"><button class="demo-chip is-selected" type="button">Der / Die / Das</button><button class="demo-chip" type="button">Ôn tập</button><button class="demo-chip" type="button">Tiến độ</button></div><div class="demo-empty"><div class="demo-empty-icon">⚡</div><strong>Chưa có dữ liệu</strong><span>Đây là bản demo giao diện, không kết nối API hoặc cơ sở dữ liệu.</span></div></div></div>
+        </div>
+
+        <!-- 5. HÖREN VIEW -->
+        <div id="view-hoeren" class="app-view-container" style="display: none;">
+          <div class="workspace-page-header">
+            <div class="workspace-title-block">
+              <div class="workspace-badge" style="background: #dcfce7; color: #15803d;">🎧 Luyện Nghe & Diktat</div>
+              <h2 class="workspace-heading" id="hoerenHeaderTitle">Kho Luyện Nghe Tiếng Đức & Diktat</h2>
+              <p class="workspace-subheading" id="hoerenHeaderSub">Thư viện nghe được tổ chức theo bộ, thư mục con và cấp độ; nội dung video không có trong bản demo</p>
+            </div>
+            <button class="btn-return-dashboard">
+              <span>🏠</span>
+              <span>Về Tổng quan</span>
+            </button>
+          </div>
+          <div id="container-hoeren"><div class="demo-panel"><div class="demo-panel-head"><div><div class="demo-eyebrow">🎧 HÖREN · VIDEO · PODCAST</div><h3>Thư viện nghe theo bộ và cấp độ</h3><p>Mở bộ lớn → bộ con → chọn cấp độ. Bản demo chỉ hiển thị cấu trúc giao diện, không có video hoặc dữ liệu.</p></div><span class="demo-empty-pill">0 video</span></div><div class="demo-toolbar"><button class="demo-chip is-selected">Bài nghe & Quiz</button><button class="demo-chip">YouTube</button><button class="demo-chip">Podcast</button><button class="demo-chip">Chép chính tả</button><button class="demo-chip">Shadowing</button></div><div class="listen-demo-breadcrumb" id="listenDemoBreadcrumb"></div><div id="listenDemoTree"></div><div id="listenDemoEmpty" class="demo-empty"><div class="demo-empty-icon">🎧</div><strong>Chưa có video trong mục này</strong><span>Thư mục và cấp độ có thể mở rộng nhiều tầng; nội dung xuất hiện khi được import.</span></div></div><details class="listen-demo-import"><summary>▶ Thêm video / playlist · Import theo cấu trúc Lernen</summary><div class="listen-demo-import-grid"><label>Link video hoặc playlist YouTube<input type="url" placeholder="Dán link video / playlist"></label><label>Thư mục cha<input type="text" placeholder="Bộ lớn"></label><label>Tên bộ con<input type="text" placeholder="Tên thư mục con"></label><label>Cấp độ<select><option>A1</option><option>A2</option><option>B1</option><option>B2</option><option>C1</option><option>C2</option></select></label><label>Nguồn<select><option>YouTube</option><option>Podcast</option><option>Bài nghe & Quiz</option></select></label><label>Hiển thị<select><option>Chỉ tôi</option><option>Mọi người (Admin)</option></select></label><label>Chọn danh sách playlist<input type="text" placeholder="Danh sách video sẽ hiện sau khi đọc playlist" disabled></label><label>Tệp phụ đề SRT / VTT<input type="file" accept=".srt,.vtt,.txt"></label><label class="wide"><span><input type="checkbox" checked> Tự lấy phụ đề/transcript sau khi import</span><textarea rows="3" placeholder="Hoặc dán SRT/VTT / transcript dự phòng"></textarea></label><div class="wide"><button type="button" id="listenDemoImportButton">Thêm vào thư viện</button> <span class="listen-demo-status" id="listenDemoImportStatus">Demo: không lưu và không gửi yêu cầu tới máy chủ.</span></div></div></details></div>
+        </div></div>
+        </div>
+
+        <!-- 6. SCHREIBEN VIEW -->
+        <div id="view-schreiben" class="app-view-container" style="display: none;">
+          <div class="workspace-page-header">
+            <div class="workspace-title-block">
+              <div class="workspace-badge" style="background: #fee2e2; color: #b91c1c;">✍️ Xưởng Luyện Viết Khảo Thí</div>
+              <h2 class="workspace-heading">Schreibwerkstatt (0 Đề Thi Goethe & Telc)</h2>
+              <p class="workspace-subheading">Hệ thống đề thi viết chính thức chuẩn Goethe/Telc, đếm từ trực tiếp và chấm điểm tự động theo 4 tiêu chí</p>
+            </div>
+            <button class="btn-return-dashboard">
+              <span>🏠</span>
+              <span>Về Tổng quan</span>
+            </button>
+          </div>
+          <div id="container-schreiben"><div class="demo-panel"><div class="demo-panel-head"><div><div class="demo-eyebrow">✍️ BẢN XEM GIAO DIỆN</div><h3>Luyện viết</h3><p>Không có đề bài hoặc bài viết cá nhân trong bản demo.</p></div><span class="demo-empty-pill">0 mục</span></div><div class="demo-toolbar"><button class="demo-chip is-selected" type="button">Goethe</button><button class="demo-chip" type="button">Telc</button><button class="demo-chip" type="button">Bài viết</button></div><div class="demo-empty"><div class="demo-empty-icon">✍️</div><strong>Chưa có dữ liệu</strong><span>Đây là bản demo giao diện, không kết nối API hoặc cơ sở dữ liệu.</span></div></div></div>
+        </div>
+
+        <!-- 7. SPRECHEN VIEW -->
+        <div id="view-sprechen" class="app-view-container" style="display: none;">
+          <div class="workspace-page-header">
+            <div class="workspace-title-block">
+              <div class="workspace-badge" style="background: #ede9fe; color: #6d28d9;">🎙️ Phòng Luyện Nói B1/B2</div>
+              <h2 class="workspace-heading">Mündlicher Ausdruck (Sprechen)</h2>
+              <p class="workspace-subheading">Dàn ý từ nối Redemittel B1/B2, mô phỏng phòng thi Teil 1, 2, 3 và ghi âm nhận diện giọng nói</p>
+            </div>
+            <button class="btn-return-dashboard">
+              <span>🏠</span>
+              <span>Về Tổng quan</span>
+            </button>
+          </div>
+          <div id="container-sprechen"><div class="demo-panel"><div class="demo-panel-head"><div><div class="demo-eyebrow">🗣️ BẢN XEM GIAO DIỆN</div><h3>Luyện nói</h3><p>Không có bản ghi âm trong bản demo giao diện.</p></div><span class="demo-empty-pill">0 mục</span></div><div class="demo-toolbar"><button class="demo-chip is-selected" type="button">Phát âm</button><button class="demo-chip" type="button">Chủ đề nói</button><button class="demo-chip" type="button">Luyện phản xạ</button></div><div class="demo-empty"><div class="demo-empty-icon">🗣️</div><strong>Chưa có dữ liệu</strong><span>Đây là bản demo giao diện, không kết nối API hoặc cơ sở dữ liệu.</span></div></div></div>
+        </div>
+
+        <!-- 8. PRÜFUNG VIEW -->
+        <div id="view-pruefung" class="app-view-container" style="display: none;">
+          <div class="workspace-page-header">
+            <div class="workspace-title-block">
+              <div class="workspace-badge" style="background: #dcfce7; color: #166534;">🎯 Trung Tâm Thi Thử</div>
+              <h2 class="workspace-heading">Prüfungszentrum Goethe & Telc B1/B2</h2>
+              <p class="workspace-subheading">Tổng hợp các module thi thử 4 kỹ năng: Đọc (Lesen), Nghe (Hören), Viết (Schreiben), Nói (Sprechen)</p>
+            </div>
+            <button class="btn-return-dashboard">
+              <span>🏠</span>
+              <span>Về Tổng quan</span>
+            </button>
+          </div>
+          <div id="container-pruefung"><div class="demo-panel"><div class="demo-panel-head"><div><div class="demo-eyebrow">🎓 BẢN XEM GIAO DIỆN</div><h3>Trung tâm luyện thi</h3><p>Danh mục đề thi trống trong bản demo.</p></div><span class="demo-empty-pill">0 mục</span></div><div class="demo-toolbar"><button class="demo-chip is-selected" type="button">Goethe</button><button class="demo-chip" type="button">Telc</button><button class="demo-chip" type="button">B1 / B2</button></div><div class="demo-empty"><div class="demo-empty-icon">🎓</div><strong>Chưa có dữ liệu</strong><span>Đây là bản demo giao diện, không kết nối API hoặc cơ sở dữ liệu.</span></div></div></div>
+        </div>
+
+        <!-- 9. KI-TUTOR VIEW -->
+        <div id="view-kitutor" class="app-view-container" style="display: none;">
+          <div class="workspace-page-header">
+            <div class="workspace-title-block">
+              <div class="workspace-badge" style="background: #e1f6ed; color: #04057;">🤖 Gia Sư AI Thông Minh</div>
+              <h2 class="workspace-heading">Elio KI-Tutor Studio</h2>
+              <p class="workspace-subheading">Đàm thoại tiếng Đức tự nhiên, tự động sửa lỗi viết hoa danh từ (Großschreibung) và phát âm bản ngữ</p>
+            </div>
+            <button class="btn-return-dashboard">
+              <span>🏠</span>
+              <span>Về Tổng quan</span>
+            </button>
+          </div>
+          <div id="container-kitutor"><div class="demo-panel"><div class="demo-panel-head"><div><div class="demo-eyebrow">✨ BẢN XEM GIAO DIỆN</div><h3>Elio KI-Tutor</h3><p>Giao diện trợ lý học tập. Tính năng AI đã được ngắt trong bản demo.</p></div><span class="demo-empty-pill">0 mục</span></div><div class="demo-toolbar"><button class="demo-chip is-selected" type="button">Hỏi ngữ pháp</button><button class="demo-chip" type="button">Giải thích từ vựng</button><button class="demo-chip" type="button">Luyện hội thoại</button></div><div class="demo-empty"><div class="demo-empty-icon">✨</div><strong>Chưa có dữ liệu</strong><span>Đây là bản demo giao diện, không kết nối API hoặc cơ sở dữ liệu.</span></div></div></div>
+        </div>
+
+        <!-- 10. TÀI KHOẢN & HỒ SƠ VIEW -->
+        <div id="view-taikhoan" class="app-view-container" style="display: none;">
+          <div class="workspace-page-header">
+            <div class="workspace-title-block">
+              <div class="workspace-badge" style="background: #dbeafe; color: #1d4ed8;">👤 Hồ Sơ Học Viên</div>
+              <h2 class="workspace-heading">Tài Khoản & Cài Đặt Ứng Dụng</h2>
+              <p class="workspace-subheading">Thông tin người học, quản lý mục tiêu Goethe B1 và cấu hình phát âm</p>
+            </div>
+            <button class="btn-return-dashboard">
+              <span>🏠</span>
+              <span>Về Tổng quan</span>
+            </button>
+          </div>
+          <div id="container-taikhoan"><div class="demo-panel"><div class="demo-panel-head"><div><div class="demo-eyebrow">⚙️ BẢN XEM GIAO DIỆN</div><h3>Cài đặt ứng dụng</h3><p>Thiết lập tài khoản hiển thị ở đây. Bản demo không lưu thay đổi.</p></div><span class="demo-empty-pill">0 mục</span></div><div class="demo-toolbar"><button class="demo-chip is-selected" type="button">Giao diện</button><button class="demo-chip" type="button">Thông báo</button><button class="demo-chip" type="button">Tài khoản</button></div><div class="demo-empty"><div class="demo-empty-icon">⚙️</div><strong>Chưa có dữ liệu</strong><span>Đây là bản demo giao diện, không kết nối API hoặc cơ sở dữ liệu.</span></div></div></div>
+        </div>
+
+      </div>
+    </main>
+
+  </div>
+
+
+  
+
+<style>
+.demo-ribbon{position:fixed;right:18px;bottom:16px;z-index:2000;padding:9px 14px;border-radius:999px;background:#0f5132;color:white;font-size:12px;font-weight:800;box-shadow:0 8px 24px #0f172a25;letter-spacing:.2px}
+.demo-panel{background:#fff;border:1px solid #e2e8f0;border-radius:22px;padding:24px;margin:20px 0;box-shadow:0 8px 26px rgba(15,23,42,.035)}
+.demo-panel-head{display:flex;justify-content:space-between;align-items:flex-start;gap:20px}
+.demo-eyebrow{font-size:11px;letter-spacing:.08em;font-weight:800;color:#64748b;margin-bottom:8px}
+.demo-panel h3{font-size:22px;color:#0f172a;margin:0 0 7px}
+.demo-panel p{font-size:14px;color:#64748b;margin:0}
+.demo-empty-pill{background:#ecfdf5;color:#047857;border-radius:999px;padding:7px 12px;font-size:12px;font-weight:800;white-space:nowrap}
+.demo-toolbar{display:flex;flex-wrap:wrap;gap:9px;margin-top:22px}
+.demo-chip{border:1px solid #dbe3ef;border-radius:12px;background:#fff;color:#334155;padding:10px 14px;font:600 13px inherit;cursor:pointer}
+.demo-chip.is-selected,.demo-chip:hover{background:#155b37;border-color:#155b37;color:white}
+.demo-empty{margin-top:18px;min-height:185px;border:1px dashed #cbd5e1;border-radius:18px;background:linear-gradient(135deg,#f8fafc,#f4f8ff);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;padding:25px;color:#64748b}
+.demo-empty-icon{font-size:31px;margin-bottom:2px}
+.demo-empty strong{color:#334155;font-size:15px}
+.demo-empty span{font-size:13px;max-width:460px;line-height:1.6}
+.demo-note{margin:12px 0 18px;padding:12px 15px;border:1px solid #bfdbfe;background:#eff6ff;color:#1e40af;border-radius:14px;font-size:13px;font-weight:600}
+@media(max-width:680px){.demo-panel{padding:17px}.demo-panel-head{gap:10px}.demo-panel h3{font-size:19px}.demo-ribbon{right:10px;bottom:10px}}
+</style><div class="demo-ribbon">DEMO · KHÔNG CÓ DỮ LIỆU</div><div class="demo-modal-backdrop" id="examPlanModal" aria-hidden="true"><section class="demo-modal" role="dialog" aria-modal="true" aria-labelledby="planModalTitle"><header class="demo-modal-top"><div><h2 id="planModalTitle">Lập lộ trình đạt chứng chỉ</h2><p>Trả lời từng bước để lập kế hoạch học và ôn đến ngày thi.</p></div><button class="demo-modal-close" id="closeExamPlan" aria-label="Đóng">×</button></header><div class="demo-step-track" id="planStepTrack"><span class="active"></span><span></span><span></span><span></span></div><div class="demo-modal-body">
+<div class="demo-step" data-plan-step="1"><h3>1 · Bạn đang chuẩn bị kỳ thi nào?</h3><p>Chọn chứng chỉ để Elio sắp nội dung đúng định dạng.</p><div class="demo-choice-grid" data-choice-group="exam"><button type="button" class="demo-choice is-selected" data-value="Goethe-Zertifikat"><strong>Goethe-Zertifikat</strong><small>A1–C2</small></button><button type="button" class="demo-choice" data-value="telc Deutsch"><strong>telc Deutsch</strong><small>A1–C2</small></button><button type="button" class="demo-choice" data-value="ÖSD"><strong>ÖSD</strong><small>A1–C2</small></button></div><div class="demo-facts" id="examFact">Goethe B1 đánh giá Lesen, Hören, Schreiben và Sprechen. <a href="https://www.goethe.de/ins/us/en/spr/prf/gzb1.cfm" target="_blank" rel="noopener">Nguồn Goethe-Institut</a></div></div><div class="demo-step" data-plan-step="2" hidden><h3>2 · Cấp độ hiện tại và mục tiêu?</h3><p>Elio sẽ điều chỉnh độ khó từ trình độ hiện tại đến cấp độ bạn muốn thi.</p><div class="demo-field-grid"><label class="demo-field">Trình độ hiện tại<select id="planCurrent"><option>A1</option><option>A2</option><option selected>B1</option><option>B2</option><option>C1</option><option>C2</option></select></label><label class="demo-field">Cấp độ muốn thi<select id="planTarget"><option>A1</option><option>A2</option><option selected>B1</option><option>B2</option><option>C1</option><option>C2</option></select></label></div><div class="demo-facts">Mục tiêu được chia theo ngữ pháp, từ vựng và bốn kỹ năng để nhìn rõ phần cần học tiếp.</div></div><div class="demo-step" data-plan-step="3" hidden><h3>3 · Bạn dự định thi khi nào?</h3><p>Chọn khoảng thời gian gần đúng; có thể nhập ngày cụ thể nếu đã biết.</p><div class="demo-choice-grid demo-time-choice-grid" data-choice-group="period"><button type="button" class="demo-choice" data-value="1 tháng"><strong>Trong 1 tháng</strong><small>Ôn tập tăng tốc</small></button><button type="button" class="demo-choice is-selected" data-value="1–3 tháng"><strong>1–3 tháng</strong><small>Nhịp học cân bằng</small></button><button type="button" class="demo-choice" data-value="3–6 tháng"><strong>3–6 tháng</strong><small>Học chắc nền tảng</small></button><button type="button" class="demo-choice" data-value="Chưa xác định"><strong>Chưa xác định</strong><small>Có thể bổ sung sau</small></button></div><label class="demo-field">Ngày thi nếu đã biết<input type="date" id="planExamDate"></label></div><div class="demo-step" data-plan-step="4" hidden><h3>4 · Phần nào đang khó nhất với bạn?</h3><p>Elio sẽ ưu tiên phần này trong lộ trình đầu tiên.</p><div class="demo-skill-grid"><label class="demo-skill-option"><input type="radio" name="weakSkill" value="Ngữ pháp" checked> Ngữ pháp</label><label class="demo-skill-option"><input type="radio" name="weakSkill" value="Từ vựng"> Từ vựng</label><label class="demo-skill-option"><input type="radio" name="weakSkill" value="Lesen"> Lesen · Đọc</label><label class="demo-skill-option"><input type="radio" name="weakSkill" value="Hören"> Hören · Nghe</label><label class="demo-skill-option"><input type="radio" name="weakSkill" value="Schreiben"> Schreiben · Viết</label><label class="demo-skill-option"><input type="radio" name="weakSkill" value="Sprechen"> Sprechen · Nói</label></div><div class="demo-field-grid demo-time-inputs"><label class="demo-field">Thời gian học mỗi ngày<select id="planDaily"><option value="30">30 phút</option><option value="45" selected>45 phút</option><option value="60">60 phút</option><option value="90">90 phút</option></select></label><label class="demo-field">Số ngày học mỗi tuần<select id="planDays"><option value="4">4 ngày</option><option value="5">5 ngày</option><option value="6" selected>6 ngày</option><option value="7">7 ngày</option></select></label></div></div><div class="demo-plan-result" id="planResult"></div><div class="demo-modal-actions"><button id="planBack" type="button">← Quay lại</button><button id="planNext" class="primary" type="button">Tiếp tục →</button></div></div></section></div><script>
+(function(){
+const routes=['dashboard','grammatik','wortschatz','quiz','hoeren','schreiben','sprechen','pruefung','kitutor','taikhoan'];
+window.navigate=function(route){
+ let target=(route||'dashboard').toLowerCase().replace('#','').replace('/','').trim();
+ if(target==='uebersicht')target='dashboard'; if(!routes.includes(target))target='dashboard';
+ document.querySelectorAll('.app-view-container').forEach(v=>v.style.display='none');
+ const view=document.getElementById('view-'+target); if(view)view.style.display='block';
+ document.querySelectorAll('.sidebar-nav-btn').forEach(b=>b.classList.toggle('active',b.dataset.mod===target));
+ if(location.hash!=='#'+target)history.replaceState(null,'','#'+target);
+};
+document.querySelectorAll('.sidebar-nav-btn').forEach(b=>b.addEventListener('click',e=>{e.preventDefault();navigate(b.dataset.mod)}));
+document.querySelectorAll('.btn-return-dashboard').forEach(b=>b.addEventListener('click',()=>navigate('dashboard')));
+
+document.querySelectorAll('[data-mod="dashboard"],.sidebar-brand [style*="cursor: pointer"]').forEach(b=>b.addEventListener('click',()=>navigate('dashboard')));
+document.querySelectorAll('.demo-chip').forEach(b=>b.addEventListener('click',()=>{const row=b.parentElement;row.querySelectorAll('.demo-chip').forEach(x=>x.classList.remove('is-selected'));b.classList.add('is-selected')}));
+window.addEventListener('hashchange',()=>navigate(location.hash.slice(1)));
+navigate(location.hash.slice(1)||'dashboard');
+})();
+</script><style>
+.middle-grid{align-items:stretch;grid-auto-rows:1fr}.middle-grid>.middle-white-card{height:100%;min-height:220px}.topic-card-body{flex:1;display:flex;align-items:center;padding-bottom:28px}
+.workspace-page-header{position:relative}.workspace-title-block{cursor:pointer}.workspace-title-block:focus-visible,.demo-panel-head:focus-visible{outline:3px solid #55b685;outline-offset:4px;border-radius:10px}.demo-collapsed-content{display:none!important}
+.demo-plan-launch{border:0!important;background:#0f5132!important;color:white!important;font-weight:800!important;cursor:pointer}.demo-modal-backdrop{position:fixed;inset:0;z-index:3000;background:#0f172a8c;backdrop-filter:blur(5px);display:none;align-items:center;justify-content:center;padding:20px}.demo-modal-backdrop.is-open{display:flex}.demo-modal{width:min(820px,100%);max-height:92vh;overflow:auto;border-radius:24px;background:#f8fafc;box-shadow:0 24px 80px #0f172a45}.demo-modal-top{position:sticky;top:0;z-index:2;background:#fff;border-bottom:1px solid #e2e8f0;padding:20px 24px;display:flex;justify-content:space-between;align-items:flex-start}.demo-modal-top h2{font-size:22px;margin:0 0 5px}.demo-modal-top p{color:#64748b;font-size:13px;margin:0}.demo-modal-close{border:0;background:#f1f5f9;border-radius:10px;width:36px;height:36px;font-size:21px;cursor:pointer}.demo-step-track{display:flex;gap:7px;padding:15px 24px 0}.demo-step-track span{height:5px;border-radius:9px;background:#dbe3ef;flex:1}.demo-step-track span.active{background:#10a968}.demo-modal-body{padding:22px 24px 26px}.demo-step h3{font-size:19px;margin:0 0 5px}.demo-step>p{color:#64748b;margin:0 0 18px;font-size:13px}.demo-field-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.demo-field{display:flex;flex-direction:column;gap:7px;font-size:13px;font-weight:700;color:#334155}.demo-field input,.demo-field select{width:100%;border:1px solid #cbd5e1;border-radius:12px;padding:12px;background:white;color:#0f172a;font:inherit}.demo-choice-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:12px 0 18px}.demo-choice{border:1px solid #dbe3ef;border-radius:14px;background:white;padding:13px;text-align:left;cursor:pointer;color:#334155}.demo-choice strong{display:block;font-size:14px;margin-bottom:4px}.demo-choice small{color:#64748b;line-height:1.4}.demo-choice.is-selected{border-color:#0f9c62;background:#effaf4;box-shadow:0 0 0 2px #0f9c621c}.demo-skill-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}.demo-skill-option{border:1px solid #dbe3ef;background:white;border-radius:12px;padding:11px;display:flex;gap:8px;align-items:center;font-size:13px}.demo-modal-actions{display:flex;justify-content:space-between;gap:10px;margin-top:22px}.demo-modal-actions button{border:1px solid #cbd5e1;border-radius:12px;background:white;padding:11px 17px;font-weight:800;cursor:pointer;color:#334155}.demo-modal-actions button.primary{background:#0f5132;color:white;border-color:#0f5132}.demo-facts{margin-top:17px;padding:13px 15px;border:1px solid #bfdbfe;border-radius:14px;background:#eff6ff;color:#1e40af;font-size:12px;line-height:1.6}.demo-facts a{color:#1d4ed8;text-decoration:underline}.demo-plan-result{display:none}.demo-plan-result.is-visible{display:block}.demo-plan-result h3{font-size:20px;margin:2px 0 8px}.demo-plan-result>p{color:#64748b;font-size:13px;line-height:1.6}.demo-phase-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:15px 0}.demo-phase{background:white;border:1px solid #e2e8f0;border-radius:15px;padding:14px}.demo-phase b{display:block;margin-bottom:6px;color:#0f5132}.demo-phase span{font-size:12px;color:#64748b;line-height:1.5}.demo-week-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.demo-week-row{display:grid;grid-template-columns:84px 1fr;gap:10px;border:1px solid #e2e8f0;background:white;border-radius:12px;padding:11px;font-size:12px}.demo-week-row b{color:#0f5132}.demo-source-note{font-size:11px!important;color:#64748b!important;margin-top:14px}
+.listen-demo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:13px;margin:14px 0 22px}.listen-demo-folder{border:1px solid #dbe3ef;border-radius:18px;background:white;padding:16px;cursor:pointer;text-align:left;box-shadow:0 4px 16px #0f172a08;transition:.18s}.listen-demo-folder:hover{transform:translateY(-2px);border-color:#9bcab0}.listen-demo-folder .folder-icon{font-size:26px}.listen-demo-folder strong{display:block;margin:9px 0 4px;color:#0f172a;font-size:14px}.listen-demo-folder small{color:#64748b;font-size:11px}.listen-demo-breadcrumb{display:flex;flex-wrap:wrap;gap:7px;margin:8px 0 12px;color:#64748b;font-size:12px}.listen-demo-breadcrumb button{border:0;background:none;color:#047857;font-weight:700;cursor:pointer;padding:0}.listen-demo-levels{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}.listen-demo-levels button{border:1px solid #cbd5e1;background:white;border-radius:12px;padding:10px 15px;font-weight:800;cursor:pointer}.listen-demo-levels button:hover,.listen-demo-levels button.is-selected{background:#155b37;color:white;border-color:#155b37}.listen-demo-import{margin:18px 0;border:1px solid #dbe3ef;border-radius:16px;background:white;padding:0 18px 18px}.listen-demo-import summary{padding:17px 0;cursor:pointer;font-weight:800;color:#0f172a}.listen-demo-import-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.listen-demo-import label{display:flex;flex-direction:column;gap:6px;font-size:12px;font-weight:700;color:#475569}.listen-demo-import input,.listen-demo-import select,.listen-demo-import textarea{width:100%;border:1px solid #cbd5e1;border-radius:10px;padding:10px;background:white;font:inherit}.listen-demo-import .wide{grid-column:1/-1}.listen-demo-import button{border:0;background:#155b37;color:white;border-radius:11px;padding:11px 16px;font-weight:800;cursor:pointer}.listen-demo-status{color:#64748b;font-size:12px;min-height:18px}
+@media(max-width:700px){.demo-field-grid,.demo-skill-grid,.demo-choice-grid,.demo-phase-grid,.demo-week-grid,.listen-demo-import-grid{grid-template-columns:1fr}.demo-modal-backdrop{padding:10px}.demo-modal-top,.demo-modal-body{padding-left:17px;padding-right:17px}.middle-grid>.middle-white-card{min-height:unset}}
+
+</style>
+<script>(function(){
+const modal=document.getElementById('examPlanModal'),steps=[...document.querySelectorAll('[data-plan-step]')],track=[...document.querySelectorAll('#planStepTrack span')],result=document.getElementById('planResult');let step=1,exam='Goethe-Zertifikat',period='1–3 tháng',advance=()=>{};
+const today=new Date();today.setMinutes(today.getMinutes()-today.getTimezoneOffset());const iso=today.toISOString().slice(0,10);const dateInput=document.getElementById('planExamDate');dateInput.min=iso;
+function openPlan(){step=1;result.classList.remove('is-visible');document.getElementById('planNext').onclick=advance;render();modal.classList.add('is-open');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';try{localStorage.setItem('elioDemoOnboardingV2','1')}catch(e){}}
+function close(){modal.classList.remove('is-open');modal.setAttribute('aria-hidden','true');document.body.style.overflow=''}
+document.getElementById('closeExamPlan').onclick=close;modal.onclick=e=>{if(e.target===modal)close()};document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});if(!localStorage.getItem('elioDemoOnboardingV2'))openPlan();
+document.querySelectorAll('[data-choice-group=exam] .demo-choice').forEach(b=>b.onclick=()=>{exam=b.dataset.value;document.querySelectorAll('[data-choice-group=exam] .demo-choice').forEach(x=>x.classList.toggle('is-selected',x===b));document.getElementById('examFact').innerHTML=(exam==='Goethe-Zertifikat'?'Goethe':'telc / ÖSD')+' B1 đánh giá Lesen, Hören, Schreiben và Sprechen. <a href="https://www.goethe.de/ins/us/en/spr/prf/gzb1.cfm" target="_blank" rel="noopener">Xem cấu trúc kỳ thi</a>'});
+document.querySelectorAll('[data-choice-group=period] .demo-choice').forEach(b=>b.onclick=()=>{period=b.dataset.value;document.querySelectorAll('[data-choice-group=period] .demo-choice').forEach(x=>x.classList.toggle('is-selected',x===b))});
+function render(){steps.forEach(s=>s.hidden=+s.dataset.planStep!==step);track.forEach((x,i)=>x.classList.toggle('active',i<step));document.getElementById('planBack').style.visibility=step===1?'hidden':'visible';document.getElementById('planNext').textContent=step===4?'✨ Tạo lộ trình':'Tiếp tục →'}
+document.getElementById('planBack').onclick=()=>{if(step>1){step--;render()}};advance=()=>{if(step<4){step++;render();return}makePlan()};document.getElementById('planNext').onclick=advance;
+function makePlan(){const target=document.getElementById('planTarget').value,current=document.getElementById('planCurrent').value,weak=document.querySelector('input[name="weakSkill"]:checked')?.value||'Ngữ pháp',mins=+document.getElementById('planDaily').value,days=+document.getElementById('planDays').value,date=dateInput.value,weeks=date?Math.max(1,Math.ceil((new Date(date)-new Date(iso))/604800000)):({'Trong 1 tháng':4,'1–3 tháng':10,'3–6 tháng':20,'Chưa xác định':12}[period]||10),tasks=[['📚','Học 10 từ vựng', 'Wortschatz · '+target],['📘','Luyện ngữ pháp theo cấp độ', 'Bài ngắn theo phần bạn cần củng cố'],['📖','Làm một bài Lesen ngắn','Đọc hiểu · '+target],['🎧','Làm một bài Hören ngắn','Nghe hiểu · '+target]],taskHtml=tasks.map((t,i)=>'<div class="demo-route-stop"><span class="demo-route-stop-number">'+(i+1)+'</span><div><b>'+t[1]+'</b><small>'+t[2]+'</small></div><span class="demo-route-status">Chưa bắt đầu</span></div>').join('');result.innerHTML='<div class="demo-route-overview"><span class="demo-route-badge">'+exam+' '+target+'</span><span class="demo-route-badge">🎯 Ưu tiên: '+weak+'</span><span class="demo-route-badge">🗓️ '+period+'</span></div><h3>Lộ trình học của bạn</h3><p>'+current+' → '+target+' · khoảng '+weeks+' tuần · '+mins+' phút/ngày, '+days+' ngày/tuần. Bắt đầu bằng bài ngắn để đo năng lực, sau đó tăng dần độ khó.</p><div class="demo-route-stage"><div class="demo-route-stage-title"><b>Giai đoạn 1 · Đặt nền và lấy kết quả ban đầu</b><span>0/4 hoàn thành</span></div>'+taskHtml+'</div><div class="demo-route-stage"><div class="demo-route-stage-title"><b>Giai đoạn 2 · Luyện đủ bốn kỹ năng</b><span>Lesen · Hören · Schreiben · Sprechen</span></div><p>Mỗi tuần học '+days+' ngày, luân phiên bài thi theo '+target+'; dành thêm thời gian cho '+weak+'.</p></div><p class="demo-source-note">Đây là lộ trình mẫu chạy trong giao diện demo; chưa lưu tài khoản hoặc tiến độ lên máy chủ.</p>';steps.forEach(s=>s.hidden=true);track.forEach(x=>x.classList.add('active'));result.classList.add('is-visible');document.getElementById('planBack').style.visibility='hidden';document.getElementById('planNext').textContent='Đóng';document.getElementById('planNext').onclick=close}
+document.body.classList.add('sidebar-autohide');const sidebar=document.querySelector('.sidebar-vertical'),edge=document.getElementById('sidebarEdgeSensor'),flo=document.getElementById('btnFloatingSidebarTrigger'),back=document.getElementById('sidebarBackdrop'),pin=document.getElementById('btnPinSidebar');function show(){sidebar.classList.add('sidebar-revealed');document.body.classList.add('sidebar-mobile-open')}function hide(){if(!document.body.classList.contains('sidebar-pinned')){sidebar.classList.remove('sidebar-revealed');document.body.classList.remove('sidebar-mobile-open')}}edge.onmouseenter=show;flo.onclick=()=>sidebar.classList.contains('sidebar-revealed')?hide():show();back.onclick=hide;pin.onclick=()=>{document.body.classList.toggle('sidebar-pinned');document.body.classList.contains('sidebar-pinned')?show():hide()};sidebar.onmouseleave=()=>{if(!document.body.classList.contains('sidebar-pinned'))hide()};document.querySelectorAll('.sidebar-nav-btn').forEach(b=>b.addEventListener('click',()=>{if(innerWidth<760)hide()}));
+document.querySelectorAll('.workspace-page-header').forEach(header=>{const content=header.nextElementSibling,title=header.querySelector('.workspace-title-block');if(!content||!title)return;title.tabIndex=0;title.setAttribute('role','button');title.setAttribute('aria-expanded','true');function toggle(){const hidden=!content.classList.contains('demo-collapsed-content');content.classList.toggle('demo-collapsed-content',hidden);title.setAttribute('aria-expanded',String(!hidden))}title.addEventListener('click',toggle);title.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle()}})});
+const roots=[{n:'Bộ nghe chung',i:'🎧',c:[{n:'Video & khóa học',i:'▶️',c:[{n:'Nicos Weg',i:'📺',l:1},{n:'Theo chủ đề',i:'🗂️',l:1}]},{n:'Bài nghe & Quiz',i:'💎',c:[{n:'Bài tập nghe',i:'📝',l:1}]}]},{n:'Podcast & YouTube',i:'🎙️',c:[{n:'Podcast',i:'📻',c:[{n:'Tập đã lưu',i:'🎧',l:1}]},{n:'Kênh YouTube',i:'▶️',c:[{n:'Video đã nhập',i:'📁',l:1}]}]},{n:'Thư viện cá nhân',i:'📚',c:[{n:'Bộ của tôi',i:'📂',c:[{n:'Bộ nghe mới',i:'🗃️',l:1}]}]}],tree=document.getElementById('listenDemoTree'),crumb=document.getElementById('listenDemoBreadcrumb'),empty=document.getElementById('listenDemoEmpty');
+function navCrumb(path){crumb.replaceChildren();const home=document.createElement('button');home.textContent='Thư viện nghe';home.onclick=()=>draw(roots,[]);crumb.append(home);path.forEach((x,i)=>{crumb.append(document.createTextNode(' / '));const q=document.createElement('button');q.textContent=x.n;q.onclick=()=>draw(i===path.length-1?(x.c||[]):path[i+1].c||[],path.slice(0,i+1));crumb.append(q)})}
+function levels(path){navCrumb(path);tree.replaceChildren();const row=document.createElement('div');row.className='listen-demo-levels';['A1','A2','B1','B2','C1','C2'].forEach(l=>{const q=document.createElement('button');q.textContent=l;q.onclick=()=>{row.querySelectorAll('button').forEach(z=>z.classList.remove('is-selected'));q.classList.add('is-selected');empty.style.display='flex'};row.append(q)});tree.append(row);empty.style.display='flex'}
+function draw(list,path){navCrumb(path);tree.replaceChildren();empty.style.display='none';const grid=document.createElement('div');grid.className='listen-demo-grid';list.forEach(x=>{const q=document.createElement('button');q.className='listen-demo-folder';q.innerHTML='<span class="folder-icon">'+x.i+'</span><strong>'+x.n+'</strong><small>Thư mục con · 0 video</small>';q.onclick=()=>x.l?levels(path.concat(x)):draw(x.c||[],path.concat(x));grid.append(q)});if(list.length)tree.append(grid);else levels(path)}
+draw(roots,[]);
+document.querySelectorAll('.demo-panel-head').forEach(head=>{head.dataset.collapseReady='1';head.tabIndex=0;head.setAttribute('role','button');head.setAttribute('aria-expanded','true');const toggle=()=>{let sib=head.nextElementSibling,hide=sib&&!sib.classList.contains('demo-collapsed-content');while(sib){sib.classList.toggle('demo-collapsed-content',hide);sib=sib.nextElementSibling}head.setAttribute('aria-expanded',String(!hide))};head.addEventListener('click',toggle);head.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle()}})});
+document.getElementById('listenDemoImportButton').onclick=()=>{document.getElementById('listenDemoImportStatus').textContent='Đã nhận thao tác thử. Bản demo không lưu hoặc gửi dữ liệu.'}
+})();</script><style>
+/* Polished demo interactions: equal progress cards, title toggles, and client-only management */
+.middle-grid{align-items:stretch;grid-auto-rows:1fr}.middle-grid>.middle-white-card{height:100%;min-height:250px}.middle-white-card{justify-content:flex-start}.middle-white-card>.progress-circle-wrap{margin-top:auto;padding-top:22px}.middle-white-card>.topic-card-body{margin-top:auto;min-height:125px}.topic-card-body>div{min-width:0;transform:translateY(18px)}.workspace-title-block{cursor:pointer;padding:4px 10px 4px 0;border-radius:12px;transition:background .16s ease}.workspace-title-block:hover{background:#f7fafc}.workspace-title-block:after{content:'  · chạm để thu/mở';font-size:11px;font-weight:600;color:#94a3b8;opacity:.75}.demo-panel-head{cursor:pointer;border-radius:12px;padding:4px;transition:background .16s ease}.card-title-badge,.skills-section-header{cursor:pointer}.card-title-badge:hover,.skills-section-header:hover{color:#08744c}.demo-panel-head:hover{background:#f8fafc}.demo-panel-head:after{content:'⌄';align-self:center;color:#94a3b8;font-size:17px;padding:6px;transition:transform .18s ease}.demo-panel-head[aria-expanded="false"]:after{transform:rotate(-90deg)}
+.vocab-workspace{margin-top:18px}.vocab-toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:18px 0}.vocab-toolbar .spacer{flex:1}.vocab-action{border:1px solid #cbd5e1;border-radius:12px;padding:10px 14px;background:#fff;color:#173c2a;font-weight:800;cursor:pointer}.vocab-action.primary{background:#155b37;color:#fff;border-color:#155b37}.vocab-action.danger{color:#b42318;border-color:#f3c5c2}.vocab-action:hover{filter:brightness(.97);transform:translateY(-1px)}.vocab-layout{display:grid;grid-template-columns:minmax(220px,.72fr) minmax(0,2fr);gap:16px}.vocab-deck-list,.vocab-content-card{border:1px solid #e2e8f0;border-radius:18px;background:#fff;padding:16px}.vocab-deck-list h4,.vocab-content-card h4{margin:0 0 12px;color:#173c2a}.vocab-deck-item{display:flex;align-items:center;gap:8px;width:100%;text-align:left;border:1px solid transparent;background:#f8fafc;border-radius:12px;padding:11px;margin:7px 0;cursor:pointer;color:#334155}.vocab-deck-item.is-selected{border-color:#88b89b;background:#effaf4}.vocab-deck-item strong{flex:1}.vocab-empty{min-height:190px;border:1px dashed #cbd5e1;border-radius:14px;background:#f8fafc;display:grid;place-content:center;text-align:center;gap:8px;padding:20px;color:#64748b}.vocab-empty b{color:#334155}.vocab-word-list{display:grid;gap:9px}.vocab-word-row{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:10px;align-items:center;border:1px solid #e6ebf2;border-radius:13px;padding:10px 12px}.vocab-word-row small{display:block;color:#94a3b8;font-size:10px;margin-bottom:3px}.vocab-icon-btn{border:1px solid #dbe3ef;background:#fff;border-radius:9px;padding:7px 9px;cursor:pointer}.vocab-dialog{border:0;padding:0;border-radius:20px;width:min(520px,calc(100vw - 28px));box-shadow:0 24px 70px #0f172a40}.vocab-dialog::backdrop{background:#0f172a88;backdrop-filter:blur(3px)}.vocab-dialog form{padding:22px}.vocab-dialog h3{margin:0 0 5px;color:#102a1c}.vocab-dialog p{margin:0 0 16px;color:#64748b;font-size:13px}.vocab-dialog .fields{display:grid;gap:11px}.vocab-dialog label{display:grid;gap:5px;color:#475569;font-weight:700;font-size:12px}.vocab-dialog input,.vocab-dialog select{width:100%;padding:11px;border:1px solid #cbd5e1;border-radius:10px;font:inherit}.vocab-dialog .actions{display:flex;justify-content:flex-end;gap:8px;margin-top:18px}
+.listen-demo-import{overflow:hidden}.listen-import-intro{margin:0 0 16px;color:#64748b;font-size:13px;line-height:1.6}.listen-import-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:14px 0}.listen-import-step{border:1px solid #dbe3ef;background:#f8fafc;border-radius:12px;padding:10px;text-align:left;font-weight:800;color:#475569;cursor:pointer}.listen-import-step.active{background:#effaf4;color:#155b37;border-color:#83b89b}.listen-import-pane{border:1px solid #e2e8f0;background:#fff;border-radius:14px;padding:16px;margin:10px 0}.listen-import-pane h4{margin:0 0 12px;color:#173c2a}.listen-import-pane[hidden]{display:none}.listen-import-choices{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}.listen-import-choices button{background:white;border:1px solid #dbe3ef;color:#334155}.listen-import-choices button.active{background:#155b37;color:white;border-color:#155b37}.listen-import-preview{border:1px dashed #cbd5e1;border-radius:12px;background:#f8fafc;padding:12px;margin-top:12px}.listen-import-video{display:flex;align-items:center;gap:9px;padding:8px 0;border-bottom:1px solid #e8edf3;font-size:13px}.listen-import-video:last-child{border-bottom:0}.listen-import-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:14px}.listen-import-actions button{border-radius:11px;border:1px solid #cbd5e1;padding:10px 14px;background:#fff;font-weight:800;color:#334155;cursor:pointer}.listen-import-actions button.primary{background:#155b37;color:#fff;border-color:#155b37}.listen-import-note{font-size:11px;color:#64748b;line-height:1.5}.listen-demo-folder small{display:block}.demo-plan-result{line-height:1.6}.hero-banner-card{height:380px;min-height:380px}.hero-right-visual{height:100%;min-height:0;max-height:380px;display:flex;align-items:flex-end;justify-content:center;background:radial-gradient(ellipse at 50% 80%,#d8eee2 0,transparent 70%)}.hero-boy-img{width:auto;height:100%;max-height:380px;max-width:100%;object-fit:contain;object-position:center bottom;background:transparent}.skill-icon-3d{flex:0 0 auto;border-radius:14px}.skill-card-unit{min-height:142px;justify-content:flex-start}.skill-title-txt{margin-top:2px}.hero-speech-bubble{z-index:1}.btn-hero-cta{font-size:14px;padding:14px 22px}
+@media(max-width:760px){.vocab-layout{grid-template-columns:1fr}.vocab-word-row{grid-template-columns:1fr 1fr}.vocab-word-row .word-actions{grid-column:1/-1;display:flex;justify-content:flex-end}.middle-grid>.middle-white-card{min-height:220px}.workspace-title-block:after{display:block;margin-top:4px}}
+</style>
+<script>
+(function(){
+  const vocab=document.getElementById('container-wortschatz');
+  if(vocab){
+    vocab.innerHTML=`<section class="demo-panel vocab-workspace"><div class="demo-panel-head" tabindex="0"><div><div class="demo-eyebrow">🗂️ BẢN DEMO · CHỈ THAO TÁC TRÊN TRÌNH DUYỆT</div><h3>Quản lý bộ từ vựng</h3><p>Thêm/sửa/xóa từ và xóa cả bộ. Thay đổi chỉ tồn tại trong phiên xem demo, không ghi vào database.</p></div><span class="demo-empty-pill" id="vocabTotal">0 từ</span></div><div class="vocab-toolbar"><button class="vocab-action primary" id="addVocabDeck">＋ Tạo bộ từ</button><button class="vocab-action" id="addVocabWord" disabled>＋ Thêm từ</button><span class="spacer"></span><span class="listen-import-note">Bản giao diện từ commit 9475eec · không kết nối API</span></div><div class="vocab-layout"><aside class="vocab-deck-list"><h4>Bộ từ của tôi</h4><div id="vocabDecks"></div></aside><section class="vocab-content-card"><div id="vocabSelectedHeading"><h4>Chọn hoặc tạo một bộ từ</h4></div><div id="vocabWords"></div></section></div></section><dialog class="vocab-dialog" id="vocabDialog"><form method="dialog" id="vocabForm"><h3 id="vocabDialogTitle">Tạo bộ từ</h3><p id="vocabDialogHint">Bản demo không gửi hoặc lưu dữ liệu.</p><div id="vocabDialogFields" class="fields"></div><div class="actions"><button class="vocab-action" value="cancel">Hủy</button><button class="vocab-action primary" id="vocabSave" value="save">Lưu trong demo</button></div></form></dialog>`;
+    const state={decks:[],active:null},esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    const decksEl=vocab.querySelector('#vocabDecks'),wordsEl=vocab.querySelector('#vocabWords'),head=vocab.querySelector('#vocabSelectedHeading'),dlg=vocab.querySelector('#vocabDialog'),fields=vocab.querySelector('#vocabDialogFields'),form=vocab.querySelector('#vocabForm');
+    function draw(){decksEl.innerHTML=state.decks.length?state.decks.map(d=>`<button class="vocab-deck-item ${d.id===state.active?'is-selected':''}" data-deck="${d.id}"><span>📁</span><strong>${esc(d.name)}</strong><small>${d.words.length}</small></button>`).join(''):'<div class="vocab-empty" style="min-height:130px"><span>📚</span><b>Chưa có bộ từ</b><span>Tạo bộ đầu tiên để bắt đầu.</span></div>';const d=state.decks.find(x=>x.id===state.active);vocab.querySelector('#addVocabWord').disabled=!d;if(!d){head.innerHTML='<h4>Chọn hoặc tạo một bộ từ</h4>';wordsEl.innerHTML='<div class="vocab-empty"><span style="font-size:28px">🗂️</span><b>Nội dung bộ từ sẽ hiện ở đây</b><span>Bạn có thể tạo bộ, thêm từ mới, sửa từng từ hoặc xóa cả bộ.</span></div>';vocab.querySelector('#vocabTotal').textContent=state.decks.reduce((n,x)=>n+x.words.length,0)+' từ';return}head.innerHTML=`<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><h4 style="margin:0">${esc(d.name)}</h4><span class="demo-empty-pill">${esc(d.level)} · ${d.words.length} từ</span><button class="vocab-icon-btn" id="renameVocabDeck" title="Sửa tên bộ từ" aria-label="Sửa tên bộ từ">✏️</button><button class="vocab-action danger" id="deleteVocabDeck">🗑 Xóa bộ</button></div>`;wordsEl.innerHTML=d.words.length?'<div class="vocab-word-list">'+d.words.map((w,i)=>`<article class="vocab-word-row"><div><small>TIẾNG ĐỨC</small><b>${esc(w.de)}</b></div><div><small>NGHĨA VIỆT</small>${esc(w.vi)}</div><div><small>NGHĨA ANH</small>${esc(w.en||'—')}</div><div class="word-actions"><button class="vocab-icon-btn" title="Sửa từ" aria-label="Sửa từ" data-edit="${i}">✏️</button> <button class="vocab-icon-btn" title="Xóa từ" aria-label="Xóa từ" data-delete="${i}">🗑️</button></div></article>`).join('')+'</div>':'<div class="vocab-empty"><span style="font-size:28px">✍️</span><b>Bộ này chưa có từ nào</b><span>Chọn “Thêm từ” để thêm từ tiếng Đức, nghĩa Việt và nghĩa Anh.</span></div>';vocab.querySelector('#vocabTotal').textContent=state.decks.reduce((n,x)=>n+x.words.length,0)+' từ';}
+    function openForm(kind,idx){const d=state.decks.find(x=>x.id===state.active);vocab.dataset.formKind=kind;vocab.dataset.formIndex=idx??'';vocab.querySelector('#vocabDialogTitle').textContent=kind==='deck'?'Tạo bộ từ':kind==='rename'?'Sửa bộ từ':kind==='edit'?'Sửa từ':'Thêm từ mới';vocab.querySelector('#vocabDialogHint').textContent='Thay đổi chỉ nằm trong phiên demo hiện tại.';if(kind==='deck'||kind==='rename'){fields.innerHTML=`<label>Tên bộ từ<input name="name" required value="${esc(kind==='rename'?d.name:'')}" placeholder="Ví dụ: Goethe Wortliste B1"></label><label>Cấp độ<select name="level"><option ${kind==='rename'&&d.level==='A1'?'selected':''}>A1</option><option ${kind==='rename'&&d.level==='A2'?'selected':''}>A2</option><option ${(!kind||kind==='deck'||d.level==='B1')?'selected':''}>B1</option><option ${kind==='rename'&&d.level==='B2'?'selected':''}>B2</option><option ${kind==='rename'&&d.level==='C1'?'selected':''}>C1</option><option ${kind==='rename'&&d.level==='C2'?'selected':''}>C2</option></select></label>`}else{const w=kind==='edit'?d.words[idx]:{};fields.innerHTML=`<label>Tiếng Đức<input name="de" required value="${esc(w.de||'')}" placeholder="Từ tiếng Đức"></label><label>Nghĩa Việt<input name="vi" required value="${esc(w.vi||'')}" placeholder="Nghĩa tiếng Việt"></label><label>Nghĩa Anh<input name="en" value="${esc(w.en||'')}" placeholder="English meaning"></label>`}dlg.showModal()}
+    vocab.querySelector('#addVocabDeck').onclick=()=>openForm('deck');vocab.querySelector('#addVocabWord').onclick=()=>openForm('word');form.onsubmit=e=>{e.preventDefault();const fd=new FormData(form),kind=vocab.dataset.formKind;if(kind==='deck'){const d={id:Date.now(),name:fd.get('name').trim(),level:fd.get('level'),words:[]};state.decks.push(d);state.active=d.id}else if(kind==='rename'){const d=state.decks.find(x=>x.id===state.active);d.name=fd.get('name').trim();d.level=fd.get('level')}else{const d=state.decks.find(x=>x.id===state.active),w={de:fd.get('de').trim(),vi:fd.get('vi').trim(),en:fd.get('en').trim()};if(kind==='edit')d.words[+vocab.dataset.formIndex]=w;else d.words.push(w)}dlg.close();form.reset();draw()};
+    decksEl.onclick=e=>{const b=e.target.closest('[data-deck]');if(b){state.active=+b.dataset.deck;draw()}};head.onclick=e=>{if(e.target.closest('#renameVocabDeck')||e.target.closest('#deleteVocabDeck'))e.stopPropagation();if(e.target.closest('#renameVocabDeck'))openForm('rename');if(e.target.closest('#deleteVocabDeck')){if(confirm('Xóa bộ từ này trong phiên demo?')){state.decks=state.decks.filter(d=>d.id!==state.active);state.active=null;draw()}}};wordsEl.onclick=e=>{const d=state.decks.find(x=>x.id===state.active),edit=e.target.closest('[data-edit]'),del=e.target.closest('[data-delete]');if(edit)openForm('edit',+edit.dataset.edit);if(del){d.words.splice(+del.dataset.delete,1);draw()}};draw();
+  }
+  const importer=document.querySelector('.listen-demo-import');
+  if(importer){
+    importer.innerHTML=`<summary>＋ Nhập tài liệu nghe · cấu trúc theo Lernen</summary><p class="listen-import-intro">Nhập nguồn, chọn thư mục nhiều cấp và cấp độ, kiểm tra danh sách trước khi thêm. Đây là bản demo giao diện; không gọi YouTube, không tải tệp lên và không lưu.</p><div class="listen-import-steps"><button class="listen-import-step active" data-import-step="1">1 · Nguồn</button><button class="listen-import-step" data-import-step="2">2 · Thư mục & cấp độ</button><button class="listen-import-step" data-import-step="3">3 · Kiểm tra & nhập</button></div><div class="listen-import-pane" data-import-pane="1"><h4>Chọn nguồn nội dung</h4><div class="listen-import-choices"><button type="button" class="active">▶ YouTube / playlist</button><button type="button">🎙 Podcast</button><button type="button">📁 Tệp audio/video</button></div><div class="listen-demo-import-grid"><label>Link video hoặc playlist<input id="listenSourceUrl" type="url" placeholder="https://youtube.com/playlist?list=..."></label><label>Tên bộ nội dung<input id="listenSourceTitle" placeholder="Ví dụ: Nicos Weg B1"></label></div><div class="listen-import-preview" id="listenSourcePreview"><b>Danh sách video</b><p class="listen-import-note" style="margin-top:6px">Dán link để xem bước chọn video. Demo không truy vấn YouTube.</p></div></div><div class="listen-import-pane" data-import-pane="2" hidden><h4>Chọn vị trí lưu theo cây thư mục</h4><div class="listen-demo-import-grid"><label>Bộ lớn<select><option>Bộ nghe chung</option><option>Podcast & YouTube</option><option>Thư viện cá nhân</option><option>＋ Tạo bộ lớn mới</option></select></label><label>Bộ con<input placeholder="Ví dụ: Video & khóa học"></label><label>Thư mục con<input placeholder="Ví dụ: Nicos Weg"></label><label>Thư mục sâu hơn<input placeholder="Có thể để trống hoặc tạo cấp tiếp"></label><label>Cấp độ<select><option>A1</option><option>A2</option><option selected>B1</option><option>B2</option><option>C1</option><option>C2</option></select></label><label>Quyền hiển thị<select><option>Chỉ tôi</option><option>Chia sẻ trong lớp</option><option>Công khai</option></select></label></div><div class="listen-import-note" style="margin-top:10px">Đường dẫn mẫu: Bộ lớn → Bộ con → Thư mục con → Cấp độ → bài nghe.</div></div><div class="listen-import-pane" data-import-pane="3" hidden><h4>Phụ đề và xác nhận</h4><div class="listen-demo-import-grid"><label>Tệp phụ đề<input type="file" accept=".srt,.vtt,.txt"></label><label>Tệp audio/video<input type="file" accept="audio/*,video/*"></label><label class="wide"><span><input type="checkbox" checked> Tự tìm transcript khi bản thật kết nối nguồn</span><textarea rows="3" placeholder="Hoặc dán nội dung SRT / VTT / transcript"></textarea></label></div><div class="listen-import-preview"><b>Tóm tắt nhập</b><p id="listenImportSummary" class="listen-import-note">Chưa chọn video. Hãy quay lại bước nguồn để xem trước.</p></div></div><div class="listen-import-actions"><button type="button" id="listenImportBack">← Quay lại</button><span class="listen-import-note" id="listenDemoImportStatus">Chỉ mô phỏng trong giao diện</span><button type="button" class="primary" id="listenImportNext">Tiếp theo →</button></div>`;
+    let step=1,selectedVideos=[];const panes=[...importer.querySelectorAll('[data-import-pane]')],stepBtns=[...importer.querySelectorAll('[data-import-step]')],status=importer.querySelector('#listenDemoImportStatus');function showStep(n){step=Math.max(1,Math.min(3,n));panes.forEach(p=>p.hidden=+p.dataset.importPane!==step);stepBtns.forEach(b=>b.classList.toggle('active',+b.dataset.importStep===step));importer.querySelector('#listenImportBack').disabled=step===1;importer.querySelector('#listenImportNext').textContent=step===3?'＋ Thêm vào thư viện demo':'Tiếp theo →'}
+    importer.querySelector('#listenSourceUrl').addEventListener('input',e=>{const ok=!!e.target.value.trim();const box=importer.querySelector('#listenSourcePreview');box.innerHTML=ok?'<b>Playlist sẵn sàng để chọn video</b><p class="listen-import-note" style="margin-top:6px">Trong bản thật, danh sách sẽ được đọc từ playlist. Demo không gửi yêu cầu ra ngoài.</p><label class="listen-import-video"><input type="checkbox" value="1" checked> Video 1 · ví dụ để xem giao diện</label><label class="listen-import-video"><input type="checkbox" value="2" checked> Video 2 · ví dụ để xem giao diện</label><label class="listen-import-video"><input type="checkbox" value="3"> Video 3 · ví dụ để xem giao diện</label>':'';selectedVideos=ok?[1,2]:[];box.querySelectorAll('input').forEach(c=>c.onchange=()=>{selectedVideos=[...box.querySelectorAll('input:checked')].map(x=>+x.value)});});stepBtns.forEach(b=>b.onclick=()=>showStep(+b.dataset.importStep));const sourceTabs=[...importer.querySelectorAll('.listen-import-choices button')];sourceTabs.forEach((b,i)=>b.onclick=()=>{sourceTabs.forEach(x=>x.classList.toggle('active',x===b));const input=importer.querySelector('#listenSourceUrl');input.placeholder=i===0?'https://youtube.com/playlist?list=...':i===1?'Dán link RSS hoặc podcast':'Chọn tệp ở bước phụ đề và xác nhận';status.textContent=i===2?'Nguồn tệp được chọn; chọn tệp ở bước 3.':'Nguồn '+b.textContent.trim()+' được chọn.'});importer.querySelector('#listenImportBack').onclick=()=>showStep(step-1);importer.querySelector('#listenImportNext').onclick=()=>{if(step<3){if(step===1&&!importer.querySelector('#listenSourceUrl').value.trim()){status.textContent='Hãy dán link nguồn trước khi tiếp tục.';return}status.textContent='';if(step===2){importer.querySelector('#listenImportSummary').textContent=`${selectedVideos.length} video · ${importer.querySelector('#listenSourceTitle').value||'Bộ nghe mới'} · cấp độ đã chọn · phụ đề có thể thêm ở bước này.`}showStep(step+1)}else{status.textContent=`Đã mô phỏng nhập ${selectedVideos.length} video. Không lưu hoặc gửi dữ liệu.`}};showStep(1);
+  }
+  // Dashboard section titles also toggle their own contents in place.
+  document.querySelectorAll('.card-title-badge,.skills-section-header').forEach(title=>{title.tabIndex=0;title.setAttribute('role','button');title.setAttribute('aria-expanded','true');title.title='Bấm tiêu đề để thu gọn hoặc mở rộng';const toggle=()=>{const anchor=title.classList.contains('skills-section-header')?title:title.closest('.card-header-row');if(!anchor)return;let node=anchor.nextElementSibling,hide=node&&!node.classList.contains('demo-collapsed-content');while(node){node.classList.toggle('demo-collapsed-content',hide);node=node.nextElementSibling}title.setAttribute('aria-expanded',String(!hide))};title.addEventListener('click',toggle);title.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle()}})});
+  const skillRoutes={'Grammatik':'grammatik','Wortschatz':'wortschatz','Quiz':'quiz','Hören & Diktat':'hoeren','Schreiben':'schreiben','Sprechen':'sprechen','Prüfung':'pruefung','KI-Tutor':'kitutor'};
+  document.querySelectorAll('.skill-card-unit').forEach(card=>{const key=card.querySelector('.skill-title-txt')?.textContent.trim();if(skillRoutes[key]){card.tabIndex=0;card.setAttribute('role','link');card.addEventListener('click',()=>window.navigate(skillRoutes[key]));card.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();window.navigate(skillRoutes[key])}})}});
+  document.querySelectorAll('.stat-card-pill').forEach((card,i)=>{const route=['wortschatz','quiz','pruefung','hoeren'][i];card.tabIndex=0;card.setAttribute('role','link');card.addEventListener('click',()=>window.navigate(route));card.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();window.navigate(route)}})});
+  // Keep demo headers as direct click-to-collapse controls, with no extra toggle buttons.
+  document.querySelectorAll('.demo-panel-head').forEach(h=>{if(h.dataset.collapseReady)return;h.dataset.collapseReady='1';h.tabIndex=0;h.setAttribute('role','button');if(!h.hasAttribute('aria-expanded'))h.setAttribute('aria-expanded','true');const toggle=()=>{let n=h.nextElementSibling,hide=n&&!n.classList.contains('demo-collapsed-content');while(n){n.classList.toggle('demo-collapsed-content',hide);n=n.nextElementSibling}h.setAttribute('aria-expanded',String(!hide))};h.addEventListener('click',toggle);h.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle()}})});
+})();
+</script>
+
+<style>
+/* Keep the floating sidebar control clear of the top search and account chips. */
+body.sidebar-autohide .topbar-stream{display:grid;grid-template-columns:minmax(250px,480px) minmax(0,1fr);align-items:center;gap:14px;padding-left:54px}
+body.sidebar-autohide .topbar-search-box{width:100%;max-width:none;min-width:0}
+body.sidebar-autohide .topbar-telemetry-cluster{min-width:0;justify-content:flex-end;gap:8px;flex-wrap:wrap}
+@media(max-width:1020px){body.sidebar-autohide .topbar-stream{grid-template-columns:minmax(0,1fr);gap:9px;padding-left:54px}body.sidebar-autohide .topbar-telemetry-cluster{justify-content:flex-start}}
+@media(max-width:600px){body.sidebar-autohide .main-viewport{padding-left:64px;padding-right:14px}body.sidebar-autohide .topbar-stream{padding-left:0}.topbar-telemetry-cluster{gap:6px}.telemetry-chip{padding:7px 9px;font-size:11px}}
+</style>
+<style>
+/* Subtle 3D lift for interactive cards on the home dashboard. */
+#view-dashboard .hero-banner-card,
+#view-dashboard .schedule-card,
+#view-dashboard .stat-card-pill,
+#view-dashboard .middle-white-card,
+#view-dashboard .skill-card-unit,
+#view-dashboard .day-col {
+  transform:perspective(1000px) translateY(0) rotateX(0) rotateY(0);
+  transform-style:preserve-3d;
+  transition:transform .22s cubic-bezier(.2,.75,.25,1),box-shadow .22s ease,border-color .22s ease;
+}
+#view-dashboard .hero-banner-card:hover,
+#view-dashboard .schedule-card:hover,
+#view-dashboard .stat-card-pill:hover,
+#view-dashboard .middle-white-card:hover,
+#view-dashboard .skill-card-unit:hover,
+#view-dashboard .day-col:hover,
+#view-dashboard .hero-banner-card:focus-within,
+#view-dashboard .schedule-card:focus-within,
+#view-dashboard .stat-card-pill:focus-visible,
+#view-dashboard .middle-white-card:focus-within,
+#view-dashboard .skill-card-unit:focus-visible,
+#view-dashboard .day-col:focus-visible {
+  transform:perspective(1000px) translateY(-5px) rotateX(1.1deg) rotateY(-.7deg);
+  box-shadow:0 16px 34px rgba(30,55,85,.12);
+}
+#view-dashboard .skill-card-unit:hover,
+#view-dashboard .skill-card-unit:focus-visible {border-color:#a7e3c2}
+#view-dashboard .journey-stop:hover .journey-stop-icon,
+#view-dashboard .day-col:hover .day-pillar {box-shadow:0 9px 18px rgba(15,23,42,.13)}
+@media(prefers-reduced-motion:reduce){
+  #view-dashboard .hero-banner-card,#view-dashboard .schedule-card,#view-dashboard .stat-card-pill,#view-dashboard .middle-white-card,#view-dashboard .skill-card-unit,#view-dashboard .day-col{transition:none}
+}
+</style>
+<style>
+.demo-route-badge{padding:7px 11px;border-radius:999px;background:#eef2ff;color:#3656a8;font-size:12px;font-weight:800}.demo-route-overview{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 12px}.demo-route-stage{border:1px solid #e1e8f3;background:#fff;border-radius:16px;padding:14px;margin:12px 0}.demo-route-stage-title{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:10px}.demo-route-stage-title span{font-size:12px;color:#64748b}.demo-route-stop{display:grid;grid-template-columns:30px minmax(0,1fr) auto;gap:10px;align-items:center;padding:9px 0;border-top:1px solid #edf1f6}.demo-route-stop-number{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:#eaf0ff;color:#315bb4;font-weight:900}.demo-route-stop>div{display:grid;gap:3px}.demo-route-stop small{font-size:12px;color:#64748b}.demo-route-status{font-size:11px;color:#64748b}.demo-time-choice-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.demo-skill-option input{accent-color:#0f9c62}.demo-time-inputs{margin-top:14px}
+@media(max-width:700px){.demo-route-stop{grid-template-columns:30px 1fr}.demo-route-status{grid-column:2}.demo-route-stage-title{align-items:flex-start;flex-direction:column}.demo-time-choice-grid{grid-template-columns:1fr}}
+</style>
+
+<style>
+/* Daily learning route demo interactions */
+.journey-stop{padding:0;border:0;background:transparent;font:inherit;cursor:pointer;}
+.journey-stop:focus-visible,.day-col:focus-visible{outline:3px solid #93c5fd;outline-offset:3px;border-radius:12px}
+.journey-stop:hover .journey-stop-icon{transform:translateY(-3px) scale(1.06);filter:brightness(1.1)}
+.journey-stop-icon{transition:transform .18s ease,filter .18s ease}
+.journey-progress{cursor:pointer}
+.day-col{cursor:pointer;border-radius:12px}
+.day-col:hover .day-pillar{filter:brightness(.97);transform:translateY(-2px)}
+.day-pillar{transition:transform .18s ease,filter .18s ease}
+.study-day-backdrop{position:fixed;inset:0;z-index:4000;background:rgba(15,23,42,.58);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:18px}
+.study-day-backdrop.is-open{display:flex}
+.study-day-dialog{width:min(640px,100%);max-height:min(88vh,760px);overflow:auto;background:#f8fafc;border-radius:24px;box-shadow:0 24px 80px rgba(15,23,42,.35);color:#0f172a}
+.study-day-head{position:sticky;top:0;z-index:2;display:flex;justify-content:space-between;gap:12px;align-items:flex-start;padding:21px 24px;background:#fff;border-bottom:1px solid #e2e8f0}
+.study-day-head h2{font-size:21px;margin:0 0 5px}.study-day-head p{font-size:13px;color:#64748b;margin:0}
+.study-day-close{border:0;border-radius:10px;background:#f1f5f9;width:36px;height:36px;font-size:22px;cursor:pointer}
+.study-day-content{padding:20px 24px 24px}
+.study-checkin{padding:18px;border:1px solid #bfdbfe;background:linear-gradient(135deg,#eff6ff,#f0fdf4);border-radius:16px;margin-bottom:16px}
+.study-checkin h3{margin:0 0 6px;font-size:17px}.study-checkin p{margin:0 0 14px;color:#475569;font-size:13px;line-height:1.55}
+.study-day-primary{border:0;border-radius:12px;background:#0f5132;color:#fff;padding:11px 16px;font-weight:800;cursor:pointer}
+.study-day-list{display:grid;gap:9px}.study-task{display:grid;grid-template-columns:38px minmax(0,1fr) auto;align-items:center;gap:12px;padding:13px;border:1px solid #dbe3ef;background:#fff;border-radius:14px}
+.study-task-icon{display:grid;place-items:center;width:38px;height:38px;border-radius:12px;background:#eef2ff;font-size:19px}
+.study-task h3{font-size:14px;margin:0 0 4px}.study-task p{font-size:12px;color:#64748b;margin:0;line-height:1.4}
+.study-task button{border:1px solid #cbd5e1;background:#fff;border-radius:10px;padding:8px 11px;color:#1e3a5f;font-weight:800;cursor:pointer;white-space:nowrap}
+.study-task.is-done{border-color:#86d2ab;background:#f0fdf4}.study-task.is-done .study-task-icon{background:#dcfce7}
+.study-lesson{border:1px solid #dbe3ef;border-radius:16px;background:#fff;padding:18px;line-height:1.65}.study-lesson h3{margin:0 0 8px}.study-lesson p{color:#475569}.study-lesson-example{padding:13px 15px;border-left:4px solid #10a968;background:#f0fdf4;border-radius:8px;margin:12px 0}
+.study-day-actions{display:flex;justify-content:space-between;gap:10px;margin-top:16px}.study-day-secondary{border:1px solid #cbd5e1;border-radius:11px;background:#fff;padding:10px 14px;font-weight:700;cursor:pointer}
+.full-schedule-tabs{display:flex;gap:8px;margin:0 0 16px}.full-schedule-tabs button{border:1px solid #dbe3ef;background:#fff;color:#334155;border-radius:999px;padding:9px 15px;font-weight:800;cursor:pointer}.full-schedule-tabs button.active{background:#155b37;border-color:#155b37;color:#fff}
+.full-schedule-summary{border:1px solid #dbe3ef;background:#fff;border-radius:15px;padding:14px 16px;margin-bottom:11px}.full-schedule-summary strong{display:block;margin-bottom:4px}.full-schedule-summary p{margin:0;color:#64748b;font-size:12px;line-height:1.5}
+.full-schedule-week{display:grid;gap:8px}.full-schedule-day{display:grid;grid-template-columns:60px minmax(0,1fr) auto;align-items:center;gap:10px;border:1px solid #dbe3ef;background:white;border-radius:13px;padding:10px 12px}.full-schedule-day.is-today{border-color:#70c99b;background:#f3fbf6}.full-schedule-day time{font-size:11px;font-weight:800;color:#64748b}.full-schedule-day strong{font-size:13px}.full-schedule-day small{display:block;margin-top:3px;color:#64748b;font-size:11px}.full-schedule-day button{border:1px solid #cbd5e1;border-radius:9px;background:#fff;padding:7px 10px;font-weight:700;cursor:pointer}
+.full-schedule-month-head{display:flex;justify-content:space-between;align-items:center;margin:0 0 12px}.full-schedule-month-head button{border:1px solid #dbe3ef;background:#fff;border-radius:9px;padding:7px 11px;cursor:pointer}.full-schedule-month-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px}.full-schedule-month-grid .weekday{padding:5px 0;text-align:center;color:#94a3b8;font-size:10px;font-weight:800}.full-schedule-date{min-height:58px;border:1px solid #e2e8f0;border-radius:10px;background:#fff;color:#334155;text-align:left;padding:7px;cursor:pointer;font-weight:700}.full-schedule-date.is-today{border-color:#10a968;background:#effaf4;color:#087647}.full-schedule-date.is-outside{opacity:.35}.full-schedule-date small{display:block;color:#64748b;font-size:9px;font-weight:600;margin-top:5px}
+@media(max-width:520px){.study-day-content{padding:16px}.study-day-head{padding:18px 16px}.study-task{grid-template-columns:34px minmax(0,1fr)}.study-task button{grid-column:2;justify-self:start}.journey-exam-time{font-size:8px}}
+</style>
+<div class="study-day-backdrop" id="studyDayBackdrop" aria-hidden="true"><section class="study-day-dialog" role="dialog" aria-modal="true" aria-labelledby="studyDayTitle"><header class="study-day-head"><div><h2 id="studyDayTitle">Lộ trình học hôm nay</h2><p id="studyDaySubtitle"></p></div><button class="study-day-close" id="studyDayClose" aria-label="Đóng">×</button></header><div class="study-day-content" id="studyDayContent"></div></section></div>
+<div class="study-day-backdrop" id="fullScheduleBackdrop" aria-hidden="true"><section class="study-day-dialog" role="dialog" aria-modal="true" aria-labelledby="fullScheduleTitle"><header class="study-day-head"><div><h2 id="fullScheduleTitle">Lịch học của bạn</h2><p>Lộ trình Goethe B1 · kế hoạch học mẫu Elio AI</p></div><button class="study-day-close" id="fullScheduleClose" aria-label="Đóng">×</button></header><div class="study-day-content"><div class="full-schedule-tabs" role="tablist" aria-label="Chế độ xem lịch"><button type="button" class="active" data-schedule-view="day">Ngày</button><button type="button" data-schedule-view="week">Tuần</button><button type="button" data-schedule-view="month">Tháng</button></div><div id="fullScheduleContent"></div></div></section></div>
+<script>
+(function(){
+  const backdrop=document.getElementById('studyDayBackdrop'); if(!backdrop)return;
+  const content=document.getElementById('studyDayContent'), title=document.getElementById('studyDayTitle'), subtitle=document.getElementById('studyDaySubtitle');
+  const taskSets=[
+    {vocab:{icon:'📚',name:'Từ vựng',topic:'Alltag & Termine',detail:'Học 10 từ B1 về sinh hoạt hằng ngày và lịch hẹn.'},grammar:{icon:'🧩',name:'Ngữ pháp',topic:'Nebensätze mit weil und dass',detail:'Ôn vị trí động từ trong mệnh đề phụ; làm 5 câu luyện tập.'},reading:{icon:'📖',name:'Lesen · Đọc hiểu',topic:'Thông báo ở thành phố',detail:'Đọc thông báo B1, tìm ý chính và trả lời 5 câu hỏi.'},listening:{icon:'🎧',name:'Hören · Nghe hiểu',topic:'Cuộc hẹn qua điện thoại',detail:'Nghe hội thoại đặt lịch và ghi lại thời gian, địa điểm.'}},
+    {vocab:{icon:'📚',name:'Từ vựng',topic:'Arbeit & Beruf',detail:'Học 10 từ B1 về công việc, đồng nghiệp và nơi làm việc.'},grammar:{icon:'🧩',name:'Ngữ pháp',topic:'Perfekt im Alltag',detail:'Ôn cách tạo Perfekt với haben/sein và luyện 5 câu.'},reading:{icon:'📖',name:'Lesen · Đọc hiểu',topic:'Tin tuyển dụng ngắn',detail:'Đọc một tin tuyển dụng B1 và tìm yêu cầu công việc.'},listening:{icon:'🎧',name:'Hören · Nghe hiểu',topic:'Trao đổi tại nơi làm việc',detail:'Nghe cuộc hội thoại ở công sở và chọn thông tin đúng.'}},
+    {vocab:{icon:'📚',name:'Từ vựng',topic:'Gesundheit & Körper',detail:'Học 10 từ B1 về sức khỏe, triệu chứng và chăm sóc cơ thể.'},grammar:{icon:'🧩',name:'Ngữ pháp',topic:'Komparativ und Superlativ',detail:'So sánh tính từ và làm bài tập chọn dạng đúng.'},reading:{icon:'📖',name:'Lesen · Đọc hiểu',topic:'Lời khuyên sống khỏe',detail:'Đọc lời khuyên sức khỏe, phân biệt ý chính và chi tiết.'},listening:{icon:'🎧',name:'Hören · Nghe hiểu',topic:'Cuộc hẹn với bác sĩ',detail:'Nghe hướng dẫn đặt lịch khám và ghi chú thông tin.'}},
+    {vocab:{icon:'📚',name:'Từ vựng',topic:'Wohnen & Haushalt',detail:'Học 10 từ B1 về nhà ở, đồ đạc và việc nhà.'},grammar:{icon:'🧩',name:'Ngữ pháp',topic:'Dativ & Wechselpräpositionen',detail:'Ôn cách dùng Dativ và giới từ hai chiều trong câu.'},reading:{icon:'📖',name:'Lesen · Đọc hiểu',topic:'Tin cho thuê căn hộ',detail:'Đọc quảng cáo căn hộ và đối chiếu các điều kiện thuê.'},listening:{icon:'🎧',name:'Hören · Nghe hiểu',topic:'Trao đổi với chủ nhà',detail:'Nghe cuộc gọi về căn hộ và ghi lại chi phí, thời gian.'}},
+    {vocab:{icon:'📚',name:'Từ vựng',topic:'Bildung & Lernen',detail:'Học 10 từ B1 về khóa học, trường lớp và việc học.'},grammar:{icon:'🧩',name:'Ngữ pháp',topic:'Relativsätze',detail:'Nhận diện đại từ quan hệ và hoàn thành 5 câu.'},reading:{icon:'📖',name:'Lesen · Đọc hiểu',topic:'Email về khóa học',detail:'Đọc email B1 và xác định yêu cầu, thời hạn đăng ký.'},listening:{icon:'🎧',name:'Hören · Nghe hiểu',topic:'Thông tin khóa học',detail:'Nghe phần giới thiệu khóa học và ghi các mốc quan trọng.'}},
+    {vocab:{icon:'📚',name:'Từ vựng',topic:'Reisen & unterwegs',detail:'Học 10 từ B1 về du lịch, phương tiện và hành trình.'},grammar:{icon:'🧩',name:'Ngữ pháp',topic:'Präpositionen für Wege',detail:'Ôn giới từ chỉ hướng đi và luyện đặt câu về hành trình.'},reading:{icon:'📖',name:'Lesen · Đọc hiểu',topic:'Thông báo nhà ga',detail:'Đọc thông báo đi lại và tìm giờ, tuyến, điểm thay đổi.'},listening:{icon:'🎧',name:'Hören · Nghe hiểu',topic:'Thông báo trên tàu',detail:'Nghe thông báo nhà ga và trả lời câu hỏi về chuyến đi.'}},
+    {vocab:{icon:'📚',name:'Từ vựng',topic:'Ôn tập từ vựng tuần',detail:'Ôn lại từ đã học trong tuần bằng thẻ ghi nhớ B1.'},grammar:{icon:'🧩',name:'Ngữ pháp',topic:'Kết nối câu B1',detail:'Ôn liên từ weil, obwohl, dass và viết lại câu.'},reading:{icon:'📖',name:'Lesen · Đọc hiểu',topic:'Bài đọc tổng hợp B1',detail:'Làm bài đọc tổng hợp và xem lại câu trả lời sai.'},listening:{icon:'🎧',name:'Hören · Nghe hiểu',topic:'Bản tin ngắn',detail:'Nghe bản tin B1, ghi ý chính và tự kiểm tra.'}}
+  ];
+  const taskOrder=['vocab','grammar','reading','listening']; let selectedDate=new Date(); selectedDate.setHours(0,0,0,0); let selectedTask=null;
+  const pad=n=>String(n).padStart(2,'0');
+  const dateKey=d=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+  const attendanceKey=d=>'elioDemoCheckin:'+dateKey(d);
+  const doneKey=d=>'elioDemoLessons:'+dateKey(d);
+  const getDone=d=>{try{return JSON.parse(localStorage.getItem(doneKey(d))||'[]')}catch(e){return[]}};
+  const setDone=(d,a)=>{try{localStorage.setItem(doneKey(d),JSON.stringify(a))}catch(e){}};
+  const humanDate=d=>new Intl.DateTimeFormat('vi-VN',{weekday:'long',day:'numeric',month:'long'}).format(d);
+  function open(d,task){selectedDate=new Date(d);selectedDate.setHours(0,0,0,0);selectedTask=task||null;render();backdrop.classList.add('is-open');backdrop.setAttribute('aria-hidden','false');document.body.style.overflow='hidden'}
+  function close(){backdrop.classList.remove('is-open');backdrop.setAttribute('aria-hidden','true');document.body.style.overflow=''}
+  function render(){
+    const checked=localStorage.getItem(attendanceKey(selectedDate))==='1', done=getDone(selectedDate), taskTypes=taskSets[(selectedDate.getDay()+6)%7];
+    title.textContent=selectedTask?taskTypes[selectedTask].name+' · B1':'Lộ trình học trong ngày';
+    subtitle.textContent=humanDate(selectedDate)+' · Lộ trình ôn thi B1';
+    if(selectedTask&&checked){const t=taskTypes[selectedTask];content.innerHTML=`<article class="study-lesson"><span class="demo-route-badge">${t.icon} B1 · ${t.name}</span><h3 style="margin-top:14px">${t.topic}</h3><p>${t.detail}</p><div class="study-lesson-example"><strong>Mục tiêu bài học</strong><br>Hoàn thành nội dung hôm nay, sau đó đánh dấu bài để cập nhật tiến độ.</div><p><strong>Ví dụ:</strong> Ich lerne jeden Tag, <em>weil ich die B1-Prüfung bestehen möchte.</em></p><div class="study-day-actions"><button class="study-day-secondary" id="studyBack">← Các bài hôm nay</button><button class="study-day-primary" id="studyComplete">${done.includes(selectedTask)?'✓ Đã hoàn thành':'Đánh dấu hoàn thành'}</button></div></article>`;
+      content.querySelector('#studyBack').onclick=()=>{selectedTask=null;render()};content.querySelector('#studyComplete').onclick=()=>{if(!done.includes(selectedTask))done.push(selectedTask);setDone(selectedDate,done);syncProgress();render()};return;
+    }
+    const checkin=`<div class="study-checkin"><h3>${checked?'✅ Đã điểm danh hôm nay':'📍 Điểm danh trước khi học'}</h3><p>${checked?'Bạn đã mở khóa lộ trình của ngày này. Chọn một bài bên dưới để tiếp tục.':'Mỗi ngày học mới cần điểm danh một lần. Sau khi điểm danh, các bài theo lộ trình trong ngày sẽ được mở.'}${selectedTask&&!checked?' Bạn đang chọn bài '+taskTypes[selectedTask].name+'.':''}</p>${checked?'':'<button class="study-day-primary" id="studyCheckin">Điểm danh và mở bài học</button>'}</div>`;
+    const list=taskOrder.map(k=>{const t=taskTypes[k],isDone=done.includes(k);return `<article class="study-task ${isDone?'is-done':''}"><span class="study-task-icon">${isDone?'✓':t.icon}</span><div><h3>${t.name} · ${t.topic}</h3><p>${t.detail}</p></div><button type="button" data-open-task="${k}" ${checked?'':'disabled'}>${isDone?'Ôn lại':'Mở bài'} →</button></article>`}).join('');
+    content.innerHTML=checkin+'<div class="study-day-list">'+list+'</div>';
+    const checkBtn=content.querySelector('#studyCheckin');if(checkBtn)checkBtn.onclick=()=>{localStorage.setItem(attendanceKey(selectedDate),'1');syncProgress();if(selectedTask){render()}else{render()}};
+    content.querySelectorAll('[data-open-task]').forEach(b=>b.onclick=()=>{selectedTask=b.dataset.openTask;render()});
+  }
+  const fullBackdrop=document.getElementById('fullScheduleBackdrop'),fullContent=document.getElementById('fullScheduleContent');
+  let scheduleView='day',calendarMonth=new Date();calendarMonth.setDate(1);calendarMonth.setHours(0,0,0,0);
+  function closeFull(){fullBackdrop.classList.remove('is-open');fullBackdrop.setAttribute('aria-hidden','true');document.body.style.overflow=''}
+  function openFull(){close();scheduleView='day';calendarMonth=new Date();calendarMonth.setDate(1);calendarMonth.setHours(0,0,0,0);renderFull();fullBackdrop.classList.add('is-open');fullBackdrop.setAttribute('aria-hidden','false');document.body.style.overflow='hidden'}
+  function renderFull(){
+    fullBackdrop.querySelectorAll('[data-schedule-view]').forEach(b=>b.classList.toggle('active',b.dataset.scheduleView===scheduleView));
+    if(scheduleView==='day'){
+      const tasks=taskSets[(selectedDate.getDay()+6)%7],checked=localStorage.getItem(attendanceKey(selectedDate))==='1',done=getDone(selectedDate);
+      fullContent.innerHTML=`<div class="full-schedule-summary"><strong>${humanDate(selectedDate)} · ${checked?'✅ Đã điểm danh':'📍 Chưa điểm danh'}</strong><p>4 bài theo lộ trình B1 · ${done.length}/4 bài hoàn thành. Mỗi ngày cần điểm danh một lần trước khi mở bài.</p></div><div class="full-schedule-week">${taskOrder.map(k=>{const t=tasks[k];return `<article class="study-task ${done.includes(k)?'is-done':''}"><span class="study-task-icon">${done.includes(k)?'✓':t.icon}</span><div><h3>${t.name} · ${t.topic}</h3><p>${t.detail}</p></div><button type="button" data-open-schedule-task="${k}">Mở ngày học →</button></article>`}).join('')}</div>`;
+    }else if(scheduleView==='week'){
+      const start=new Date();start.setHours(0,0,0,0);start.setDate(start.getDate()-((start.getDay()+6)%7));
+      fullContent.innerHTML=`<div class="full-schedule-summary"><strong>Tuần này · ${new Intl.DateTimeFormat('vi-VN',{day:'numeric',month:'long'}).format(start)} – ${new Intl.DateTimeFormat('vi-VN',{day:'numeric',month:'long'}).format(new Date(start.getFullYear(),start.getMonth(),start.getDate()+6))}</strong><p>Lộ trình luân phiên chủ đề từ vựng, ngữ pháp và bốn kỹ năng; tiến độ được ghi theo từng ngày trên trình duyệt này.</p></div><div class="full-schedule-week">${Array.from({length:7},(_,i)=>{const d=new Date(start);d.setDate(start.getDate()+i);const tasks=taskSets[(d.getDay()+6)%7],checked=localStorage.getItem(attendanceKey(d))==='1',done=getDone(d);return `<article class="full-schedule-day ${dateKey(d)===dateKey(new Date())?'is-today':''}"><time>${['T2','T3','T4','T5','T6','T7','CN'][i]}<br>${pad(d.getDate())}/${pad(d.getMonth()+1)}</time><div><strong>${tasks.vocab.topic}</strong><small>${checked?'Đã điểm danh':'Chưa điểm danh'} · ${done.length}/4 bài · ${tasks.grammar.topic}</small></div><button type="button" data-open-schedule-date="${dateKey(d)}">Xem ngày →</button></article>`}).join('')}</div>`;
+    }else{
+      const year=calendarMonth.getFullYear(),month=calendarMonth.getMonth(),first=new Date(year,month,1),offset=(first.getDay()+6)%7,days=new Date(year,month+1,0).getDate(),total=Math.ceil((offset+days)/7)*7,today=new Date();today.setHours(0,0,0,0);
+      const cells=Array.from({length:total},(_,i)=>{const d=new Date(year,month,1-offset+i),outside=d.getMonth()!==month,done=getDone(d),checked=localStorage.getItem(attendanceKey(d))==='1';return `<button type="button" class="full-schedule-date ${outside?'is-outside':''} ${dateKey(d)===dateKey(today)?'is-today':''}" data-open-schedule-date="${dateKey(d)}">${d.getDate()}<small>${checked?'✓ điểm danh':done.length?done.length+'/4 bài':''}</small></button>`}).join('');
+      fullContent.innerHTML=`<div class="full-schedule-month-head"><button type="button" data-month-shift="-1" aria-label="Tháng trước">←</button><strong>${new Intl.DateTimeFormat('vi-VN',{month:'long',year:'numeric'}).format(calendarMonth)}</strong><button type="button" data-month-shift="1" aria-label="Tháng sau">→</button></div><div class="full-schedule-month-grid">${['T2','T3','T4','T5','T6','T7','CN'].map(x=>`<span class="weekday">${x}</span>`).join('')}${cells}</div>`;
+    }
+  }
+  document.getElementById('openFullSchedule')?.addEventListener('click',e=>{e.preventDefault();openFull()});
+  fullBackdrop.querySelectorAll('[data-schedule-view]').forEach(b=>b.addEventListener('click',()=>{scheduleView=b.dataset.scheduleView;renderFull()}));
+  fullBackdrop.addEventListener('click',e=>{if(e.target===fullBackdrop)closeFull();const task=e.target.closest('[data-open-schedule-task]'),day=e.target.closest('[data-open-schedule-date]'),shift=e.target.closest('[data-month-shift]');if(task){closeFull();open(selectedDate,task.dataset.openScheduleTask)}else if(day){const [y,m,d]=day.dataset.openScheduleDate.split('-').map(Number);closeFull();open(new Date(y,m-1,d),null)}else if(shift){calendarMonth.setMonth(calendarMonth.getMonth()+Number(shift.dataset.monthShift));renderFull()}});
+  document.getElementById('fullScheduleClose').onclick=closeFull;
+  function syncProgress(){const d=new Date();d.setHours(0,0,0,0);const badge=document.getElementById('journeyAttendance');if(!badge)return;const done=getDone(d).length;badge.textContent=(localStorage.getItem(attendanceKey(d))==='1'?'✅ Đã điểm danh · ':'📍 Chưa điểm danh · ')+done+'/4 bài';}
+  document.querySelectorAll('.journey-stop[data-lesson]').forEach(b=>b.addEventListener('click',()=>{const d=new Date();d.setHours(0,0,0,0);open(d,b.dataset.lesson)}));
+  document.querySelectorAll('.day-col').forEach((col,i)=>{col.tabIndex=0;col.setAttribute('role','button');const date=new Date();date.setHours(0,0,0,0);const mondayOffset=(date.getDay()+6)%7;date.setDate(date.getDate()-mondayOffset+i);const name=col.querySelector('.day-name'),num=col.querySelector('.day-num'),pillar=col.querySelector('.day-pillar');if(name)name.textContent=['T2','T3','T4','T5','T6','T7','CN'][i];if(num){num.textContent=date.getDate();num.classList.toggle('active',dateKey(date)===dateKey(new Date()));}if(pillar)pillar.classList.toggle('is-today',dateKey(date)===dateKey(new Date()));const handler=()=>open(date,null);col.addEventListener('click',handler);col.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();handler()}})});
+  document.getElementById('journeyAttendance')?.addEventListener('click',()=>{const d=new Date();d.setHours(0,0,0,0);open(d,null)});
+  document.getElementById('studyDayClose').onclick=close;backdrop.addEventListener('click',e=>{if(e.target===backdrop)close()});document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(backdrop.classList.contains('is-open'))close();if(fullBackdrop.classList.contains('is-open'))closeFull()}});syncProgress();
+})();
+</script>
+
+</body>
+</html>
+
