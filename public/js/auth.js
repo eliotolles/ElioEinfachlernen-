@@ -40,7 +40,7 @@ const Menu={
 };
 $('#menu-toggle').onclick=()=>Menu.set(!Menu.collapsed);$('#menu-close').onclick=$('#menu-backdrop').onclick=()=>{Menu.set(true);$('#menu-toggle').focus();};document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!Menu.collapsed){Menu.set(true);$('#menu-toggle').focus();}});document.addEventListener('click',event=>{if(Menu.mobile()&&event.target.closest?.('.sidebar a'))Menu.set(true);});document.addEventListener('languagechange',()=>Menu.apply());window.matchMedia?.('(max-width: 850px)').addEventListener?.('change',()=>Menu.apply());Menu.apply();
 
-function renderAIConfigAccess(){const admin=Account.profile?.role==='super_admin';document.body.classList.toggle('super-admin-tools',admin);for(const selector of ['#ai-settings','#ui-language','.quick-color','#text-size-link','#sync-state']){const button=$(selector);if(button)button.hidden=!admin;}}
+function renderAIConfigAccess(){const admin=Account.profile?.role==='super_admin';document.body.classList.toggle('super-admin-tools',admin);for(const selector of ['#ai-settings','.quick-color','#sync-state']){const button=$(selector);if(button)button.hidden=!admin;}}
 document.addEventListener('authchange',renderAIConfigAccess);renderAIConfigAccess();
 
 if(/(?:^|\/)settings(?:\.html)?$/.test(location.pathname)){Account.request('/api/auth/google/config').then(config=>{if(!config.enabled)return;const link=document.createElement('a');link.className='button secondary';link.textContent='Liên kết tài khoản Google';link.href='/api/auth/google/start?link=1&next=/settings.html';link.target='_top';document.querySelector('main')?.prepend(link);}).catch(()=>{});}

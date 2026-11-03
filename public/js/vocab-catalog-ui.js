@@ -64,10 +64,13 @@
  }
 
  const tabButtons=new Map(),rendered=new Map();
- for(const key of ['topic','level','industry','mine']){const b=document.createElement('button');b.type='button';b.setAttribute('aria-controls',key==='mine'?'vocab-mine':'vocab-catalog-'+key);b.onclick=()=>select(key);tabs.append(b);tabButtons.set(key,b);}
+ for(const key of ['mine','level','topic','industry']){const b=document.createElement('button');b.type='button';b.setAttribute('aria-controls',key==='mine'?'vocab-mine':'vocab-catalog-'+key);b.onclick=()=>select(key);tabs.append(b);tabButtons.set(key,b);}
+ const extraLinks=[['dictionary','Từ điển','Wörterbuch','Dictionary'],['daily','Tình huống','Situationen','Situations']].map(([key,vi,de,en])=>{const a=document.createElement('a');a.href='lernen.html#category='+key;a.className='button secondary';tabs.append(a);return {a,vi,de,en};});
  function refresh(){
+  for(const link of extraLinks)link.a.textContent=text(link.vi,link.de,link.en);
+  const tabLabels={mine:text('Bộ thẻ của tôi','Meine Karten','My decks'),level:text('Bộ từ theo cấp độ','Nach Niveau','By level'),topic:text('Thư viện','Bibliothek','Library'),industry:text('Chuyên ngành','Fachgebiete','Specialisms')};
   const labels=VocabCatalog.labels[language()]||VocabCatalog.labels.vi;
-  for(const [key,b]of tabButtons){if(b.textContent!==labels[key])b.textContent=labels[key];b.className=active===key?'':'secondary';b.setAttribute('aria-selected',String(active===key));}
+  for(const [key,b]of tabButtons){if(b.textContent!==tabLabels[key])b.textContent=tabLabels[key];b.className=active===key?'':'secondary';b.setAttribute('aria-selected',String(active===key));}
   for(const [key,panel]of panels)if(panel.hidden!==(active!==key))panel.hidden=active!==key;
   if(mine.hidden!==(active!=='mine'))mine.hidden=active!=='mine';
   const all=decks(),level=($('#vocab-level').value||'A1').toLowerCase(),signature=catalogRevision+':'+language()+':'+(active==='mine'?level:'');
