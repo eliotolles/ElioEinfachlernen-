@@ -54,3 +54,11 @@ No actual role changes, deletions, imports, API-key changes or production conten
 - tests/admin-workspace.test.mjs — identity/privacy/filtering/permission-presentation coverage.
 
 Existing production target: https://eliolernen1.vercel.app/. Use the existing GitHub integration; preserve all environment variables and the Turso database. Verify the release commit's deployment status before claiming it is live.
+
+## Reference layout revision · 2026-11-04
+
+Updated the admin presentation to the owner's five screenshots: editorial bilingual heading, compact monospace labels, cream panels, thin borders, burgundy accents and four main horizontal areas (AI & assignment, learning content, accounts & permissions, appearance & speech). Overview/import/status remain reachable as secondary tools. Default admin route opens AI. Existing IDs and event handlers are retained.
+
+The account list reuses actual API rows and action button nodes in aligned columns; missing display names are not invented. API supports Super Admin/User only. Appearance groups the existing font and speech controls side by side; remaining existing site fields are folded under general settings. No provider, voice, model, free-tier policy, account creation endpoint, role, secret, account or production setting was added/changed.
+
+Verified with a disposable local SQLite database through the existing Worker API: four tab navigation, account rows/action state, real empty AI configuration state and retained appearance form fields, light/dark. QA account and HTTP shim are excluded from release. Thirteen targeted admin tests and both hosting builds passed.
