@@ -21,13 +21,16 @@
  for(const id of ['theme','ui-language','text-size-link']){const n=document.getElementById(id);if(n){n.hidden=false;shell.querySelector('.ed-preferences').append(n);}}
  shell.querySelector('#ed-signout').onclick=()=>Account.logout();
  let restoreFocus=null;
- const mobile=window.matchMedia('(max-width:800px)'),sidebar=shell.querySelector('.ed-sidebar'),workspace=shell.querySelector('.ed-workspace');
+ const mobile=window.matchMedia('(max-width:800px)'),compact=window.matchMedia('(max-width:1180px)'),sidebar=shell.querySelector('.ed-sidebar'),workspace=shell.querySelector('.ed-workspace');
  const drawerAccess=()=>{const open=document.body.classList.contains('ed-drawer-open');sidebar.inert=mobile.matches&&!open;workspace.inert=mobile.matches&&open;};
  mobile.addEventListener('change',drawerAccess);drawerAccess();
  const closeMenu=()=>{const was=document.body.classList.contains('ed-drawer-open');document.body.classList.remove('ed-drawer-open');shell.querySelector('.ed-scrim').hidden=true;shell.querySelector('.ed-mobile-menu').setAttribute('aria-expanded','false');drawerAccess();if(was)restoreFocus?.focus();};
  shell.querySelector('.ed-mobile-menu').onclick=()=>{restoreFocus=document.activeElement;document.body.classList.add('ed-drawer-open');shell.querySelector('.ed-scrim').hidden=false;shell.querySelector('.ed-mobile-menu').setAttribute('aria-expanded','true');drawerAccess();shell.querySelector('.ed-nav a')?.focus();};
  shell.querySelector('.ed-scrim').onclick=closeMenu;
- shell.querySelector('.ed-collapse').onclick=()=>{const next=!document.body.classList.contains('ed-collapsed');App.saveSettings({editorialCollapsed:next});document.body.classList.toggle('ed-collapsed',next);shell.querySelector('.ed-collapse').setAttribute('aria-expanded',String(!next));};
+ document.addEventListener('click',event=>{if(event.target.closest('.ed-sidebar a[href]')&&mobile.matches)closeMenu();},true);
+ const syncSidebar=()=>{const choice=App.settings().editorialCollapsed;const collapsed=!mobile.matches&&(compact.matches||choice===true);document.body.classList.toggle('ed-collapsed',collapsed);const toggle=shell.querySelector('.ed-collapse');toggle.setAttribute('aria-expanded',String(!collapsed));toggle.setAttribute('aria-label',collapsed?'Mở rộng sidebar':'Thu gọn sidebar');toggle.textContent=collapsed?'›':'‹';};
+ compact.addEventListener('change',()=>{closeMenu();syncSidebar();});mobile.addEventListener('change',()=>{closeMenu();syncSidebar();});
+ shell.querySelector('.ed-collapse').onclick=()=>{const next=!document.body.classList.contains('ed-collapsed');if(compact.matches&&!mobile.matches){document.body.classList.toggle('ed-collapsed',next);shell.querySelector('.ed-collapse').setAttribute('aria-expanded',String(!next));shell.querySelector('.ed-collapse').textContent=next?'›':'‹';shell.querySelector('.ed-collapse').setAttribute('aria-label',next?'Mở rộng sidebar':'Thu gọn sidebar');}else App.saveSettings({editorialCollapsed:next});};
  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu();if(e.key==='Tab'&&document.body.classList.contains('ed-drawer-open')){const nodes=[...shell.querySelectorAll('.ed-sidebar a,.ed-sidebar button,.ed-sidebar select')].filter(n=>!n.hidden&&n.getClientRects().length),first=nodes[0],last=nodes.at(-1);if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}}});
  let overview,skills,readiness,plan;
  if(home){
@@ -42,7 +45,7 @@
  function update(){
   if(!Account.current())return;
   const title=rows.flatMap(g=>g[1]).find(r=>r[0].split('#')[0]===file)||{'schreiben.html':['','','Luyện viết','Schreiben','Writing'],'sprechen.html':['','','Luyện nói','Sprechen','Speaking'],'lernen.html':['','','Học & khám phá','Lernatelier','Explore'],'settings.html':['','','Cài đặt','Einstellungen','Settings']}[file];
-  document.body.classList.toggle('ed-collapsed',!!App.settings().editorialCollapsed);
+  syncSidebar();
   shell.querySelector('#ed-page-title').textContent=title?tr(title[2],title[3],title[4]):document.title.split('·')[0];
   shell.querySelector('#ed-role').textContent=Account.profile?.role==='super_admin'?'SUPER ADMIN':tr('NGƯỜI HỌC','LERNENDE','LEARNER');
   shell.querySelector('#ed-target-value').textContent=Account.get('studyPlan',null)?.profile?.target||'—';

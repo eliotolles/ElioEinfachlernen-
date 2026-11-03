@@ -5,10 +5,10 @@ import fs from 'node:fs';
 import vm from 'node:vm';
 let instance=0;
 async function fixture(){
- const {default:worker}=await import('../worker/index.js?delete-test-'+(++instance));const db=new DatabaseSync(':memory:');
+ const {default:worker,initialize}=await import('../worker/index.js?delete-test-'+(++instance));const db=new DatabaseSync(':memory:');
  const env={ADMIN_EMAILS:'protected@example.com',TEST_DB:async(q,args=[])=>{const stmt=db.prepare(q);if(stmt.columns().length)return {rows:stmt.all(...args),changes:0};return {rows:[],changes:Number(stmt.run(...args).changes)};}};
  async function call(method,data,cookie='',origin='https://elio.test'){const response=await worker.fetch(new Request('https://elio.test/api/admin/users',{method,headers:{Origin:origin,Cookie:cookie,'Content-Type':'application/json'},body:data===undefined?undefined:JSON.stringify(data)}),env);return {status:response.status,body:await response.json()};}
- await worker.fetch(new Request('https://elio.test/api/auth/google/config'),env);
+ await initialize(env);
  async function seed(id,role='user',email=id+'@example.com'){const now=Date.now();db.prepare('INSERT INTO app_users VALUES(?,?,?,?,?,?,?)').run(id,email,'google$'+id,role,0,now,now);const token=Buffer.from(crypto.getRandomValues(new Uint8Array(32))).toString('hex'),hash=Buffer.from(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(token))).toString('hex');db.prepare('INSERT INTO app_sessions VALUES(?,?,?,?)').run(hash,id,now+60000,now);return 'elio_session='+token;}
  const owner=await seed('owner','super_admin'),learner=await seed('learner');return {db,env,call,seed,owner,learner};
 }
