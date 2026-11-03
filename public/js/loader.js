@@ -10,6 +10,7 @@ for(const src of localScripts){const link=document.createElement('link');link.re
  if(window.ElioSessionLoaded)await window.ElioSessionLoaded;
  await Account.ready;
  if(!Account.current()||Account.profile.passwordExpired)return;
+ if(/\/admin(?:\.html)?$/.test(location.pathname)&&Account.profile.role!=='super_admin'){document.querySelector('main').innerHTML='<h1>Không có quyền truy cập</h1><p>Trang Quản trị chỉ dành cho Super Admin. Tài khoản hiện tại không có quyền quản trị.</p><a class="button" href="index.html">Về trang học</a>';document.documentElement.classList.remove('auth-pending');return;}
  const bookStyle=new Promise((resolve,reject)=>{const link=document.createElement('link');link.rel='stylesheet';link.href=assetURL('editorial.css');link.onload=resolve;link.onerror=()=>reject(Error('Không tải được mục lục Elio. Vui lòng tải lại trang.'));document.head.append(link);});
  // Fetch together; async=false preserves the existing dependency/execution order.
  await Promise.all([bookStyle,...localScripts.map(src=>new Promise((resolve,reject)=>{
