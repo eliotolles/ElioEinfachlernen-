@@ -7,15 +7,38 @@
  document.querySelectorAll('.mobile-app-nav,body>footer').forEach(n=>n.hidden=true);
  legacy.hidden=true;
  const file=location.pathname.split('/').pop()||'index.html',home=file==='index.html';
+ main.dataset.edModule=file.replace('.html','');
  const tr=(vi,de,en)=>({vi,de,en})[App.settings().language]||vi;
+ const moduleHeaders={
+  'quiz.html':['WIEDERHOLEN','Ôn thẻ từ vựng','Karteikarten','Flashcard review'],
+  'wortschatz.html':['WORTSCHATZ','Kho từ vựng','Wortschatzbibliothek','Vocabulary library'],
+  'grammatik.html':['GRAMMATIK-WERKSTATT'],
+  'hoeren.html':['HÖRVERSTEHEN & VIDEO-STUDIO','Luyện nghe tiếng Đức','Hörverstehen','German listening'],
+  'schreiben.html':['SCHREIBWERKSTATT','Luyện viết tiếng Đức','Schreibtraining','German writing'],
+  'sprechen.html':['SPRECHWERKSTATT'],
+  'pruefung.html':['PRÜFUNGSSIMULATION'],
+  'lernen.html':['LERNATELIER','Xưởng luyện tập','Lernatelier','Practice workshop'],
+  'tutor.html':['KI-TUTOR'],
+  'history.html':['FORTSCHRITT · MEINE SEITEN'],
+  'settings.html':['MEIN BEREICH'],
+  'admin.html':['ADMINISTRATIONSBEREICH']
+ };
+ const heading=main.querySelector('h1'),moduleHeader=moduleHeaders[file];
+ if(heading&&moduleHeader){
+  const kicker=document.createElement('div');
+  kicker.className='ed-eyebrow ed-module-kicker';
+  kicker.textContent=moduleHeader[0];
+  heading.before(kicker);
+  heading.classList.add('ed-module-heading');
+ }
  const rows=[
  ['HỌC / LERNEN',[['index.html','home','Hôm nay','Heute','Today'],['quiz.html','cards','Ôn thẻ','Wiederholen','Review'],['wortschatz.html','book','Từ vựng','Wortschatz','Vocabulary']]],
- ['LUYỆN / TRAINIEREN',[['index.html#skills','grid','Kỹ năng','Fertigkeiten','Skills'],['grammatik.html','book','Ngữ pháp','Grammatik','Grammar'],['hoeren.html','headphones','Luyện nghe','Hören','Listening'],['hoeren.html#view=library&category=youtube','play','Video cá nhân','Eigene Videos','My videos'],['lernen.html#category=games','grid','Trò chơi','Spiele','Games'],['pruefung.html','flag','Luyện thi','Prüfungstraining','Exams'],['index.html#readiness','check','Sẵn sàng thi','Prüfungsbereitschaft','Exam readiness'],['tutor.html','chat','AI ELIO','KI ELIO','AI ELIO']]],
+ ['LUYỆN / TRAINIEREN',[['index.html#skills','grid','Kỹ năng','Fertigkeiten','Skills'],['hoeren.html','headphones','Luyện nghe','Hören','Listening'],['hoeren.html#view=library&category=youtube','play','Video cá nhân','Eigene Videos','My videos'],['lernen.html#category=games','grid','Trò chơi','Spiele','Games'],['pruefung.html','flag','Luyện thi','Prüfungstraining','Exams'],['index.html#readiness','check','Sẵn sàng thi','Prüfungsbereitschaft','Exam readiness'],['tutor.html','chat','AI ELIO','KI ELIO','AI ELIO']]],
  ['TÔI / PERSÖNLICH',[['history.html','chart','Tiến độ','Fortschritt','Progress'],['history.html#drafts','page','Meine Seiten','Meine Seiten','My pages'],['index.html#plan','calendar','Lộ trình của tôi','Mein Lernplan','My study plan']]]];
  if(Account.profile?.role==='super_admin')rows[2][1].push(['admin.html','settings','Quản trị viên','Verwaltung','Administration']);
  const paths={home:'M3 10 12 3l9 7v11H3Z M9 21v-8h6v8',cards:'M7 6h14v15H7Z M17 2H3v15',book:'M12 5v16 M3 4q5-2 9 1 4-3 9-1v15q-5-2-9 2-4-4-9-2Z',grid:'M3 3h7v7H3Z M14 3h7v7h-7Z M3 14h7v7H3Z M14 14h7v7h-7Z',headphones:'M4 13v-2a8 8 0 0 1 16 0v2 M2 12h5v9H2Z M17 12h5v9h-5Z',play:'M3 4h18v16H3Z M10 8l6 4-6 4Z',flag:'M5 22V3q5-3 10 0h5v12h-5q-5-3-10 0',check:'m5 12 5 5L20 7',chat:'M3 4h18v13H9l-6 4Z M7 9h10m-10 4h6',chart:'M3 3v18h18 M7 16v-4m5 4V7m5 9v-7',page:'M5 2h10l4 4v16H5Z M14 2v6h5 M8 12h8m-8 4h8',settings:'M4 7h16M4 17h16 M8 4v6m8 4v6',calendar:'M3 5h18v16H3Z M7 2v6m10-6v6M3 10h18'};
  const icon=n=>`<svg viewBox="0 0 24 24" aria-hidden="true"><path d="${paths[n]||paths.page}"/></svg>`;
- const shell=document.createElement('div');shell.id='editorial-shell';shell.innerHTML=`<button class="ed-scrim" aria-label="Đóng menu" hidden></button><aside class="ed-sidebar"><a class="ed-brand" href="index.html"><b>S</b><span><strong>Sprachmeisterschaft</strong><small>DeutschMaster A1–C2</small></span></a><div class="ed-target"><span>MỤC TIÊU HỌC</span><strong id="ed-target-value"></strong></div><nav class="ed-nav" aria-label="Điều hướng chính"></nav><div class="ed-account"><div id="ed-identity"></div><small id="ed-role"></small><button class="ed-collapse" aria-label="Thu gọn sidebar" aria-expanded="true">‹</button></div><div class="ed-side-actions"><a href="/" target="_top" data-ed-cover>Trang bìa</a><a href="settings.html">Cài đặt</a><button id="ed-signout">Đăng xuất</button></div><div class="ed-preferences"></div></aside><div class="ed-workspace"><header class="ed-topbar"><button class="ed-mobile-menu" aria-label="Mở menu" aria-expanded="false">☰</button><span class="ed-eyebrow">ELIO EINFACH</span><span class="ed-divider">/</span><strong id="ed-page-title"></strong><span class="ed-motto">Lernen, auf deine Art.</span></header><div class="ed-main"></div><footer class="ed-footer"><span>SPRACHMEISTERSCHAFT · ELIO EINFACH</span><a href="settings.html">Cài đặt & đồng bộ ↗</a></footer></div>`;
+ const shell=document.createElement('div');shell.id='editorial-shell';shell.innerHTML=`<button class="ed-scrim" aria-label="Đóng menu" hidden></button><aside class="ed-sidebar"><a class="ed-brand" href="index.html"><b>SM</b><span><strong>Sprachmeisterschaft</strong><small>DeutschMaster A1–C2</small></span></a><div class="ed-target"><span>MỤC TIÊU HỌC</span><strong id="ed-target-value"></strong></div><nav class="ed-nav" aria-label="Điều hướng chính"></nav><div class="ed-account"><div id="ed-identity"></div><small id="ed-role"></small><button class="ed-collapse" aria-label="Thu gọn sidebar" aria-expanded="true">‹</button></div><div class="ed-side-actions"><a href="/" target="_top" data-ed-cover>Trang bìa</a><a href="settings.html">Cài đặt</a><button id="ed-signout">Đăng xuất</button></div><div class="ed-preferences"></div></aside><div class="ed-workspace"><header class="ed-topbar"><button class="ed-mobile-menu" aria-label="Mở menu" aria-expanded="false">☰</button><span class="ed-eyebrow">ELIO EINFACH</span><span class="ed-divider">/</span><strong id="ed-page-title"></strong><span class="ed-motto">Lernen, auf deine Art.</span></header><div class="ed-main"></div><footer class="ed-footer"><span>SPRACHMEISTERSCHAFT · ELIO EINFACH</span><a href="settings.html">Cài đặt & đồng bộ ↗</a></footer></div>`;
  legacy.after(shell);shell.querySelector('.ed-main').append(main);
  const identity=document.getElementById('user-button');if(identity)shell.querySelector('#ed-identity').append(identity);
  for(const id of ['theme','ui-language','text-size-link']){const n=document.getElementById(id);if(n){n.hidden=false;shell.querySelector('.ed-preferences').append(n);}}
@@ -46,22 +69,63 @@
   if(!Account.current())return;
   const title=rows.flatMap(g=>g[1]).find(r=>r[0].split('#')[0]===file)||{'schreiben.html':['','','Luyện viết','Schreiben','Writing'],'sprechen.html':['','','Luyện nói','Sprechen','Speaking'],'lernen.html':['','','Học & khám phá','Lernatelier','Explore'],'settings.html':['','','Cài đặt','Einstellungen','Settings']}[file];
   syncSidebar();
+  if(heading&&moduleHeader?.length===4)heading.textContent=tr(...moduleHeader.slice(1));
   shell.querySelector('#ed-page-title').textContent=title?tr(title[2],title[3],title[4]):document.title.split('·')[0];
   shell.querySelector('#ed-role').textContent=Account.profile?.role==='super_admin'?'SUPER ADMIN':tr('NGƯỜI HỌC','LERNENDE','LEARNER');
   shell.querySelector('#ed-target-value').textContent=Account.get('studyPlan',null)?.profile?.target||'—';
-  shell.querySelector('.ed-nav').innerHTML=rows.map(([group,items])=>`<div class="ed-nav-label">${group}</div>${items.map(([url,i,vi,de,en])=>{const dest=new URL(url,location.href),active=dest.pathname===location.pathname&&(dest.hash?dest.hash===location.hash:!location.hash);return `<a href="${url}" title="${esc(tr(vi,de,en))}" ${active?'aria-current="page"':''}>${icon(i)}<span>${esc(tr(vi,de,en))}</span></a>`;}).join('')}`).join('');
+  shell.querySelector('.ed-nav').innerHTML=rows.map(([group,items])=>`<div class="ed-nav-label">${group}</div>${items.map(([url,i,vi,de,en])=>{const dest=new URL(url,location.href),active=(dest.pathname===location.pathname||(home&&url.startsWith('index.html')))&&(dest.hash?dest.hash===location.hash:!location.hash);return `<a href="${url}" title="${esc(tr(vi,de,en))}" ${active?'aria-current="page"':''}>${icon(i)}<span>${esc(tr(vi,de,en))}</span></a>`;}).join('')}`).join('');
   shell.querySelectorAll('.ed-nav a').forEach(a=>a.addEventListener('click',closeMenu));
   if(home){
-   const s=App.stats(),saved=Account.get('studyPlan',null),session=Account.get('grammarSession',null),drafts=Account.get('drafts',{});
-   overview.innerHTML=`<div class="ed-heading"><div><div class="ed-eyebrow">DEIN TAG · DEIN FORTSCHRITT</div><h1>${esc(tr('Học một chút. Tiến một bước.','Ein bisschen lernen. Weiterkommen.','Learn a little. Move forward.'))}</h1><p>${esc(tr('Tiếp tục từ điều bạn đang học, theo nhịp của riêng bạn.','Lerne in deinem eigenen Tempo weiter.','Continue learning at your own pace.'))}</p></div></div><section class="ed-welcome"><span class="ed-tag">${esc(Account.displayName())} · ELIO EINFACH</span><h2>${esc(tr('Hiểu ngôn ngữ. Tìm giọng nói của bạn.','Sprache verstehen. Deine Stimme finden.','Understand the language. Find your voice.'))}</h2><p>${esc(tr('Chọn một phần học hoặc tiếp tục bài đang làm. Nội dung và tiến độ được đồng bộ theo tài khoản.','Wähle einen Bereich oder mache weiter.','Choose a module or continue your work.'))}</p><a class="button" href="${session?.lessonId?'grammatik.html':'index.html#skills'}">${esc(tr('Tiếp tục học','Weiterlernen','Continue learning'))} ↗</a></section><div class="ed-statistics">${[[s.streak,tr('Chuỗi học · ngày','Serie · Tage','Streak · days')],[s.mastered,tr('Từ thành thạo','Beherrschte Wörter','Mastered words')],[s.lessons,tr('Bài đã hoàn thành','Abgeschlossene Lektionen','Completed lessons')]].map(([v,k])=>`<div><small>${esc(k)}</small><strong>${v}</strong></div>`).join('')}</div><div class="ed-section-heading"><h2>${esc(tr('Tiếp tục & ôn tập','Weiterlernen & wiederholen','Continue & review'))}</h2><a href="history.html">${esc(tr('Lịch sử','Verlauf','History'))} ↗</a></div><div class="ed-resume-grid"><a class="panel" href="quiz.html"><h3>${esc(tr('Ôn thẻ của bạn','Deine Karteikarten','Your flashcards'))}</h3><p>${esc(tr('Ôn từ đã lưu theo lịch SRS hiện có.','Gespeicherte Wörter wiederholen.','Review your saved words with the existing SRS.'))}</p></a><a class="panel" href="${session?.lessonId?'grammatik.html':'schreiben.html'}"><h3>${esc(tr('Bài đang làm','Deine laufende Arbeit','Work in progress'))}</h3><p>${session?.lessonId?esc(tr('Tiếp tục bài ngữ pháp đã lưu.','Grammatiklektion fortsetzen.','Resume your grammar lesson.')):esc(tr('Mở luyện viết để tiếp tục bản nháp hoặc chọn đề mới.','Schreiben öffnen.','Open writing to resume a draft or choose a task.'))}</p></a></div><div class="ed-section-heading"><h2>${esc(tr('Các phần học','Lernbereiche','Learning modules'))}</h2></div>${tiles()}`;
+   const stats=App.stats(), saved=Account.get('studyPlan',null);
+   const today=App.day(), examDate=saved?.profile?.date;
+   const days=examDate&&!saved.profile.dateIsEstimated
+    ? Math.round((Date.parse(examDate)-Date.parse(today))/86400000)
+    : NaN;
+   const trackedCards=Object.values(Account.get('srs',{}));
+   const due=trackedCards.filter(card=>card?.dueAt<=Date.now()).length;
+   const target=saved?.profile?.target||'—';
+   const cards=[
+    ['cards',due,tr('Thẻ đã học đến hạn','Fällige gelernte Karten','Learned cards due')],
+    ['chart',stats.streak,tr('Chuỗi học · ngày','Lernserie · Tage','Study streak · days')],
+    ['calendar',Number.isFinite(days)?(days<0?'D+'+Math.abs(days):'D−'+days):'—',tr('Đếm ngược ngày thi','Tage bis zur Prüfung','Exam countdown')],
+    ['book',stats.mastered,tr('Từ đã thành thạo','Beherrschte Wörter','Mastered words')]
+   ];
+   const tasks=saved&&typeof StudyPlannerCore!=='undefined'?StudyPlannerCore.tasks(saved,today):[];
+   const quickTasks=[
+    ['quiz.html','cards',tr('Ôn thẻ từ vựng','Karteikarten wiederholen','Review flashcards'),tr('Ôn theo lịch SRS','Nach SRS-Plan','Follow your SRS schedule')],
+    ['index.html#skills','grid',tr('Luyện một kỹ năng','Eine Fertigkeit üben','Practice a skill'),tr('Mở xưởng kỹ năng','Werkstatt öffnen','Open the skills workshop')],
+    ['lernen.html#category=games','check',tr('Chơi trò tiếng Đức','Deutsch spielen','Play a German game'),tr('Luyện phản xạ','Reaktion trainieren','Practice recall')],
+    ['tutor.html','chat',tr('Hỏi gia sư ELIO','ELIO fragen','Ask ELIO'),tr('Luyện hội thoại','Gespräche üben','Practice conversation')]
+   ];
+   const taskLinks=tasks.length
+    ? tasks.map(t=>[t.url,saved.completed?.[t.id]?'check':'calendar',t.title,t.minutes+'′'])
+    : quickTasks;
+   overview.innerHTML=`<header class="ed-heading ed-page-header">
+    <div><div class="ed-eyebrow">${tr('TỔNG QUAN HỌC TẬP','LERNÜBERSICHT','STUDY OVERVIEW')}</div>
+    <h1>Guten Tag, ${esc(Account.displayName())}! <small>/ Heute</small></h1>
+    <p>${tr('Mục tiêu học của bạn','Dein Lernziel','Your learning target')} · ${esc(target)}</p></div>
+    <a class="button" href="quiz.html">${tr('Ôn thẻ từ vựng','Karteikarten wiederholen','Review flashcards')} ↗</a>
+   </header>
+   <div class="ed-dashboard-stats">${cards.map(([symbol,value,label])=>`<article class="panel"><div>${esc(label)} ${icon(symbol)}</div><strong>${value}</strong></article>`).join('')}</div>
+   <div class="ed-dashboard-focus">
+    <section class="panel ed-readiness-card"><span class="ed-eyebrow">${tr('SẴN SÀNG THI','PRÜFUNGSBEREITSCHAFT','EXAM READINESS')}</span>
+    <h2>Prüfungsreife</h2><p>${tr('Xem kết quả bài thi và các phần cần ôn.','Prüfungsergebnisse und Übungsbedarf prüfen.','Review exam results and practice needs.')}</p>
+    <div class="ed-target-ring">${esc(target)}</div>
+    <a href="index.html#readiness">${tr('Xem chi tiết','Details ansehen','View details')} ↗</a></section>
+    <section class="panel"><span class="ed-eyebrow">DEIN LERNPLAN</span>
+    <h2>${tasks.length?tr('Nhiệm vụ học hôm nay','Heutige Aufgaben','Today’s tasks'):tr('Luyện tập hôm nay','Heute üben','Practice today')}</h2>
+    <div class="ed-task-grid">${taskLinks.map(([url,symbol,title,note])=>`<a href="${url}">${icon(symbol)}<span><strong>${esc(title)}</strong><small>${esc(note)}</small></span><span aria-hidden="true">↗</span></a>`).join('')}</div>
+    <a href="index.html#plan">${tr('Mở lộ trình','Lernplan öffnen','Open study plan')} ↗</a></section>
+   </div>
+   <section class="panel ed-tutor-promo">${icon('chat')}<div><span class="ed-eyebrow">KI-TUTOR</span><h2>${tr('Trợ lý ngôn ngữ ELIO','ELIO Sprachassistent','ELIO language tutor')}</h2></div><a class="button secondary" href="tutor.html">${tr('Trò chuyện với ELIO','Mit ELIO sprechen','Chat with ELIO')} ↗</a></section>
+   <div class="ed-section-heading"><h2>${tr('Các phần học','Lernbereiche','Learning modules')}</h2></div>${tiles()}`;
    skills.innerHTML=`<div class="ed-heading"><div><div class="ed-eyebrow">TRAINIEREN</div><h1>${esc(tr('Kỹ năng & nền tảng','Fertigkeiten & Grundlagen','Skills & foundations'))}</h1><p>${esc(tr('Mở đúng khu vực bạn muốn luyện.','Wähle deinen Lernbereich.','Choose what to practice.'))}</p></div></div>${tiles()}<div class="ed-module-grid"><a class="ed-module" href="lernen.html#category=dictionary">${icon('book')}<h3>${esc(tr('Từ điển & IPA','Wörterbuch & IPA','Dictionary & IPA'))}</h3></a><a class="ed-module" href="tutor.html">${icon('chat')}<h3>${esc(tr('Giao tiếp & AI Tutor','Gespräche & KI-Tutor','Conversations & AI Tutor'))}</h3></a><a class="ed-module" href="lernen.html">${icon('grid')}<h3>${esc(tr('Học & khám phá','Lernatelier','Learning atelier'))}</h3></a></div>`;
-   const attempts=Account.get('examAttempts',[]);
    readiness.innerHTML=`<div class="ed-heading"><div><div class="ed-eyebrow">PRÜFUNGSBEREITSCHAFT</div><h1>${esc(tr('Sẵn sàng thi','Bereit für die Prüfung','Exam readiness'))}</h1><p>${esc(tr('Đối chiếu kết quả đã làm, không suy xác suất đậu từ số buổi học.','Ergebnisse prüfen, keine erfundenen Prognosen.','Review evidence, without invented pass predictions.'))}</p></div></div><section class="panel"><h2>${esc(tr('Kết quả & điểm cần ôn','Ergebnisse & Übungsbedarf','Results & review needs'))}</h2><p>${esc(tr('Mở lịch sử để xem bài thi và phản hồi đã lưu. Chưa có hệ thống đánh giá sẵn sàng được xác minh riêng.','Öffne den Verlauf für gespeicherte Prüfungen.','Open history for saved attempts and feedback.'))}</p><a class="button" href="history.html">${esc(tr('Xem lịch sử','Verlauf öffnen','Open history'))} ↗</a> <a class="button secondary" href="pruefung.html">${esc(tr('Luyện thi','Prüfungstraining','Exam practice'))} ↗</a></section>`;
    route();
   }
  }
  function route(){if(!home)return;const hash=location.hash,part=hash==='#skills'||hash==='#contents'?'skills':hash==='#readiness'?'readiness':hash==='#plan'?'plan':'overview';for(const [id,node]of Object.entries({overview,skills,readiness,plan}))node.hidden=id!==part;}
- for(const event of ['languagechange','cloudchange','progresschange','elioviewresume'])document.addEventListener(event,update);
+ for(const event of ['languagechange','cloudchange','progresschange','elioviewresume','elioplanrender'])document.addEventListener(event,update);
  window.addEventListener('hashchange',()=>{route();update();});
  update();ElioNavigation.install();window.ElioEditorialReady=true;
 })();
