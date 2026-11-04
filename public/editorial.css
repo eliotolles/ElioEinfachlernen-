@@ -67,3 +67,14 @@ body.editorial-app.dark {
 .ed-tutor-promo .button { margin-left: auto; }
 .ed-nav a[aria-current="page"] { background: var(--accent); color: var(--paper); }
 .ed-page-header h1 small { font-family: inherit; font-size: .72em; font-style: italic; color: var(--muted); }
+
+/* Schreibwerkstatt presents the task and the answer in reading order. */
+.writing-studio { display: grid; gap: 16px; }
+.writing-toolbar, .writing-prompt, .writing-studio > .editor { margin: 0; }
+.writing-toolbar { display: flex; flex-wrap: wrap; align-items: start; gap: 12px; }
+.writing-toolbar .row { flex-wrap: wrap; }
+.writing-toolbar .row, .writing-toolbar label { margin-bottom: 0; }
+.writing-toolbar .writing-import, .writing-toolbar .exam-guide { flex: 1 0 100%; }
+.writing-toolbar .exam-guide { margin: 0; }
+.writing-prompt .task-prompt { margin: 0; }
+.writing-studio #essay { min-height: 16rem; }
