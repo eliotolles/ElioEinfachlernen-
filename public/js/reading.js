@@ -148,7 +148,7 @@
     const node = el("article", undefined, "read-card"),
       meta = el("div", undefined, "read-meta");
     meta.append(
-      el("span", [row.level, row.kind].filter(Boolean).join(" · ")),
+      el("span", [row.level, ReadingCore.kindLabel(row.kind)].filter(Boolean).join(" · ")),
       el("span", labels[status(row)]),
     );
     node.append(
@@ -156,10 +156,7 @@
       el("h3", row.title),
       el(
         "p",
-        row.task.description ||
-          String(row.task.content || row.task.passage || row.collection)
-            .replace(/[#*_]/g, "")
-            .slice(0, 220),
+        [ReadingCore.kindLabel(row.kind), (row.task.questions?.length || 0) + " câu hỏi"].join(" · "),
         "read-muted",
       ),
     );
@@ -221,7 +218,23 @@
           (!f.status || status(r) === f.status),
       );
       heading.textContent = "Thư viện bài đọc · " + active.length;
-      grid.replaceChildren(...active.map(card));
+      const groups = ReadingCore.groups(active);
+      heading.textContent = "Thư viện bài đọc · " + groups.length + " bộ · " + active.length + " phần";
+      grid.replaceChildren(...groups.map(group => {
+        const section = el("section", undefined, "read-set read-panel");
+        section.append(el("div", [group.exam, group.level].filter(Boolean).join(" · "), "read-kicker"), el("h3", group.name));
+        const context = el("details", undefined, "read-set-source");
+        context.append(el("summary", "Bộ tài liệu nguồn"), el("p", group.collection, "read-muted"));
+        section.append(context);
+        const parts = el("div", undefined, "read-set-parts");
+        for (const row of group.rows) {
+          const part = el("article", undefined, "read-part");
+          part.append(el("h4", row.title), el("p", ReadingCore.kindLabel(row.kind) + " · " + (row.task.questions?.length || 0) + " câu hỏi", "read-muted"), el("span", labels[status(row)], "read-muted"), btn(status(row)==="progress"?"Tiếp tục →":status(row)==="done"?"Xem lại →":"Bắt đầu →",()=>start(row)));
+          parts.append(part);
+        }
+        section.append(parts);
+        return section;
+      }));
       if (!active.length) {
         const box = el("div", undefined, "read-empty read-panel");
         box.append(
@@ -260,7 +273,7 @@
           ? Object.keys(labels)
           : [...new Set(rows.map((r) => r[field]).filter(Boolean))].sort();
       for (const value of options) {
-        const o = el("option", labels[value] || value);
+        const o = el("option", labels[value] || (field === "kind" ? ReadingCore.kindLabel(value) : value));
         o.value = value;
         select.append(o);
       }
@@ -405,7 +418,7 @@
       btn("← Đọc", () => navigate(null)),
       el(
         "span",
-        [row.level, row.topic, row.kind, result ? "Kết quả" : row.title]
+        [row.level, row.topic, ReadingCore.kindLabel(row.kind), result ? "Kết quả" : row.title]
           .filter(Boolean)
           .join(" / "),
       ),

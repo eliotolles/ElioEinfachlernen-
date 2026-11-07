@@ -104,10 +104,21 @@ const TelcExam={
   if(['headings','advertisements','word-bank'].includes(kind)&&!this.bank(task.choiceBank||task.headings||task.advertisements||task.ads||task.wordBank).length)result.push('Ngân hàng tiêu đề/quảng cáo/từ chưa được tách riêng; văn bản và ảnh gốc vẫn được giữ.');
   return result;
  },
+ presentationContent(value){
+  const body=[],notes=[];
+  for(const line of String(value||'').split(/\r?\n/)) {
+   // Only explicit import metadata, never question text or answer choices.
+   if(/^\s*>?\s*Đáp án nguồn\s*:/i.test(line))notes.push(line.replace(/^\s*>\s?/,''));
+   else body.push(line);
+  }
+  return {body:body.join('\n'),notes};
+ },
  sourceHTML(task){
   const t=this.normalize(task),bank=this.bank(t.choiceBank),kind=this.kind(t);
   // content is always retained, including old Arabic-collection page images.
-  let html=LearningContent.render(t.content||'');
+  const presentation=this.presentationContent(t.content);
+  let html='<section class="exam-source-content">'+LearningContent.render(presentation.body)+'</section>';
+  if(presentation.notes.length)html+='<details class="exam-source-notes"><summary>Thông tin tài liệu nguồn</summary>'+presentation.notes.map(note=>'<p>'+esc(note)+'</p>').join('')+'</details>';
   if(t.instructions&&!String(t.content||'').includes(t.instructions))html='<div class="telc-instructions">'+LearningContent.render(t.instructions)+'</div>'+html;
   if(t.passage&&t.passage!==t.content)html+='<div class="telc-passage">'+LearningContent.render(t.passage)+'</div>';
   if(Array.isArray(t.texts))html+='<div class="telc-texts">'+t.texts.map((v,i)=>'<article><strong>'+esc(v.label||v.number||i+1)+'</strong>'+LearningContent.render(v.text||v.content||'')+'</article>').join('')+'</div>';

@@ -388,3 +388,16 @@ body.dark .read-correct {
     font-size: 20px;
   }
 }
+
+/* A collection stays together; parts keep their original source identity. */
+.read-grid:has(> .read-set) { grid-template-columns: 1fr; }
+.read-set > h3 { margin: 10px 0; font-size: 24px; }
+.read-set-source { margin: 12px 0 20px; color: var(--muted); font-size: 13px; }
+.read-set-parts { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 16px; }
+.read-part { min-width: 0; border: 1px solid var(--line); padding: 18px; display:flex; flex-direction:column; gap:10px; }
+.read-part h4 { margin: 0; font-size: 17px; line-height: 1.5; }
+.read-part p { margin: 0; }
+.read-part button { align-self:flex-start; margin-top:auto; }
+.exam-source-notes { margin: 20px 0; padding: 12px; border:1px solid var(--line); font-size:13px; }
+@media(max-width:900px){ .read-set-parts { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media(max-width:600px){ .read-set-parts { grid-template-columns:1fr; } }

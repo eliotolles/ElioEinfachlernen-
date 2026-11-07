@@ -67,6 +67,7 @@ const ReadingCore = {
         return [
           {
             id: JSON.stringify([c.id, original.id ?? index]),
+            collectionId: c.id,
             collection: c.name || "",
             task,
             title: task.title || c.name || "Bài đọc",
@@ -81,6 +82,21 @@ const ReadingCore = {
         ];
       }),
     );
+  },
+  kindLabel(value) {
+    return ({headings:'Ghép tiêu đề', 'multiple-choice':'Trắc nghiệm', advertisements:'Ghép tình huống – quảng cáo', cloze:'Điền từ', 'word-bank':'Chọn từ trong bảng', listening:'Nghe hiểu'})[value] || value;
+  },
+  groups(rows) {
+    const groups = new Map();
+    for (const row of rows) {
+      const task = row.task;
+      const name = task.setName || row.title.split(/\s*[·|]\s*Lesen\s*[·|]/i)[0] || row.collection;
+      const key = JSON.stringify([row.collectionId, task.exam || '', row.level, name]);
+      if (!groups.has(key)) groups.set(key, {name, level:row.level, exam:task.exam || '', collection:row.collection, rows:[]});
+      groups.get(key).rows.push(row);
+    }
+    for (const group of groups.values()) group.rows.sort((a,b)=>Number(a.task.teil||a.task.part||0)-Number(b.task.teil||b.task.part||0));
+    return [...groups.values()];
   },
   results: readingObjectiveResults,
 };

@@ -95,3 +95,14 @@ test("reading entry is included in Skills, sidebar and retained module navigatio
   assert(page.includes("js/reading-core.js"));
 });
 test('reading page loads the complete existing authored-bank dependencies',()=>{const c={};vm.createContext(c);for(const file of ['public/js/exams.js','public/js/exam-formats.js','public/js/exam-bank.js','public/js/telc-exam.js','public/js/reading-core.js'])vm.runInContext(fs.readFileSync(file,'utf8'),c);const count=vm.runInContext(`Object.values(EXAM_FORMATS).flatMap(p=>ReadingCore.catalog([{id:p.exam+p.level,type:'exam',name:p.name,items:examPracticeBank(p)}])).length`,c);assert(count>0);const html=fs.readFileSync('public/lesen.html','utf8');assert(html.includes('js/exams.js'));});
+test('groups keep exam collections and variants distinct, sort parts without changing source or progress identity',()=>{
+ const h=setup();
+ h.c.rows=[{id:'two',collectionId:'one',collection:'Library',level:'B1',title:'PETRA · Lesen · Teil 2',task:{exam:'telc',teil:2}},{id:'one',collectionId:'one',collection:'Library',level:'B1',title:'PETRA · Lesen · Teil 1',task:{exam:'telc',teil:1}},{id:'variant',collectionId:'one',collection:'Library',level:'B1',title:'PETRA · Lesen · Teil 2 · Biến thể',task:{exam:'telc',teil:2}},{id:'other',collectionId:'two',collection:'Other',level:'B1',title:'PETRA · Lesen · Teil 1',task:{exam:'telc',teil:1}}];
+ const before=JSON.stringify(h.c.rows),groups=h.run('ReadingCore.groups(rows)');
+ assert.equal(groups.length,2);assert.deepEqual(groups[0].rows.map(r=>r.id),['one','two','variant']);assert.equal(JSON.stringify(h.c.rows),before);
+});
+test('presentation separates only explicit source notes and preserves source text and answers',()=>{
+ const h=setup();h.c.task={content:'> Đáp án nguồn: original.pdf, trang 13.\n\n## Lesen Teil 1\nText A\n1. Frage\na. Ja\nb. Nein',questions:[{id:'q',answer:'b'}]};
+ const before=JSON.stringify(h.c.task),p=h.run('TelcExam.presentationContent(task.content)');
+ assert.deepEqual(p.notes,['Đáp án nguồn: original.pdf, trang 13.']);assert(p.body.includes('1. Frage\na. Ja\nb. Nein'));assert.equal(JSON.stringify(h.c.task),before);
+});
