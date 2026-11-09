@@ -16,7 +16,7 @@ const extracted=extractInlineImages(source),{assets}=versionAssets(extracted.ass
 await fs.rm('vercel-public',{recursive:true,force:true});await fs.mkdir('vercel-public',{recursive:true});
 const dynamic={};
 for(const [name,text] of Object.entries(assets)){
- if(['/home.html','/hoeren.html'].includes(name)){dynamic[name]=text;continue;}
+ if(['/hoeren.html'].includes(name)){dynamic[name]=text;continue;}
  const file=path.join('vercel-public',name);await fs.mkdir(path.dirname(file),{recursive:true});await fs.writeFile(file,text);
 }
 for(const [name,img] of Object.entries(extracted.images)){const file=path.join('vercel-public',name);await fs.mkdir(path.dirname(file),{recursive:true});await fs.writeFile(file,Buffer.from(img.base64,'base64'));}
@@ -28,6 +28,7 @@ for(const file of await walk('dist-vite')){
   await fs.mkdir(path.dirname(dest), {recursive: true});
   await fs.copyFile(file, dest);
 }
+await fs.copyFile('dist-vite/index.html', 'vercel-public/home.html');
 console.log('Vite React SPA overlayed into vercel-public successfully.');
 
 await fs.mkdir('vercel-server',{recursive:true});
