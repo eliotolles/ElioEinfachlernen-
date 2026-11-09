@@ -22,15 +22,15 @@
       "dest": "/api/handler"
     },
     {
-      "src": "/(?:home(?:\\.html)?|hoeren(?:\\.html)?|robots\\.txt|sitemap\\.xml)?",
+      "src": "/(home(?:\\.html)?|hoeren(?:\\.html)?|robots\\.txt|sitemap\\.xml)",
       "dest": "/api/handler"
     },
     {
       "handle": "filesystem"
     },
     {
-      "src": "/([^./]+)",
-      "dest": "/$1.html"
+      "src": "/.*",
+      "dest": "/index.html"
     }
   ]
 }
