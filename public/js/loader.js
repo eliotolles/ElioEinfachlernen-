@@ -1,7 +1,7 @@
 const appScripts=JSON.parse(document.currentScript.dataset.scripts);
 const importLibraries=appScripts.filter(src=>/^https?:/.test(src)),libraryLoads=new Map();
 window.ensureImportLibrary=async ext=>{const src=importLibraries.find(src=>/^(xlsx|xls|csv)$/.test(ext)?src.includes('xlsx'):ext==='docx'?src.includes('mammoth'):ext==='pdf'?src.includes('pdf.min.js'):false);if(!src)return;if(!libraryLoads.has(src)){const promise=new Promise((resolve,reject)=>{const script=document.createElement('script');script.src=src;script.onload=resolve;script.onerror=()=>{libraryLoads.delete(src);reject(Error('Không tải được thư viện đọc file. Kiểm tra mạng rồi thử lại.'));};document.head.append(script);});libraryLoads.set(src,promise);}await libraryLoads.get(src);};
-const localScripts=[...appScripts.filter(src=>!/^https?:/.test(src)),'js/pdf-tools.js','js/cloud-ui.js','js/navigation.js','js/editorial-ui.js','js/study-planner.js'];
+const localScripts=[...appScripts.filter(src=>!/^https?:/.test(src)),'js/pdf-tools.js','js/cloud-ui.js','js/navigation.js','js/editorial-pages.js','js/editorial-ui.js','js/editorial-exams.js','js/editorial-personal.js','js/study-planner.js'];
 const assetVersion=document.querySelector('meta[name="elio-assets"]')?.content;
 let assetVersions={};try{assetVersions=JSON.parse(document.getElementById?.('elio-asset-map')?.textContent||'{}');}catch{}
 const assetURL=src=>{const version=assetVersions[src]||assetVersion;return version?src+'?v='+encodeURIComponent(version):src;};
@@ -13,7 +13,8 @@ for(const src of localScripts){const link=document.createElement('link');link.re
  if(/\/admin(?:\.html)?$/.test(location.pathname)&&Account.profile.role!=='super_admin'){document.querySelector('main').innerHTML='<h1>Không có quyền truy cập</h1><p>Trang Quản trị chỉ dành cho Super Admin. Tài khoản hiện tại không có quyền quản trị.</p><a class="button" href="index.html">Về trang học</a>';document.documentElement.classList.remove('auth-pending');return;}
  const bookStyle=new Promise((resolve,reject)=>{const link=document.createElement('link');link.rel='stylesheet';link.href=assetURL('editorial.css');link.onload=resolve;link.onerror=()=>reject(Error('Không tải được mục lục Elio. Vui lòng tải lại trang.'));document.head.append(link);});
  // Fetch together; async=false preserves the existing dependency/execution order.
- await Promise.all([bookStyle,...localScripts.map(src=>new Promise((resolve,reject)=>{
+ const refreshStyle=new Promise((resolve,reject)=>{const link=document.createElement('link');link.rel='stylesheet';link.href=assetURL('editorial-refresh.css');link.onload=resolve;link.onerror=()=>reject(Error('Không tải được giao diện mới.'));document.head.append(link);});
+ await Promise.all([bookStyle,refreshStyle,...localScripts.map(src=>new Promise((resolve,reject)=>{
   const s=document.createElement('script');s.async=false;s.src=assetURL(src);s.onload=resolve;s.onerror=()=>reject(Error('Không tải được '+src));document.body.append(s);
  }))]);
  // Reveal once, after saved theme, module controls and the current shell are ready.
