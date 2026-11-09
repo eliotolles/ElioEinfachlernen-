@@ -81,12 +81,11 @@ test("reading catalog preserves source IDs including zero and does not mutate so
     h.run('ReadingCore.version({content:"B"})'),
   );
 });
-test("reading entry is included in Skills, sidebar and retained module navigation", () => {
-  const source = fs.readFileSync("public/js/editorial-ui.js", "utf8");
-  assert(
-    source.includes("['lesen.html','book','Luyện đọc','Lesen','Reading']"),
-  );
-  assert(source.includes("['lesen.html','book',tr('Luyện đọc'"));
+test("reading entry remains reachable through Skills and retained module navigation", () => {
+  const c={module:{exports:{}}};vm.createContext(c);vm.runInContext(fs.readFileSync("public/js/editorial-pages.js","utf8"),c);
+  const reading=c.module.exports.skills.find(([url])=>url==='lesen.html');
+  assert(reading,'The Skills overview must retain the existing reading module');
+  assert.equal(reading[3],'Phòng đọc hiểu');
   assert(
     fs.readFileSync("public/js/navigation.js", "utf8").includes("'lesen'"),
   );
