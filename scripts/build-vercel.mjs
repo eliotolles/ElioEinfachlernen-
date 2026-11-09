@@ -1,7 +1,12 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import {execSync} from 'node:child_process';
 import {extractInlineImages} from './extract-inline-images.mjs';
 import {versionAssets} from './version-assets.mjs';
+
+console.log('Building Vite React SPA for Sprachmeisterschaft UI...');
+execSync('npx vite build', {stdio: 'inherit'});
+
 async function walk(dir){const files=[];for(const e of await fs.readdir(dir,{withFileTypes:true})){const p=path.join(dir,e.name);if(e.isDirectory())files.push(...await walk(p));else if(!p.endsWith('.zip'))files.push(p);}return files;}
 const source={};for(const file of await walk('public'))source['/'+file.slice(7)]=await fs.readFile(file,'utf8');
 source['/js/session.js']=source['/js/session.js'].replace("path.startsWith('/api/ai')||","(data&&JSON.stringify(data).length>1000000)||path.startsWith('/api/ai')||");
@@ -15,6 +20,16 @@ for(const [name,text] of Object.entries(assets)){
  const file=path.join('vercel-public',name);await fs.mkdir(path.dirname(file),{recursive:true});await fs.writeFile(file,text);
 }
 for(const [name,img] of Object.entries(extracted.images)){const file=path.join('vercel-public',name);await fs.mkdir(path.dirname(file),{recursive:true});await fs.writeFile(file,Buffer.from(img.base64,'base64'));}
+
+// Overlay Vite SPA bundles from dist-vite into vercel-public
+for(const file of await walk('dist-vite')){
+  const rel = file.slice(10); // strip dist-vite/
+  const dest = path.join('vercel-public', rel);
+  await fs.mkdir(path.dirname(dest), {recursive: true});
+  await fs.copyFile(file, dest);
+}
+console.log('Vite React SPA overlayed into vercel-public successfully.');
+
 await fs.mkdir('vercel-server',{recursive:true});
 await fs.writeFile('vercel-server/worker.mjs','const ASSETS='+JSON.stringify(dynamic)+';\n'+await fs.readFile('worker/index.js','utf8')+'\nexport {sql};\n');
 console.log(`Vercel build: ${Object.keys(assets).length} assets, ${Object.keys(extracted.images).length} images; authenticated listening page retained.`);

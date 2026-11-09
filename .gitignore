@@ -16,3 +16,4 @@ vercel-server/
 __pycache__/
 *.pyc
 services/transcript/data/
+dist-vite/
