@@ -22,7 +22,20 @@ const ElioNavigation=(()=>{
    if(moduleHost){stage=document.createElement('div');stage.className='ed-route-stage';stage.hidden=true;stage.setAttribute('aria-label','Nội dung học');moduleHost.append(stage);}
    function notifyRoute(){document.dispatchEvent(new Event('elioroutechange'));}
 
-   function hostAccessible(visible){if(stage&&ownMain){ownMain.hidden=!visible;ownMain.inert=!visible;stage.hidden=visible;return;}for(const node of Array.from(document.body.children||[])){if(node.classList?.contains('elio-route-frame')||['SCRIPT','STYLE'].includes(node.tagName))continue;if(!visible){if(!hostInert.has(node))hostInert.set(node,!!node.inert);node.inert=true;}else if(hostInert.has(node)){node.inert=hostInert.get(node);hostInert.delete(node);}}}
+   function hostAccessible(visible){
+    if(stage&&ownMain){
+     ownMain.hidden=!visible;
+     ownMain.inert=!visible;
+     stage.hidden=visible;
+     return;
+    }
+    for(const node of Array.from(document.body.children||[])){
+     if(node.classList?.contains?.('elio-route-frame')||['SCRIPT','STYLE'].includes(node.tagName))continue;
+     if(node.id==='editorial-shell'||node.classList?.contains?.('ed-sidebar')||node.querySelector?.('.ed-sidebar'))continue;
+     if(!visible){if(!hostInert.has(node))hostInert.set(node,!!node.inert);node.inert=true;}
+     else if(hostInert.has(node)){node.inert=hostInert.get(node);hostInert.delete(node);}
+    }
+   }
    history.replaceState({...history.state,elioNavigation:true},'',own.pathname+own.search+own.hash);notifyRoute();
    const style=document.createElement('style');style.textContent=stage?'':'.elio-route-frame{position:fixed;inset:0;width:100%;height:100dvh;border:0;background:var(--bg,#faf7ee);z-index:10000}.elio-route-frame[hidden]{display:none!important}';document.head.append(style);
    function show(value,push=true){const u=target(value);if(!u)return;const key=u.pathname+u.search,previousHash=location.hash;
@@ -41,12 +54,23 @@ const ElioNavigation=(()=>{
    views.set(ownKey,{title:document.title});go=show;
    window.addEventListener('message',event=>{if(event.origin!==location.origin)return;const view=[...views.values()].find(v=>v.frame?.contentWindow===event.source);if(!view)return;if(event.data?.type==='elio:navigate')show(event.data.url);else if(event.data?.type==='elio:location'&&view.frame===overlay&&!view.frame.hidden){const u=target(event.data.url);if(u&&u.pathname+u.search===current&&location.pathname+location.search+location.hash!==u.pathname+u.search+u.hash){history.pushState({elioNavigation:true},'',u.pathname+u.search+u.hash);notifyRoute();}}});
    window.addEventListener('popstate',()=>show(location.href,false));
+   window.addEventListener('hashchange',()=>{
+    const u=target(location.href);
+    if(u&&u.pathname===own.pathname&&u.search===own.search){
+     if(overlay){overlay.hidden=true;overlay=null;hostAccessible(true);}
+     current=ownKey;
+     notifyRoute();
+    }
+   });
    document.addEventListener('languagechange',()=>{for(const view of views.values())if(view.frame?.contentDocument)try{view.frame.contentDocument.dispatchEvent(new view.frame.contentWindow.Event('elioappearancechange'));}catch{}});
    document.addEventListener('cloudchange',()=>{for(const view of views.values())if(view.frame?.contentDocument)try{view.frame.contentDocument.dispatchEvent(new view.frame.contentWindow.Event('cloudchange'));}catch{}});
   }
   document.addEventListener('click',event=>{if(event.defaultPrevented||event.button!==0||event.ctrlKey||event.metaKey||event.shiftKey||event.altKey)return;const a=event.target.closest?.('a[href]');if(!a||a.hasAttribute('download')||a.target&&a.target!=='_self')return;const u=target(a.href);if(!u)return;
    // Keep same-document anchors with their existing module handlers.
-   if(!child&&u.pathname===own.pathname&&u.search===own.search&&!document.querySelector?.('.ed-route-stage'))return;
+   if(!child&&u.pathname===own.pathname&&u.search===own.search){
+    if(overlay){overlay.hidden=true;overlay=null;hostAccessible(true);}
+    return;
+   }
    event.preventDefault();event.stopImmediatePropagation();go(u.href);
   },true);
  }
