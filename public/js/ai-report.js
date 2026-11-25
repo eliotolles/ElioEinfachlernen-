@@ -1,7 +1,7 @@
 // Báo cáo tiến độ AI: ai đang làm, ai đang trốn việc, phân công từng đề mục, giám sát.
 if(Account.profile.role!=='super_admin')location.replace('index.html');
 const JOB_LABELS={image:'Ảnh & PDF',speech:'Giọng nói',text:'Chấm chữa & văn bản',general:'Giám sát & hỗ trợ'};
-const BROKEN_RE=/không kết nối|không giải mã|lỗi|không có quyền|hết quota|429|401|403|404|thất bại|chưa khả dụng|không xử lý/i;
+const BROKEN_RE=/không kết nối|không giải mã|lỗi|không có quyền|hết quota|429|401|403|404|thất bại|chưa khả dụng|không xử lý|quá tải|overload|500|502|503|504/i;
 function classify(r){
   if(!r.enabled)return{key:'off',label:'Tắt',cls:'off'};
   if(r.cooldown>Date.now())return{key:'rest',label:'Đang nghỉ',cls:'rest',until:r.cooldown};
