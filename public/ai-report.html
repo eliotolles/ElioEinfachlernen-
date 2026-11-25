@@ -1,0 +1,17 @@
+<!doctype html><html lang="vi" class="auth-pending"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Elio · Báo cáo tiến độ AI</title><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="book.css"><link rel="stylesheet" href="admin.css"><style>html.auth-pending body{visibility:hidden}
+.report-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:16px 0}
+.report-card{border:1px solid #ddd;border-radius:12px;padding:14px}
+.report-card b{font-size:28px;display:block;line-height:1.2}
+.report-card span{font-size:13px}
+.badge{display:inline-block;padding:2px 10px;border-radius:999px;font-size:13px;font-weight:600;white-space:nowrap}
+.badge.work{background:#e6f4ea;color:#137333}
+.badge.rest{background:#fef7e0;color:#8a6d00}
+.badge.broken{background:#fce8e6;color:#a50e0e}
+.badge.off{background:#f1f3f4;color:#5f6368}
+.alert{border-radius:12px;padding:14px;margin:16px 0}
+.alert.broken{background:#fce8e6;color:#a50e0e}
+.alert.rest{background:#fef7e0;color:#5a3c00}
+.alert.ok{background:#e6f4ea;color:#137333}
+.row-missing td{background:#fce8e6}
+.text-broken{color:#a50e0e}
+</style><script src="js/cloud-cache.js"></script><script src="js/session.js"></script><script src="js/guard.js"></script></head><body><div id="navbar"></div><main><div class="eyebrow">SUPER ADMIN · BÁO CÁO AI</div><h1>Báo cáo tiến độ AI</h1><p>AI nào đang làm, AI nào đang trốn việc — phân công từng đề mục công việc, giám sát để hỗ trợ kịp thời. <a href="admin.html#ai">Sửa cấu hình AI →</a></p><p id="report-status" role="status"></p><div class="row"><button type="button" id="report-refresh" class="secondary">Cập nhật ngay</button><button type="button" id="report-test-all" class="secondary">Kiểm tra tất cả AI đang bật</button><label><input type="checkbox" id="report-auto" checked style="width:auto"> Tự cập nhật mỗi 30 giây</label></div><div id="report-alerts"></div><div id="report-cards" class="report-cards"></div><section class="panel"><h2>Nhân viên AI — ai đang làm, ai đang trốn việc</h2><div style="overflow-x:auto"><table><thead><tr><th>Trạng thái</th><th>Tên · nhà cung cấp / model</th><th>Vị trí làm việc</th><th>Ưu tiên</th><th>Chi tiết</th><th></th></tr></thead><tbody id="report-ai-list"></tbody></table></div></section><section class="panel"><h2>Phân công từng đề mục công việc</h2><p>AI chính làm việc đó; AI hỗ trợ chạy cùng khi AI chính chậm quá <span id="report-support-secs">12</span> giây, lỗi hoặc hết quota. Đề mục nào chưa có AI chính là đang thiếu người — cần gán thêm. AI nào kiểm tra lỗi sẽ tự tắt để khỏi làm nghẽn hệ thống.</p><div style="overflow-x:auto" id="report-assignments"></div></section></main><div id="toast" role="status"></div><script src="js/loader.js" data-scripts='["js/auth.js","js/ai.js","js/core.js","js/ai-report.js"]'></script></body></html>
